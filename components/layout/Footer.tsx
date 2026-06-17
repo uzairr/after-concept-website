@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';          // ← Added this
 import Link from 'next/link';
 import {
   FaBolt, FaCode, FaMicrochip,
@@ -44,12 +45,15 @@ export default function Footer() {
               {/* 
                 LOGO PLACEHOLDER:
                 Replace the src below with your own image URL or import.
-                e.g. src="/logo.png" or src={myLogo}
               */}
-              <img
+              <Image
                 src={isDark ? '/images/brand/AC_LogoWhite.svg' : '/images/brand/AC_LogoBlack.svg'}
                 alt="After Concept Logo"
                 className="h-10 w-auto object-contain"
+                width={160}
+                height={40}
+                unoptimized
+                priority
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
@@ -122,10 +126,10 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Icons — LinkedIn, Instagram & Facebook */}
+            {/* Social Icons */}
             <div className="flex gap-3 mt-6">
               <a
-                href="https://www.linkedin.com/company/afterrconcept"   /* ← replace with your LinkedIn URL */
+                href="https://www.linkedin.com/company/afterrconcept"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -139,7 +143,7 @@ export default function Footer() {
                 <FaLinkedinIn />
               </a>
               <a
-                href="https://instagram.com/"   /* ← replace with your Instagram URL */
+                href="https://instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -153,7 +157,7 @@ export default function Footer() {
                 <FaInstagram />
               </a>
               <a
-                href="https://facebook.com/"   /* ← replace with your Facebook URL */
+                href="https://facebook.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
