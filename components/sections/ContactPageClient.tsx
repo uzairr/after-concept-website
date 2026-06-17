@@ -1,9 +1,10 @@
 "use client";
 
+import React, { useState } from 'react';
 import Image from "next/image";
-import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { picsumImage } from "@/lib/images";
+
 /* 
 import {
   GitHubIcon,
@@ -43,38 +44,6 @@ const faqs: FaqItem[] = [
     a: "You do — fully. All code, designs, and documentation transfer to you at project completion. Our standard contract includes a full IP assignment clause. We can work in your existing repositories or set up new ones under your organisation from day one, so there's never an awkward handoff moment.",
   },
 ];
-
-/*
-function InfoIcon({ children }: { children: ReactNode }) {
-  return (
-    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-theme-accent/10 text-theme-accent">
-      {children}
-    </span>
-  );
-}
-
-function SocialButton({
-  href,
-  label,
-  icon,
-}: {
-  href: string;
-  label: string;
-  icon: ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-colors duration-200 hover:border-theme-accent hover:bg-theme-accent/10 hover:text-theme-accent"
-    >
-      {icon}
-    </a>
-  );
-}
-*/
 
 export default function ContactPageClient() {
   const [sent, setSent] = useState(false);
@@ -369,4 +338,3 @@ export default function ContactPageClient() {
     </>
   );
 }
-
