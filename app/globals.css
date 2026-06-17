@@ -1,0 +1,124 @@
+@import "../styles/refactor-tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-page: #ffffff;
+  --color-hero-from: #d4dcf6;
+  --color-hero-mid: #e8ecfc;
+  --color-hero-to: #fbfaff;
+  --color-section-alt: #f7f8fe;
+  --color-primary-text: #1a1a2e;
+  --color-secondary-text: #7a7a9a;
+  --color-eyebrow: #9090aa;
+  --color-accent: #6c5ce7;
+  --color-accent-to: #b4a7fc;
+  --color-accent-light: #f0eeff;
+  --color-border: #e8e8f0;
+  --color-outline: #d0d0e0;
+  --color-card-bg: #ffffff;
+  --hero-gradient: linear-gradient(165deg, #d4dcf6 0%, #e4e9fc 28%, #f0f2ff 58%, #ffffff 100%);
+  --accent-gradient: linear-gradient(135deg, #4f3fd4 0%, #6c5ce7 38%, #8b7aed 72%, #b4a7fc 100%);
+  --page-hero-banner: linear-gradient(165deg, #d4dcf6 0%, #e4e9fc 42%, #eef2fc 100%);
+  --card-border: 1px solid #e8e8f0;
+}
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-page text-primary antialiased;
+  }
+}
+
+@layer components {
+  .nav-link-desktop {
+    @apply font-sans text-[12px] font-medium uppercase leading-none tracking-nav text-primary no-underline transition-colors hover:text-accent;
+  }
+
+  .nav-link-contact {
+    @apply font-sans text-[12px] font-medium uppercase leading-none tracking-nav text-primary no-underline transition-colors hover:border-accent hover:text-accent;
+    border: 1.5px solid var(--color-outline);
+    border-radius: 6px;
+    padding: 14px 36px;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-link-mobile {
+    @apply font-sans text-[18px] font-medium uppercase leading-none tracking-nav text-primary no-underline transition-colors hover:text-accent;
+  }
+
+  .nav-link-mobile-contact {
+    @apply font-sans text-[18px] font-medium uppercase leading-none tracking-nav text-primary no-underline transition-colors hover:border-accent hover:text-accent;
+    border: 1.5px solid var(--color-outline);
+    border-radius: 6px;
+    padding: 14px 24px;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-link-footer {
+    @apply font-sans text-[12px] font-medium uppercase leading-none tracking-nav text-primary no-underline transition-colors hover:text-accent;
+  }
+
+  .nav-link-footer-contact {
+    @apply font-sans text-[12px] font-medium uppercase leading-none tracking-nav text-primary no-underline transition-colors hover:border-accent hover:text-accent;
+    border: 1.5px solid var(--color-outline);
+    border-radius: 6px;
+    padding: 14px 36px;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-eyebrow {
+    @apply font-sans text-[13px] font-medium uppercase tracking-eyebrow text-eyebrow text-center;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: #f2f2f2;
+    border: 1px solid #e4e4e4;
+  }
+
+  .hero-eyebrow.text-left {
+    margin-inline: 0;
+  }
+
+  .hero-headline {
+    @apply font-display text-hero font-extrabold text-center text-primary leading-[1.1];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-button border-0 bg-accent-gradient px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-white transition-all duration-200 hover:-translate-y-px hover:opacity-90;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-button border-[1.5px] border-outline bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-primary transition-colors duration-200 hover:border-accent hover:text-accent;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center border-0 bg-transparent p-0 font-sans text-[13px] font-medium uppercase tracking-cta text-accent underline-offset-4 transition-colors duration-200 hover:underline;
+  }
+
+  .cta-outline {
+    @apply btn-secondary;
+  }
+
+  .section-body {
+    @apply font-sans text-[16px] leading-[1.75] text-secondary sm:text-section-body;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-page-hero-banner {
+    background: var(--page-hero-banner);
+  }
+}

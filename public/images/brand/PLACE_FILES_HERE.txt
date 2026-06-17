@@ -1,0 +1,6 @@
+Header logo files (SVG):
+
+  AC_LogoWhite.svg  — dark theme header
+  AC_LogoBlack.svg  — light theme header
+
+Paths are configured in lib/header-nav.ts
