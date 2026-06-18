@@ -17,9 +17,7 @@ export type HeaderNavLink = {
 
 /** Desktop order mirrors reference; Solutions → /services until dedicated page exists */
 export const headerNavDesktop: HeaderNavLink[] = [
-  { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Solutions", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "Contact", href: "/contact" },
@@ -28,9 +26,7 @@ export const headerNavDesktop: HeaderNavLink[] = [
 /** Mobile drawer — includes Services + Solutions; no Industries on main site */
 export const headerNavMobile: HeaderNavLink[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Solutions", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "Contact", href: "/contact" },

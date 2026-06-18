@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';          // ← Added this
 import Link from 'next/link';
 import {
   FaBolt, FaCode, FaMicrochip,
@@ -25,6 +24,10 @@ export default function Footer() {
     return () => observer.disconnect();
   }, []);
 
+  if (!mounted) {
+    return <footer className="border-t py-16 px-6 bg-slate-50 border-slate-200 text-slate-900" suppressHydrationWarning />;
+  }
+
   return (
     <footer
       className={`
@@ -33,7 +36,6 @@ export default function Footer() {
           ? 'bg-[#061529] border-[#1e3a5f] text-white'
           : 'bg-slate-50 border-slate-200 text-slate-900'}
       `}
-      style={{ opacity: mounted ? 1 : 0, transition: 'opacity 0.3s ease' }}
     >
       <div className="max-w-[1280px] mx-auto">
         {/* Footer Grid */}
@@ -45,15 +47,12 @@ export default function Footer() {
               {/* 
                 LOGO PLACEHOLDER:
                 Replace the src below with your own image URL or import.
+                e.g. src="/logo.png" or src={myLogo}
               */}
-              <Image
+              <img
                 src={isDark ? '/images/brand/AC_LogoWhite.svg' : '/images/brand/AC_LogoBlack.svg'}
                 alt="After Concept Logo"
                 className="h-10 w-auto object-contain"
-                width={160}
-                height={40}
-                unoptimized
-                priority
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
@@ -76,7 +75,6 @@ export default function Footer() {
             isDark={isDark}
             links={[
               { name: 'Home', href: '/' },
-              { name: 'About', href: '/about' },
               { name: 'Services', href: '/services' },
               { name: 'Work', href: '/work' },
               { name: 'Contact', href: '/contact' },
@@ -112,6 +110,9 @@ export default function Footer() {
               Connect
             </h3>
             <div className={`flex flex-col gap-3 text-sm transition-colors duration-500 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <div className="flex items-center gap-2">
+                <FaBolt /> 9am – 1pm, Monday – Friday
+              </div>
               <a
                 href="mailto:afterconcept786@gmail.com"
                 className="flex items-center gap-2 text-blue-500 hover:text-blue-400 transition-colors duration-300"
@@ -126,10 +127,10 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Icons */}
+            {/* Social Icons — LinkedIn, Instagram & Facebook */}
             <div className="flex gap-3 mt-6">
               <a
-                href="https://www.linkedin.com/company/afterrconcept"
+                href="https://www.linkedin.com/company/afterrconcept"   /* ← replace with your LinkedIn URL */
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -143,7 +144,7 @@ export default function Footer() {
                 <FaLinkedinIn />
               </a>
               <a
-                href="https://instagram.com/"
+                href="https://instagram.com/"   /* ← replace with your Instagram URL */
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -157,7 +158,7 @@ export default function Footer() {
                 <FaInstagram />
               </a>
               <a
-                href="https://facebook.com/"
+                href="https://facebook.com/"   /* ← replace with your Facebook URL */
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"

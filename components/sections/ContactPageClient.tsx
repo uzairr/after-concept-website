@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
 import Image from "next/image";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { picsumImage } from "@/lib/images";
-
 /* 
 import {
   GitHubIcon,
@@ -45,6 +44,38 @@ const faqs: FaqItem[] = [
   },
 ];
 
+/*
+function InfoIcon({ children }: { children: ReactNode }) {
+  return (
+    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-theme-accent/10 text-theme-accent">
+      {children}
+    </span>
+  );
+}
+
+function SocialButton({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-colors duration-200 hover:border-theme-accent hover:bg-theme-accent/10 hover:text-theme-accent"
+    >
+      {icon}
+    </a>
+  );
+}
+*/
+
 export default function ContactPageClient() {
   const [sent, setSent] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
@@ -60,49 +91,12 @@ export default function ContactPageClient() {
           </h2>
         </div>
 
-        {/* 3-Column Layout grid */}
-        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-8 lg:grid-cols-3 items-stretch">
+        {/* 2-Column Layout grid */}
+        <div className="mx-auto grid w-full max-w-[1100px] grid-cols-1 gap-8 lg:grid-cols-2 items-stretch">
           
-          {/* Left Column Box: Main Contact Details Card */}
+          {/* Left Column Box: Pricing only */}
           <div className="rounded-2xl bg-theme-surface p-6 sm:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-line flex flex-col justify-between h-full">
             <div>
-              <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.1em] text-theme-accent mb-6">Contact Info</p>
-              
-              <div className="space-y-8">
-                <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-muted">Email</p>
-                  <a href="mailto:hello@afterconcept.io" className="mt-1 block font-sans text-[16px] font-medium text-theme-accent hover:underline">
-                    hello@afterconcept.io
-                  </a>
-                </div>
-                
-                <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-muted">Response Time</p>
-                  <p className="mt-1 font-sans text-[16px] font-medium text-foreground">
-                    Within 1 business day
-                  </p>
-                </div>
-                
-                <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-muted">Studio</p>
-                  <p className="mt-1 font-sans text-[16px] font-medium text-foreground">
-                    Lahore, Pakistan · Remote-first
-                  </p>
-                </div>
-                
-                <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-muted">Core Hours (UTC)</p>
-                  <p className="mt-1 font-sans text-[16px] font-medium text-foreground">
-                    9am – 1pm, Monday – Friday
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Center Column Box: Pricing Card (Vertically Centered) */}
-          <div className="flex items-center justify-center h-full">
-            <div className="rounded-2xl bg-theme-surface p-5 sm:p-6 shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-line w-full">
               <p className="font-sans text-[13px] font-semibold text-foreground">Typical engagement sizes</p>
               <div className="mt-6 space-y-4">
                 <div className="flex justify-between border-b border-line pb-4">
