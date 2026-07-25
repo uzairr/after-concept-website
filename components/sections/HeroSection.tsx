@@ -38,7 +38,7 @@ function usePrefersReducedMotion() {
   return reducedMotion;
 }
 
-function useTypewriter(words: string[], reducedMotion: boolean) {
+function useTypewriter(words: readonly string[], reducedMotion: boolean) {
   const [wordIndex, setWordIndex] = useState(0);
   const text = words[wordIndex];
   const [displayed, setDisplayed] = useState(reducedMotion ? text : "");

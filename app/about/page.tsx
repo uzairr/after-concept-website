@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { picsumImage } from "@/lib/images";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const metadata: Metadata = {
   title: "About | After Concept",

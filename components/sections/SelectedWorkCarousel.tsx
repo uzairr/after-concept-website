@@ -12,6 +12,7 @@ export type ShowcaseProject = {
   category: string;
   description: string;
   stack: string[];
+  image: string;
   outcome?: string;
   isMbc?: boolean;
   needsWhiteBg?: boolean;

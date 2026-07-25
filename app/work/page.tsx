@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import WorkPortfolioClient from "@/components/sections/WorkPortfolioClient";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const metadata: Metadata = {
   title: "Work | After Concept",
