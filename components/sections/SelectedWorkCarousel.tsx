@@ -78,7 +78,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "Full-stack route optimisation tool with real-time tracking and driver assignment.",
     stack: ["React", "Node.js", "Maps API"],
-    image: "/images/work/EVT-SAAS.png",
+    image: "/images/work/evt-saas.png",
   },
   {
     id: "finova",
@@ -87,7 +87,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "Savings and investment SaaS with multi-currency wallet and automated rebalancing.",
     stack: ["TypeScript", "Stripe", "WebSockets"],
-    image: "/images/work/Bultra-Bank.png",
+    image: "/images/work/bultra-bank.png",
   },
   {
     id: "learnaxis",
@@ -96,7 +96,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "AI-assisted learning platform with structured content generation and adaptive quizzes.",
     stack: ["Next.js", "OpenAI", "RAG"],
-    image: "/images/work/EVT-SAAS.png",
+    image: "/images/work/evt-saas.png",
   },
   {
     id: "corecloud",
@@ -105,7 +105,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "Last-minute infrastructure rescue and deployment pipeline rebuild for major launch.",
     stack: ["AWS", "Kubernetes", "Next.js"],
-    image: "/images/work/EVT-SAAS.png",
+    image: "/images/work/evt-saas.png",
   },
 ];
 
