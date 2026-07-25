@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -128,7 +127,7 @@ export default function Home() {
               const Icon = stepIcons[idx];
               return (
                 <div
-                  key={step.num}
+                  key={step.phase}
                   className="rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
                 >
                   <span className="transform flex h-14 w-14 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-theme-accent transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:rotate-6 hover:bg-accent/25 hover:shadow-[0_6px_16px_rgba(92,133,255,0.35)]">
