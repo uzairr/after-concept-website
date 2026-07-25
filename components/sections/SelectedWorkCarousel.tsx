@@ -29,7 +29,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "Greenfield AI operations platform with intelligent automation workflows. The scope grew mid-engagement driven by the team's delivery quality and communication.",
     stack: ["OpenAI", "LangChain", "TypeScript", "FastAPI"],
-    image: "/images/work/EVT-SAAS.png",
+    image: "/images/work/evt-saas.png",
     outcome: "Greenfield to live beta in 10 weeks",
   },
   {
@@ -50,7 +50,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "A challenger bank entering a new market needed a full digital banking experience — from secure auth and transaction APIs to a customer-facing dashboard and onboarding flow.",
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe"],
-    image: "/images/work/Bultra-Bank.png",
+    image: "/images/work/bultra-bank.png",
     outcome: "40% reduction in onboarding drop-off",
   },
   {
@@ -60,7 +60,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "Node.js performance overhaul and AWS infrastructure rebuild for high-throughput SaaS.",
     stack: ["Node.js", "AWS", "Docker"],
-    image: "/images/work/EVT-SAAS.png",
+    image: "/images/work/evt-saas.png",
   },
   {
     id: "medicore",
@@ -69,7 +69,7 @@ const allProjects: ShowcaseProject[] = [
     description:
       "Digital health platform for patient management and telemedicine services.",
     stack: ["React", "Node.js", "MongoDB"],
-    image: "/images/work/EVT-SAAS.png",
+    image: "/images/work/evt-saas.png",
   },
   {
     id: "skyroutes",
