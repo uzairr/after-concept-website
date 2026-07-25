@@ -32,7 +32,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "What does an engagement model look like, and what does it cost?",
-    a: "Most of our clients are in the UK, US, and Europe — and we've structured our working hours accordingly. Core overlap is 9am–1pm UTC, with async coverage via Slack throughout the day. You get daily updates, weekly demos, and a shared Notion workspace where everything is visible. We've been remote-first since day one — it's not an afterthought.",
+    a: "We work in two main modes: fixed-scope project builds and ongoing monthly retainers. A typical MVP engagement runs 8–16 weeks and costs between $15K–$40K depending on scope. Full product builds range from $40K–$100K. Growth retainers start at $5K/month. Every engagement starts with a free discovery sprint so we both understand scope and fit before committing to a budget.",
   },
   {
     q: "Do you work with early-stage founders or only funded companies?",
@@ -78,14 +78,58 @@ function SocialButton({
 
 export default function ContactPageClient() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState(0);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement)?.value,
+      email: (form.elements.namedItem("email") as HTMLInputElement)?.value,
+      service: (form.elements.namedItem("service") as HTMLSelectElement)?.value,
+      budget: (form.elements.namedItem("budget") as HTMLSelectElement)?.value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value,
+    };
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contact@afterconcept.io", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          Name: data.name,
+          Email: data.email,
+          "Service Interest": data.service,
+          "Budget Range": data.budget,
+          Project: data.message
+        }),
+      });
+
+      if (res.ok) {
+        setSent(true);
+        form.reset();
+      } else {
+        setError("Something went wrong. Please email us directly.");
+      }
+    } catch {
+      setError("Network error. Please email us directly at hello@afterconcept.io");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
       <section className="px-6 py-20 md:px-12 md:py-24">
         {/* Centered Headings */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="hero-eyebrow text-center">GET IN TOUCH —</p>
           <h2 className="mt-5 font-display text-[clamp(32px,4vw,46px)] font-bold leading-[1.15] text-foreground">
             Tell us what you&apos;re building
           </h2>
@@ -123,10 +167,8 @@ export default function ContactPageClient() {
           <div className="rounded-2xl bg-theme-surface p-5 sm:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.06)] md:p-10 border border-line flex flex-col justify-between h-full">
             <form
               className="space-y-5 flex flex-col justify-between h-full"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
+              onSubmit={handleSubmit}
+              suppressHydrationWarning
             >
               <div className="space-y-5">
                 {/* Row 1: Name and Email */}
@@ -137,6 +179,7 @@ export default function ContactPageClient() {
                     </label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
                       required
                       placeholder="Your name"
@@ -149,6 +192,7 @@ export default function ContactPageClient() {
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       required
                       placeholder="you@company.com"
@@ -165,6 +209,7 @@ export default function ContactPageClient() {
                     </label>
                     <select
                       id="service"
+                      name="service"
                       required
                       className="w-full rounded-lg border border-line bg-surface-2 px-4 py-[14px] font-sans text-[15px] text-foreground outline-none transition focus:border-theme-accent focus:shadow-[0_0_0_3px_rgba(37,99,235,0.1)]"
                       defaultValue=""
@@ -184,6 +229,7 @@ export default function ContactPageClient() {
                     </label>
                     <select
                       id="budget"
+                      name="budget"
                       required
                       className="w-full rounded-lg border border-line bg-surface-2 px-4 py-[14px] font-sans text-[15px] text-foreground outline-none transition focus:border-theme-accent focus:shadow-[0_0_0_3px_rgba(37,99,235,0.1)]"
                       defaultValue=""
@@ -206,6 +252,7 @@ export default function ContactPageClient() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     required
                     rows={5}
                     placeholder="Tell us about your project — what problem it solves, where you are now, and what success looks like."
@@ -218,15 +265,26 @@ export default function ContactPageClient() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="h-[52px] px-8 rounded-full bg-accent-gradient font-sans text-[13px] font-bold uppercase tracking-cta text-white transition-opacity hover:opacity-90 inline-flex items-center justify-center w-full"
+                  disabled={loading}
+                  className="h-[52px] px-8 rounded-full bg-accent-gradient font-sans text-[13px] font-bold uppercase tracking-cta text-white transition-opacity hover:opacity-90 inline-flex items-center justify-center w-full disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send message &rarr;
+                  {loading ? "Sending…" : "Send message →"}
                 </button>
               </div>
             </form>
 
             <AnimatePresence>
-              {sent ? (
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  className="mt-4 flex items-start gap-2 text-red-500"
+                >
+                  <p className="font-sans text-[14px]">{error}</p>
+                </motion.div>
+              )}
+              {sent && !error ? (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -236,7 +294,7 @@ export default function ContactPageClient() {
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="m5 13 4 4L19 7" />
                   </svg>
-                  <p className="font-sans text-[14px]">We&apos;ll be in touch soon!</p>
+                  <p className="font-sans text-[14px]">Message sent! We&apos;ll be in touch within 24 hours.</p>
                 </motion.div>
               ) : null}
             </AnimatePresence>
@@ -283,7 +341,6 @@ export default function ContactPageClient() {
       {/* FAQ section */}
       <section className="px-6 pb-24 md:px-12">
         <div className="mx-auto w-full max-w-[1400px]">
-          <p className="hero-eyebrow text-left">QUICK ANSWERS</p>
           <div className="mt-6 border-t border-line">
             {faqs.map((item, idx) => {
               const open = openFaq === idx;

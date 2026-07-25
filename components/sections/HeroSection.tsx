@@ -38,17 +38,16 @@ function usePrefersReducedMotion() {
   return reducedMotion;
 }
 
-function useTypewriter(text: string, reducedMotion: boolean) {
+function useTypewriter(words: string[], reducedMotion: boolean) {
+  const [wordIndex, setWordIndex] = useState(0);
+  const text = words[wordIndex];
   const [displayed, setDisplayed] = useState(reducedMotion ? text : "");
   const [phase, setPhase] = useState<"typing" | "pause" | "erasing" | "idle">("typing");
 
   useEffect(() => {
     if (reducedMotion) {
       setDisplayed(text);
-      return;
     }
-    setDisplayed("");
-    setPhase("typing");
   }, [text, reducedMotion]);
 
   useEffect(() => {
@@ -60,9 +59,9 @@ function useTypewriter(text: string, reducedMotion: boolean) {
       if (displayed.length < text.length) {
         timeout = setTimeout(() => {
           setDisplayed(text.slice(0, displayed.length + 1));
-        }, 48);
+        }, 65); // optimal typing speed
       } else {
-        timeout = setTimeout(() => setPhase("pause"), 1600);
+        timeout = setTimeout(() => setPhase("pause"), 500); // reduced pause
       }
     } else if (phase === "pause") {
       timeout = setTimeout(() => setPhase("erasing"), 0);
@@ -70,16 +69,17 @@ function useTypewriter(text: string, reducedMotion: boolean) {
       if (displayed.length > 0) {
         timeout = setTimeout(() => {
           setDisplayed(displayed.slice(0, -1));
-        }, 28);
+        }, 35); // smooth snappy erase
       } else {
+        setWordIndex((prev) => (prev + 1) % words.length);
         setPhase("typing");
       }
     }
 
     return () => clearTimeout(timeout);
-  }, [phase, displayed, text, reducedMotion]);
+  }, [phase, displayed, text, reducedMotion, words.length]);
 
-  return { displayed, phase };
+  return { displayed, phase, wordIndex, text };
 }
 
 function useTypewriterOnce(text: string, reducedMotion: boolean, delayMs = 600) {
@@ -121,24 +121,11 @@ const counterStats = [
 ];
 
 export function HeroSection() {
-  const [wordIndex, setWordIndex] = useState(0);
   const reducedMotion = usePrefersReducedMotion();
   const motionDuration = reducedMotion ? 0 : undefined;
 
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    const intervalId = window.setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2600);
-
-    return () => window.clearInterval(intervalId);
-  }, [reducedMotion]);
-
-  const rotatingWord = rotatingWords[wordIndex];
+  const { displayed: typewrittenWord, phase: twPhase, text: rotatingWord } = useTypewriter(rotatingWords, reducedMotion);
   const companyMarqueeText = formatCompanyMarquee(hero.marqueeCompanies);
-
-  const { displayed: typewrittenWord, phase: twPhase } = useTypewriter(rotatingWord, reducedMotion);
   const subtextDisplayed = useTypewriterOnce(hero.subtext, reducedMotion, 900);
 
   return (

@@ -1,10 +1,35 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { workPreview } from "@/lib/home-content";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { workPreview, type WorkItem } from "@/lib/home-content";
 import { picsumImage } from "@/lib/images";
+
+function ParallaxPreviewImage({ item, index }: { item: WorkItem; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden">
+      <motion.div style={{ y }} className="absolute -inset-[35%]">
+        <Image
+          src={picsumImage(item.id, 960, 720)}
+          alt={`${item.title} preview`}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          priority={index < 2}
+        />
+      </motion.div>
+    </div>
+  );
+}
 
 export default function WorkPreview() {
   return (
@@ -37,14 +62,7 @@ export default function WorkPreview() {
                 href="/work"
                 className="group relative block aspect-[4/3] overflow-hidden border border-[rgba(240,236,228,0.08)] bg-[#0a0c14] transition-transform duration-500 ease-out hover:scale-[1.02]"
               >
-                <Image
-                  src={picsumImage(item.id, 960, 720)}
-                  alt={`${item.title} preview`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={i < 2}
-                />
+                <ParallaxPreviewImage item={item} index={i} />
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-[#0d0f1a] via-[#0d0f1a]/55 to-[#0d0f1a]/20"
                   aria-hidden

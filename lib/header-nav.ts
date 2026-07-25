@@ -19,7 +19,7 @@ export type HeaderNavLink = {
 export const headerNavDesktop: HeaderNavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Testimonials", href: "/#testimonials" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -28,7 +28,7 @@ export const headerNavMobile: HeaderNavLink[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Testimonials", href: "/#testimonials" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 

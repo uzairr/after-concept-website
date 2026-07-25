@@ -11,64 +11,66 @@ html {
 
 html:not([data-theme="light"]),
 html[data-theme="dark"] {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --surface-2: #161616;
-  --text: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.72);
-  --text-faint: rgba(255, 255, 255, 0.52);
-  --border: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.22);
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-contrast: #ffffff;
-  --highlight: #00e5ff;
+  --bg: #0B0F1A;
+  --surface: #202940;
+  --surface-2: #151D2E;
+  --text: #F8FAFC;
+  --text-muted: #C8D8F0;
+  --text-faint: rgba(161, 180, 212, 0.52);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --accent: #5C85FF;
+  --accent-hover: #7A9CFF;
+  --accent-contrast: #0F1626;
+  --highlight: #6B95FF;
   --overlay: rgba(0, 0, 0, 0.55);
-  --focus-ring: #2563eb;
-  --grid-line: rgba(255, 255, 255, 0.06);
-  --stripe-line: rgba(255, 255, 255, 0.03);
-  --glow-accent: rgba(37, 99, 235, 0.35);
-  --header-bg-solid: #0a0a0a;
-  --header-bg-transparent: #0a0a0a;
-  --header-border: rgba(255, 255, 255, 0.1);
-  --header-link: #ffffff;
-  --header-link-muted: rgba(255, 255, 255, 0.78);
+  --focus-ring: #5C85FF;
+  --grid-line: rgba(92, 133, 255, 0.08);
+  --stripe-line: rgba(92, 133, 255, 0.04);
+  --glow-accent: rgba(92, 133, 255, 0.35);
+  --header-bg-solid: #0B0F1A;
+  --header-bg-transparent: rgba(11, 15, 26, 0);
+  --header-border: #2D3A59;
+  --header-link: #F8FAFC;
+  --header-link-muted: #A1B4D4;
 
   --color-primary: var(--bg);
   --color-accent: var(--accent);
   --color-highlight: var(--highlight);
   --color-text-on-dark: var(--text);
-  --page-hero-banner: linear-gradient(165deg, #0e121a 0%, #171c26 42%, #0e121a 100%);
+  --page-hero-banner: linear-gradient(165deg, #0B0F1A 0%, #151D2E 42%, #0B0F1A 100%);
 }
 
 html[data-theme="light"] {
-  --bg: #f6f8fc;
-  --surface: #ffffff;
-  --surface-2: #f1f5fb;
-  --text: #0b1220;
-  --text-muted: rgba(11, 18, 32, 0.72);
-  --text-faint: rgba(11, 18, 32, 0.55);
-  --border: rgba(11, 18, 32, 0.12);
-  --border-strong: rgba(11, 18, 32, 0.22);
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-contrast: #ffffff;
-  --highlight: #0ea5e9;
-  --overlay: rgba(8, 15, 30, 0.38);
-  --focus-ring: #2563eb;
-  --grid-line: rgba(11, 18, 32, 0.08);
-  --stripe-line: rgba(11, 18, 32, 0.05);
-  --glow-accent: rgba(37, 99, 235, 0.22);
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5F9;
+  --text: #172033;
+  --text-muted: #64748B;
+  --text-faint: rgba(100, 116, 139, 0.55);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.12);
+  --accent: #4A72FF;
+  --accent-hover: #365BE5;
+  --accent-contrast: #FFFFFF;
+  --highlight: #5C85FF;
+  --overlay: rgba(23, 32, 51, 0.38);
+  --focus-ring: #4A72FF;
+  --grid-line: rgba(74, 114, 255, 0.08);
+  --stripe-line: rgba(74, 114, 255, 0.04);
+  --glow-accent: rgba(74, 114, 255, 0.22);
+  
   --color-primary: var(--bg);
   --color-accent: var(--accent);
   --color-highlight: var(--highlight);
   --color-text-on-dark: var(--text);
-  --header-bg-solid: rgba(246, 248, 252, 0.96);
-  --header-bg-transparent: rgba(246, 248, 252, 0);
-  --header-border: rgba(11, 18, 32, 0.12);
-  --header-link: #0b1220;
-  --header-link-muted: rgba(11, 18, 32, 0.72);
-  --page-hero-banner: linear-gradient(165deg, #d4dcf6 0%, #e4e9fc 42%, #eef2fc 100%);
+  
+  --header-bg-solid: rgba(248, 250, 252, 0.96);
+  --header-bg-transparent: rgba(248, 250, 252, 0);
+  --header-border: #E2E8F0;
+  --header-link: #172033;
+  --header-link-muted: #64748B;
+  --page-hero-banner: linear-gradient(165deg, #E2E8F0 0%, #F1F5F9 42%, #F8FAFC 100%);
 }
 
 /* Header: theme-aware link colors (avoids inheriting legacy body `text-primary`) */
@@ -81,12 +83,14 @@ html[data-theme="light"] {
 }
 
 .site-header .site-header-nav-link {
-  color: var(--header-link-muted);
+  color: var(--header-link);
+  opacity: 0.7;
 }
 
 .site-header .site-header-nav-link:hover,
 .site-header .site-header-nav-link--active {
   color: var(--header-link);
+  opacity: 1;
 }
 
 .site-header .site-header-logo {
@@ -117,7 +121,7 @@ html[data-theme="light"] {
 }
 
 .hero-marquee .marquee-track {
-  animation-duration: 28s;
+  animation-duration: 9s;
 }
 
 @keyframes marquee-left {
@@ -300,7 +304,7 @@ html[data-theme="light"] {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .hero-grid::before,
   .scroll-dot,
@@ -312,4 +316,4 @@ html[data-theme="light"] {
   .btn-sharp:hover::before {
     transform: none;
   }
-}
+} */

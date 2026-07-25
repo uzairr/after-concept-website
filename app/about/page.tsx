@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { picsumImage } from "@/lib/images";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const metadata: Metadata = {
   title: "About | After Concept",
@@ -54,7 +55,6 @@ export default function AboutPage() {
       <section className="px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="hero-eyebrow text-left">WHO WE ARE</p>
             <h2 className="mt-5 font-display text-[clamp(32px,4vw,40px)] font-bold leading-[1.15] text-foreground">
               We Are After Concept
             </h2>
@@ -114,13 +114,12 @@ export default function AboutPage() {
 
       <section className="px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto w-full max-w-[1400px]">
-          <p className="hero-eyebrow text-left">OUR VALUES</p>
           <h2 className="mt-5 font-display text-h2 text-foreground">How We Work</h2>
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {values.map((value) => (
               <article
                 key={value.title}
-                className="rounded-xl border border-line bg-theme-surface p-8 transition-all duration-200 hover:-translate-y-1 hover:border-theme-accent hover:shadow-[0_8px_30px_rgba(37,99,235,0.1)]"
+                className="rounded-xl border border-line bg-theme-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
               >
                 <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-lg bg-theme-accent/10">
                   <svg
@@ -147,13 +146,12 @@ export default function AboutPage() {
 
       <section className="bg-surface-2 px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto w-full max-w-[1400px]">
-          <p className="hero-eyebrow text-left">OUR TEAM</p>
           <h2 className="mt-5 font-display text-h2 text-foreground">Meet the Collaborators</h2>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
               <article
                 key={member.name}
-                className="rounded-xl border border-line bg-theme-surface p-8 transition-all duration-200 hover:border-theme-accent hover:shadow-[0_12px_35px_rgba(37,99,235,0.12)]"
+                className="rounded-xl border border-line bg-theme-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-theme-accent/10 font-display text-[20px] font-bold text-theme-accent">
                   {member.initials}
@@ -186,14 +184,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-accent-gradient px-6 py-20 md:px-12">
+      <section className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-white">
+          <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary">
             Ready to Build Something Great?
           </h2>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-button border border-white bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-white transition-colors duration-200 hover:bg-white hover:text-accent"
+            className="inline-flex items-center justify-center rounded-button border border-outline bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-primary transition-colors duration-200 hover:border-accent hover:text-accent"
           >
             START A CONVERSATION
           </Link>
