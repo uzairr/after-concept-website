@@ -1,13 +1,21 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { aboutStoryContent } from "@/lib/about-content";
 import { picsumImage } from "@/lib/images";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function AboutStory() {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
+
   return (
     <section className="bg-page px-6 py-24 md:px-12 md:py-32">
       <motion.div
@@ -29,14 +37,16 @@ export default function AboutStory() {
           </p>
         </div>
 
-        <div className="relative aspect-[4/3] w-full overflow-hidden border border-[rgba(240,236,228,0.1)] bg-[#0a0c14]">
-          <Image
-            src={picsumImage(aboutStoryContent.imageSeed, 960, 720)}
-            alt="After Concept studio"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+        <div ref={imageRef} className="relative aspect-[4/3] w-full overflow-hidden border border-[rgba(240,236,228,0.1)] bg-[#0a0c14]">
+          <motion.div style={{ y }} className="absolute -inset-[35%]">
+            <Image
+              src={picsumImage(aboutStoryContent.imageSeed, 960, 720)}
+              alt="After Concept studio"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </motion.div>
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-page/30 to-transparent"
             aria-hidden

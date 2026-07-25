@@ -58,7 +58,7 @@ export function ThemeToggle() {
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="site-header-nav-link h-[22px] w-[22px] cursor-pointer text-foreground hover:text-highlight transition-colors duration-200"
+          className="site-header-nav-link h-[22px] w-[22px] cursor-pointer text-foreground hover:text-highlight transition-colors duration-200 focus:outline-none"
           role="button"
           tabIndex={0}
           aria-label="Switch to light mode"
@@ -81,7 +81,7 @@ export function ThemeToggle() {
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="site-header-nav-link h-[22px] w-[22px] cursor-pointer text-foreground hover:text-highlight transition-colors duration-200"
+          className="site-header-nav-link h-[22px] w-[22px] cursor-pointer text-foreground hover:text-highlight transition-colors duration-200 focus:outline-none"
           role="button"
           tabIndex={0}
           aria-label="Switch to dark mode"

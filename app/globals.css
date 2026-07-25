@@ -4,25 +4,47 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-page: #ffffff;
-  --color-hero-from: #d4dcf6;
-  --color-hero-mid: #e8ecfc;
-  --color-hero-to: #fbfaff;
-  --color-section-alt: #f7f8fe;
-  --color-primary-text: #1a1a2e;
-  --color-secondary-text: #7a7a9a;
-  --color-eyebrow: #9090aa;
-  --color-accent: #6c5ce7;
-  --color-accent-to: #b4a7fc;
-  --color-accent-light: #f0eeff;
-  --color-border: #e8e8f0;
-  --color-outline: #d0d0e0;
-  --color-card-bg: #ffffff;
-  --hero-gradient: linear-gradient(165deg, #d4dcf6 0%, #e4e9fc 28%, #f0f2ff 58%, #ffffff 100%);
-  --accent-gradient: linear-gradient(135deg, #4f3fd4 0%, #6c5ce7 38%, #8b7aed 72%, #b4a7fc 100%);
-  --page-hero-banner: linear-gradient(165deg, #d4dcf6 0%, #e4e9fc 42%, #eef2fc 100%);
-  --card-border: 1px solid #e8e8f0;
+html[data-theme="light"] {
+  --color-page: #F8FAFC;
+  --color-hero-from: #E2E8F0;
+  --color-hero-mid: #F1F5F9;
+  --color-hero-to: #F8FAFC;
+  --color-section-alt: #F1F5F9;
+  --color-primary-text: #172033;
+  --color-secondary-text: #64748B;
+  --color-eyebrow: #64748B;
+  --color-accent: #4A72FF;
+  --color-accent-to: #365BE5;
+  --color-accent-light: #E0E7FF;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-outline: rgba(0, 0, 0, 0.12);
+  --color-card-bg: #FFFFFF;
+  --hero-gradient: linear-gradient(165deg, #E2E8F0 0%, #F1F5F9 28%, #F8FAFC 58%, #FFFFFF 100%);
+  --accent-gradient: linear-gradient(135deg, #365BE5 0%, #4A72FF 38%, #5C85FF 72%, #7A9CFF 100%);
+  --page-hero-banner: linear-gradient(165deg, #E2E8F0 0%, #F1F5F9 42%, #F8FAFC 100%);
+  --card-border: 1px solid #E2E8F0;
+}
+
+html:not([data-theme="light"]),
+html[data-theme="dark"] {
+  --color-page: #0B0F1A;
+  --color-hero-from: #0B0F1A;
+  --color-hero-mid: #151D2E;
+  --color-hero-to: #0B0F1A;
+  --color-section-alt: #151D2E;
+  --color-primary-text: #F8FAFC;
+  --color-secondary-text: #A1B4D4;
+  --color-eyebrow: #6B95FF;
+  --color-accent: #5C85FF;
+  --color-accent-to: #7A9CFF;
+  --color-accent-light: rgba(92, 133, 255, 0.15);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-outline: rgba(255, 255, 255, 0.12);
+  --color-card-bg: #202940;
+  --hero-gradient: linear-gradient(165deg, #0B0F1A 0%, #151D2E 42%, #202940 100%);
+  --accent-gradient: linear-gradient(135deg, #365BE5 0%, #4A72FF 38%, #5C85FF 72%, #7A9CFF 100%);
+  --page-hero-banner: linear-gradient(165deg, #0B0F1A 0%, #151D2E 42%, #0B0F1A 100%);
+  --card-border: 1px solid #2D3A59;
 }
 
 @layer base {
@@ -118,7 +140,78 @@
     text-wrap: balance;
   }
 
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
   .bg-page-hero-banner {
     background: var(--page-hero-banner);
   }
 }
+
+@keyframes icon-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Hardcore Tech / Blueprint Grid */
+.bg-tech-grid {
+  background-image: linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+[data-theme="dark"] .bg-tech-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.icon-animated svg {
+  transform: scale(1);
+}
+
+.group:hover .icon-animated svg {
+  animation: icon-pop 0.85s ease-in-out;
+}
+
+/* Infinite Marquee Styles */
+/* .marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 4s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track span {
+  display: inline-block;
+  white-space: pre;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+} */

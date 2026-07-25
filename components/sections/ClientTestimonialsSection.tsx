@@ -1,6 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { testimonials } from "@/lib/testimonials";
+import { StaggeredText } from "@/components/ui/StaggeredText";
 
 /**
  * Returns 1-2 uppercase initials from a name string.
@@ -17,7 +20,7 @@ function TestimonialGridCard({ item }: { item: (typeof testimonials)[number] }) 
     <article className="testimonial-grid-card relative flex flex-col overflow-hidden rounded-2xl border border-line bg-theme-surface p-6 md:p-7">
       {/* Company badge — top-right */}
       <div className="absolute right-5 top-5 z-10">
-        <span className="inline-flex items-center rounded-full border border-black/10 bg-black/5 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/30">
+        <span className="inline-flex items-center rounded-full border border-border bg-surface backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary">
           {item.company}
         </span>
       </div>
@@ -65,30 +68,62 @@ function TestimonialGridCard({ item }: { item: (typeof testimonials)[number] }) 
  * 2-col grid with glassmorphism-style dark cards.
  */
 export function ClientTestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 2 >= testimonials.length ? 0 : prev + 2));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + 2);
+
   return (
     <section
       id="testimonials"
-      className="testimonial-stripes scroll-mt-32 bg-base px-6 py-20 md:px-10"
+      className="testimonial-stripes scroll-mt-32 bg-base px-6 py-8 md:px-12 md:py-10"
       aria-labelledby="testimonials-title"
     >
       <div className="mx-auto w-full max-w-7xl">
-        {/* Eyebrow */}
-        <p className="inline-block rounded-full border border-black/10 bg-black/5 backdrop-blur-md px-4 py-1.5 font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-black/30">
-          CLIENT FEEDBACK —
-        </p>
+
 
         {/* Heading */}
-        <h2
-          id="testimonials-title"
-          className="mt-5 max-w-2xl font-heading text-3xl font-bold text-foreground md:text-5xl"
-        >
-          What clients say after the work ships
-        </h2>
+        <StaggeredText 
+          text="What clients say after the work ships" 
+          className="mt-5 font-display text-h2 text-primary" 
+        />
 
-        {/* 2-column grid — max 6 testimonials */}
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {testimonials.slice(0, 6).map((item) => (
-            <TestimonialGridCard key={item.id} item={item} />
+        {/* Carousel Grid */}
+        <div className="mt-12">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="grid grid-cols-1 gap-5 sm:grid-cols-2"
+            >
+              {visibleTestimonials.map((item) => (
+                <TestimonialGridCard key={item.id} item={item} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        
+        {/* Carousel Indicators (Optional but nice UX) */}
+        <div className="mt-8 flex justify-center gap-2">
+          {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              aria-label={`Go to slide ${idx + 1}`}
+              onClick={() => setCurrentIndex(idx * 2)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                currentIndex === idx * 2 ? "w-6 bg-accent" : "w-1.5 bg-line-strong hover:bg-muted"
+              }`}
+            />
           ))}
         </div>
       </div>

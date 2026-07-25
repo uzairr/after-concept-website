@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useMemo, useState, useRef } from "react";
+import { AnimatePresence, motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import {
   workFilters,
   workProjects,
   type WorkFilterId,
 } from "@/lib/constants";
 import { picsumImage } from "@/lib/images";
+import { GlowCard } from "@/components/ui/GlowCard";
 
 const descriptions: Record<string, string> = {
   "meridian-os": "A scalable operations platform for distributed product teams.",
@@ -21,6 +22,72 @@ const descriptions: Record<string, string> = {
   "vector-lab": "A visual ML environment for training and comparing computer vision models.",
   "echo-agent": "A retrieval-powered assistant tailored for internal knowledge operations.",
 };
+
+function ParallaxImage({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+
+  return (
+    <div ref={ref} className="relative h-full w-full overflow-hidden">
+      <motion.div style={{ y }} className="absolute -inset-[20%]">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateY,
+        rotateX,
+        transformStyle: "preserve-3d",
+      }}
+      className="h-full w-full"
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function FilterButton({
   label,
@@ -60,7 +127,7 @@ export default function WorkPortfolioClient() {
   return (
     <>
       <section className="px-6 pb-10 pt-12 md:px-12">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-wrap gap-3">
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap gap-3">
           {workFilters.map((filter) => (
             <FilterButton
               key={filter.id}
@@ -73,57 +140,58 @@ export default function WorkPortfolioClient() {
       </section>
 
       <section className="px-6 pb-20 md:px-12 md:pb-24">
-        <motion.div layout className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project) => (
               <motion.article
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 12 }}
-                transition={{ duration: 0.35, delay: index * 0.08 }}
-                className="group overflow-hidden rounded-xl bg-theme-surface shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(37,99,235,0.12)]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="h-full"
+                style={{ perspective: 1000 }}
               >
-                <div className="relative h-[230px] overflow-hidden">
-                  <Image
-                    src={picsumImage(`${project.id}-portfolio`, 900, 540)}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 grid place-items-center bg-[rgba(37,99,235,0.85)] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                    <p className="font-sans text-[12px] font-medium uppercase tracking-[0.1em] text-white">
-                      VIEW PROJECT →
-                    </p>
-                  </div>
-                </div>
+                <TiltCard>
+                  <GlowCard className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-theme-surface shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]">
+                    <div className="relative h-[230px] shrink-0 overflow-hidden">
+                      <ParallaxImage 
+                        src={picsumImage(`${project.id}-portfolio`, 900, 540)} 
+                        alt={project.title} 
+                      />
+                      <div className="absolute inset-0 grid place-items-center bg-theme-surface/85 backdrop-blur-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                        <p className="font-sans text-[12px] font-medium uppercase tracking-[0.1em] text-theme-accent">
+                          VIEW PROJECT →
+                        </p>
+                      </div>
+                    </div>
 
-                <div className="border border-t-0 border-line p-5">
-                  <span className="inline-flex rounded-[20px] bg-theme-accent px-3 py-1 font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-white">
-                    {project.categoryLabel}
-                  </span>
-                  <h3 className="mt-4 font-display text-[18px] font-semibold text-foreground">
-                    {project.title}
-                  </h3>
-                  <p className="mt-3 font-sans text-[14px] leading-[1.7] text-muted">
-                    {descriptions[project.id] ?? "A modern digital product built for measurable outcomes."}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.techTags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-[14px] border border-line px-2.5 py-1 font-sans text-[11px] uppercase tracking-[0.06em] text-muted"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="mt-5 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-theme-accent">
-                    View Project →
-                  </p>
-                </div>
+                    <div className="flex flex-1 flex-col p-5 border-t-0">
+                      <div>
+                        <span className="inline-flex rounded-[20px] bg-theme-accent px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white">
+                          {project.categoryLabel}
+                        </span>
+                      </div>
+                      <h3 className="mt-4 font-display text-[18px] font-semibold text-foreground">
+                        {project.title}
+                      </h3>
+                      <p className="mt-3 flex-1 font-sans text-[14px] leading-[1.7] text-muted">
+                        {descriptions[project.id] ?? "A modern digital product built for measurable outcomes."}
+                      </p>
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {project.techTags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-[14px] border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted font-semibold"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </GlowCard>
+                </TiltCard>
               </motion.article>
             ))}
           </AnimatePresence>

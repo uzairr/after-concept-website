@@ -78,7 +78,7 @@ export default function ServicesPage() {
       <section className="px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="hero-eyebrow text-left">WHAT WE OFFER</p>
+            {/* WHAT WE OFFER tag removed */}
             <h2 className="mt-5 max-w-2xl font-display text-[clamp(34px,4.5vw,64px)] font-extrabold leading-[1.08] text-foreground">
               Enhance Your Project With Expert Engineering
             </h2>
@@ -143,7 +143,7 @@ export default function ServicesPage() {
                 </div>
               </div>
               <div className={idx % 2 === 1 ? "lg:order-1" : ""}>
-                <p className="font-display text-[22px] font-bold text-theme-accent">{service.index}</p>
+                {/* service.index tag removed */}
                 <h3 className="mt-3 font-display text-[clamp(28px,3.2vw,32px)] font-bold leading-[1.2] text-foreground">
                   {service.title}
                 </h3>
@@ -168,14 +168,12 @@ export default function ServicesPage() {
 
       <section className="bg-surface-2 px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto w-full max-w-[1400px]">
-          <p className="hero-eyebrow text-left">HOW WE WORK</p>
+          {/* HOW WE WORK tag removed */}
           <h2 className="mt-5 font-display text-h2 text-foreground">Simple. Transparent. Effective.</h2>
           <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {process.map((item, index) => (
               <div key={item.step} className="relative rounded-xl border border-line bg-theme-surface p-6">
-                <p className="font-display text-[48px] font-extrabold leading-none text-theme-accent">
-                  {item.step}
-                </p>
+                {/* item.step tag removed */}
                 <h3 className="mt-4 font-display text-[20px] font-semibold text-foreground">
                   {item.title}
                 </h3>
@@ -191,14 +189,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-accent-gradient px-6 py-20 md:px-12">
+      <section className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-white">
+          <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary">
             Ready to Build Something Great?
           </h2>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-button border border-white bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-white transition-colors duration-200 hover:bg-white hover:text-accent"
+            className="inline-flex items-center justify-center rounded-button border border-outline bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-primary transition-colors duration-200 hover:border-accent hover:text-accent"
           >
             START A CONVERSATION
           </Link>

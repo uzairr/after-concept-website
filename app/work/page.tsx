@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import WorkPortfolioClient from "@/components/sections/WorkPortfolioClient";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const metadata: Metadata = {
   title: "Work | After Concept",
@@ -26,14 +27,14 @@ export default function WorkPage() {
 
       <WorkPortfolioClient />
 
-      <section className="bg-accent-gradient px-6 py-20 md:px-12">
+      <section className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-white">
+          <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary">
             Ready to Build Something Great?
           </h2>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-button border border-white bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-white transition-colors duration-200 hover:bg-white hover:text-accent"
+            className="inline-flex items-center justify-center rounded-button border border-outline bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-primary transition-colors duration-200 hover:border-accent hover:text-accent"
           >
             START A CONVERSATION
           </Link>

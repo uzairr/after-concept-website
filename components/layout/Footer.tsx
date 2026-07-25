@@ -1,241 +1,171 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import {
-  FaBolt, FaCode, FaMicrochip,
-  FaPencilAlt, FaChartLine, FaBuilding,
-  FaBrain, FaUniversity, FaEnvelope,
-  FaMapMarkerAlt, FaClock,
-  FaInstagram, FaFacebook, FaLinkedinIn
-} from 'react-icons/fa';
+import Link from "next/link";
+import Image from "next/image";
+import { FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
+import { useResolvedTheme } from "@/lib/useResolvedTheme";
+import { agency, social } from "@/lib/siteContent";
 
 export default function Footer() {
-  const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const check = () =>
-      setIsDark(document.documentElement.getAttribute('data-theme') === 'dark');
-    check();
-    setMounted(true);
-    const observer = new MutationObserver(check);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    return () => observer.disconnect();
-  }, []);
-
-  if (!mounted) {
-    return <footer className="border-t py-16 px-6 bg-slate-50 border-slate-200 text-slate-900" suppressHydrationWarning />;
-  }
-
+  const resolvedTheme = useResolvedTheme();
+  const isDark = resolvedTheme === "dark";
   return (
-    <footer
-      className={`
-        border-t py-16 px-6 transition-colors duration-500
-        ${isDark
-          ? 'bg-[#061529] border-[#1e3a5f] text-white'
-          : 'bg-slate-50 border-slate-200 text-slate-900'}
-      `}
-    >
-      <div className="max-w-[1280px] mx-auto">
-        {/* Footer Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-
-          {/* Brand Column */}
-          <div className="footer-brand flex flex-col gap-4">
+    <div className="sticky bottom-0 left-0 w-full z-0 bg-base transition-colors duration-300">
+      <footer className="w-full px-6 pb-6 pt-16 md:px-12 md:pb-12 md:pt-24">
+        <div className="mx-auto w-full max-w-[1400px] rounded-[32px] md:rounded-[40px] border border-line bg-theme-surface px-6 py-8 md:px-10 md:py-10 shadow-[0_10px_40px_rgba(0,0,0,0.02)] transition-colors duration-300">
+        
+        {/* Footer Top Content */}
+        <div className="mb-8 flex flex-col gap-10 lg:flex-row lg:justify-between">
+          
+          {/* Brand & Socials (Left Column) */}
+          <div className="flex flex-col gap-6 lg:max-w-sm">
             <div className="flex items-center gap-3">
-              {/* 
-                LOGO PLACEHOLDER:
-                Replace the src below with your own image URL or import.
-                e.g. src="/logo.png" or src={myLogo}
-              */}
-              <img
-                src={isDark ? '/images/brand/AC_LogoWhite.svg' : '/images/brand/AC_LogoBlack.svg'}
+              <Image
+                src={isDark ? "/images/brand/AC_LogoWhite.svg" : "/images/brand/AC_LogoBlack.svg"}
                 alt="After Concept Logo"
-                className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
+                width={120}
+                height={40}
+                className="h-8 w-auto object-contain"
               />
-              <span className={`text-xl font-bold tracking-tighter transition-colors duration-500 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              <span className="font-display text-[20px] font-bold tracking-wide text-foreground">
                 AFTER CONCEPT
               </span>
             </div>
-            <p className={`text-sm leading-6 transition-colors duration-500 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              Production‑ready products for founders with validated ideas. We embed as your technical co-pilot.
+            
+            <p className="font-sans text-[17px] leading-relaxed text-secondary transition-colors duration-300">
+              Production-ready products for founders with validated ideas. We embed as your technical co-pilot—making your vision easier to build, launch, and scale.
             </p>
-            <div className="text-blue-500 border-l-2 border-blue-500 pl-3 text-xs font-medium">
-              <FaBolt className="inline mr-1" /> You focus on vision. We bring the product to life.
+
+            {/* Mission Highlight */}
+            <div className="flex items-start gap-3 border-l-2 border-accent pl-4 text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="mt-1 h-[14px] w-[14px] shrink-0">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              <p className="font-sans text-[16px] font-medium leading-snug">
+                You focus on vision. We bring the<br />product to life.
+              </p>
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <FooterColumn
-            title="Quick Links"
-            isDark={isDark}
-            links={[
-              { name: 'Home', href: '/' },
-              { name: 'Services', href: '/services' },
-              { name: 'Work', href: '/work' },
-              { name: 'Contact', href: '/contact' },
-            ]}
-          />
-
-          {/* Services */}
-          <FooterColumn
-            title="Services"
-            isDark={isDark}
-            links={[
-              { name: 'Custom Software', href: '#', icon: <FaCode /> },
-              { name: 'AI Integrations', href: '#', icon: <FaMicrochip /> },
-              { name: 'Product Design', href: '#', icon: <FaPencilAlt /> },
-              { name: 'Growth Eng', href: '#', icon: <FaChartLine /> },
-            ]}
-          />
-
-          {/* Recent Work */}
-          <FooterColumn
-            title="Recent Work"
-            isDark={isDark}
-            links={[
-              { name: 'Land Design', href: '#', icon: <FaBuilding /> },
-              { name: 'EVT SaaS', href: '#', icon: <FaBrain /> },
-              { name: 'Bultra Bank', href: '#', icon: <FaUniversity /> },
-            ]}
-          />
-
-          {/* Connect */}
-          <div>
-            <h3 className={`text-sm font-bold uppercase tracking-wider mb-5 transition-colors duration-500 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Connect
-            </h3>
-            <div className={`flex flex-col gap-3 text-sm transition-colors duration-500 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              <div className="flex items-center gap-2">
-                <FaBolt /> 9am – 1pm, Monday – Friday
-              </div>
+            
+            {/* Social Icons (Moved under description per screenshot) */}
+            <div className="mt-2 flex gap-4">
               <a
-                href="mailto:afterconcept786@gmail.com"
-                className="flex items-center gap-2 text-blue-500 hover:text-blue-400 transition-colors duration-300"
-              >
-                <FaEnvelope /> contact@afterconcept.io
-              </a>
-              <div className="flex items-center gap-2">
-                <FaMapMarkerAlt /> Pakistan — Global
-              </div>
-              <div className="flex items-center gap-2">
-                <FaClock /> Response within 24h
-              </div>
-            </div>
-
-            {/* Social Icons — LinkedIn, Instagram & Facebook */}
-            <div className="flex gap-3 mt-6">
-              <a
-                href="https://www.linkedin.com/company/afterrconcept"   /* ← replace with your LinkedIn URL */
+                href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className={`
-                  w-9 h-9 rounded-xl flex items-center justify-center
-                  transition-all duration-300 ease-in-out
-                  hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-lg
-                  ${isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-200 text-slate-600'}
-                `}
+                className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-2 text-muted transition-all duration-300 ease-in-out hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-lg"
               >
-                <FaLinkedinIn />
+                <FaLinkedinIn size={18} />
               </a>
               <a
-                href="https://instagram.com/"   /* ← replace with your Instagram URL */
+                href={social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className={`
-                  w-9 h-9 rounded-xl flex items-center justify-center
-                  transition-all duration-300 ease-in-out
-                  hover:scale-110 hover:bg-gradient-to-br hover:from-pink-500 hover:to-orange-400 hover:text-white hover:shadow-lg
-                  ${isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-200 text-slate-600'}
-                `}
+                className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-2 text-muted transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-br hover:from-pink-500 hover:to-orange-400 hover:text-white hover:shadow-lg"
               >
-                <FaInstagram />
+                <FaInstagram size={18} />
               </a>
               <a
-                href="https://facebook.com/"   /* ← replace with your Facebook URL */
+                href={social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className={`
-                  w-9 h-9 rounded-xl flex items-center justify-center
-                  transition-all duration-300 ease-in-out
-                  hover:scale-110 hover:bg-blue-600 hover:text-white hover:shadow-lg
-                  ${isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-200 text-slate-600'}
-                `}
+                className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-2 text-muted transition-all duration-300 ease-in-out hover:scale-110 hover:bg-blue-600 hover:text-white hover:shadow-lg"
               >
-                <FaFacebook />
+                <FaFacebook size={18} />
               </a>
+            </div>
+          </div>
+
+          {/* Links Grid (Right Columns) */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:gap-20">
+            {/* 1. Quick Links */}
+            <FooterColumn
+              title="Quick Links"
+              links={[
+                { name: "Home", href: "/" },
+                { name: "Services", href: "/services" },
+                { name: "Work", href: "/work" },
+                { name: "About", href: "/about" },
+                { name: "Contact", href: "/contact" },
+              ]}
+            />
+
+            {/* 2. Services */}
+            <FooterColumn
+              title="Services"
+              links={[
+                { name: "Custom Software", href: "/services" },
+                { name: "AI Integrations", href: "/services" },
+                { name: "Product Design", href: "/services" },
+                { name: "Growth Eng", href: "/services" },
+              ]}
+            />
+
+            {/* 3. Connect (Converted to match link style) */}
+            <div>
+              <h3 className="mb-5 flex h-8 items-center text-[17px] font-bold text-foreground transition-colors duration-300">
+                Connect
+              </h3>
+              <ul className="flex flex-col gap-4 text-[16px] text-muted">
+                <li>
+                  <a href={agency.emailHref} className="transition-colors hover:text-foreground">
+                    {agency.email}
+                  </a>
+                </li>
+                <li className="flex items-center gap-2">
+                  Pakistan — Global
+                </li>
+                <li className="flex items-center gap-2">
+                  9am – 5pm (UTC)
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className={`
-          flex flex-col md:flex-row justify-between items-center pt-8
-          border-t gap-4 text-xs transition-colors duration-500
-          ${isDark ? 'border-slate-800 text-slate-500' : 'border-slate-200 text-slate-400'}
-        `}>
-          <span>© 2026 After Concept · All rights reserved</span>
-          <div className="flex items-center gap-6">
-            <Link
-              href="#"
-              className={`transition-colors duration-300 hover:text-blue-500 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}
-            >
+        <div className="flex flex-col flex-wrap items-center justify-between gap-6 border-t border-line pt-6 md:flex-row transition-colors duration-300">
+          <p className="text-[14.5px] text-muted transition-colors duration-300">
+            © {new Date().getFullYear()} After Concept. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6 md:justify-end text-[14.5px] font-medium text-muted">
+            <Link href="/privacy" className="underline-offset-4 transition-colors hover:text-foreground hover:underline">
               Privacy Policy
             </Link>
-            <Link
-              href="#"
-              className={`transition-colors duration-300 hover:text-blue-500 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}
-            >
+            <Link href="/terms" className="underline-offset-4 transition-colors hover:text-foreground hover:underline">
               Terms of Service
             </Link>
           </div>
         </div>
+        
       </div>
     </footer>
+    </div>
   );
 }
 
 function FooterColumn({
   title,
   links,
-  isDark,
 }: {
   title: string;
-  links: { name: string; href: string; icon?: React.ReactNode }[];
-  isDark: boolean;
+  links: { name: string; href: string }[];
 }) {
   return (
     <div>
-      <h3 className={`text-sm font-bold uppercase tracking-wider mb-5 transition-colors duration-500 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+      <h3 className="mb-5 flex h-8 items-center text-[17px] font-bold text-foreground transition-colors duration-300">
         {title}
       </h3>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-4 text-[16px]">
         {links.map((link, i) => (
           <li key={i}>
             <Link
               href={link.href}
-              className={`
-                group text-sm flex items-center gap-2
-                transition-all duration-300 ease-in-out
-                hover:text-blue-500 hover:translate-x-1
-                ${isDark ? 'text-slate-400' : 'text-slate-500'}
-              `}
+              className="text-[14px] text-muted transition-colors duration-200 hover:text-foreground"
             >
-              {link.icon && (
-                <span className="text-[10px] opacity-50 group-hover:opacity-100 transition-opacity duration-300">
-                  {link.icon}
-                </span>
-              )}
-              <span className="relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-blue-500 after:transition-all after:duration-300 group-hover:after:w-full">
-                {link.name}
-              </span>
+              {link.name}
             </Link>
           </li>
         ))}
