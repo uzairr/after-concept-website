@@ -10,15 +10,15 @@ export default function Footer() {
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === "dark";
   return (
-    <div className="sticky bottom-0 left-0 w-full z-0 bg-base transition-colors duration-300">
-      <footer className="w-full px-6 pb-6 pt-16 md:px-12 md:pb-12 md:pt-24">
-        <div className="mx-auto w-full max-w-[1400px] rounded-[32px] md:rounded-[40px] border border-line bg-theme-surface px-6 py-8 md:px-10 md:py-10 shadow-[0_10px_40px_rgba(0,0,0,0.02)] transition-colors duration-300">
+    <div className="relative md:sticky bottom-0 left-0 w-full z-0 bg-base transition-colors duration-300">
+      <footer className="w-full px-6 pb-6 pt-8 md:px-12 md:pb-12 md:pt-24">
+        <div className="mx-auto w-full max-w-[1400px] rounded-[32px] md:rounded-[40px] border border-line bg-theme-surface px-4 py-6 md:px-10 md:py-10 shadow-[0_10px_40px_rgba(0,0,0,0.02)] transition-colors duration-300">
         
         {/* Footer Top Content */}
-        <div className="mb-8 flex flex-col gap-10 lg:flex-row lg:justify-between">
+        <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:justify-between md:mb-8 md:gap-10">
           
           {/* Brand & Socials (Left Column) */}
-          <div className="flex flex-col gap-6 lg:max-w-sm">
+          <div className="flex flex-col gap-4 lg:max-w-sm md:gap-6">
             <div className="flex items-center gap-3">
               <Image
                 src={isDark ? "/images/brand/AC_LogoWhite.svg" : "/images/brand/AC_LogoBlack.svg"}
@@ -27,12 +27,12 @@ export default function Footer() {
                 height={40}
                 className="h-8 w-auto object-contain"
               />
-              <span className="font-display text-[20px] font-bold tracking-wide text-foreground">
+              <span className="font-display text-base md:text-[20px] font-bold tracking-wide text-foreground">
                 AFTER CONCEPT
               </span>
             </div>
             
-            <p className="font-sans text-[17px] leading-relaxed text-secondary transition-colors duration-300">
+            <p className="font-sans text-sm md:text-[17px] leading-relaxed text-secondary transition-colors duration-300">
               Production-ready products for founders with validated ideas. We embed as your technical co-pilot—making your vision easier to build, launch, and scale.
             </p>
 
@@ -41,7 +41,7 @@ export default function Footer() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="mt-1 h-[14px] w-[14px] shrink-0">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
-              <p className="font-sans text-[16px] font-medium leading-snug">
+              <p className="font-sans text-sm md:text-[16px] font-medium leading-snug">
                 You focus on vision. We bring the<br />product to life.
               </p>
             </div>
@@ -155,15 +155,15 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="mb-5 flex h-8 items-center text-[17px] font-bold text-foreground transition-colors duration-300">
+      <h3 className="mb-3 md:mb-5 flex h-8 items-center text-sm md:text-[17px] font-bold text-foreground transition-colors duration-300">
         {title}
       </h3>
-      <ul className="flex flex-col gap-4 text-[16px]">
+      <ul className="flex flex-col gap-2 md:gap-4 text-sm md:text-[16px]">
         {links.map((link, i) => (
           <li key={i}>
             <Link
               href={link.href}
-              className="text-[14px] text-muted transition-colors duration-200 hover:text-foreground"
+              className="text-xs md:text-[14px] text-muted transition-colors duration-200 hover:text-foreground"
             >
               {link.name}
             </Link>

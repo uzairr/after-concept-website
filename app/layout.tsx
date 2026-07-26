@@ -81,7 +81,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-page overflow-x-hidden">
         <NoiseOverlay />
-        <div className="relative z-10 flex-1 bg-page bg-tech-grid shadow-[0_20px_40px_rgba(0,0,0,0.2)] md:shadow-[0_30px_60px_rgba(0,0,0,0.15)] rounded-b-[24px] md:rounded-b-[40px] transition-colors duration-300">
+        <div className="relative z-10 flex-1 bg-page bg-tech-grid shadow-[0_20px_40px_rgba(0,0,0,0.2)] md:shadow-[0_30px_60px_rgba(0,0,0,0.15)] rounded-b-[24px] md:rounded-b-[40px] transition-colors duration-300 max-w-[100vw] overflow-x-hidden">
           <Header />
           <main className="pt-header">{children}</main>
         </div>
