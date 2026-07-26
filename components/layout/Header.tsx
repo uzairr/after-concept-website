@@ -139,7 +139,7 @@ export function Header() {
             />
             <motion.aside
               id="mobile-nav-drawer"
-              className="fixed right-0 top-0 z-50 flex h-screen w-full max-w-sm flex-col border-l border-line bg-base/95 backdrop-blur-md p-8 shadow-2xl lg:hidden"
+              className="fixed right-0 top-0 z-50 flex h-[100dvh] w-full max-w-sm flex-col overflow-y-auto border-l border-line bg-base/95 backdrop-blur-md p-8 shadow-2xl lg:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
