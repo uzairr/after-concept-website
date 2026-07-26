@@ -141,7 +141,7 @@ export function HeroSection() {
             <div className="grid w-full gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start min-[1920px]:gap-16 min-[2560px]:gap-20">
               <div className="flex flex-col items-start justify-center text-left w-full">
                 <motion.h1
-                  className="font-display flex w-full max-w-full flex-col text-left text-[clamp(1.5rem,3.25vw+0.55rem,2.65rem)] font-bold normal-case leading-[1.12] tracking-tight text-foreground sm:leading-[1.1] min-[1920px]:text-[clamp(2.75rem,1.85vw+1.1rem,3.85rem)] min-[1920px]:leading-[1.1] min-[2560px]:text-[clamp(3.25rem,1.45vw+1.35rem,4.65rem)]"
+                  className="font-display flex w-full max-w-full flex-col text-left text-[clamp(1.2rem,3.25vw+0.55rem,2.65rem)] font-bold normal-case leading-[1.12] tracking-tight text-foreground sm:leading-[1.1] min-[1920px]:text-[clamp(2.75rem,1.85vw+1.1rem,3.85rem)] min-[1920px]:leading-[1.1] min-[2560px]:text-[clamp(3.25rem,1.45vw+1.35rem,4.65rem)]"
                   initial={reducedMotion ? false : "hidden"}
                   animate="visible"
                   variants={reducedMotion ? undefined : charContainer}
