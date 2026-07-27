@@ -251,7 +251,7 @@ export function HeroSection() {
 
               {/* Morph Art */}
               <motion.div
-                className="relative hidden h-[320px] lg:-ml-8 lg:block min-[1920px]:h-[400px] min-[1920px]:-ml-10 min-[2560px]:h-[480px] min-[2560px]:-ml-12"
+                className="relative hidden h-[320px] lg:flex lg:items-center lg:justify-center min-[1920px]:h-[400px] min-[2560px]:h-[480px]"
                 initial={reducedMotion ? false : { opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: motionDuration ?? 0.7, delay: reducedMotion ? 0 : 0.4, ease: "easeOut" }}
