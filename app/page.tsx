@@ -40,9 +40,9 @@ export default function Home() {
         id="services"
         className="bg-page px-6 py-12 md:px-12 md:py-16"
       >
-        <div className="mx-auto w-full max-w-7xl">
+        <div className="mx-auto w-full max-w-[1400px]">
           <StaggeredText text="What We Build" className="mt-5 font-display text-3xl font-extrabold md:text-4xl text-foreground tracking-tight text-center w-full flex justify-center" />
-          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 ...services[0],
@@ -88,7 +88,7 @@ export default function Home() {
 
                 className="h-full"
               >
-                <GlowCard className="group flex h-full flex-col items-center text-center rounded-xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]">
+                <GlowCard className="group flex h-full flex-col items-start text-left rounded-xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]">
                   {/* Circular accent icon with glow */}
                   <div className="icon-animated relative mb-2 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-accent shadow-[0_0_15px_rgba(74,114,255,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(74,114,255,0.55)]">
                     {service.svg}
@@ -99,7 +99,7 @@ export default function Home() {
                   <p className="mt-4 font-sans text-[14px] leading-[1.7] text-secondary">
                     {service.body}
                   </p>
-                  <div className="mt-auto pt-6 flex flex-wrap justify-center gap-2 w-full">
+                  <div className="mt-auto pt-6 flex flex-wrap justify-start gap-2 w-full">
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
