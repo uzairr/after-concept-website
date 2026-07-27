@@ -25,7 +25,6 @@ function isActivePath(pathname: string, href: string) {
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const resolvedTheme = "light";
   const { scrollY } = useScroll();
   const pathname = usePathname();
 
@@ -33,12 +32,9 @@ export function Header() {
     setIsScrolled(latest > 30);
   });
 
-  const headerBackground =
-    resolvedTheme === "dark"
-      ? "rgba(11, 15, 26, 0.75)"
-      : isScrolled
-        ? "rgba(248, 250, 252, 0.85)"
-        : "rgba(248, 250, 252, 0)";
+  const headerBackground = isScrolled
+    ? "rgba(248, 250, 252, 0.85)"
+    : "rgba(248, 250, 252, 0)";
 
   useEffect(() => {
     if (mobileOpen) {
@@ -57,8 +53,7 @@ export function Header() {
         className="site-header fixed left-0 top-0 z-50 w-full backdrop-blur-md"
         animate={{
           backgroundColor: headerBackground,
-          borderBottomColor:
-            resolvedTheme === "dark" || isScrolled ? "var(--header-border)" : "transparent",
+          borderBottomColor: isScrolled ? "var(--header-border)" : "transparent",
         }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         style={{ borderBottomWidth: "1px", borderBottomStyle: "solid" }}
