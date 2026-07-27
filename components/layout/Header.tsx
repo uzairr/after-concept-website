@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { HeaderBrand } from "@/components/layout/HeaderBrand";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import {
   headerCta,
   headerNavDesktop,
@@ -82,27 +81,24 @@ export function Header() {
 
             <div className="hidden items-center gap-2 text-xs uppercase tracking-[0.12em] lg:flex">
               {headerNavDesktop.map((item) => (
-                <MagneticButton key={item.label} className="px-4 py-3">
-                  <Link
-                    href={item.href}
-                    className={`${navLinkClass} ${isActivePath(pathname, item.href) ? navLinkActiveClass : ""} block`}
-                  >
-                    {item.label}
-                  </Link>
-                </MagneticButton>
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`${navLinkClass} ${isActivePath(pathname, item.href) ? navLinkActiveClass : ""} block px-4 py-3`}
+                >
+                  {item.label}
+                </Link>
               ))}
             </div>
 
             <div className="hidden items-center gap-4 lg:flex">
               <ThemeToggle />
-              <MagneticButton>
-                <Link
-                  href={headerCta.href}
-                  className="cta-sharp px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] no-underline"
-                >
-                  {headerCta.label}
-                </Link>
-              </MagneticButton>
+              <Link
+                href={headerCta.href}
+                className="cta-sharp px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] no-underline"
+              >
+                {headerCta.label}
+              </Link>
             </div>
 
             <div className="flex items-center gap-2 lg:hidden">

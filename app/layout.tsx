@@ -6,6 +6,7 @@ import { themeInitScript } from "@/lib/theme-init";
 import "./globals.css";
 
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
+import TargetCursor from "@/components/ui/TargetCursor";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-screen flex-col bg-page overflow-x-hidden">
+        <TargetCursor targetSelector="a, button" cursorColor="var(--color-primary-text)" cursorColorOnTarget="var(--color-accent)" />
         <NoiseOverlay />
         <div className="relative z-10 flex-1 bg-page bg-tech-grid shadow-[0_20px_40px_rgba(0,0,0,0.2)] md:shadow-[0_30px_60px_rgba(0,0,0,0.15)] rounded-b-[24px] md:rounded-b-[40px] transition-colors duration-300 max-w-[100vw] overflow-x-hidden">
           <Header />

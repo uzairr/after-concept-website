@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { picsumImage } from "@/lib/images";
+import { GlowCard } from "@/components/ui/GlowCard";
 
 export const metadata: Metadata = {
   title: "Services | After Concept",
@@ -61,8 +62,9 @@ export default function ServicesPage() {
   ];
 
   return (
+    
     <div className="bg-base min-h-screen text-foreground">
-      <section className="flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
+      <section className="w-full flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
         <div>
           <p className="font-sans text-[12px] text-muted">Home / Services</p>
           <h1 className="mt-4 font-display text-[clamp(38px,5vw,52px)] font-extrabold text-foreground">
@@ -75,7 +77,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:px-12 md:py-24">
+      <section className="w-full bg-base px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             {/* WHAT WE OFFER tag removed */}
@@ -92,7 +94,7 @@ export default function ServicesPage() {
             </Link>
           </div>
           <div className="relative flex justify-center">
-            <div className="w-full max-w-[520px] rounded-2xl border border-line bg-theme-surface p-4 shadow-[0_30px_80px_rgba(37,99,235,0.15)] [transform:rotate(-3deg)_translateY(-6px)]">
+            <GlowCard className="w-full max-w-[520px] rounded-2xl border border-line bg-theme-surface p-4 shadow-[0_30px_80px_rgba(37,99,235,0.15)] [transform:rotate(-3deg)_translateY(-6px)] h-full">
               <div className="relative min-h-[280px] overflow-hidden rounded-xl p-8">
                 <Image
                   src={picsumImage("services-intro-stack", 720, 560)}
@@ -118,18 +120,19 @@ export default function ServicesPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </GlowCard>
           </div>
         </div>
       </section>
 
-      <section className="px-6 pb-20 md:px-12 md:pb-24">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8">
+      <section className="w-full bg-base px-6 pb-20 md:px-12 md:pb-24">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-12 lg:gap-24">
           {serviceRows.map((service, idx) => (
-            <article
+            <GlowCard
               key={service.title}
-              className="grid grid-cols-1 items-center gap-8 rounded-2xl border border-line bg-theme-surface p-6 md:p-8 lg:grid-cols-2"
+              className="rounded-2xl border border-line bg-theme-surface"
             >
+              <div className="grid grid-cols-1 items-center gap-8 p-6 md:p-8 lg:grid-cols-2 h-full">
               <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
                 <div className="relative h-[250px] overflow-hidden rounded-xl border border-line bg-surface-2">
                   <Image
@@ -161,18 +164,19 @@ export default function ServicesPage() {
                   ))}
                 </div>
               </div>
-            </article>
+              </div>
+            </GlowCard>
           ))}
         </div>
       </section>
 
-      <section className="bg-surface-2 px-6 py-20 md:px-12 md:py-24">
+      <section className="w-full bg-surface-2 px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto w-full max-w-[1400px]">
           {/* HOW WE WORK tag removed */}
           <h2 className="mt-5 font-display text-h2 text-foreground">Simple. Transparent. Effective.</h2>
           <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {process.map((item, index) => (
-              <div key={item.step} className="relative rounded-xl border border-line bg-theme-surface p-6">
+              <GlowCard key={item.step} className="relative rounded-xl border border-line bg-theme-surface p-6 h-full">
                 {/* item.step tag removed */}
                 <h3 className="mt-4 font-display text-[20px] font-semibold text-foreground">
                   {item.title}
@@ -183,13 +187,13 @@ export default function ServicesPage() {
                 {index < process.length - 1 ? (
                   <span className="pointer-events-none absolute -right-3 top-1/2 hidden h-px w-6 -translate-y-1/2 border-t border-dashed border-line lg:block" />
                 ) : null}
-              </div>
+              </GlowCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
+      <section className="w-full bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary">
             Ready to Build Something Great?
@@ -203,5 +207,6 @@ export default function ServicesPage() {
         </div>
       </section>
     </div>
+    
   );
 }

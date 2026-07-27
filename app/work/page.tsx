@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
+    
     <div className="bg-base min-h-screen text-foreground">
-      <section className="flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
+      <section className="w-full flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
         <div>
           <p className="font-sans text-[12px] text-muted">Home / Work</p>
           <h1 className="mt-4 font-display text-[clamp(38px,5vw,52px)] font-extrabold text-foreground">
@@ -24,9 +25,11 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <WorkPortfolioClient />
+      <div className="w-full bg-base">
+        <WorkPortfolioClient />
+      </div>
 
-      <section className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
+      <section className="w-full bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary">
             Ready to Build Something Great?
@@ -40,5 +43,6 @@ export default function WorkPage() {
         </div>
       </section>
     </div>
+    
   );
 }

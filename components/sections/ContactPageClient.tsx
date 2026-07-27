@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { picsumImage } from "@/lib/images";
+import { GlowCard } from "@/components/ui/GlowCard";
 /* 
 import {
   GitHubIcon,
@@ -136,11 +137,11 @@ export default function ContactPageClient() {
         </div>
 
         {/* 2-Column Layout grid */}
-        <div className="mx-auto grid w-full max-w-[1100px] grid-cols-1 gap-8 lg:grid-cols-2 items-stretch">
+        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-12 lg:grid-cols-5">
           
-          {/* Left Column Box: Pricing only */}
-          <div className="rounded-2xl bg-theme-surface p-6 sm:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-line flex flex-col justify-between h-full">
-            <div>
+          <GlowCard className="rounded-2xl bg-theme-surface shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-line h-full lg:col-span-2">
+            <div className="flex flex-col justify-between h-full p-6 sm:p-8">
+              <div>
               <p className="font-sans text-[13px] font-semibold text-foreground">Typical engagement sizes</p>
               <div className="mt-6 space-y-4">
                 <div className="flex justify-between border-b border-line pb-4">
@@ -162,10 +163,11 @@ export default function ContactPageClient() {
               </div>
             </div>
           </div>
+        </GlowCard>
 
-          {/* Right Column Box: Form Card */}
-          <div className="rounded-2xl bg-theme-surface p-5 sm:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.06)] md:p-10 border border-line flex flex-col justify-between h-full">
-            <form
+          <GlowCard className="rounded-2xl bg-theme-surface shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-line h-full lg:col-span-3">
+            <div className="flex flex-col justify-between h-full p-5 sm:p-8 md:p-10">
+              <form
               className="space-y-5 flex flex-col justify-between h-full"
               onSubmit={handleSubmit}
               suppressHydrationWarning
@@ -298,8 +300,8 @@ export default function ContactPageClient() {
                 </motion.div>
               ) : null}
             </AnimatePresence>
-          </div>
-
+            </div>
+          </GlowCard>
         </div>
       </section>
 

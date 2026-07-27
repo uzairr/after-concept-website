@@ -215,3 +215,9 @@ html[data-theme="dark"] {
     transform: translateX(-50%);
   }
 } */
+
+@media (pointer: fine) {
+  html, body, a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
