@@ -148,29 +148,33 @@ export function HeroSection() {
                 >
                   <span className="flex flex-col gap-3 sm:gap-4 min-[1920px]:gap-5 min-[2560px]:gap-6 text-left">
                     {headlineLines.map((line, lineIndex) => (
-                      <span key={`headline-line-${lineIndex}`} className="block break-words text-left">
-                        {line.split("").map((char, charIndex) => (
-                          <motion.span
-                            key={`headline-line-${lineIndex}-char-${charIndex}`}
-                            variants={reducedMotion ? undefined : charItem}
-                            transition={{ duration: motionDuration ?? 0.45, ease: "easeOut" }}
-                            className="inline-block whitespace-pre text-left"
-                          >
-                            {char}
-                          </motion.span>
+                      <span key={`headline-line-${lineIndex}`} className="flex flex-wrap text-left" style={{ columnGap: "0.25em" }}>
+                        {line.split(" ").map((word, wordIndex) => (
+                          <span key={`headline-line-${lineIndex}-word-${wordIndex}`} className="inline-flex whitespace-nowrap">
+                            {word.split("").map((char, charIndex) => (
+                              <motion.span
+                                key={`headline-line-${lineIndex}-word-${wordIndex}-char-${charIndex}`}
+                                variants={reducedMotion ? undefined : charItem}
+                                transition={{ duration: motionDuration ?? 0.45, ease: "easeOut" }}
+                                className="inline-block"
+                              >
+                                {char}
+                              </motion.span>
+                            ))}
+                          </span>
                         ))}
                       </span>
                     ))}
                   </span>
 
-                  <span className="relative mt-0.5 block shrink-0 min-h-[2.5em] overflow-hidden text-theme-accent leading-[1.12] text-left sm:mt-1 sm:min-h-[1.45em] min-[1920px]:min-h-[1.5em] min-[2560px]:min-h-[1.55em]">
+                  <span className="relative mt-0.5 block shrink-0 overflow-hidden text-theme-accent leading-[1.12] text-left sm:mt-1">
                     {reducedMotion ? (
                       <span className="block text-left">{rotatingWord}</span>
                     ) : (
                       <AnimatePresence mode="wait">
                         <motion.span
                           key={rotatingWord}
-                          className="absolute left-0 top-0 whitespace-nowrap text-left"
+                          className="inline-block text-left"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}

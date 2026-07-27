@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Syne, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { themeInitScript } from "@/lib/theme-init";
 import "./globals.css";
 
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
@@ -75,10 +74,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${syne.variable} ${jetbrains.variable}`}
-      suppressHydrationWarning
+      data-theme="light"
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-screen flex-col bg-page overflow-x-hidden">
         <TargetCursor targetSelector="a, button" cursorColor="var(--color-primary-text)" cursorColorOnTarget="var(--color-accent)" />
