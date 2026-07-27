@@ -45,14 +45,15 @@ export function ProductMorphArt() {
         /* ── Ambient glow rings (pulse during scatter phase) ── */
         .pma-glow-ring {
           position: absolute;
+          top: 50%; left: 50%;
           border-radius: 50%;
           border: 1px solid rgba(37,99,235,0.08);
           pointer-events: none;
           animation: pma-ring-glow 12s ease-in-out infinite;
         }
-        .pma-glow-ring-1 { width: 240px; height: 240px; animation-delay: 0s; }
-        .pma-glow-ring-2 { width: 290px; height: 290px; animation-delay: 0.25s; }
-        .pma-glow-ring-3 { width: 330px; height: 330px; animation-delay: 0.45s; }
+        .pma-glow-ring-1 { width: 240px; height: 240px; margin: -120px 0 0 -120px; animation-delay: 0s; }
+        .pma-glow-ring-2 { width: 290px; height: 290px; margin: -145px 0 0 -145px; animation-delay: 0.25s; }
+        .pma-glow-ring-3 { width: 330px; height: 330px; margin: -165px 0 0 -165px; animation-delay: 0.45s; }
 
         @keyframes pma-ring-glow {
           0%, 8%   { opacity: 0.5; border-color: rgba(37,99,235,0.12); transform: scale(1); }
@@ -88,6 +89,8 @@ export function ProductMorphArt() {
         .pma-card-header {
           width: 250px;
           height: 42px;
+          top: 50%; left: 50%;
+          margin: -21px 0 0 -125px;
           display: flex;
           align-items: center;
           padding: 0 14px;
@@ -145,6 +148,8 @@ export function ProductMorphArt() {
         .pma-card-content {
           width: 120px;
           height: 66px;
+          top: 50%; left: 50%;
+          margin: -33px 0 0 -60px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -188,6 +193,8 @@ export function ProductMorphArt() {
         .pma-card-chart {
           width: 120px;
           height: 66px;
+          top: 50%; left: 50%;
+          margin: -33px 0 0 -60px;
           display: flex;
           align-items: flex-end;
           justify-content: center;
@@ -237,6 +244,8 @@ export function ProductMorphArt() {
         .pma-card-button {
           width: 250px;
           height: 36px;
+          top: 50%; left: 50%;
+          margin: -18px 0 0 -125px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -279,6 +288,8 @@ export function ProductMorphArt() {
         .pma-card-dot {
           width: 28px;
           height: 28px;
+          top: 50%; left: 50%;
+          margin: -14px 0 0 -14px;
           border-radius: 6px;
           display: flex;
           align-items: center;
@@ -318,6 +329,8 @@ export function ProductMorphArt() {
         /* ── Orbiting particles (visible during scatter/glow phase) ── */
         .pma-particle {
           position: absolute;
+          top: 50%; left: 50%;
+          margin: -1.5px 0 0 -1.5px;
           width: 3px;
           height: 3px;
           border-radius: 50%;
@@ -356,7 +369,7 @@ export function ProductMorphArt() {
         }
       `}} />
 
-      <div className="pma-scene">
+      <div className="pma-scene scale-100 min-[1920px]:scale-125 min-[2560px]:scale-150 transform transition-transform duration-500 origin-center">
         {/* Glow rings */}
         <div className="pma-glow-ring pma-glow-ring-1" />
         <div className="pma-glow-ring pma-glow-ring-2" />
