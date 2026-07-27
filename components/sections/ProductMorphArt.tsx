@@ -84,11 +84,9 @@ export function ProductMorphArt() {
 
         /* ============================================================
            CARD 1 — Header bar (wide)
-           Scattered: top-center, offset up
-           Assembled: top of the 'screen' layout
            ============================================================ */
         .pma-card-header {
-          width: 200px;
+          width: 250px;
           height: 42px;
           display: flex;
           align-items: center;
@@ -119,33 +117,30 @@ export function ProductMorphArt() {
         }
 
         @keyframes pma-c1 {
-          /* Scattered — top center, offset up */
-          0%   { transform: translate(-10px, -105px); opacity: 0.75;
+          /* Scattered */
+          0%   { transform: translate(0px, -120px); opacity: 0.75;
                  box-shadow: 0 0 12px rgba(37,99,235,0.15); }
-          5%   { transform: translate(-10px, -105px); opacity: 0.85;
+          5%   { transform: translate(0px, -120px); opacity: 0.85;
                  box-shadow: 0 0 16px rgba(37,99,235,0.2); }
-          /* Move to assembled position */
-          22%  { transform: translate(0px, -68px); opacity: 1;
+          /* Assembled */
+          22%  { transform: translate(0px, -64px); opacity: 1;
                  box-shadow: 0 0 8px rgba(37,99,235,0.1); }
-          /* Hold assembled */
-          50%  { transform: translate(0px, -68px); opacity: 1;
+          50%  { transform: translate(0px, -64px); opacity: 1;
                  box-shadow: 0 0 8px rgba(37,99,235,0.1); }
-          /* Scatter outward to circle — glow */
-          65%  { transform: translate(-10px, -130px) scale(0.92); opacity: 0.9;
+          /* Scatter to circle */
+          65%  { transform: translate(0px, -140px) scale(0.92); opacity: 0.9;
                  box-shadow: 0 0 28px rgba(0,229,255,0.25), 0 0 56px rgba(37,99,235,0.1); }
-          80%  { transform: translate(-10px, -130px) scale(0.95); opacity: 0.95;
+          80%  { transform: translate(0px, -140px) scale(0.95); opacity: 0.95;
                  box-shadow: 0 0 36px rgba(0,229,255,0.3), 0 0 72px rgba(37,99,235,0.12); }
-          92%  { transform: translate(-10px, -118px) scale(0.93); opacity: 0.85;
+          92%  { transform: translate(0px, -130px) scale(0.93); opacity: 0.85;
                  box-shadow: 0 0 20px rgba(37,99,235,0.18); }
-          100% { transform: translate(-10px, -105px); opacity: 0.75;
+          100% { transform: translate(0px, -120px); opacity: 0.75;
                  box-shadow: 0 0 12px rgba(37,99,235,0.15); }
         }
 
 
         /* ============================================================
            CARD 2 — Content card (left)
-           Scattered: left side
-           Assembled: left column below header
            ============================================================ */
         .pma-card-content {
           width: 120px;
@@ -165,32 +160,30 @@ export function ProductMorphArt() {
         .pma-cline-2 { width: 55%; background: rgba(255,255,255,0.18); }
 
         @keyframes pma-c2 {
-          /* Scattered — left */
-          0%   { transform: translate(-115px, 10px); opacity: 0.7;
+          /* Scattered */
+          0%   { transform: translate(-135px, 0px); opacity: 0.7;
                  box-shadow: 0 0 12px rgba(37,99,235,0.12); }
-          5%   { transform: translate(-115px, 10px); opacity: 0.8;
+          5%   { transform: translate(-135px, 0px); opacity: 0.8;
                  box-shadow: 0 0 16px rgba(37,99,235,0.18); }
-          /* Assembled — left column */
-          22%  { transform: translate(-42px, -2px); opacity: 1;
+          /* Assembled */
+          22%  { transform: translate(-65px, 0px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.08); }
-          50%  { transform: translate(-42px, -2px); opacity: 1;
+          50%  { transform: translate(-65px, 0px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.08); }
-          /* Scatter to circle — left position, glow */
-          65%  { transform: translate(-128px, 25px) scale(0.92); opacity: 0.9;
+          /* Scatter to circle */
+          65%  { transform: translate(-150px, 0px) scale(0.92); opacity: 0.9;
                  box-shadow: 0 0 28px rgba(0,229,255,0.25), 0 0 56px rgba(37,99,235,0.1); }
-          80%  { transform: translate(-128px, 25px) scale(0.95); opacity: 0.95;
+          80%  { transform: translate(-150px, 0px) scale(0.95); opacity: 0.95;
                  box-shadow: 0 0 36px rgba(0,229,255,0.3), 0 0 72px rgba(37,99,235,0.12); }
-          92%  { transform: translate(-120px, 18px) scale(0.93); opacity: 0.82;
+          92%  { transform: translate(-140px, 0px) scale(0.93); opacity: 0.82;
                  box-shadow: 0 0 18px rgba(37,99,235,0.15); }
-          100% { transform: translate(-115px, 10px); opacity: 0.7;
+          100% { transform: translate(-135px, 0px); opacity: 0.7;
                  box-shadow: 0 0 12px rgba(37,99,235,0.12); }
         }
 
 
         /* ============================================================
            CARD 3 — Chart card (right)
-           Scattered: right side
-           Assembled: right column beside content card
            ============================================================ */
         .pma-card-chart {
           width: 120px;
@@ -216,35 +209,33 @@ export function ProductMorphArt() {
         .pma-cb-6 { height: 34px; }
 
         @keyframes pma-c3 {
-          /* Scattered — right side */
-          0%   { transform: translate(105px, -30px); opacity: 0.7;
+          /* Scattered */
+          0%   { transform: translate(135px, 0px); opacity: 0.7;
                  box-shadow: 0 0 12px rgba(37,99,235,0.12); }
-          5%   { transform: translate(105px, -30px); opacity: 0.8;
+          5%   { transform: translate(135px, 0px); opacity: 0.8;
                  box-shadow: 0 0 16px rgba(37,99,235,0.18); }
-          /* Assembled — right column */
-          22%  { transform: translate(42px, -2px); opacity: 1;
+          /* Assembled */
+          22%  { transform: translate(65px, 0px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.08); }
-          50%  { transform: translate(42px, -2px); opacity: 1;
+          50%  { transform: translate(65px, 0px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.08); }
-          /* Scatter to circle — upper-right, glow */
-          65%  { transform: translate(118px, -60px) scale(0.92); opacity: 0.9;
+          /* Scatter to circle */
+          65%  { transform: translate(150px, -10px) scale(0.92); opacity: 0.9;
                  box-shadow: 0 0 28px rgba(0,229,255,0.25), 0 0 56px rgba(37,99,235,0.1); }
-          80%  { transform: translate(118px, -60px) scale(0.95); opacity: 0.95;
+          80%  { transform: translate(150px, -10px) scale(0.95); opacity: 0.95;
                  box-shadow: 0 0 36px rgba(0,229,255,0.3), 0 0 72px rgba(37,99,235,0.12); }
-          92%  { transform: translate(112px, -46px) scale(0.93); opacity: 0.82;
+          92%  { transform: translate(140px, -5px) scale(0.93); opacity: 0.82;
                  box-shadow: 0 0 18px rgba(37,99,235,0.15); }
-          100% { transform: translate(105px, -30px); opacity: 0.7;
+          100% { transform: translate(135px, 0px); opacity: 0.7;
                  box-shadow: 0 0 12px rgba(37,99,235,0.12); }
         }
 
 
         /* ============================================================
            CARD 4 — Button card (bottom)
-           Scattered: bottom-center
-           Assembled: bottom of 'screen' below the two columns
            ============================================================ */
         .pma-card-button {
-          width: 130px;
+          width: 250px;
           height: 36px;
           display: flex;
           align-items: center;
@@ -260,32 +251,30 @@ export function ProductMorphArt() {
         }
 
         @keyframes pma-c4 {
-          /* Scattered — bottom */
-          0%   { transform: translate(10px, 105px); opacity: 0.7;
+          /* Scattered */
+          0%   { transform: translate(0px, 120px); opacity: 0.7;
                  box-shadow: 0 0 12px rgba(37,99,235,0.12); }
-          5%   { transform: translate(10px, 105px); opacity: 0.8;
+          5%   { transform: translate(0px, 120px); opacity: 0.8;
                  box-shadow: 0 0 16px rgba(37,99,235,0.18); }
-          /* Assembled — bottom center */
-          22%  { transform: translate(0px, 52px); opacity: 1;
+          /* Assembled */
+          22%  { transform: translate(0px, 61px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.08); }
-          50%  { transform: translate(0px, 52px); opacity: 1;
+          50%  { transform: translate(0px, 61px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.08); }
-          /* Scatter to circle — bottom, glow */
-          65%  { transform: translate(10px, 130px) scale(0.92); opacity: 0.9;
+          /* Scatter to circle */
+          65%  { transform: translate(0px, 140px) scale(0.92); opacity: 0.9;
                  box-shadow: 0 0 28px rgba(0,229,255,0.25), 0 0 56px rgba(37,99,235,0.1); }
-          80%  { transform: translate(10px, 130px) scale(0.95); opacity: 0.95;
+          80%  { transform: translate(0px, 140px) scale(0.95); opacity: 0.95;
                  box-shadow: 0 0 36px rgba(0,229,255,0.3), 0 0 72px rgba(37,99,235,0.12); }
-          92%  { transform: translate(10px, 118px) scale(0.93); opacity: 0.82;
+          92%  { transform: translate(0px, 130px) scale(0.93); opacity: 0.82;
                  box-shadow: 0 0 18px rgba(37,99,235,0.15); }
-          100% { transform: translate(10px, 105px); opacity: 0.7;
+          100% { transform: translate(0px, 120px); opacity: 0.7;
                  box-shadow: 0 0 12px rgba(37,99,235,0.12); }
         }
 
 
         /* ============================================================
            CARD 5 — Dot badge (small)
-           Scattered: top-right
-           Assembled: top-right corner of assembled layout
            ============================================================ */
         .pma-card-dot {
           width: 28px;
@@ -305,24 +294,24 @@ export function ProductMorphArt() {
         }
 
         @keyframes pma-c5 {
-          /* Scattered — upper right */
-          0%   { transform: translate(100px, -90px); opacity: 0.8;
+          /* Scattered */
+          0%   { transform: translate(145px, -100px); opacity: 0.8;
                  box-shadow: 0 0 10px rgba(37,99,235,0.15); }
-          5%   { transform: translate(100px, -90px); opacity: 0.9;
+          5%   { transform: translate(145px, -100px); opacity: 0.9;
                  box-shadow: 0 0 14px rgba(37,99,235,0.2); }
-          /* Assembled — top-right corner of header area */
-          22%  { transform: translate(88px, -82px); opacity: 1;
+          /* Assembled */
+          22%  { transform: translate(125px, -85px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.1); }
-          50%  { transform: translate(88px, -82px); opacity: 1;
+          50%  { transform: translate(125px, -85px); opacity: 1;
                  box-shadow: 0 0 6px rgba(37,99,235,0.1); }
-          /* Scatter to circle — far upper-right, glow */
-          65%  { transform: translate(118px, -115px) scale(0.92); opacity: 0.9;
+          /* Scatter to circle */
+          65%  { transform: translate(160px, -120px) scale(0.92); opacity: 0.9;
                  box-shadow: 0 0 22px rgba(0,229,255,0.3), 0 0 44px rgba(37,99,235,0.12); }
-          80%  { transform: translate(118px, -115px) scale(0.98); opacity: 1;
+          80%  { transform: translate(160px, -120px) scale(0.98); opacity: 1;
                  box-shadow: 0 0 30px rgba(0,229,255,0.4), 0 0 60px rgba(37,99,235,0.15); }
-          92%  { transform: translate(110px, -100px) scale(0.94); opacity: 0.85;
+          92%  { transform: translate(150px, -110px) scale(0.94); opacity: 0.85;
                  box-shadow: 0 0 16px rgba(37,99,235,0.18); }
-          100% { transform: translate(100px, -90px); opacity: 0.8;
+          100% { transform: translate(145px, -100px); opacity: 0.8;
                  box-shadow: 0 0 10px rgba(37,99,235,0.15); }
         }
 
