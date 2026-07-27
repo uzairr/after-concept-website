@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { GlowCard } from "@/components/ui/GlowCard";
 
 /* ───────────────────────────────────────────
    Type Definitions
@@ -170,7 +171,7 @@ export function SelectedWorkCarousel() {
 
           <div className="carousel-track-1 flex gap-6 px-3">
             {carouselItems.map((project, idx) => (
-              <article
+              <GlowCard
                 key={`${project.id}-${idx}`}
                 className="group work-card relative flex h-[490px] w-[360px] md:w-[390px] shrink-0 flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
               >
@@ -227,7 +228,7 @@ export function SelectedWorkCarousel() {
                     </span>
                   </Link>
                 </div>
-              </article>
+              </GlowCard>
             ))}
           </div>
         </div>

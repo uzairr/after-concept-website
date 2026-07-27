@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { testimonials } from "@/lib/testimonials";
 import { StaggeredText } from "@/components/ui/StaggeredText";
+import { GlowCard } from "@/components/ui/GlowCard";
 
 /**
  * Returns 1-2 uppercase initials from a name string.
@@ -17,7 +18,8 @@ function getInitials(name: string): string {
 function TestimonialGridCard({ item }: { item: (typeof testimonials)[number] }) {
   const initials = getInitials(item.name);
   return (
-    <article className="testimonial-grid-card relative flex flex-col overflow-hidden rounded-2xl border border-line bg-theme-surface p-6 md:p-7">
+    <GlowCard className="testimonial-grid-card relative overflow-hidden rounded-2xl border border-line bg-theme-surface">
+      <div className="flex flex-col h-full p-6 md:p-7">
       {/* Company badge — top-right */}
       <div className="absolute right-5 top-5 z-10">
         <span className="inline-flex items-center rounded-full border border-border bg-surface backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary">
@@ -57,7 +59,8 @@ function TestimonialGridCard({ item }: { item: (typeof testimonials)[number] }) 
           </p>
         </div>
       </div>
-    </article>
+      </div>
+    </GlowCard>
   );
 }
 

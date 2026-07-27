@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { picsumImage } from "@/lib/images";
+import { GlowCard } from "@/components/ui/GlowCard";
 
 export const metadata: Metadata = {
   title: "About | After Concept",
@@ -40,8 +41,9 @@ export default function AboutPage() {
   ];
 
   return (
+    
     <div className="bg-base min-h-screen text-foreground">
-      <section className="flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
+      <section className="w-full flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
         <div>
           <p className="font-sans text-[12px] text-muted">Home / About</p>
           <h1 className="mt-4 font-display text-[clamp(38px,5vw,52px)] font-extrabold text-foreground">
@@ -51,7 +53,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:px-12 md:py-24">
+      <section className="w-full bg-base px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="mt-5 font-display text-[clamp(32px,4vw,40px)] font-bold leading-[1.15] text-foreground">
@@ -75,7 +77,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-theme-surface p-6 shadow-[0_20px_60px_rgba(26,26,46,0.06)]">
+          <GlowCard className="rounded-2xl border border-line bg-theme-surface p-6 shadow-[0_20px_60px_rgba(26,26,46,0.06)] h-full">
             <div className="relative min-h-[340px] overflow-hidden rounded-xl">
               <Image
                 src={picsumImage("about-team-collaboration", 900, 1000)}
@@ -94,11 +96,11 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </GlowCard>
         </div>
       </section>
 
-      <section className="border-y border-line bg-theme-surface px-6 py-10 md:px-12 md:py-14">
+      <section className="w-full border-y border-line bg-theme-surface px-6 py-10 md:px-12 md:py-14">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 divide-y divide-line md:grid-cols-4 md:divide-x md:divide-y-0">
           {stats.map((item) => (
             <div key={item.label} className="px-6 py-6 md:py-3">
@@ -111,12 +113,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:px-12 md:py-24">
+      <section className="w-full bg-base px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto w-full max-w-[1400px]">
           <h2 className="mt-5 font-display text-h2 text-foreground">How We Work</h2>
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {values.map((value) => (
-              <article
+              <GlowCard
                 key={value.title}
                 className="rounded-xl border border-line bg-theme-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
               >
@@ -137,18 +139,18 @@ export default function AboutPage() {
                 <p className="mt-4 font-sans text-[15px] leading-[1.8] text-muted">
                   {value.body}
                 </p>
-              </article>
+              </GlowCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-surface-2 px-6 py-20 md:px-12 md:py-24">
+      <section className="w-full bg-surface-2 px-6 py-20 md:px-12 md:py-24">
         <div className="mx-auto w-full max-w-[1400px]">
           <h2 className="mt-5 font-display text-h2 text-foreground">Meet the Collaborators</h2>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
-              <article
+              <GlowCard
                 key={member.name}
                 className="rounded-xl border border-line bg-theme-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
               >
@@ -177,13 +179,13 @@ export default function AboutPage() {
                     <path d="M6.94 8.5a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2ZM5.52 9.66h2.84V18H5.52V9.66Zm4.62 0H12.9v1.14h.04c.39-.74 1.35-1.52 2.78-1.52 2.98 0 3.53 1.96 3.53 4.5V18h-2.84v-3.72c0-.89-.02-2.03-1.24-2.03-1.24 0-1.43.97-1.43 1.97V18h-2.84V9.66Z" />
                   </svg>
                 </a>
-              </article>
+              </GlowCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
+      <section className="w-full bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <h2 className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary">
             Ready to Build Something Great?
@@ -197,5 +199,6 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+    
   );
 }

@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
+    
     <div className="bg-base min-h-screen text-foreground">
-      <section className="flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
+      <section className="w-full flex h-[280px] items-center justify-center bg-page-hero-banner px-6 text-center md:px-12">
         <div>
           <p className="font-sans text-[12px] text-muted">Home / Contact</p>
           <h1 className="mt-4 font-display text-[clamp(38px,5vw,52px)] font-extrabold text-foreground">
@@ -22,7 +23,10 @@ export default function ContactPage() {
           <span className="mx-auto mt-5 block h-[2px] w-[60px] bg-accent" />
         </div>
       </section>
-      <ContactPageClient />
+      <div className="w-full bg-base">
+        <ContactPageClient />
+      </div>
     </div>
+    
   );
 }

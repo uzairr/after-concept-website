@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { StaggeredText } from "@/components/ui/StaggeredText";
 import { ClientTestimonialsSection } from "@/components/sections/ClientTestimonialsSection";
@@ -29,14 +28,17 @@ const stepIcons = [FaCompass, FaPalette, FaCode, FaRocket];
  */
 export default function Home() {
   return (
+    
     <div className="bg-page">
-      <HeroSection />
+      <div className="w-full bg-page">
+        <HeroSection />
+      </div>
 
       {/* SERVICES SECTION */}
       <motion.section
         {...sectionReveal}
         id="services"
-        className="px-6 py-12 md:px-12 md:py-16"
+        className="bg-page px-6 py-12 md:px-12 md:py-16"
       >
         <div className="mx-auto w-full max-w-7xl">
           <StaggeredText text="What We Build" className="mt-5 font-display text-3xl font-extrabold md:text-4xl text-foreground tracking-tight text-center w-full flex justify-center" />
@@ -126,9 +128,9 @@ export default function Home() {
             {processSteps.map((step, idx) => {
               const Icon = stepIcons[idx];
               return (
-                <div
+                <GlowCard
                   key={step.phase}
-                  className="rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)]"
+                  className="rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_rgba(92,133,255,0.18)] h-full"
                 >
                   <span className="transform flex h-14 w-14 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-theme-accent transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:rotate-6 hover:bg-accent/25 hover:shadow-[0_6px_16px_rgba(92,133,255,0.35)]">
                     <Icon className="h-6 w-6" aria-hidden />
@@ -142,7 +144,7 @@ export default function Home() {
                   <p className="mt-4 font-sans text-[14px] leading-[1.7] text-secondary">
                     {step.desc}
                   </p>
-                </div>
+                </GlowCard>
               );
             })}
           </div>
@@ -150,9 +152,13 @@ export default function Home() {
       </motion.section>
 
       {/* SELECTED WORK CAROUSEL SHOWCASE */}
-      <SelectedWorkCarousel />
+      <div className="w-full bg-page">
+        <SelectedWorkCarousel />
+      </div>
 
-      <ClientTestimonialsSection />
+      <div className="w-full bg-base">
+        <ClientTestimonialsSection />
+      </div>
 
       {/* CTA SECTION */}
       <motion.section {...sectionReveal} className="bg-surface border-y border-line px-6 py-12 md:px-12 md:py-16">
@@ -161,16 +167,15 @@ export default function Home() {
             text="Ready to Build Something Great?" 
             className="max-w-3xl font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[1.1] text-primary" 
           />
-          <MagneticButton>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-button border border-outline bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-primary transition-colors duration-200 hover:border-accent hover:text-accent"
-            >
-              START A CONVERSATION
-            </Link>
-          </MagneticButton>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-button border border-outline bg-transparent px-9 py-[14px] font-sans text-[13px] font-medium uppercase tracking-cta text-primary transition-colors duration-200 hover:border-accent hover:text-accent"
+          >
+            START A CONVERSATION
+          </Link>
         </div>
       </motion.section>
     </div>
+    
   );
 }
