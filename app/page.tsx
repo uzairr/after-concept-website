@@ -56,11 +56,11 @@ export default function Home() {
                 <span className="inline-block text-[10.5px] font-semibold tracking-wider text-ember-600 bg-ember-100 rounded px-1.5 py-0.5 ml-2 align-middle uppercase">Add real quote</span>
               </span>
               <p className="font-space font-medium text-2xl md:text-[28px] leading-[1.4] text-indigo-900 mb-5">
-                <span className="text-ember-600 mr-1">"</span>
-                Founders kept coming to us with beautiful decks and half-built software from their last agency. We started After Concept to be the team that owns the whole thing — design and engineering, spec to production, no handoff to lose the plot in."
+                <span className="text-ember-600 mr-1">&quot;</span>
+                Founders kept coming to us with beautiful decks and half-built software from their last agency. We started After Concept to be the team that owns the whole thing — design and engineering, spec to production, no handoff to lose the plot in.&quot;
               </p>
               <p className="text-[15.5px] text-charcoal-soft mb-6">
-                That's still how we work. One embedded team follows your product from the first discovery call through the growth work that happens after launch — not a relay of subcontractors passing the baton.
+                That&apos;s still how we work. One embedded team follows your product from the first discovery call through the growth work that happens after launch — not a relay of subcontractors passing the baton.
               </p>
               <div className="flex items-center gap-3.5">
                 <div className="w-[52px] h-[52px] rounded-full bg-indigo-100 flex items-center justify-center text-[14px] text-indigo-700 font-semibold">FN</div>
@@ -96,7 +96,7 @@ export default function Home() {
             <div className="max-w-[640px] mb-12">
               <span className="block text-[13px] font-semibold tracking-widest uppercase text-indigo-500 mb-4">Projects that shipped</span>
               <h2 className="font-space font-semibold text-3xl md:text-[40px] tracking-tight text-indigo-900 mb-4">Continuously delivering for ambitious SME teams</h2>
-              <p className="text-charcoal-soft text-[16.5px]">A sample of the web apps, AI engines, and cloud platforms we've taken from concept to production.</p>
+              <p className="text-charcoal-soft text-[16.5px]">A sample of the web apps, AI engines, and cloud platforms we&apos;ve taken from concept to production.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[

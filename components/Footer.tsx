@@ -11,7 +11,7 @@ export default function Footer() {
           </Link>
           <p className="text-white text-[15px] font-medium mt-4 max-w-[280px]">Every concept deserves an after.</p>
           <p className="text-indigo-300 text-sm max-w-[300px] mt-4">
-            Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan's $4.6B tech export sector (FY2026, +21% YoY).
+            Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan&apos;s $4.6B tech export sector (FY2026, +21% YoY).
           </p>
           <div className="flex gap-3.5 mt-5">
             <span className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white">in</span>
