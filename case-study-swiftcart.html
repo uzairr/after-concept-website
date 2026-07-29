@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwiftCart — Real-time inventory sync across 12 warehouses | Afterconcept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-900:#26215C; --indigo-700:#3C3489; --indigo-500:#534AB7; --indigo-300:#AFA9EC; --indigo-100:#EEEDFE;
+    --ember-600:#D85A30; --ember-300:#F0997B; --ember-100:#FAECE7;
+    --cream:#F6F4EE; --charcoal:#2C2C2A; --charcoal-soft:#5F5E5A; --line: rgba(44,44,42,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Inter', sans-serif; background:var(--cream); color:var(--charcoal); line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 32px;}
+  .test-tag{ display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.04em; color:var(--ember-600); background:var(--ember-100); border-radius:5px; padding:2px 7px; margin-left:8px; vertical-align:middle; text-transform:uppercase; }
+  header{ position:sticky; top:0; z-index:50; background:rgba(246,244,238,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1120px; margin:0 auto; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:20px; letter-spacing:-0.02em; display:flex; align-items:center; }
+  .logo .after{color:var(--indigo-900);}
+  .logo .concept{ color:transparent; -webkit-text-stroke:1.2px var(--indigo-900); }
+  .nav-links{display:flex; gap:36px; font-size:14.5px; font-weight:500; color:var(--charcoal-soft);}
+  .nav-links a:hover{color:var(--indigo-900);}
+  .nav-cta{ background:var(--ember-600); color:var(--ember-100); padding:10px 20px; border-radius:8px; font-size:14.5px; font-weight:600; }
+
+  .back{ max-width:1120px; margin:0 auto; padding:28px 32px 0; }
+  .back a{font-size:13.5px; font-weight:600; color:var(--indigo-500);}
+
+  .hero{padding:36px 32px 60px;}
+  .eyebrow{ font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo-500); margin-bottom:18px; display:block; }
+  h1{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(32px, 5vw, 50px); letter-spacing:-0.02em; color:var(--indigo-900); margin-bottom:16px; max-width:760px;}
+  .hero-sub{font-size:17px; color:var(--charcoal-soft); max-width:600px; margin-bottom:40px;}
+  .hero-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:760px;}
+  .hstat{background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 20px;}
+  .hstat-num{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:28px; color:var(--indigo-900);}
+  .hstat-label{font-size:13px; color:var(--charcoal-soft); margin-top:6px;}
+
+  .thumb-banner{
+    max-width:1120px; margin:0 auto 20px; padding:0 32px;
+  }
+  .thumb-banner .box{
+    height:280px; border-radius:16px; background:linear-gradient(135deg, var(--indigo-100), var(--ember-100));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:20px; color:var(--indigo-700); opacity:.7;
+  }
+
+  .meta-row{
+    max-width:1120px; margin:0 auto; padding:32px 32px 56px; display:flex; gap:56px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+  }
+  .meta-item .meta-label{font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--charcoal-soft); margin-bottom:6px;}
+  .meta-item .meta-value{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; color:var(--indigo-900);}
+
+  article{padding:70px 32px;}
+  article .section-label{ font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--ember-600); margin-bottom:14px; }
+  article h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(24px, 3.2vw, 32px); color:var(--indigo-900); margin-bottom:22px; letter-spacing:-0.01em; }
+  article p{color:var(--charcoal-soft); font-size:16px; margin-bottom:20px;}
+  article ul{margin:24px 0 8px; padding:0; list-style:none;}
+  article li{ padding:18px 0; border-top:1px solid var(--line); }
+  article li:last-child{border-bottom:1px solid var(--line);}
+  article li b{color:var(--indigo-900); font-weight:600;}
+  .pull{
+    font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:22px; line-height:1.4;
+    color:var(--indigo-900); border-left:3px solid var(--ember-600); padding-left:24px; margin:36px 0;
+  }
+  .alt-bg{background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  .final-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:40px 0;}
+  .fstat{background:var(--cream); border:1px solid var(--line); border-radius:14px; padding:24px 20px; text-align:center;}
+  .fstat-num{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:30px; color:var(--indigo-900);}
+  .fstat-label{font-size:13px; color:var(--charcoal-soft); margin-top:6px;}
+
+  .cta{ text-align:center; padding:110px 32px; }
+  .cta h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(28px, 4.5vw, 42px); color:var(--indigo-900); margin-bottom:14px; }
+  .cta p{color:var(--charcoal-soft); margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto;}
+  .btn-primary{ background:var(--ember-600); color:var(--ember-100); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; display:inline-block; margin-right:12px;}
+  .btn-ghost{ border:1.5px solid var(--indigo-900); color:var(--indigo-900); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; display:inline-block;}
+
+  footer{ border-top:1px solid var(--line); padding:40px 32px; background:#fff;}
+  .footer-inner{ max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--charcoal-soft); }
+
+  @media (max-width:760px){
+    .hero-stats, .final-stats{grid-template-columns:1fr;}
+    .meta-row{gap:28px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo"><span class="after">after</span><span class="concept">concept</span></a>
+    <div class="nav-links">
+      <a href="index.html#ladder">Work with us</a>
+      <a href="index.html#services">Services</a>
+      <a href="case-studies.html">Case studies</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="index.html#contact" class="nav-cta">Start a project</a>
+  </nav>
+</header>
+
+<div class="back wrap" style="max-width:1120px;"><a href="case-studies.html">← All case studies</a></div>
+
+<div class="hero wrap" style="max-width:1120px;">
+  <span class="eyebrow">Retail tech <span class="test-tag">Test data</span></span>
+  <h1>Real-time inventory sync across 12 warehouses, without a single spreadsheet</h1>
+  <p class="hero-sub">SwiftCart was overselling on marketplaces and understocking in-store, because three teams were reconciling the same inventory by hand, in three different spreadsheets.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">4×</div><div class="hstat-label">order throughput after go-live</div></div>
+    <div class="hstat"><div class="hstat-num">0</div><div class="hstat-label">overselling incidents since launch</div></div>
+    <div class="hstat"><div class="hstat-num">9wks</div><div class="hstat-label">from kickoff to production</div></div>
+  </div>
+</div>
+
+<div class="thumb-banner"><div class="box">SwiftCart — inventory sync dashboard</div></div>
+
+<div class="meta-row">
+  <div class="meta-item"><div class="meta-label">Industry</div><div class="meta-value">Retail tech / e-commerce</div></div>
+  <div class="meta-item"><div class="meta-label">Built by</div><div class="meta-value">Afterconcept</div></div>
+  <div class="meta-item"><div class="meta-label">Engagement</div><div class="meta-value">Full build, 9 weeks</div></div>
+  <div class="meta-item"><div class="meta-label">Stack</div><div class="meta-value">React, Node, Postgres, Shopify + WMS APIs</div></div>
+</div>
+
+<article class="wrap">
+  <span class="section-label">Challenge</span>
+  <h2>Three teams, three spreadsheets, one shared inventory that never agreed with itself.</h2>
+  <p>SwiftCart sells the same catalogue across its own storefront, two marketplaces, and 12 regional warehouses. Every sales channel needed an accurate, current stock count — but the only source of truth was a set of spreadsheets, updated manually, on different schedules, by different teams.</p>
+  <p>The gap between "what the spreadsheet says" and "what's actually on the shelf" showed up as overselling, cancelled orders, and warehouse staff burning hours a day just reconciling counts by phone and email.</p>
+  <ul>
+    <li><b>No single source of truth</b> — each warehouse tracked stock locally; the storefront and marketplaces synced from a nightly export that was stale within hours.</li>
+    <li><b>Manual reconciliation at scale</b> — a small team spent most of each morning cross-checking spreadsheets against warehouse counts before channels could be trusted.</li>
+    <li><b>Order cancellations eroding trust</b> — customers were buying items that were already sold elsewhere, forcing refunds and apology emails that cost more than the sale.</li>
+    <li><b>Growth was making it worse</b> — every new warehouse or channel added another manual reconciliation step, not less.</li>
+  </ul>
+
+  <p class="pull">"We weren't losing money on bad products. We were losing it on bad arithmetic." — Priya Anand, COO, SwiftCart <span class="test-tag">Test data</span></p>
+</article>
+
+<article class="alt-bg wrap" style="max-width:1120px;">
+  <div style="max-width:860px; margin:0 auto;">
+  <span class="section-label">Solution</span>
+  <h2>One inventory service every channel reads from, updated in real time.</h2>
+  <p>Afterconcept didn't start with a dashboard. The first step was mapping every place stock could change — a sale, a return, a transfer between warehouses, a manual correction — and designing a single event-driven inventory service that every channel would read from and write to.</p>
+  <p>Warehouses update stock through simple scanner-driven web forms. Every channel — storefront, marketplaces, and the internal ops dashboard — reads from the same live service, so what a customer sees online matches what's on the shelf at that moment.</p>
+  <ul>
+    <li><b>Event-driven sync engine:</b> every stock movement is captured as an event and propagated to all channels within seconds, replacing the nightly batch export entirely.</li>
+    <li><b>Conflict resolution rules:</b> when two channels report a change to the same SKU near-simultaneously, a rules engine resolves the conflict automatically instead of surfacing it as a support ticket.</li>
+    <li><b>Warehouse-friendly interfaces:</b> scanner-first web forms mean warehouse staff update stock in the same motion as picking or receiving, not as a separate admin task.</li>
+    <li><b>Ops dashboard with live alerts:</b> the ops team sees stock levels, in-flight transfers, and low-stock alerts across all 12 warehouses on one screen.</li>
+  </ul>
+  </div>
+</article>
+
+<article class="wrap">
+  <span class="section-label">Key capabilities</span>
+  <h2>What the system does.</h2>
+  <ul>
+    <li><b>Real-time multi-warehouse sync:</b> stock changes at any of the 12 warehouses propagate to every sales channel within seconds.</li>
+    <li><b>Channel-aware allocation:</b> reserves stock intelligently across storefront and marketplace listings so no two channels sell the same last unit.</li>
+    <li><b>Automatic low-stock alerts:</b> ops and purchasing teams get notified before a SKU hits zero, not after.</li>
+    <li><b>Full audit trail:</b> every stock change is logged with source, timestamp, and actor — reconciliation disputes are resolved by looking at a log, not calling five people.</li>
+  </ul>
+</article>
+
+<article class="alt-bg wrap" style="max-width:1120px;">
+  <div style="max-width:860px; margin:0 auto;">
+  <span class="section-label">Results</span>
+  <h2>From reactive reconciliation to a system that runs ahead of demand.</h2>
+  <p>The reconciliation team that used to spend mornings cross-checking spreadsheets now spends that time on purchasing strategy and vendor relationships. Overselling incidents dropped to zero. Order throughput across all channels roughly quadrupled without adding headcount to fulfilment.</p>
+  <div class="final-stats">
+    <div class="fstat"><div class="fstat-num">4×</div><div class="fstat-label">order throughput, same team size</div></div>
+    <div class="fstat"><div class="fstat-num">0</div><div class="fstat-label">overselling incidents since launch</div></div>
+    <div class="fstat"><div class="fstat-num">~6hrs/day</div><div class="fstat-label">reconciliation time eliminated</div></div>
+  </div>
+  <p>This is what Afterconcept builds: not a dashboard bolted onto a broken process, but the underlying system rebuilt so the dashboard has something true to show.</p>
+  </div>
+</article>
+
+<section class="cta">
+  <h2>Have a similar problem?</h2>
+  <p>Tell us where your team is stuck reconciling things by hand. We'll show you what we'd build.</p>
+  <a href="index.html#contact" class="btn-primary">Book a free scoping call</a>
+  <a href="case-studies.html" class="btn-ghost">See more case studies</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="logo"><span class="after">after</span><span class="concept">concept</span></a>
+    <span>© 2026 Afterconcept</span>
+  </div>
+</footer>
+
+</body>
+</html>

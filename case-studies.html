@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case studies — Afterconcept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-900:#26215C; --indigo-700:#3C3489; --indigo-500:#534AB7; --indigo-300:#AFA9EC; --indigo-100:#EEEDFE;
+    --ember-600:#D85A30; --ember-300:#F0997B; --ember-100:#FAECE7;
+    --cream:#F6F4EE; --charcoal:#2C2C2A; --charcoal-soft:#5F5E5A; --line: rgba(44,44,42,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Inter', sans-serif; background:var(--cream); color:var(--charcoal); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .test-tag{ display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.04em; color:var(--ember-600); background:var(--ember-100); border-radius:5px; padding:2px 7px; margin-left:8px; vertical-align:middle; text-transform:uppercase; }
+  header{ position:sticky; top:0; z-index:50; background:rgba(246,244,238,0.88); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1120px; margin:0 auto; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:20px; letter-spacing:-0.02em; display:flex; align-items:center; }
+  .logo .after{color:var(--indigo-900);}
+  .logo .concept{ color:transparent; -webkit-text-stroke:1.2px var(--indigo-900); }
+  .nav-links{display:flex; gap:36px; font-size:14.5px; font-weight:500; color:var(--charcoal-soft);}
+  .nav-links a:hover{color:var(--indigo-900);}
+  .nav-cta{ background:var(--ember-600); color:var(--ember-100); padding:10px 20px; border-radius:8px; font-size:14.5px; font-weight:600; }
+  .nav-cta:hover{background:var(--indigo-900);}
+
+  .page-head{padding:88px 32px 56px;}
+  .eyebrow{ font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo-500); margin-bottom:20px; display:block; }
+  h1{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(36px, 5.5vw, 58px); letter-spacing:-0.02em; color:var(--indigo-900); max-width:640px; margin-bottom:16px; }
+  .page-head p{color:var(--charcoal-soft); font-size:16.5px; max-width:520px;}
+
+  .filters{ display:flex; gap:10px; flex-wrap:wrap; padding:0 32px 48px; max-width:1120px; margin:0 auto; }
+  .filter-pill{
+    font-size:13.5px; font-weight:500; padding:8px 16px; border-radius:20px;
+    border:1px solid var(--line); color:var(--charcoal-soft); background:#fff;
+  }
+  .filter-pill.active{background:var(--indigo-900); color:#fff; border-color:var(--indigo-900);}
+
+  .case-grid{
+    max-width:1120px; margin:0 auto; padding:0 32px 90px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .case-card{
+    background:#fff; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    display:flex; flex-direction:column; transition:transform .15s ease, border-color .15s ease;
+  }
+  .case-card:hover{transform:translateY(-4px); border-color:var(--indigo-300);}
+  .case-thumb{
+    height:150px; background:linear-gradient(135deg, var(--indigo-100), var(--ember-100));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; color:var(--indigo-700); opacity:.75;
+  }
+  .case-body{padding:24px 24px 26px; display:flex; flex-direction:column; flex:1;}
+  .case-industry{ font-size:11.5px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--ember-600); margin-bottom:10px; }
+  .case-card h3{ font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; color:var(--indigo-900); margin-bottom:14px; line-height:1.3; }
+  .case-meta{ display:flex; align-items:baseline; gap:10px; margin-top:auto; padding-top:14px; border-top:1px solid var(--line); }
+  .case-stat{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:22px; color:var(--indigo-900); }
+  .case-stat-label{font-size:12.5px; color:var(--charcoal-soft);}
+  .case-client{ font-size:13px; color:var(--charcoal-soft); margin-bottom:4px; }
+  .read-link{ font-size:13px; font-weight:600; color:var(--indigo-500); margin-top:14px; display:inline-block; }
+
+  .cta{ text-align:center; padding:110px 32px; border-top:1px solid var(--line); background:#fff;}
+  .cta h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(28px, 4.5vw, 42px); color:var(--indigo-900); margin-bottom:14px; }
+  .cta p{color:var(--charcoal-soft); margin-bottom:32px;}
+  .btn-primary{ background:var(--ember-600); color:var(--ember-100); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; display:inline-block; }
+
+  footer{ border-top:1px solid var(--line); padding:40px 32px; background:var(--cream);}
+  .footer-inner{ max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--charcoal-soft); }
+
+  @media (max-width:900px){ .case-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .case-grid{grid-template-columns:1fr;} .nav-links{display:none;} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo"><span class="after">after</span><span class="concept">concept</span></a>
+    <div class="nav-links">
+      <a href="index.html#ladder">Work with us</a>
+      <a href="index.html#services">Services</a>
+      <a href="case-studies.html">Case studies</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="index.html#contact" class="nav-cta">Start a project</a>
+  </nav>
+</header>
+
+<div class="page-head wrap">
+  <span class="eyebrow">Proof <span class="test-tag">Test data</span></span>
+  <h1>Results that speak</h1>
+  <p>A sample of the products we've taken from concept to production. Every figure below is illustrative — swap in your real engagements as they close.</p>
+</div>
+
+<div class="filters">
+  <span class="filter-pill active">All</span>
+  <span class="filter-pill">Retail tech</span>
+  <span class="filter-pill">Healthcare</span>
+  <span class="filter-pill">FinTech</span>
+  <span class="filter-pill">Construction</span>
+  <span class="filter-pill">Logistics</span>
+  <span class="filter-pill">Legal</span>
+</div>
+
+<div class="case-grid">
+
+  <a href="case-study-swiftcart.html" class="case-card">
+    <div class="case-thumb">SwiftCart</div>
+    <div class="case-body">
+      <div class="case-industry">Retail tech</div>
+      <h3>Real-time inventory sync across 12 warehouses, without a single spreadsheet</h3>
+      <div class="case-client">SwiftCart</div>
+      <div class="case-meta"><div class="case-stat">4×</div><div class="case-stat-label">order throughput after go-live</div></div>
+      <span class="read-link">Read the case study →</span>
+    </div>
+  </a>
+
+  <a href="#" class="case-card">
+    <div class="case-thumb">Northbridge Clinic</div>
+    <div class="case-body">
+      <div class="case-industry">Healthcare</div>
+      <h3>Patient scheduling automated end to end across three clinics</h3>
+      <div class="case-client">Northbridge Clinic</div>
+      <div class="case-meta"><div class="case-stat">27hrs</div><div class="case-stat-label">admin time saved weekly</div></div>
+      <span class="read-link">Read the case study →</span>
+    </div>
+  </a>
+
+  <a href="#" class="case-card">
+    <div class="case-thumb">Ledgerly</div>
+    <div class="case-body">
+      <div class="case-industry">FinTech · SaaS</div>
+      <h3>Automated reconciliation dashboard replaces a 3-day month-end close</h3>
+      <div class="case-client">Ledgerly</div>
+      <div class="case-meta"><div class="case-stat">3d→2h</div><div class="case-stat-label">month-end close time</div></div>
+      <span class="read-link">Read the case study →</span>
+    </div>
+  </a>
+
+  <a href="#" class="case-card">
+    <div class="case-thumb">Fieldwise</div>
+    <div class="case-body">
+      <div class="case-industry">Construction</div>
+      <h3>A dispatch app that routes crews without a single phone call</h3>
+      <div class="case-client">Fieldwise</div>
+      <div class="case-meta"><div class="case-stat">2×</div><div class="case-stat-label">jobs completed per crew, per day</div></div>
+      <span class="read-link">Read the case study →</span>
+    </div>
+  </a>
+
+  <a href="#" class="case-card">
+    <div class="case-thumb">Loop Logistics</div>
+    <div class="case-body">
+      <div class="case-industry">Logistics</div>
+      <h3>Route optimization that cut fuel spend without new hires</h3>
+      <div class="case-client">Loop Logistics</div>
+      <div class="case-meta"><div class="case-stat">18%</div><div class="case-stat-label">reduction in fuel cost</div></div>
+      <span class="read-link">Read the case study →</span>
+    </div>
+  </a>
+
+  <a href="#" class="case-card">
+    <div class="case-thumb">Tandem Legal</div>
+    <div class="case-body">
+      <div class="case-industry">Legal</div>
+      <h3>Contract review copilot cuts first-pass review time for associates</h3>
+      <div class="case-client">Tandem Legal</div>
+      <div class="case-meta"><div class="case-stat">65%</div><div class="case-stat-label">faster first-pass review</div></div>
+      <span class="read-link">Read the case study →</span>
+    </div>
+  </a>
+
+</div>
+
+<section class="cta">
+  <h2>Want results like these?</h2>
+  <p>Tell us about your workflow. We'll show you what we'd build.</p>
+  <a href="index.html#contact" class="btn-primary">Book a free scoping call</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="logo"><span class="after">after</span><span class="concept">concept</span></a>
+    <span>© 2026 Afterconcept</span>
+  </div>
+</footer>
+
+</body>
+</html>
