@@ -14,9 +14,9 @@ export default function Footer() {
             Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan&apos;s $4.6B tech export sector (FY2026, +21% YoY).
           </p>
           <div className="flex gap-3.5 mt-5">
-            <span className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white">in</span>
-            <span className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white">ig</span>
-            <span className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white">fb</span>
+            <a href="https://www.linkedin.com/company/afterrconcept/" target="_blank" rel="noopener noreferrer" className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white hover:bg-white/10 transition-colors">in</a>
+            <a href="https://www.linkedin.com/company/afterrconcept/" target="_blank" rel="noopener noreferrer" className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white hover:bg-white/10 transition-colors">ig</a>
+            <a href="https://www.linkedin.com/company/afterrconcept/" target="_blank" rel="noopener noreferrer" className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white hover:bg-white/10 transition-colors">fb</a>
           </div>
         </div>
         <div className="flex flex-col">
