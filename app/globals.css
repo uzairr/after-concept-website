@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-charcoal leading-relaxed antialiased;
+  }
+}
+
+@layer utilities {
+  .logo-outline {
+    -webkit-text-stroke: 1.2px var(--tw-colors-indigo-900);
+  }
+  .logo-outline-white {
+    -webkit-text-stroke: 1.2px #fff;
+  }
+  .animate-scroll {
+    animation: scroll 32s linear infinite;
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
