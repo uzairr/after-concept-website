@@ -42,8 +42,9 @@ export default function Footer() {
           <h4 className="font-space text-[13px] font-semibold uppercase tracking-wider text-white mb-4">Connect</h4>
           <ul className="list-none space-y-3">
             <li>
-              <a href="mailto:hello@afterconcept.io" className="text-sm text-indigo-300 hover:text-white transition-colors">
-                hello@afterconcept.io <span className="inline-block text-[10.5px] font-semibold tracking-wider text-ember-600 bg-ember-100 rounded px-1.5 py-0.5 ml-2 align-middle uppercase">Confirm</span>
+              <a href="mailto:contact@afterconcept.io" className="inline-flex items-center gap-2 text-sm text-indigo-300 hover:text-white transition-colors">
+                <span>contact@afterconcept.io</span>
+                <span className="text-[10.5px] font-semibold tracking-wider text-ember-600 bg-ember-100 rounded px-1.5 py-0.5 uppercase">Confirm</span>
               </a>
             </li>
             <li className="text-sm text-indigo-300">Pakistan — Global</li>
