@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After Concept — Production-ready products for founders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-900:#26215C; --indigo-700:#3C3489; --indigo-500:#534AB7; --indigo-300:#AFA9EC; --indigo-100:#EEEDFE;
+    --ember-600:#D85A30; --ember-300:#F0997B; --ember-100:#FAECE7;
+    --cream:#F6F4EE; --charcoal:#2C2C2A; --charcoal-soft:#5F5E5A; --line: rgba(44,44,42,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; background:var(--cream); color:var(--charcoal); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+  .test-tag{ display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.04em; color:var(--ember-600); background:var(--ember-100); border-radius:5px; padding:2px 7px; margin-left:8px; vertical-align:middle; text-transform:uppercase; }
+
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.02em; display:flex; align-items:center; }
+  .logo.large{font-size:20px;}
+  .logo .after{color:var(--indigo-900);}
+  .logo .concept-outline{ color:transparent; -webkit-text-stroke:1.2px var(--indigo-900); }
+  footer .logo .after{color:#fff;}
+  footer .logo .concept-outline{ -webkit-text-stroke:1.2px #fff; }
+
+  header{ position:sticky; top:0; z-index:50; background:rgba(246,244,238,0.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1160px; margin:0 auto; }
+  .nav-links{display:flex; gap:36px; font-size:14.5px; font-weight:500; color:var(--charcoal-soft);}
+  .nav-links a:hover{color:var(--indigo-900);}
+  .nav-cta{ background:var(--ember-600); color:var(--ember-100); padding:10px 20px; border-radius:8px; font-size:14.5px; font-weight:600; transition:transform .15s ease, background .15s ease; }
+  .nav-cta:hover{background:var(--indigo-900); transform:translateY(-1px);}
+
+  .hero{padding:88px 32px 56px;}
+  .hero-grid{ max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center; }
+  .hero-copy{text-align:left;}
+  .eyebrow{ font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo-500); margin-bottom:22px; display:block; }
+  .eyebrow.brand-line{ font-size:14px; letter-spacing:.04em; text-transform:none; font-family:'Space Grotesk', sans-serif; color:var(--indigo-700); font-weight:500; }
+  h1{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(34px, 4.6vw, 58px); line-height:1.08; letter-spacing:-0.02em; margin:0 0 22px; color:var(--indigo-900); }
+  h1 .accent{color:var(--ember-600);}
+  .hero-sub{ font-size:17px; color:var(--charcoal-soft); max-width:460px; margin:0 0 36px; }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{ background:var(--ember-600); color:var(--ember-100); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; transition:transform .15s ease, box-shadow .15s ease; display:inline-block; }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(216,90,48,.28);}
+  .btn-ghost{ border:1.5px solid var(--indigo-900); color:var(--indigo-900); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; transition:background .15s ease; display:inline-block; }
+  .btn-ghost:hover{background:var(--indigo-100);}
+
+  /* hero product mockup */
+  .hero-stage{ position:relative; height:340px; }
+  .glow{ position:absolute; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(83,74,183,0.14), rgba(83,74,183,0) 70%); top:-10px; left:50px; pointer-events:none; }
+  .float-group{ position:absolute; inset:0; animation: floaty 7s ease-in-out infinite; }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0px); } 50%{ transform:translateY(-10px); } }
+  .browser{ position:absolute; top:10px; left:0; width:400px; border-radius:14px; background:#fff; box-shadow:0 2px 6px rgba(38,33,92,0.08), 0 24px 48px rgba(38,33,92,0.16); border:1px solid var(--line); overflow:hidden; }
+  .browser-bar{ display:flex; align-items:center; gap:6px; padding:10px 14px; border-bottom:1px solid var(--line); }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--indigo-100); }
+  .url{ margin-left:10px; font-size:11px; color:var(--charcoal-soft); background:var(--cream); padding:3px 10px; border-radius:6px; flex:1; }
+  .app-body{ display:flex; height:236px; }
+  .sidebar{ width:52px; background:var(--indigo-900); display:flex; flex-direction:column; align-items:center; gap:14px; padding:16px 0; }
+  .sidebar .chip{ width:20px; height:20px; border-radius:6px; background:rgba(255,255,255,0.16); }
+  .sidebar .chip.active{ background:var(--ember-600); }
+  .main-panel{ flex:1; padding:14px 16px; }
+  .stat-row{ display:flex; gap:8px; margin-bottom:12px; }
+  .stat{ flex:1; background:var(--cream); border-radius:8px; padding:9px 10px; }
+  .stat .n{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:16px; color:var(--indigo-900); }
+  .stat .l{ font-size:9.5px; color:var(--charcoal-soft); margin-top:2px; }
+  .chart-card{ background:var(--cream); border-radius:8px; padding:10px 12px 6px; height:112px; }
+  .bars{ display:flex; align-items:flex-end; gap:6px; height:70px; }
+  .bar{ flex:1; background:var(--indigo-300); border-radius:3px 3px 0 0; animation: grow 6s ease-in-out infinite; transform-origin:bottom; }
+  .bar:nth-child(3n){ background:var(--ember-300); }
+  .bar:nth-child(1){animation-delay:0s;} .bar:nth-child(2){animation-delay:.15s;} .bar:nth-child(3){animation-delay:.3s;}
+  .bar:nth-child(4){animation-delay:.45s;} .bar:nth-child(5){animation-delay:.6s;} .bar:nth-child(6){animation-delay:.75s;} .bar:nth-child(7){animation-delay:.9s;}
+  @keyframes grow{ 0%,100%{ transform:scaleY(0.35); } 50%{ transform:scaleY(1); } }
+  .peek-card{ position:absolute; top:-6px; right:-10px; width:190px; background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(38,33,92,0.06), 0 16px 32px rgba(38,33,92,0.14); border:1px solid var(--line); padding:14px; transform:rotate(4deg); z-index:-1; }
+  .peek-card .tag{ font-size:10px; font-weight:600; color:var(--ember-600); text-transform:uppercase; letter-spacing:.04em; }
+  .peek-card .val{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:22px; color:var(--indigo-900); margin:6px 0 3px; }
+  .peek-card .sub{ font-size:11px; color:var(--charcoal-soft); }
+  .peek-card .check{ display:flex; align-items:center; gap:6px; margin-top:8px; font-size:10.5px; color:var(--indigo-700); }
+  .checkdot{ width:14px; height:14px; border-radius:50%; background:var(--indigo-100); display:flex; align-items:center; justify-content:center; font-size:9px; color:var(--indigo-700); }
+
+  .marquee{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0; overflow:hidden; white-space:nowrap; }
+  .marquee-track{ display:inline-block; animation:scroll 32s linear infinite; font-family:'Space Grotesk', sans-serif; font-size:15px; font-weight:500; color:var(--charcoal-soft); }
+  .marquee-track span{margin:0 22px;}
+  @keyframes scroll{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  section{padding:96px 32px;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(28px, 4vw, 40px); letter-spacing:-0.01em; color:var(--indigo-900); margin-bottom:16px; }
+  .section-head p{color:var(--charcoal-soft); font-size:16.5px;}
+
+  /* origin / founder */
+  .origin{ background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .origin-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:center; }
+  .origin-quote{ font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:clamp(21px,2.5vw,28px); line-height:1.4; color:var(--indigo-900); margin-bottom:22px; }
+  .origin-quote::before{ content:'\201C'; color:var(--ember-600); margin-right:2px; }
+  .origin p.body{color:var(--charcoal-soft); font-size:15.5px; margin-bottom:26px;}
+  .founder-row{display:flex; align-items:center; gap:14px;}
+  .founder-photo{ width:52px; height:52px; border-radius:50%; background:var(--indigo-100); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--indigo-700); font-weight:600; }
+  .founder-name{font-weight:600; font-size:14.5px; color:var(--indigo-900);}
+  .founder-title{font-size:13.5px; color:var(--charcoal-soft);}
+  .origin-stats{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .stat-card{ background:var(--cream); border-radius:14px; padding:24px 20px; border:1px solid var(--line); }
+  .stat-num{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:30px; color:var(--indigo-900); }
+  .stat-label{font-size:13.5px; color:var(--charcoal-soft); margin-top:6px;}
+
+  /* ladder */
+  .ladder-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .tier-card{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:32px 26px; display:flex; flex-direction:column; position:relative; transition:transform .15s ease, border-color .15s ease; }
+  .tier-card:hover{transform:translateY(-4px); border-color:var(--indigo-300);}
+  .tier-card.featured{ border:2px solid var(--ember-600); }
+  .tier-badge{ position:absolute; top:-13px; left:26px; background:var(--ember-600); color:var(--ember-100); font-size:11.5px; font-weight:600; padding:4px 12px; border-radius:20px; }
+  .tier-num{ font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:600; color:var(--ember-600); letter-spacing:.06em; }
+  .tier-price{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:25px; color:var(--indigo-900); margin:12px 0 4px; }
+  .tier-card h3{ font-family:'Space Grotesk', sans-serif; font-size:18px; font-weight:600; color:var(--indigo-900); margin-bottom:9px;}
+  .tier-card p{color:var(--charcoal-soft); font-size:14px; margin-bottom:16px;}
+  .tier-meta{font-size:12.5px; color:var(--indigo-500); font-weight:600; margin-bottom:16px;}
+  .tier-who{ font-size:13px; color:var(--charcoal-soft); border-top:1px solid var(--line); padding-top:14px; margin-top:auto; margin-bottom:16px;}
+  .tier-who b{color:var(--indigo-900); display:block; font-size:12px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px;}
+  .tier-cta{ text-align:center; font-weight:600; font-size:14px; padding:11px; border-radius:8px; border:1.5px solid var(--indigo-900); color:var(--indigo-900); }
+  .tier-card.featured .tier-cta{ background:var(--ember-600); color:var(--ember-100); border:none;}
+
+  /* services */
+  .services-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+  .service-card{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:34px 30px; transition:border-color .15s ease, transform .15s ease; }
+  .service-card:hover{border-color:var(--indigo-300); transform:translateY(-4px);}
+  .service-card h3{ font-family:'Space Grotesk', sans-serif; font-size:20px; font-weight:600; color:var(--indigo-900); margin-bottom:11px; }
+  .service-card p{color:var(--charcoal-soft); font-size:15px; margin-bottom:18px;}
+  .tag-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .tag-pill{ font-size:12px; font-weight:500; color:var(--indigo-700); background:var(--indigo-100); padding:5px 12px; border-radius:20px; }
+
+  /* process */
+  .process{background:var(--indigo-900); color:var(--indigo-100);}
+  .process .section-head h2{color:#fff;}
+  .process .section-head p{color:var(--indigo-300);}
+  .process .eyebrow{color:var(--ember-300);}
+  .timeline{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;}
+  .timeline::before{ content:''; position:absolute; top:19px; left:0; right:0; height:1px; background:rgba(255,255,255,0.16); }
+  .tl-step{padding-right:24px; position:relative;}
+  .tl-dot{ width:38px; height:38px; border-radius:50%; background:var(--indigo-900); border:1.5px solid var(--ember-300); color:var(--ember-300); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px; margin-bottom:26px; position:relative; z-index:2; }
+  .tl-step.is-after .tl-dot{background:var(--ember-600); color:var(--indigo-900); border-color:var(--ember-600);}
+  .tl-step h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:18px; margin-bottom:10px; color:#fff; }
+  .tl-step p{font-size:14.5px; color:var(--indigo-300);}
+
+  /* results */
+  .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .result-card{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px 20px;}
+  .result-num{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:32px; color:var(--indigo-900);}
+  .result-label{font-size:13.5px; color:var(--charcoal-soft); margin-top:8px; line-height:1.5;}
+  .result-source{font-size:11.5px; color:var(--indigo-500); margin-top:10px; font-weight:600;}
+
+  /* work grid */
+  .work-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .work-card{ background:#fff; border:1px solid var(--line); border-radius:16px; overflow:hidden; transition:transform .15s ease, border-color .15s ease; }
+  .work-card:hover{transform:translateY(-4px); border-color:var(--indigo-300);}
+  .work-thumb{ height:140px; background:linear-gradient(135deg, var(--indigo-100), var(--ember-100)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; color:var(--indigo-700); opacity:.75; }
+  .work-body{padding:22px 22px 24px;}
+  .work-industry{ font-size:11.5px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--ember-600); margin-bottom:9px; }
+  .work-card h3{ font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; color:var(--indigo-900); margin-bottom:9px; }
+  .work-card p{font-size:13.5px; color:var(--charcoal-soft); margin-bottom:14px;}
+  .work-link{font-size:13px; font-weight:600; color:var(--indigo-500);}
+
+  /* testimonials — spotlight style */
+  .testi-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px;}
+  .testi-card{
+    background:#fff; border-radius:20px; padding:0; display:flex; flex-direction:column;
+    box-shadow:0 1px 2px rgba(38,33,92,0.04), 0 12px 32px rgba(38,33,92,0.06);
+    border:1px solid var(--line); overflow:hidden; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .testi-card:hover{ transform:translateY(-3px); box-shadow:0 1px 2px rgba(38,33,92,0.05), 0 20px 40px rgba(38,33,92,0.1); }
+  .testi-top{ display:flex; align-items:center; justify-content:space-between; padding:26px 30px 0; }
+  .testi-mark{
+    width:38px; height:38px; border-radius:10px; background:var(--indigo-100); color:var(--indigo-700);
+    display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif;
+    font-size:22px; font-weight:700; line-height:1;
+  }
+  .testi-company-badge{ font-size:11.5px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--ember-600); background:var(--ember-100); padding:6px 12px; border-radius:20px; }
+  .testi-quote{ font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:500; color:var(--indigo-900); line-height:1.55; padding:22px 30px 0; }
+  .testi-footer{ display:flex; align-items:center; gap:14px; padding:26px 30px 28px; margin-top:24px; border-top:1px solid var(--line); }
+  .testi-photo{ width:44px; height:44px; border-radius:50%; background:var(--indigo-900); display:flex; align-items:center; justify-content:center; font-size:13px; color:#fff; font-weight:600; flex-shrink:0; }
+  .testi-name{font-weight:600; font-size:14.5px; color:var(--indigo-900);}
+  .testi-role{font-size:12.5px; color:var(--charcoal-soft);}
+
+  .cta{ text-align:center; padding:110px 32px; }
+  .cta h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(30px, 5vw, 48px); letter-spacing:-0.02em; color:var(--indigo-900); max-width:640px; margin:0 auto 32px; }
+
+  footer{ background:var(--indigo-900); color:var(--indigo-300); padding:64px 32px 32px; }
+  .footer-top{ max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px; }
+  .footer-blurb{color:var(--indigo-300); font-size:14px; max-width:300px; margin-top:16px;}
+  .footer-tagline{color:#fff; font-size:15px; font-weight:500; margin-top:16px; max-width:280px;}
+  .social-row{display:flex; gap:14px; margin-top:20px;}
+  .social-dot{ width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; }
+  .footer-col h4{ font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:#fff; margin-bottom:16px; }
+  .footer-col ul{list-style:none;}
+  .footer-col li{margin-bottom:11px;}
+  .footer-col a{font-size:14px; color:var(--indigo-300); transition:color .15s ease;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{ max-width:1160px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.14); padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--indigo-300); }
+  .footer-bottom a:hover{color:#fff;}
+
+  @media (max-width:900px){
+    .services-grid, .work-grid, .testi-grid, .ladder-grid{grid-template-columns:1fr;}
+    .results-grid{grid-template-columns:1fr 1fr;}
+    .timeline{grid-template-columns:1fr; gap:32px;}
+    .timeline::before{display:none;}
+    .nav-links{display:none;}
+    .origin-grid{grid-template-columns:1fr; gap:36px;}
+    .origin-stats{grid-template-columns:1fr 1fr;}
+    .footer-top{grid-template-columns:1fr 1fr; gap:32px;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-copy{text-align:center;}
+    .hero-sub{margin-left:auto; margin-right:auto;}
+    .hero-actions{justify-content:center;}
+    .hero-stage{height:300px; max-width:400px; margin:0 auto;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+    .marquee-track{animation:none;}
+    .float-group{animation:none;}
+    .bar{animation:none; transform:scaleY(0.7);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="logo large"><span class="after">after</span><span class="concept-outline">concept</span></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#ladder">Work with us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow brand-line">Concept is easy. After is the work.</span>
+      <h1>We deliver products <span class="accent">SMEs</span> actually need.</h1>
+      <p class="hero-sub">Production-ready digital products for founders with validated ideas. We embed as your technical co-pilot — you focus on vision, we bring the product to life.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#work" class="btn-ghost">View Our Work</a>
+      </div>
+    </div>
+    <div class="hero-stage">
+      <div class="glow"></div>
+      <div class="float-group">
+        <div class="browser">
+          <div class="browser-bar">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="url">app.afterconcept.io</div>
+          </div>
+          <div class="app-body">
+            <div class="sidebar">
+              <div class="chip active"></div>
+              <div class="chip"></div>
+              <div class="chip"></div>
+              <div class="chip"></div>
+            </div>
+            <div class="main-panel">
+              <div class="stat-row">
+                <div class="stat"><div class="n">4×</div><div class="l">Throughput</div></div>
+                <div class="stat"><div class="n">96%</div><div class="l">On-time</div></div>
+                <div class="stat"><div class="n">6 wks</div><div class="l">To launch</div></div>
+              </div>
+              <div class="chart-card">
+                <div class="bars">
+                  <div class="bar" style="height:40%"></div>
+                  <div class="bar" style="height:55%"></div>
+                  <div class="bar" style="height:70%"></div>
+                  <div class="bar" style="height:50%"></div>
+                  <div class="bar" style="height:85%"></div>
+                  <div class="bar" style="height:65%"></div>
+                  <div class="bar" style="height:95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="peek-card">
+          <div class="tag">Onboarding</div>
+          <div class="val">-40%</div>
+          <div class="sub">Drop-off after redesign</div>
+          <div class="check"><span class="checkdot">✓</span> Shipped &amp; live</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Bultra Bank</span><span>·</span><span>Faraway Yachting</span><span>·</span><span>Nkosi &amp; Associates</span><span>·</span><span>EVT SaaS</span><span>·</span><span>Land Design</span><span>·</span><span>SkyRoutes</span><span>·</span><span>MediCore</span><span>·</span><span>Finova</span><span>·</span>
+    <span>Bultra Bank</span><span>·</span><span>Faraway Yachting</span><span>·</span><span>Nkosi &amp; Associates</span><span>·</span><span>EVT SaaS</span><span>·</span><span>Land Design</span><span>·</span><span>SkyRoutes</span><span>·</span><span>MediCore</span><span>·</span><span>Finova</span><span>·</span>
+  </div>
+</div>
+
+<section class="origin">
+  <div class="wrap origin-grid">
+    <div>
+      <span class="eyebrow">The origin story <span class="test-tag">Add real quote</span></span>
+      <p class="origin-quote">"Founders kept coming to us with beautiful decks and half-built software from their last agency. We started After Concept to be the team that owns the whole thing — design and engineering, spec to production, no handoff to lose the plot in."</p>
+      <p class="body">That's still how we work. One embedded team follows your product from the first discovery call through the growth work that happens after launch — not a relay of subcontractors passing the baton.</p>
+      <div class="founder-row">
+        <div class="founder-photo">FN</div>
+        <div>
+          <div class="founder-name">[Founder name] <span class="test-tag">Add name</span></div>
+          <div class="founder-title">Founder, After Concept</div>
+        </div>
+      </div>
+    </div>
+    <div class="origin-stats">
+      <div class="stat-card"><div class="stat-num">40+<span class="test-tag">Confirm</span></div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-card"><div class="stat-num">6+<span class="test-tag">Confirm</span></div><div class="stat-label">Years Building</div></div>
+      <div class="stat-card"><div class="stat-num">98%<span class="test-tag">Confirm</span></div><div class="stat-label">Client Satisfaction</div></div>
+      <div class="stat-card"><div class="stat-num">9+<span class="test-tag">Confirm</span></div><div class="stat-label">Industries Served</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why this matters</span>
+      <h2>The market you're actually competing in</h2>
+      <p>Real, cited figures — not projections about After Concept, but the market context behind how we price and structure engagements.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card"><div class="result-num">31%</div><div class="result-label">Of software projects finish on time, on budget, with full scope — industry-wide</div><div class="result-source">Standish Group, CHAOS Report 2024</div></div>
+      <div class="result-card"><div class="result-num">$2K–15K</div><div class="result-label">Typical cost of a clickable prototype — not a production-ready MVP</div><div class="result-source">2026 MVP cost benchmarks</div></div>
+      <div class="result-card"><div class="result-num">85%</div><div class="result-label">Of SMEs that successfully adopt new technology report increased sales</div><div class="result-source">SME tech-adoption research, 2026</div></div>
+      <div class="result-card"><div class="result-num">62%</div><div class="result-label">Of small-business digital transformations fail from buying tech before mapping the process</div><div class="result-source">SME digitalisation research, 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ladder">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How we work together <span class="test-tag">2026 market-benchmarked</span></span>
+      <h2>A ladder, not a leap</h2>
+      <p>Wherever you are — just validating an idea or ready to build — there's a next step sized to match.</p>
+    </div>
+    <div class="ladder-grid">
+      <div class="tier-card">
+        <span class="tier-num">01</span>
+        <div class="tier-price">Free</div>
+        <h3>Discovery call</h3>
+        <p>A 30-minute conversation on your idea, your constraints, and whether we're the right technical co-pilot for it.</p>
+        <div class="tier-meta">30 min · No obligation</div>
+        <div class="tier-who"><b>Who it's for</b>Founders with a validated idea and a question about what building it actually takes.</div>
+        <a href="#contact" class="tier-cta">Book the call</a>
+      </div>
+      <div class="tier-card featured">
+        <span class="tier-badge">Most popular</span>
+        <span class="tier-num">02</span>
+        <div class="tier-price">$3,000–$6,000</div>
+        <h3>Product sprint</h3>
+        <p>A fixed-scope, fixed-price sprint — information architecture, UI, and a technical plan you can hand to any team.</p>
+        <div class="tier-meta">2–3 weeks · Fixed price</div>
+        <div class="tier-who"><b>Who it's for</b>Founders who need a concrete, fundable plan before committing to a full build.</div>
+        <a href="#contact" class="tier-cta">Scope a sprint</a>
+      </div>
+      <div class="tier-card">
+        <span class="tier-num">03</span>
+        <div class="tier-price">$40,000–$120,000</div>
+        <h3>Full build</h3>
+        <p>Embedded team delivery of your product end to end — Discover, Design, Build, and the Scale work after launch.</p>
+        <div class="tier-meta">Custom scope · In production</div>
+        <div class="tier-who"><b>Who it's for</b>Founders ready to build and ship, with or without in-house engineers.</div>
+        <a href="#contact" class="tier-cta">Start a build</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we build</span>
+      <h2>Four practices, one embedded team</h2>
+      <p>Not a generic template. Software built around your business logic, from first sprint to the growth work that comes after launch.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Custom Software</h3>
+        <p>Scalable web platforms, internal tools, and backend systems designed around your business logic — not a generic SaaS template. We've shipped fintech backends handling 10K+ daily transactions.</p>
+        <div class="tag-row"><span class="tag-pill">Next.js</span><span class="tag-pill">Node.js</span><span class="tag-pill">PostgreSQL</span><span class="tag-pill">Cloud</span></div>
+      </div>
+      <div class="service-card">
+        <h3>AI Integrations</h3>
+        <p>Production AI — not demos. We build LLM assistants, RAG pipelines, and automation workflows that handle real user load and deliver measurable outcomes.</p>
+        <div class="tag-row"><span class="tag-pill">LLMs</span><span class="tag-pill">RAG</span><span class="tag-pill">LangChain</span><span class="tag-pill">OpenAI</span></div>
+      </div>
+      <div class="service-card">
+        <h3>Product Design</h3>
+        <p>Interface and system design that earns user trust from first login. We work from information architecture to polished UI, building design systems that scale.</p>
+        <div class="tag-row"><span class="tag-pill">Figma</span><span class="tag-pill">Design Systems</span><span class="tag-pill">UX Research</span></div>
+      </div>
+      <div class="service-card">
+        <h3>Growth Engineering</h3>
+        <p>After launch is where most agencies disappear. We stay embedded — instrumenting analytics, running A/B tests, and iterating so your product compounds.</p>
+        <div class="tag-row"><span class="tag-pill">Analytics</span><span class="tag-pill">A/B Testing</span><span class="tag-pill">SEO</span><span class="tag-pill">DevOps</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How we work</span>
+      <h2>Discover, design, build, scale</h2>
+      <p>Four stages, no handoff between them — the same team stays accountable from first spec to post-launch growth.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-step"><div class="tl-dot">01</div><h3>Discover</h3><p>We dig into your business context before touching the keyboard — user goals, technical constraints, timelines, and what success actually looks like.</p></div>
+      <div class="tl-step"><div class="tl-dot">02</div><h3>Design</h3><p>Information architecture, user flows, and interface decisions are locked before engineering starts.</p></div>
+      <div class="tl-step"><div class="tl-dot">03</div><h3>Build</h3><p>Focused two-week sprints with weekly demos, transparent progress tracking, and zero-surprise deliveries.</p></div>
+      <div class="tl-step is-after"><div class="tl-dot">04</div><h3>Scale</h3><p>We monitor, optimise, and keep iterating after launch — the work that matters most starts after the product ships.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What clients gain <span class="test-tag">Mix of real + placeholder</span></span>
+      <h2>The typical outcome</h2>
+      <p>Real figures from real engagements, with specifics filled in as each case study is finished.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card"><div class="result-num">40%</div><div class="result-label">Drop in onboarding drop-off after launch</div><div class="result-source">Bultra Bank</div></div>
+      <div class="result-card"><div class="result-num">10K+</div><div class="result-label">Daily transactions handled by a shipped fintech backend</div><div class="result-source">Client engagement</div></div>
+      <div class="result-card"><div class="result-num">[X]<span class="test-tag">Add</span></div><div class="result-label">Weeks average, kickoff to first release</div><div class="result-source">Across projects</div></div>
+      <div class="result-card"><div class="result-num">[X]%<span class="test-tag">Add</span></div><div class="result-label">Projects delivered on time and on budget</div><div class="result-source">Since founding</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Projects that shipped</span>
+      <h2>Continuously delivering for ambitious SME teams</h2>
+      <p>A sample of the web apps, AI engines, and cloud platforms we've taken from concept to production.</p>
+    </div>
+    <div class="work-grid">
+      <a href="case-study-bultra-bank.html" class="work-card">
+        <div class="work-thumb">Bultra Bank</div>
+        <div class="work-body">
+          <div class="work-industry">Fintech</div>
+          <h3>Bultra Bank</h3>
+          <p>A challenger bank entering a new market — secure auth, transaction APIs, a customer dashboard, and onboarding flow.</p>
+          <span class="work-link">Read the case study →</span>
+        </div>
+      </a>
+      <a href="case-studies.html" class="work-card">
+        <div class="work-thumb">EVT SaaS</div>
+        <div class="work-body">
+          <div class="work-industry">AI SaaS</div>
+          <h3>EVT SaaS</h3>
+          <p>Greenfield AI operations platform with intelligent automation workflows. Scope grew mid-engagement, driven by delivery quality and communication.</p>
+          <span class="work-link">View Project →</span>
+        </div>
+      </a>
+      <a href="case-studies.html" class="work-card">
+        <div class="work-thumb">Land Design</div>
+        <div class="work-body">
+          <div class="work-industry">Real Estate</div>
+          <h3>Land Design</h3>
+          <p>Digital platform for land planning and property visualisation with GIS tooling — parcels, zoning data, and interactive maps.</p>
+          <span class="work-link">View Project →</span>
+        </div>
+      </a>
+      <a href="case-studies.html" class="work-card">
+        <div class="work-thumb">Mercato</div>
+        <div class="work-body">
+          <div class="work-industry">DevOps</div>
+          <h3>Mercato</h3>
+          <p>Node.js performance overhaul and AWS infrastructure rebuild for a high-throughput SaaS product.</p>
+          <span class="work-link">View Project →</span>
+        </div>
+      </a>
+      <a href="case-studies.html" class="work-card">
+        <div class="work-thumb">Medicore</div>
+        <div class="work-body">
+          <div class="work-industry">Healthcare</div>
+          <h3>Medicore</h3>
+          <p>Digital health platform for patient management and telemedicine services.</p>
+          <span class="work-link">View Project →</span>
+        </div>
+      </a>
+      <a href="case-studies.html" class="work-card">
+        <div class="work-thumb">SkyRoutes</div>
+        <div class="work-body">
+          <div class="work-industry">Logistics</div>
+          <h3>SkyRoutes</h3>
+          <p>Full-stack route optimisation tool with real-time tracking and driver assignment.</p>
+          <span class="work-link">View Project →</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:44px;">
+      <a href="case-studies.html" class="btn-ghost">See all case studies</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">What clients say after the work ships</span>
+      <h2>In their words</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="testi-mark">"</span>
+          <span class="testi-company-badge">Bultra Bank · Fintech</span>
+        </div>
+        <p class="testi-quote">They shipped a production-grade fintech product in weeks, and our onboarding drop-off rate fell 40% post-launch. Exceptional technical depth and clear communication throughout.</p>
+        <div class="testi-footer">
+          <div class="testi-photo">MV</div>
+          <div><div class="testi-name">Marco Visibelli</div><div class="testi-role">Head of Engineering</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="testi-mark">"</span>
+          <span class="testi-company-badge">EVT SaaS · AI</span>
+        </div>
+        <p class="testi-quote">The team laid the foundations of an ambitious product with remarkable clarity. When our brief grew in scope, we restructured into a larger contract together — a sign of genuine mutual trust.</p>
+        <div class="testi-footer">
+          <div class="testi-photo">M</div>
+          <div><div class="testi-name">Michael</div><div class="testi-role">Founder</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <span class="eyebrow">Ready when you are</span>
+  <h2>Ready to build something great?</h2>
+  <div class="hero-actions">
+    <a href="mailto:hello@afterconcept.io" class="btn-primary">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="logo large"><span class="after">after</span><span class="concept-outline">concept</span></a>
+      <p class="footer-tagline">Every concept deserves an after.</p>
+      <p class="footer-blurb">Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan's $4.6B tech export sector (FY2026, +21% YoY).</p>
+      <div class="social-row">
+        <span class="social-dot">in</span>
+        <span class="social-dot">ig</span>
+        <span class="social-dot">fb</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#ladder">Work with us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Proof</h4>
+      <ul>
+        <li><a href="case-studies.html">Case studies</a></li>
+        <li><a href="case-study-bultra-bank.html">Bultra Bank — Fintech</a></li>
+        <li><a href="case-studies.html">AI SaaS</a></li>
+        <li><a href="case-studies.html">Healthcare</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:hello@afterconcept.io">hello@afterconcept.io <span class="test-tag">Confirm</span></a></li>
+        <li>Pakistan — Global</li>
+        <li>9am – 5pm (UTC)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 After Concept. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
