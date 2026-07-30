@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Case Studies — After Concept',
@@ -116,15 +117,7 @@ export default function CaseStudiesPage() {
         <Link href="/#contact" className="btn-primary">Book a free scoping call</Link>
       </section>
 
-      <footer style={{ borderTop: '1px solid var(--line)', padding: '40px 32px', background: 'var(--cream)' }}>
-        <div className="footer-inner">
-          <Link href="/" className="logo">
-            <span className="after">after</span>
-            <span style={{ color: 'transparent', WebkitTextStroke: '1.2px #26215C' }}>concept</span>
-          </Link>
-          <span>© 2026 After Concept</span>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

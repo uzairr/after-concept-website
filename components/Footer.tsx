@@ -7,7 +7,7 @@ export default function Footer() {
         <div>
           <Link href="/" className="logo large font-space font-semibold text-xl tracking-tight flex items-center">
             <span className="text-white">after</span>
-            <span className="logo-outline-white text-transparent">concept</span>
+            <span className="concept-outline text-transparent">concept</span>
           </Link>
           <p className="text-white text-[15px] font-medium mt-4 max-w-[280px]">Every concept deserves an after.</p>
           <p className="text-indigo-300 text-sm max-w-[300px] mt-4">

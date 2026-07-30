@@ -6,7 +6,7 @@ export default function Header() {
       <nav className="flex items-center justify-between px-8 py-5 max-w-[1160px] mx-auto">
         <Link href="/" className="logo large font-space font-semibold text-xl tracking-tight flex items-center">
           <span className="text-indigo-900">after</span>
-          <span className="logo-outline text-transparent">concept</span>
+          <span className="concept-outline text-transparent">concept</span>
         </Link>
         <div className="hidden md:flex gap-9 text-[14.5px] font-medium text-charcoal-soft">
           <Link href="/#services" className="hover:text-indigo-900 transition-colors">Services</Link>
