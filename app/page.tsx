@@ -1,22 +1,13 @@
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
     <>
 
 
-<header>
-  <nav>
-    <a href="#" className="logo large"><span className="after">after</span><span className="concept-outline">concept</span></a>
-    <div className="nav-links">
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
-      <a href="#ladder">Work with us</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a href="#contact" className="nav-cta">Get Started</a>
-  </nav>
-</header>
+<Header />
 
 <section className="hero">
   <div className="hero-grid">
@@ -330,56 +321,12 @@ export default function Home() {
 <section className="cta" id="contact">
   <span className="eyebrow">Ready when you are</span>
   <h2>Ready to build something great?</h2>
-  <div className="hero-actions">
-    <a href="mailto:hello@afterconcept.io" className="btn-primary">Start a Conversation</a>
+  <div className="flex justify-center mt-4">
+    <a href="mailto:contact@afterconcept.io" className="btn-primary">Start a Conversation</a>
   </div>
 </section>
 
-<footer>
-  <div className="footer-top">
-    <div>
-      <a href="#" className="logo large"><span className="after">after</span><span className="concept-outline">concept</span></a>
-      <p className="footer-tagline">Every concept deserves an after.</p>
-      <p className="footer-blurb">Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan's $4.6B tech export sector (FY2026, +21% YoY).</p>
-      <div className="social-row">
-        <span className="social-dot">in</span>
-        <span className="social-dot">ig</span>
-        <span className="social-dot">fb</span>
-      </div>
-    </div>
-    <div className="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#ladder">Work with us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div className="footer-col">
-      <h4>Proof</h4>
-      <ul>
-        <li><a href="/case-studies">Case studies</a></li>
-        <li><a href="/case-studies">Bultra Bank — Fintech</a></li>
-        <li><a href="/case-studies">AI SaaS</a></li>
-        <li><a href="/case-studies">Healthcare</a></li>
-      </ul>
-    </div>
-    <div className="footer-col">
-      <h4>Connect</h4>
-      <ul>
-        <li><a href="mailto:hello@afterconcept.io">hello@afterconcept.io <span className="test-tag">Confirm</span></a></li>
-        <li>Pakistan — Global</li>
-        <li>9am – 5pm (UTC)</li>
-      </ul>
-    </div>
-  </div>
-  <div className="footer-bottom">
-    <span>© 2026 After Concept. All rights reserved.</span>
-    <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
-  </div>
-</footer>
+<Footer />
 
 
     </>

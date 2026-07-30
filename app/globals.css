@@ -39,7 +39,7 @@
   h1 .accent{color:var(--ember-600);}
   .hero-sub{ font-size:17px; color:var(--charcoal-soft); max-width:460px; margin:0 0 36px; }
   .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
-  .btn-primary{ background:var(--ember-600); color:var(--ember-100); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; transition:transform .15s ease, box-shadow .15s ease; display:inline-block; }
+  .btn-primary{ background:var(--ember-600); color:var(--ember-100); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; transition:transform .15s ease, box-shadow .15s ease; display:inline-block; margin-top:40px; }
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(216,90,48,.28);}
   .btn-ghost{ border:1.5px solid var(--indigo-900); color:var(--indigo-900); padding:14px 28px; border-radius:9px; font-weight:600; font-size:15px; transition:background .15s ease; display:inline-block; }
   .btn-ghost:hover{background:var(--indigo-100);}
