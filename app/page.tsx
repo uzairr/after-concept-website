@@ -233,7 +233,7 @@ export default function Home() {
       <p>A sample of the web apps, AI engines, and cloud platforms we've taken from concept to production.</p>
     </div>
     <div className="work-grid">
-      <a href="case-study-bultra-bank.html" className="work-card">
+      <a href="/case-studies" className="work-card">
         <div className="work-thumb">Bultra Bank</div>
         <div className="work-body">
           <div className="work-industry">Fintech</div>
@@ -242,7 +242,7 @@ export default function Home() {
           <span className="work-link">Read the case study →</span>
         </div>
       </a>
-      <a href="case-studies.html" className="work-card">
+      <a href="/case-studies" className="work-card">
         <div className="work-thumb">EVT SaaS</div>
         <div className="work-body">
           <div className="work-industry">AI SaaS</div>
@@ -251,7 +251,7 @@ export default function Home() {
           <span className="work-link">View Project →</span>
         </div>
       </a>
-      <a href="case-studies.html" className="work-card">
+      <a href="/case-studies" className="work-card">
         <div className="work-thumb">Land Design</div>
         <div className="work-body">
           <div className="work-industry">Real Estate</div>
@@ -260,7 +260,7 @@ export default function Home() {
           <span className="work-link">View Project →</span>
         </div>
       </a>
-      <a href="case-studies.html" className="work-card">
+      <a href="/case-studies" className="work-card">
         <div className="work-thumb">Mercato</div>
         <div className="work-body">
           <div className="work-industry">DevOps</div>
@@ -269,7 +269,7 @@ export default function Home() {
           <span className="work-link">View Project →</span>
         </div>
       </a>
-      <a href="case-studies.html" className="work-card">
+      <a href="/case-studies" className="work-card">
         <div className="work-thumb">Medicore</div>
         <div className="work-body">
           <div className="work-industry">Healthcare</div>
@@ -278,7 +278,7 @@ export default function Home() {
           <span className="work-link">View Project →</span>
         </div>
       </a>
-      <a href="case-studies.html" className="work-card">
+      <a href="/case-studies" className="work-card">
         <div className="work-thumb">SkyRoutes</div>
         <div className="work-body">
           <div className="work-industry">Logistics</div>
@@ -289,7 +289,7 @@ export default function Home() {
       </a>
     </div>
     <div style={{ textAlign: "center", marginTop: "44px" }}>
-      <a href="case-studies.html" className="btn-ghost">See all case studies</a>
+      <a href="/case-studies" className="btn-ghost">See all case studies</a>
     </div>
   </div>
 </section>
@@ -331,7 +331,7 @@ export default function Home() {
   <span className="eyebrow">Ready when you are</span>
   <h2>Ready to build something great?</h2>
   <div className="hero-actions">
-    <a href="mailto:contact@afterconcept.io" className="btn-primary">Start a Conversation</a>
+    <a href="mailto:hello@afterconcept.io" className="btn-primary">Start a Conversation</a>
   </div>
 </section>
 
@@ -342,7 +342,7 @@ export default function Home() {
       <p className="footer-tagline">Every concept deserves an after.</p>
       <p className="footer-blurb">Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan's $4.6B tech export sector (FY2026, +21% YoY).</p>
       <div className="social-row">
-        <a href="https://www.linkedin.com/company/afterrconcept/" target="_blank" rel="noopener noreferrer" className="social-dot">in</a>
+        <span className="social-dot">in</span>
         <span className="social-dot">ig</span>
         <span className="social-dot">fb</span>
       </div>
@@ -360,16 +360,16 @@ export default function Home() {
     <div className="footer-col">
       <h4>Proof</h4>
       <ul>
-        <li><a href="case-studies.html">Case studies</a></li>
-        <li><a href="case-study-bultra-bank.html">Bultra Bank — Fintech</a></li>
-        <li><a href="case-studies.html">AI SaaS</a></li>
-        <li><a href="case-studies.html">Healthcare</a></li>
+        <li><a href="/case-studies">Case studies</a></li>
+        <li><a href="/case-studies">Bultra Bank — Fintech</a></li>
+        <li><a href="/case-studies">AI SaaS</a></li>
+        <li><a href="/case-studies">Healthcare</a></li>
       </ul>
     </div>
     <div className="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="mailto:contact@afterconcept.io">contact@afterconcept.io</a></li>
+        <li><a href="mailto:hello@afterconcept.io">hello@afterconcept.io <span className="test-tag">Confirm</span></a></li>
         <li>Pakistan — Global</li>
         <li>9am – 5pm (UTC)</li>
       </ul>
