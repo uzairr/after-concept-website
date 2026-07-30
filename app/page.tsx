@@ -150,7 +150,7 @@ export default function Home() {
       </div>
       <div className="tier-card">
         <span className="tier-num">03</span>
-        <div className="tier-price">$40,000–$120,000</div>
+        <div className="tier-price">$15,000–$50,000</div>
         <h3>Full build</h3>
         <p>Embedded team delivery of your product end to end — Discover, Design, Build, and the Scale work after launch.</p>
         <div className="tier-meta">Custom scope · In production</div>
@@ -331,7 +331,7 @@ export default function Home() {
   <span className="eyebrow">Ready when you are</span>
   <h2>Ready to build something great?</h2>
   <div className="hero-actions">
-    <a href="mailto:hello@afterconcept.io" className="btn-primary">Start a Conversation</a>
+    <a href="mailto:contact@afterconcept.io" className="btn-primary">Start a Conversation</a>
   </div>
 </section>
 
@@ -342,7 +342,7 @@ export default function Home() {
       <p className="footer-tagline">Every concept deserves an after.</p>
       <p className="footer-blurb">Production-ready products for founders with validated ideas. We embed as your technical co-pilot. Proudly part of Pakistan's $4.6B tech export sector (FY2026, +21% YoY).</p>
       <div className="social-row">
-        <span className="social-dot">in</span>
+        <a href="https://www.linkedin.com/company/afterrconcept/" target="_blank" rel="noopener noreferrer" className="social-dot">in</a>
         <span className="social-dot">ig</span>
         <span className="social-dot">fb</span>
       </div>
@@ -369,7 +369,7 @@ export default function Home() {
     <div className="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="mailto:hello@afterconcept.io">hello@afterconcept.io <span className="test-tag">Confirm</span></a></li>
+        <li><a href="mailto:contact@afterconcept.io">contact@afterconcept.io</a></li>
         <li>Pakistan — Global</li>
         <li>9am – 5pm (UTC)</li>
       </ul>
