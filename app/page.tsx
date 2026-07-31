@@ -1,334 +1,949 @@
-import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+"use client";
+
+import { useEffect, useRef } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+// Custom Component for Outcome Section with Background Animation
+function OutcomeSection() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = 0;
+    let h = 0;
+    let particles = [];
+    let t = 0;
+    let animationFrameId;
+
+    const resize = () => {
+      if (canvas.parentElement) {
+        w = canvas.width = canvas.parentElement.offsetWidth;
+        h = canvas.height = canvas.parentElement.offsetHeight;
+      }
+    };
+
+    const init = () => {
+      resize();
+      particles = Array.from({ length: 28 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+      }));
+    };
+
+    const drawWaves = () => {
+      const layers = [
+        {
+          amp: 30,
+          freq: 0.006,
+          speed: 0.01,
+          yBase: h * 0.3,
+          color: "rgba(224, 86, 40, 0.05)",
+        },
+        {
+          amp: 22,
+          freq: 0.009,
+          speed: -0.014,
+          yBase: h * 0.5,
+          color: "rgba(220, 80, 40, 0.04)",
+        },
+        {
+          amp: 38,
+          freq: 0.005,
+          speed: 0.008,
+          yBase: h * 0.7,
+          color: "rgba(224, 86, 40, 0.03)",
+        },
+      ];
+      layers.forEach((l) => {
+        ctx.beginPath();
+        ctx.moveTo(0, l.yBase);
+        for (let x = 0; x <= w; x += 8) {
+          const y = l.yBase + Math.sin(x * l.freq + t * l.speed) * l.amp;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(w, h);
+        ctx.lineTo(0, h);
+        ctx.closePath();
+        ctx.fillStyle = l.color;
+        ctx.fill();
+      });
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      drawWaves();
+
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i];
+          const b = particles[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 140) {
+            ctx.strokeStyle = `rgba(224, 86, 40, ${0.12 * (1 - d / 140)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        ctx.fillStyle = "rgba(224, 86, 40, 0.35)";
+        ctx.beginPath();
+        ctx.arc(particles[i].x, particles[i].y, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      t += 1;
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    window.addEventListener("resize", resize);
+    init();
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return (
+    <section
+      className="outcome-section"
+      style={{ position: "relative", overflow: "hidden" }}
+    >
+      {/* Background Animated Layer */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px)`,
+            backgroundSize: "64px 64px",
+            maskImage:
+              "radial-gradient(ellipse 80% 80% at 50% 50%, #000 40%, transparent 100%)",
+          }}
+        ></div>
+        <canvas
+          ref={canvasRef}
+          style={{ width: "100%", height: "100%", display: "block" }}
+        />
+      </div>
+
+      {/* Content Layer */}
+      <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+        <div className="section-head">
+          <span className="eyebrow">WHAT CLIENTS GAIN</span>
+          <h2>The typical outcome</h2>
+          <p>
+            Real figures from real engagements, with specifics filled in as each
+            case study is finished.
+          </p>
+        </div>
+        <div className="results-grid">
+          <div className="result-card">
+            <div className="result-num">40%</div>
+            <div className="result-label">
+              Drop in onboarding drop-off after launch
+            </div>
+            <div className="result-source">Bultra Bank</div>
+          </div>
+          <div className="result-card">
+            <div className="result-num">10K+</div>
+            <div className="result-label">
+              Daily transactions handled by a shipped fintech backend
+            </div>
+            <div className="result-source">Client engagement</div>
+          </div>
+          <div className="result-card">
+            <div className="result-num">10</div>
+            <div className="result-label">
+              Days average, kickoff to first release
+            </div>
+            <div className="result-source">Across projects</div>
+          </div>
+          <div className="result-card">
+            <div className="result-num">98%</div>
+            <div className="result-label">
+              Projects delivered on time and on budget
+            </div>
+            <div className="result-source">Since founding</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
     <>
+      <Header />
 
-
-<Header />
-
-<section className="hero">
-  <div className="hero-grid">
-    <div className="hero-copy">
-      <span className="eyebrow brand-line">Concept is easy. After is the work.</span>
-      <h1>We deliver products <span className="accent">SMEs</span> actually need.</h1>
-      <p className="hero-sub">Production-ready digital products for founders with validated ideas. We embed as your technical co-pilot — you focus on vision, we bring the product to life.</p>
-      <div className="hero-actions">
-        <a href="#contact" className="btn-primary">Start a Project</a>
-        <a href="#work" className="btn-ghost">View Our Work</a>
-      </div>
-    </div>
-    <div className="hero-stage">
-      <div className="glow"></div>
-      <div className="float-group">
-        <div className="browser">
-          <div className="browser-bar">
-            <div className="dot"></div><div className="dot"></div><div className="dot"></div>
-            <div className="url">app.afterconcept.io</div>
-          </div>
-          <div className="app-body">
-            <div className="sidebar">
-              <div className="chip active"></div>
-              <div className="chip"></div>
-              <div className="chip"></div>
-              <div className="chip"></div>
+      <section
+        className="hero"
+        style={{ paddingTop: "48px", paddingBottom: "32px" }}
+      >
+        <div className="hero-grid" style={{ alignItems: "center" }}>
+          <div className="hero-copy" style={{ marginTop: "0px" }}>
+            <span
+              className="eyebrow brand-line"
+              style={{ display: "inline-block", marginBottom: "12px" }}
+            >
+              Concept is easy. After is the work.
+            </span>
+            <h1>
+              We deliver products <span className="accent">SMEs</span> actually
+              need.
+            </h1>
+            <p className="hero-sub" style={{ marginBottom: "20px" }}>
+              Production-ready digital products for founders with validated
+              ideas. We embed as your technical co-pilot — you focus on vision,
+              we bring the product to life.
+            </p>
+            <div
+              className="hero-actions"
+              style={{
+                marginTop: "0px",
+                display: "flex",
+                gap: "16px",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <a
+                href="#contact"
+                className="btn-primary"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "48px",
+                  padding: "0 24px",
+                  margin: "0",
+                  boxSizing: "border-box",
+                  verticalAlign: "middle",
+                  lineHeight: "normal",
+                }}
+              >
+                Start a Project
+              </a>
+              <a
+                href="#work"
+                className="btn-ghost"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "48px",
+                  padding: "0 24px",
+                  margin: "0",
+                  boxSizing: "border-box",
+                  verticalAlign: "middle",
+                  lineHeight: "normal",
+                }}
+              >
+                View Our Work
+              </a>
             </div>
-            <div className="main-panel">
-              <div className="stat-row">
-                <div className="stat"><div className="n">4×</div><div className="l">Throughput</div></div>
-                <div className="stat"><div className="n">96%</div><div className="l">On-time</div></div>
-                <div className="stat"><div className="n">6 wks</div><div className="l">To launch</div></div>
+          </div>
+          <div className="hero-stage">
+            <div className="glow"></div>
+            <div className="float-group">
+              <div className="browser">
+                <div className="browser-bar">
+                  <div className="dot"></div>
+                  <div className="dot"></div>
+                  <div className="dot"></div>
+                  <div className="url">app.afterconcept.io</div>
+                </div>
+                <div className="app-body">
+                  <div className="sidebar">
+                    <div className="chip active"></div>
+                    <div className="chip"></div>
+                    <div className="chip"></div>
+                    <div className="chip"></div>
+                  </div>
+                  <div className="main-panel">
+                    <div className="stat-row">
+                      <div className="stat">
+                        <div className="n">4×</div>
+                        <div className="l">Throughput</div>
+                      </div>
+                      <div className="stat">
+                        <div className="n">96%</div>
+                        <div className="l">On-time</div>
+                      </div>
+                      <div className="stat">
+                        <div className="n">6 wks</div>
+                        <div className="l">To launch</div>
+                      </div>
+                    </div>
+                    <div className="chart-card">
+                      <div className="bars">
+                        <div className="bar" style={{ height: "40%" }}></div>
+                        <div className="bar" style={{ height: "55%" }}></div>
+                        <div className="bar" style={{ height: "70%" }}></div>
+                        <div className="bar" style={{ height: "50%" }}></div>
+                        <div className="bar" style={{ height: "85%" }}></div>
+                        <div className="bar" style={{ height: "65%" }}></div>
+                        <div className="bar" style={{ height: "95%" }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="chart-card">
-                <div className="bars">
-                  <div className="bar" style={{ height: "40%" }}></div>
-                  <div className="bar" style={{ height: "55%" }}></div>
-                  <div className="bar" style={{ height: "70%" }}></div>
-                  <div className="bar" style={{ height: "50%" }}></div>
-                  <div className="bar" style={{ height: "85%" }}></div>
-                  <div className="bar" style={{ height: "65%" }}></div>
-                  <div className="bar" style={{ height: "95%" }}></div>
+              <div className="peek-card">
+                <div className="tag">Onboarding</div>
+                <div className="val">-40%</div>
+                <div className="sub">Drop-off after redesign</div>
+                <div className="check">
+                  <span className="checkdot">✓</span> Shipped &amp; live
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="peek-card">
-          <div className="tag">Onboarding</div>
-          <div className="val">-40%</div>
-          <div className="sub">Drop-off after redesign</div>
-          <div className="check"><span className="checkdot">✓</span> Shipped &amp; live</div>
+      </section>
+
+      <div className="marquee">
+        <div className="marquee-track">
+          <span>Bultra Bank</span>
+          <span>·</span>
+          <span>Faraway Yachting</span>
+          <span>·</span>
+          <span>Nkosi &amp; Associates</span>
+          <span>·</span>
+          <span>EVT SaaS</span>
+          <span>·</span>
+          <span>Land Design</span>
+          <span>·</span>
+          <span>SkyRoutes</span>
+          <span>·</span>
+          <span>MediCore</span>
+          <span>·</span>
+          <span>Finova</span>
+          <span>·</span>
+          <span>Bultra Bank</span>
+          <span>·</span>
+          <span>Faraway Yachting</span>
+          <span>·</span>
+          <span>Nkosi &amp; Associates</span>
+          <span>·</span>
+          <span>EVT SaaS</span>
+          <span>·</span>
+          <span>Land Design</span>
+          <span>·</span>
+          <span>SkyRoutes</span>
+          <span>·</span>
+          <span>MediCore</span>
+          <span>·</span>
+          <span>Finova</span>
+          <span>·</span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<div className="marquee">
-  <div className="marquee-track">
-    <span>Bultra Bank</span><span>·</span><span>Faraway Yachting</span><span>·</span><span>Nkosi &amp; Associates</span><span>·</span><span>EVT SaaS</span><span>·</span><span>Land Design</span><span>·</span><span>SkyRoutes</span><span>·</span><span>MediCore</span><span>·</span><span>Finova</span><span>·</span>
-    <span>Bultra Bank</span><span>·</span><span>Faraway Yachting</span><span>·</span><span>Nkosi &amp; Associates</span><span>·</span><span>EVT SaaS</span><span>·</span><span>Land Design</span><span>·</span><span>SkyRoutes</span><span>·</span><span>MediCore</span><span>·</span><span>Finova</span><span>·</span>
-  </div>
-</div>
+      <section className="origin">
+        <div className="wrap origin-grid">
+          <div>
+            <span className="eyebrow">The origin story</span>
+            <p className="origin-quote">
+              "Founders kept coming to us with beautiful decks and half-built
+              software from their last agency. We started After Concept to be
+              the team that owns the whole thing — design and engineering, spec
+              to production, no handoff to lose the plot in."
+            </p>
+            <p className="body">
+              That's still how we work. One embedded team follows your product
+              from the first discovery call through the growth work that happens
+              after launch — not a relay of subcontractors passing the baton.
+            </p>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
+              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
+            >
+              <div
+                style={{
+                  fontSize: "42px",
+                  fontWeight: 800,
+                  color: "#E05628",
+                  lineHeight: 1,
+                }}
+              >
+                40+
+              </div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "var(--muted, #64748B)",
+                  marginTop: "6px",
+                }}
+              >
+                Projects Shipped
+              </div>
+            </div>
 
-<section className="origin">
-  <div className="wrap origin-grid">
-    <div>
-      <span className="eyebrow">The origin story <span className="test-tag">Add real quote</span></span>
-      <p className="origin-quote">"Founders kept coming to us with beautiful decks and half-built software from their last agency. We started After Concept to be the team that owns the whole thing — design and engineering, spec to production, no handoff to lose the plot in."</p>
-      <p className="body">That's still how we work. One embedded team follows your product from the first discovery call through the growth work that happens after launch — not a relay of subcontractors passing the baton.</p>
-      <div className="founder-row">
-        <div className="founder-photo">FN</div>
-        <div>
-          <div className="founder-name">[Founder name] <span className="test-tag">Add name</span></div>
-          <div className="founder-title">Founder, After Concept</div>
+            <div
+              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
+            >
+              <div
+                style={{
+                  fontSize: "42px",
+                  fontWeight: 800,
+                  color: "#E05628",
+                  lineHeight: 1,
+                }}
+              >
+                2+
+              </div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "var(--muted, #64748B)",
+                  marginTop: "6px",
+                }}
+              >
+                Years Building
+              </div>
+            </div>
+
+            <div
+              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
+            >
+              <div
+                style={{
+                  fontSize: "42px",
+                  fontWeight: 800,
+                  color: "#E05628",
+                  lineHeight: 1,
+                }}
+              >
+                98%
+              </div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "var(--muted, #64748B)",
+                  marginTop: "6px",
+                }}
+              >
+                Client Satisfaction
+              </div>
+            </div>
+
+            <div
+              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
+            >
+              <div
+                style={{
+                  fontSize: "42px",
+                  fontWeight: 800,
+                  color: "#E05628",
+                  lineHeight: 1,
+                }}
+              >
+                9+
+              </div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "var(--muted, #64748B)",
+                  marginTop: "6px",
+                }}
+              >
+                Industries Served
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div className="origin-stats">
-      <div className="stat-card"><div className="stat-num">40+<span className="test-tag">Confirm</span></div><div className="stat-label">Projects Shipped</div></div>
-      <div className="stat-card"><div className="stat-num">6+<span className="test-tag">Confirm</span></div><div className="stat-label">Years Building</div></div>
-      <div className="stat-card"><div className="stat-num">98%<span className="test-tag">Confirm</span></div><div className="stat-label">Client Satisfaction</div></div>
-      <div className="stat-card"><div className="stat-num">9+<span className="test-tag">Confirm</span></div><div className="stat-label">Industries Served</div></div>
-    </div>
-  </div>
-</section>
+      </section>
 
-<section>
-  <div className="wrap">
-    <div className="section-head">
-      <span className="eyebrow">Why this matters</span>
-      <h2>The market you're actually competing in</h2>
-      <p>Real, cited figures — not projections about After Concept, but the market context behind how we price and structure engagements.</p>
-    </div>
-    <div className="results-grid">
-      <div className="result-card"><div className="result-num">31%</div><div className="result-label">Of software projects finish on time, on budget, with full scope — industry-wide</div><div className="result-source">Standish Group, CHAOS Report 2024</div></div>
-      <div className="result-card"><div className="result-num">$2K–15K</div><div className="result-label">Typical cost of a clickable prototype — not a production-ready MVP</div><div className="result-source">2026 MVP cost benchmarks</div></div>
-      <div className="result-card"><div className="result-num">85%</div><div className="result-label">Of SMEs that successfully adopt new technology report increased sales</div><div className="result-source">SME tech-adoption research, 2026</div></div>
-      <div className="result-card"><div className="result-num">62%</div><div className="result-label">Of small-business digital transformations fail from buying tech before mapping the process</div><div className="result-source">SME digitalisation research, 2026</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="ladder">
-  <div className="wrap">
-    <div className="section-head">
-      <span className="eyebrow">How we work together <span className="test-tag">2026 market-benchmarked</span></span>
-      <h2>A ladder, not a leap</h2>
-      <p>Wherever you are — just validating an idea or ready to build — there's a next step sized to match.</p>
-    </div>
-    <div className="ladder-grid">
-      <div className="tier-card">
-        <span className="tier-num">01</span>
-        <div className="tier-price">Free</div>
-        <h3>Discovery call</h3>
-        <p>A 30-minute conversation on your idea, your constraints, and whether we're the right technical co-pilot for it.</p>
-        <div className="tier-meta">30 min · No obligation</div>
-        <div className="tier-who"><b>Who it's for</b>Founders with a validated idea and a question about what building it actually takes.</div>
-        <a href="#contact" className="tier-cta">Book the call</a>
-      </div>
-      <div className="tier-card featured">
-        <span className="tier-badge">Most popular</span>
-        <span className="tier-num">02</span>
-        <div className="tier-price">$3,000–$6,000</div>
-        <h3>Product sprint</h3>
-        <p>A fixed-scope, fixed-price sprint — information architecture, UI, and a technical plan you can hand to any team.</p>
-        <div className="tier-meta">2–3 weeks · Fixed price</div>
-        <div className="tier-who"><b>Who it's for</b>Founders who need a concrete, fundable plan before committing to a full build.</div>
-        <a href="#contact" className="tier-cta">Scope a sprint</a>
-      </div>
-      <div className="tier-card">
-        <span className="tier-num">03</span>
-        <div className="tier-price">$15,000–$50,000</div>
-        <h3>Full build</h3>
-        <p>Embedded team delivery of your product end to end — Discover, Design, Build, and the Scale work after launch.</p>
-        <div className="tier-meta">Custom scope · In production</div>
-        <div className="tier-who"><b>Who it's for</b>Founders ready to build and ship, with or without in-house engineers.</div>
-        <a href="#contact" className="tier-cta">Start a build</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="services" style={{ background: "#fff", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
-  <div className="wrap">
-    <div className="section-head">
-      <span className="eyebrow">What we build</span>
-      <h2>Four practices, one embedded team</h2>
-      <p>Not a generic template. Software built around your business logic, from first sprint to the growth work that comes after launch.</p>
-    </div>
-    <div className="services-grid">
-      <div className="service-card">
-        <h3>Custom Software</h3>
-        <p>Scalable web platforms, internal tools, and backend systems designed around your business logic — not a generic SaaS template. We've shipped fintech backends handling 10K+ daily transactions.</p>
-        <div className="tag-row"><span className="tag-pill">Next.js</span><span className="tag-pill">Node.js</span><span className="tag-pill">PostgreSQL</span><span className="tag-pill">Cloud</span></div>
-      </div>
-      <div className="service-card">
-        <h3>AI Integrations</h3>
-        <p>Production AI — not demos. We build LLM assistants, RAG pipelines, and automation workflows that handle real user load and deliver measurable outcomes.</p>
-        <div className="tag-row"><span className="tag-pill">LLMs</span><span className="tag-pill">RAG</span><span className="tag-pill">LangChain</span><span className="tag-pill">OpenAI</span></div>
-      </div>
-      <div className="service-card">
-        <h3>Product Design</h3>
-        <p>Interface and system design that earns user trust from first login. We work from information architecture to polished UI, building design systems that scale.</p>
-        <div className="tag-row"><span className="tag-pill">Figma</span><span className="tag-pill">Design Systems</span><span className="tag-pill">UX Research</span></div>
-      </div>
-      <div className="service-card">
-        <h3>Growth Engineering</h3>
-        <p>After launch is where most agencies disappear. We stay embedded — instrumenting analytics, running A/B tests, and iterating so your product compounds.</p>
-        <div className="tag-row"><span className="tag-pill">Analytics</span><span className="tag-pill">A/B Testing</span><span className="tag-pill">SEO</span><span className="tag-pill">DevOps</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section className="process">
-  <div className="wrap">
-    <div className="section-head">
-      <span className="eyebrow">How we work</span>
-      <h2>Discover, design, build, scale</h2>
-      <p>Four stages, no handoff between them — the same team stays accountable from first spec to post-launch growth.</p>
-    </div>
-    <div className="timeline">
-      <div className="tl-step"><div className="tl-dot">01</div><h3>Discover</h3><p>We dig into your business context before touching the keyboard — user goals, technical constraints, timelines, and what success actually looks like.</p></div>
-      <div className="tl-step"><div className="tl-dot">02</div><h3>Design</h3><p>Information architecture, user flows, and interface decisions are locked before engineering starts.</p></div>
-      <div className="tl-step"><div className="tl-dot">03</div><h3>Build</h3><p>Focused two-week sprints with weekly demos, transparent progress tracking, and zero-surprise deliveries.</p></div>
-      <div className="tl-step is-after"><div className="tl-dot">04</div><h3>Scale</h3><p>We monitor, optimise, and keep iterating after launch — the work that matters most starts after the product ships.</p></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div className="wrap">
-    <div className="section-head">
-      <span className="eyebrow">What clients gain <span className="test-tag">Mix of real + placeholder</span></span>
-      <h2>The typical outcome</h2>
-      <p>Real figures from real engagements, with specifics filled in as each case study is finished.</p>
-    </div>
-    <div className="results-grid">
-      <div className="result-card"><div className="result-num">40%</div><div className="result-label">Drop in onboarding drop-off after launch</div><div className="result-source">Bultra Bank</div></div>
-      <div className="result-card"><div className="result-num">10K+</div><div className="result-label">Daily transactions handled by a shipped fintech backend</div><div className="result-source">Client engagement</div></div>
-      <div className="result-card"><div className="result-num">[X]<span className="test-tag">Add</span></div><div className="result-label">Weeks average, kickoff to first release</div><div className="result-source">Across projects</div></div>
-      <div className="result-card"><div className="result-num">[X]%<span className="test-tag">Add</span></div><div className="result-label">Projects delivered on time and on budget</div><div className="result-source">Since founding</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="work" style={{ background: "#fff", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
-  <div className="wrap">
-    <div className="section-head">
-      <span className="eyebrow">Projects that shipped</span>
-      <h2>Continuously delivering for ambitious SME teams</h2>
-      <p>A sample of the web apps, AI engines, and cloud platforms we've taken from concept to production.</p>
-    </div>
-    <div className="work-grid">
-      <a href="/case-studies" className="work-card">
-        <div className="work-thumb">Bultra Bank</div>
-        <div className="work-body">
-          <div className="work-industry">Fintech</div>
-          <h3>Bultra Bank</h3>
-          <p>A challenger bank entering a new market — secure auth, transaction APIs, a customer dashboard, and onboarding flow.</p>
-          <span className="work-link">Read the case study →</span>
+      <section>
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">Why this matters</span>
+            <h2>The market you're actually competing in</h2>
+            <p>
+              Real, cited figures — not projections about After Concept, but the
+              market context behind how we price and structure engagements.
+            </p>
+          </div>
+          <div className="results-grid">
+            <div className="result-card">
+              <div className="result-num">31%</div>
+              <div className="result-label">
+                Of software projects finish on time, on budget, with full scope
+                — industry-wide
+              </div>
+              <div className="result-source">
+                Standish Group, CHAOS Report 2024
+              </div>
+            </div>
+            <div className="result-card">
+              <div className="result-num">$2K–15K</div>
+              <div className="result-label">
+                Typical cost of a clickable prototype — not a production-ready
+                MVP
+              </div>
+              <div className="result-source">2026 MVP cost benchmarks</div>
+            </div>
+            <div className="result-card">
+              <div className="result-num">85%</div>
+              <div className="result-label">
+                Of SMEs that successfully adopt new technology report increased
+                sales
+              </div>
+              <div className="result-source">
+                SME tech-adoption research, 2026
+              </div>
+            </div>
+            <div className="result-card">
+              <div className="result-num">62%</div>
+              <div className="result-label">
+                Of small-business digital transformations fail from buying tech
+                before mapping the process
+              </div>
+              <div className="result-source">
+                SME digitalisation research, 2026
+              </div>
+            </div>
+          </div>
         </div>
-      </a>
-      <a href="/case-studies" className="work-card">
-        <div className="work-thumb">EVT SaaS</div>
-        <div className="work-body">
-          <div className="work-industry">AI SaaS</div>
-          <h3>EVT SaaS</h3>
-          <p>Greenfield AI operations platform with intelligent automation workflows. Scope grew mid-engagement, driven by delivery quality and communication.</p>
-          <span className="work-link">View Project →</span>
-        </div>
-      </a>
-      <a href="/case-studies" className="work-card">
-        <div className="work-thumb">Land Design</div>
-        <div className="work-body">
-          <div className="work-industry">Real Estate</div>
-          <h3>Land Design</h3>
-          <p>Digital platform for land planning and property visualisation with GIS tooling — parcels, zoning data, and interactive maps.</p>
-          <span className="work-link">View Project →</span>
-        </div>
-      </a>
-      <a href="/case-studies" className="work-card">
-        <div className="work-thumb">Mercato</div>
-        <div className="work-body">
-          <div className="work-industry">DevOps</div>
-          <h3>Mercato</h3>
-          <p>Node.js performance overhaul and AWS infrastructure rebuild for a high-throughput SaaS product.</p>
-          <span className="work-link">View Project →</span>
-        </div>
-      </a>
-      <a href="/case-studies" className="work-card">
-        <div className="work-thumb">Medicore</div>
-        <div className="work-body">
-          <div className="work-industry">Healthcare</div>
-          <h3>Medicore</h3>
-          <p>Digital health platform for patient management and telemedicine services.</p>
-          <span className="work-link">View Project →</span>
-        </div>
-      </a>
-      <a href="/case-studies" className="work-card">
-        <div className="work-thumb">SkyRoutes</div>
-        <div className="work-body">
-          <div className="work-industry">Logistics</div>
-          <h3>SkyRoutes</h3>
-          <p>Full-stack route optimisation tool with real-time tracking and driver assignment.</p>
-          <span className="work-link">View Project →</span>
-        </div>
-      </a>
-    </div>
-    <div style={{ textAlign: "center", marginTop: "44px" }}>
-      <a href="/case-studies" className="btn-ghost">See all case studies</a>
-    </div>
-  </div>
-</section>
+      </section>
 
-<section>
-  <div className="wrap">
-    <div className="section-head center">
-      <span className="eyebrow">What clients say after the work ships</span>
-      <h2>In their words</h2>
-    </div>
-    <div className="testi-grid">
-      <div className="testi-card">
-        <div className="testi-top">
-          <span className="testi-mark">"</span>
-          <span className="testi-company-badge">Bultra Bank · Fintech</span>
+      <section id="ladder">
+        <style>{`
+          .tier-card .tier-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background-color: transparent;
+            color: #0f172a;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            margin-top: 16px;
+          }
+          .tier-card:not(.featured) .tier-cta:hover {
+            border-color: #e11d48 !important;
+            color: #e11d48 !important;
+          }
+          .tier-card.featured .tier-cta {
+            background-color: #e05628 !important;
+            border-color: #e05628 !important;
+            color: #ffffff !important;
+          }
+          .tier-card.featured .tier-cta:hover {
+            color: #ffffff !important;
+            opacity: 0.95;
+          }
+          
+          /* Outcome section cards without hover transform */
+          .outcome-section .result-card {
+            transition: none !important;
+            transform: none !important;
+            box-shadow: none !important;
+            cursor: default !important;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+          }
+          .outcome-section .result-card:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            border-color: inherit !important;
+          }
+        `}</style>
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">How we work together</span>
+            <h2>Evolution, not a single revolution</h2>
+            <p>
+              Wherever you are — just validating an idea or ready to build —
+              there's a next step sized to match.
+            </p>
+          </div>
+          <div className="ladder-grid">
+            <div className="tier-card">
+              <span className="tier-num">01</span>
+              <div className="tier-price">Free</div>
+              <h3>Discovery call</h3>
+              <p>
+                A 30-minute conversation on your idea, your constraints, and
+                whether we're the right technical co-pilot for it.
+              </p>
+              <div className="tier-meta">30 min · No obligation</div>
+              <div className="tier-who">
+                <b>Who it's for</b>Founders with a validated idea and a question
+                about what building it actually takes.
+              </div>
+              <a href="#contact" className="tier-cta">
+                Book the call
+              </a>
+            </div>
+            <div className="tier-card featured">
+              <span className="tier-badge">Most popular</span>
+              <span className="tier-num">02</span>
+              <div className="tier-price">$3,000–$6,000</div>
+              <h3>Product sprint</h3>
+              <p>
+                A fixed-scope, fixed-price sprint — information architecture,
+                UI, and a technical plan you can hand to any team.
+              </p>
+              <div className="tier-meta">2–3 weeks · Fixed price</div>
+              <div className="tier-who">
+                <b>Who it's for</b>Founders who need a concrete, fundable plan
+                before committing to a full build.
+              </div>
+              <a href="#contact" className="tier-cta">
+                Scope a sprint
+              </a>
+            </div>
+            <div className="tier-card">
+              <span className="tier-num">03</span>
+              <div className="tier-price">$15,000–$50,000</div>
+              <h3>Full build</h3>
+              <p>
+                Embedded team delivery of your product end to end — Discover,
+                Design, Build, and the Scale work after launch.
+              </p>
+              <div className="tier-meta">Custom scope · In production</div>
+              <div className="tier-who">
+                <b>Who it's for</b>Founders ready to build and ship, with or
+                without in-house engineers.
+              </div>
+              <a href="#contact" className="tier-cta">
+                Start a build
+              </a>
+            </div>
+          </div>
         </div>
-        <p className="testi-quote">They shipped a production-grade fintech product in weeks, and our onboarding drop-off rate fell 40% post-launch. Exceptional technical depth and clear communication throughout.</p>
-        <div className="testi-footer">
-          <div className="testi-photo">MV</div>
-          <div><div className="testi-name">Marco Visibelli</div><div className="testi-role">Head of Engineering</div></div>
+      </section>
+
+      <section
+        id="services"
+        style={{
+          background: "#fff",
+          borderTop: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line)",
+        }}
+      >
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">What we build</span>
+            <h2>Four practices, one embedded team</h2>
+            <p>
+              Not a generic template. Software built around your business logic,
+              from first sprint to the growth work that comes after launch.
+            </p>
+          </div>
+          <div className="services-grid">
+            <div className="service-card">
+              <h3>Custom Software</h3>
+              <p>
+                Scalable web platforms, internal tools, and backend systems
+                designed around your business logic — not a generic SaaS
+                template. We've shipped fintech backends handling 10K+ daily
+                transactions.
+              </p>
+              <div className="tag-row">
+                <span className="tag-pill">Next.js</span>
+                <span className="tag-pill">Node.js</span>
+                <span className="tag-pill">PostgreSQL</span>
+                <span className="tag-pill">Cloud</span>
+              </div>
+            </div>
+            <div className="service-card">
+              <h3>AI Integrations</h3>
+              <p>
+                Production AI — not demos. We build LLM assistants, RAG
+                pipelines, and automation workflows that handle real user load
+                and deliver measurable outcomes.
+              </p>
+              <div className="tag-row">
+                <span className="tag-pill">LLMs</span>
+                <span className="tag-pill">RAG</span>
+                <span className="tag-pill">LangChain</span>
+                <span className="tag-pill">OpenAI</span>
+              </div>
+            </div>
+            <div className="service-card">
+              <h3>Product Design</h3>
+              <p>
+                Interface and system design that earns user trust from first
+                login. We work from information architecture to polished UI,
+                building design systems that scale.
+              </p>
+              <div className="tag-row">
+                <span className="tag-pill">Figma</span>
+                <span className="tag-pill">Design Systems</span>
+                <span className="tag-pill">UX Research</span>
+              </div>
+            </div>
+            <div className="service-card">
+              <h3>Growth Engineering</h3>
+              <p>
+                After launch is where most agencies disappear. We stay embedded
+                — instrumenting analytics, running A/B tests, and iterating so
+                your product compounds.
+              </p>
+              <div className="tag-row">
+                <span className="tag-pill">Analytics</span>
+                <span className="tag-pill">A/B Testing</span>
+                <span className="tag-pill">SEO</span>
+                <span className="tag-pill">DevOps</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="testi-card">
-        <div className="testi-top">
-          <span className="testi-mark">"</span>
-          <span className="testi-company-badge">EVT SaaS · AI</span>
+      </section>
+
+      <section className="process">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">How we work</span>
+            <h2>Discover, design, build, scale</h2>
+            <p>
+              Four stages, no handoff between them — the same team stays
+              accountable from first spec to post-launch growth.
+            </p>
+          </div>
+          <div className="timeline">
+            <div className="tl-step">
+              <div className="tl-dot">01</div>
+              <h3>Discover</h3>
+              <p>
+                We dig into your business context before touching the keyboard —
+                user goals, technical constraints, timelines, and what success
+                actually looks like.
+              </p>
+            </div>
+            <div className="tl-step">
+              <div className="tl-dot">02</div>
+              <h3>Design</h3>
+              <p>
+                Information architecture, user flows, and interface decisions
+                are locked before engineering starts.
+              </p>
+            </div>
+            <div className="tl-step">
+              <div className="tl-dot">03</div>
+              <h3>Build</h3>
+              <p>
+                Focused two-week sprints with weekly demos, transparent progress
+                tracking, and zero-surprise deliveries.
+              </p>
+            </div>
+            <div className="tl-step is-after">
+              <div className="tl-dot">04</div>
+              <h3>Scale</h3>
+              <p>
+                We monitor, optimise, and keep iterating after launch — the work
+                that matters most starts after the product ships.
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="testi-quote">The team laid the foundations of an ambitious product with remarkable clarity. When our brief grew in scope, we restructured into a larger contract together — a sign of genuine mutual trust.</p>
-        <div className="testi-footer">
-          <div className="testi-photo">M</div>
-          <div><div className="testi-name">Michael</div><div className="testi-role">Founder</div></div>
+      </section>
+
+      {/* Outcome Section with Background Canvas Animation */}
+      <OutcomeSection />
+
+      <section
+        id="work"
+        style={{
+          background: "#fff",
+          borderTop: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line)",
+        }}
+      >
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">Projects that shipped</span>
+            <h2>Continuously delivering for ambitious SME teams</h2>
+            <p>
+              A sample of the web apps, AI engines, and cloud platforms we've
+              taken from concept to production.
+            </p>
+          </div>
+          <div className="work-grid">
+            <a href="/case-studies" className="work-card">
+              <div className="work-thumb">Bultra Bank</div>
+              <div className="work-body">
+                <div className="work-industry">Fintech</div>
+                <h3>Bultra Bank</h3>
+                <p>
+                  A challenger bank entering a new market — secure auth,
+                  transaction APIs, a customer dashboard, and onboarding flow.
+                </p>
+                <span className="work-link">Read the case study →</span>
+              </div>
+            </a>
+            <a href="/case-studies" className="work-card">
+              <div className="work-thumb">EVT SaaS</div>
+              <div className="work-body">
+                <div className="work-industry">AI SaaS</div>
+                <h3>EVT SaaS</h3>
+                <p>
+                  Greenfield AI operations platform with intelligent automation
+                  workflows. Scope grew mid-engagement, driven by delivery
+                  quality and communication.
+                </p>
+                <span className="work-link">View Project →</span>
+              </div>
+            </a>
+            <a href="/case-studies" className="work-card">
+              <div className="work-thumb">Land Design</div>
+              <div className="work-body">
+                <div className="work-industry">Real Estate</div>
+                <h3>Land Design</h3>
+                <p>
+                  Digital platform for land planning and property visualisation
+                  with GIS tooling — parcels, zoning data, and interactive maps.
+                </p>
+                <span className="work-link">View Project →</span>
+              </div>
+            </a>
+            <a href="/case-studies" className="work-card">
+              <div className="work-thumb">Mercato</div>
+              <div className="work-body">
+                <div className="work-industry">DevOps</div>
+                <h3>Mercato</h3>
+                <p>
+                  Node.js performance overhaul and AWS infrastructure rebuild
+                  for a high-throughput SaaS product.
+                </p>
+                <span className="work-link">View Project →</span>
+              </div>
+            </a>
+            <a href="/case-studies" className="work-card">
+              <div className="work-thumb">Medicore</div>
+              <div className="work-body">
+                <div className="work-industry">Healthcare</div>
+                <h3>Medicore</h3>
+                <p>
+                  Digital health platform for patient management and
+                  telemedicine services.
+                </p>
+                <span className="work-link">View Project →</span>
+              </div>
+            </a>
+            <a href="/case-studies" className="work-card">
+              <div className="work-thumb">SkyRoutes</div>
+              <div className="work-body">
+                <div className="work-industry">Logistics</div>
+                <h3>SkyRoutes</h3>
+                <p>
+                  Full-stack route optimisation tool with real-time tracking and
+                  driver assignment.
+                </p>
+                <span className="work-link">View Project →</span>
+              </div>
+            </a>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "44px" }}>
+            <a href="/case-studies" className="btn-ghost">
+              See all case studies
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
-<section className="cta" id="contact">
-  <span className="eyebrow">Ready when you are</span>
-  <h2>Ready to build something great?</h2>
-  <div className="flex justify-center mt-4">
-    <a href="mailto:contact@afterconcept.io" className="btn-primary">Start a Conversation</a>
-  </div>
-</section>
+      <section>
+        <div className="wrap">
+          <div className="section-head center">
+            <span className="eyebrow">
+              What clients say after the work ships
+            </span>
+            <h2>In their words</h2>
+          </div>
+          <div className="testi-grid">
+            <div className="testi-card">
+              <div className="testi-top">
+                <span className="testi-mark">"</span>
+                <span className="testi-company-badge">
+                  Bultra Bank · Fintech
+                </span>
+              </div>
+              <p className="testi-quote">
+                They shipped a production-grade fintech product in weeks, and
+                our onboarding drop-off rate fell 40% post-launch. Exceptional
+                technical depth and clear communication throughout.
+              </p>
+              <div className="testi-footer">
+                <div className="testi-photo">MV</div>
+                <div>
+                  <div className="testi-name">Marco Visibelli</div>
+                  <div className="testi-role">Head of Engineering</div>
+                </div>
+              </div>
+            </div>
+            <div className="testi-card">
+              <div className="testi-top">
+                <span className="testi-mark">"</span>
+                <span className="testi-company-badge">EVT SaaS · AI</span>
+              </div>
+              <p className="testi-quote">
+                The team laid the foundations of an ambitious product with
+                remarkable clarity. When our brief grew in scope, we
+                restructured into a larger contract together — a sign of genuine
+                mutual trust.
+              </p>
+              <div className="testi-footer">
+                <div className="testi-photo">M</div>
+                <div>
+                  <div className="testi-name">Michael</div>
+                  <div className="testi-role">Founder</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<Footer />
+      <section className="cta" id="contact">
+        <span className="eyebrow">Ready when you are</span>
+        <h2>Ready to build something great?</h2>
+        <div className="flex justify-center mt-4">
+          <a href="mailto:contact@afterconcept.io" className="btn-primary">
+            Start a Conversation
+          </a>
+        </div>
+      </section>
 
-
+      <Footer />
     </>
   );
 }
