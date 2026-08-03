@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-indigo-900 text-indigo-300 pt-16 pb-8 px-8">
+    <footer className="bg-indigo-900 text-indigo-300 pt-16 pb-8 px-8 fade-in-section">
       <div className="max-w-[1160px] mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-11">
-        <div>
+        <div className="fade-in-element">
           <Link href="/" className="logo large font-space font-semibold text-xl tracking-tight flex items-center">
             <span className="text-white">after</span>
             <span className="concept-outline text-transparent">concept</span>
@@ -19,7 +19,7 @@ export default function Footer() {
             <a href="https://www.linkedin.com/company/afterrconcept/" target="_blank" rel="noopener noreferrer" className="w-[34px] h-[34px] rounded-full border border-white/20 flex items-center justify-center text-[11px] text-white hover:bg-white/10 transition-colors">fb</a>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col fade-in-element">
           <h4 className="font-space text-[13px] font-semibold uppercase tracking-wider text-white mb-4">Quick Links</h4>
           <ul className="list-none space-y-3">
             <li><Link href="/" className="text-sm text-indigo-300 hover:text-white transition-colors">Home</Link></li>
@@ -29,7 +29,7 @@ export default function Footer() {
             <li><Link href="/#contact" className="text-sm text-indigo-300 hover:text-white transition-colors">Contact</Link></li>
           </ul>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col fade-in-element">
           <h4 className="font-space text-[13px] font-semibold uppercase tracking-wider text-white mb-4">Proof</h4>
           <ul className="list-none space-y-3">
             <li><Link href="/case-studies" className="text-sm text-indigo-300 hover:text-white transition-colors">Case studies</Link></li>
@@ -38,13 +38,13 @@ export default function Footer() {
             <li><Link href="/case-studies" className="text-sm text-indigo-300 hover:text-white transition-colors">Healthcare</Link></li>
           </ul>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col fade-in-element">
           <h4 className="font-space text-[13px] font-semibold uppercase tracking-wider text-white mb-4">Connect</h4>
           <ul className="list-none space-y-3">
             <li>
               <a href="mailto:contact@afterconcept.io" className="inline-flex items-center gap-2 text-sm text-indigo-300 hover:text-white transition-colors">
                 <span>contact@afterconcept.io</span>
-                <span className="text-[10.5px] font-semibold tracking-wider text-ember-600 bg-ember-100 rounded px-1.5 py-0.5 uppercase">Confirm</span>
+                
               </a>
             </li>
             <li className="text-sm text-indigo-300">Pakistan — Global</li>
@@ -52,7 +52,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="max-w-[1160px] mx-auto border-t border-white/10 pt-5 flex justify-between flex-wrap gap-3 text-[13px] text-indigo-300">
+      <div className="max-w-[1160px] mx-auto border-t border-white/10 pt-5 flex justify-between flex-wrap gap-3 text-[13px] text-indigo-300 fade-in-element">
         <span>© 2026 After Concept. All rights reserved.</span>
         <span className="space-x-2">
           <Link href="#" className="hover:text-white">Privacy Policy</Link>
