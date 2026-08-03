@@ -1,8 +1,302 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+// Enhanced 3D Carousel / Stacked Cards Component (Compact Width & Interactive Dots)
+function OriginStackedCards() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const stats = [
+    {
+      num: "40+",
+      label: "Projects Shipped",
+      desc: "Delivering end-to-end digital platforms, custom SaaS products, and enterprise applications with speed and precision.",
+    },
+    {
+      num: "2+",
+      label: "Years Building",
+      desc: "Proven track record of turning complex technical challenges into scalable, production-ready solutions for business growth.",
+    },
+    {
+      num: "98%",
+      label: "Client Satisfaction",
+      desc: "Focused on high quality, transparent execution, and continuous alignment with founder vision from day one.",
+    },
+    {
+      num: "9+",
+      label: "Industries Served",
+      desc: "Building tailored software solutions across Fintech, Healthcare, Real Estate, Logistics, AI SaaS, and DevOps.",
+    },
+  ];
+
+  // Auto-rotate transition every 2.2 seconds, stops on hover
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % stats.length);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, [isHovered, stats.length]);
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: "350px", // Width mazeed narrow kar di hai taake section mein fit aye
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      {/* Cards Container */}
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "380px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          perspective: "1000px",
+        }}
+      >
+        {stats.map((stat, i) => {
+          const total = stats.length;
+          const position = (i - activeIndex + total) % total;
+
+          let transformStyle = "";
+          let zIndex = 0;
+          let opacity = 0;
+          let filter = "none";
+          let isFront = false;
+
+          if (position === 0) {
+            transformStyle =
+              "translateX(0px) translateY(0px) scale(1) rotateY(0deg)";
+            zIndex = 10;
+            opacity = 1;
+            filter = "none";
+            isFront = true;
+          } else if (position === 1) {
+            transformStyle =
+              "translateX(75px) translateY(8px) scale(0.85) rotateY(-14deg)";
+            zIndex = 5;
+            opacity = 0.75;
+            filter = "blur(1px)";
+          } else if (position === 2) {
+            transformStyle =
+              "translateX(0px) translateY(-20px) scale(0.72) rotateY(0deg)";
+            zIndex = 2;
+            opacity = 0.45;
+            filter = "blur(2px)";
+          } else if (position === 3) {
+            transformStyle =
+              "translateX(-75px) translateY(8px) scale(0.85) rotateY(14deg)";
+            zIndex = 5;
+            opacity = 0.75;
+            filter = "blur(1px)";
+          }
+
+          return (
+            <div
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              style={{
+                position: "absolute",
+                width: "100%",
+                maxWidth: "290px", // Cards ka size bhi compact kiya hai
+                minHeight: "290px",
+                padding: "24px 22px",
+                borderRadius: "18px",
+                background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                border: isFront
+                  ? "1.5px solid rgba(224, 86, 40, 0.6)"
+                  : "1px solid rgba(255, 255, 255, 0.1)",
+                boxShadow: isFront
+                  ? "0 20px 35px -10px rgba(15, 23, 42, 0.4), 0 0 20px rgba(224, 86, 40, 0.2)"
+                  : "0 10px 20px -5px rgba(0, 0, 0, 0.25)",
+                transform: transformStyle,
+                zIndex: zIndex,
+                opacity: opacity,
+                filter: filter,
+                transition: "all 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "12px",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    color: isFront ? "#e05628" : "#94a3b8",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Metric #{i + 1}
+                </span>
+                <span
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: isFront ? "#e05628" : "#475569",
+                    boxShadow: isFront ? "0 0 8px #e05628" : "none",
+                  }}
+                />
+              </div>
+
+              <div
+                style={{
+                  fontSize: "40px",
+                  fontWeight: 800,
+                  color: "#ffffff",
+                  lineHeight: 1,
+                  marginBottom: "8px",
+                }}
+              >
+                {stat.num}
+              </div>
+
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: isFront ? "#ffffff" : "#cbd5e1",
+                  marginBottom: "6px",
+                }}
+              >
+                {stat.label}
+              </div>
+
+              <div
+                style={{
+                  fontSize: "12.5px",
+                  lineHeight: "1.4",
+                  color: "#94a3b8",
+                  fontWeight: 400,
+                }}
+              >
+                {stat.desc}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Modern Attractive Clickable Indicator Dots (Replacing Ugly Arrows) */}
+      <div
+        style={{
+          display: "flex",
+          gap: "8px",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "12px",
+        }}
+      >
+        {stats.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveIndex(idx)}
+            style={{
+              width: activeIndex === idx ? "24px" : "8px",
+              height: "8px",
+              borderRadius: "4px",
+              backgroundColor: activeIndex === idx ? "#e05628" : "#cbd5e1",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Instant & Ultra-Smooth Counter Component
+function CounterStat({ value, suffix = "" }) {
+  const elementRef = useRef(null);
+  const targetNum = parseInt(value, 10);
+
+  useEffect(() => {
+    let animationFrame;
+    const duration = 450;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          let startTimestamp = null;
+
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+              (timestamp - startTimestamp) / duration,
+              1,
+            );
+
+            const easeOutProgress =
+              progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const currentVal = Math.round(easeOutProgress * targetNum);
+
+            if (elementRef.current) {
+              elementRef.current.innerText = `${currentVal}${suffix}`;
+            }
+
+            if (progress < 1) {
+              animationFrame = requestAnimationFrame(step);
+            }
+          };
+
+          animationFrame = requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.05 },
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    };
+  }, [targetNum, suffix]);
+
+  return (
+    <div
+      ref={elementRef}
+      className="result-num"
+      style={{
+        color: "#E05628",
+        fontWeight: 800,
+        fontSize: "2.75rem",
+        lineHeight: 1,
+        marginBottom: "12px",
+        willChange: "contents",
+      }}
+    >
+      0{suffix}
+    </div>
+  );
+}
 
 // Custom Component for Outcome Section with Background Animation
 function OutcomeSection() {
@@ -29,11 +323,11 @@ function OutcomeSection() {
 
     const init = () => {
       resize();
-      particles = Array.from({ length: 28 }, () => ({
+      particles = Array.from({ length: 32 }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
+        vx: (Math.random() - 0.5) * 0.9,
+        vy: (Math.random() - 0.5) * 0.9,
       }));
     };
 
@@ -42,21 +336,21 @@ function OutcomeSection() {
         {
           amp: 30,
           freq: 0.006,
-          speed: 0.01,
+          speed: 0.04,
           yBase: h * 0.3,
           color: "rgba(224, 86, 40, 0.05)",
         },
         {
           amp: 22,
           freq: 0.009,
-          speed: -0.014,
+          speed: -0.05,
           yBase: h * 0.5,
           color: "rgba(220, 80, 40, 0.04)",
         },
         {
           amp: 38,
           freq: 0.005,
-          speed: 0.008,
+          speed: 0.035,
           yBase: h * 0.7,
           color: "rgba(224, 86, 40, 0.03)",
         },
@@ -93,7 +387,7 @@ function OutcomeSection() {
           const b = particles[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 140) {
-            ctx.strokeStyle = `rgba(224, 86, 40, ${0.12 * (1 - d / 140)})`;
+            ctx.strokeStyle = `rgba(224, 86, 40, ${0.15 * (1 - d / 140)})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -101,9 +395,9 @@ function OutcomeSection() {
             ctx.stroke();
           }
         }
-        ctx.fillStyle = "rgba(224, 86, 40, 0.35)";
+        ctx.fillStyle = "rgba(224, 86, 40, 0.4)";
         ctx.beginPath();
-        ctx.arc(particles[i].x, particles[i].y, 1.8, 0, Math.PI * 2);
+        ctx.arc(particles[i].x, particles[i].y, 2, 0, Math.PI * 2);
         ctx.fill();
       }
       t += 1;
@@ -125,7 +419,6 @@ function OutcomeSection() {
       className="outcome-section"
       style={{ position: "relative", overflow: "hidden" }}
     >
-      {/* Background Animated Layer */}
       <div
         style={{
           position: "absolute",
@@ -150,7 +443,6 @@ function OutcomeSection() {
         />
       </div>
 
-      {/* Content Layer */}
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
           <span className="eyebrow">WHAT CLIENTS GAIN</span>
@@ -162,28 +454,28 @@ function OutcomeSection() {
         </div>
         <div className="results-grid">
           <div className="result-card">
-            <div className="result-num">40%</div>
+            <CounterStat value={40} suffix="%" />
             <div className="result-label">
               Drop in onboarding drop-off after launch
             </div>
             <div className="result-source">Bultra Bank</div>
           </div>
           <div className="result-card">
-            <div className="result-num">10K+</div>
+            <CounterStat value={10} suffix="K+" />
             <div className="result-label">
               Daily transactions handled by a shipped fintech backend
             </div>
             <div className="result-source">Client engagement</div>
           </div>
           <div className="result-card">
-            <div className="result-num">10</div>
+            <CounterStat value={10} suffix="" />
             <div className="result-label">
               Days average, kickoff to first release
             </div>
             <div className="result-source">Across projects</div>
           </div>
           <div className="result-card">
-            <div className="result-num">98%</div>
+            <CounterStat value={98} suffix="%" />
             <div className="result-label">
               Projects delivered on time and on budget
             </div>
@@ -202,31 +494,55 @@ export default function Home() {
 
       <section
         className="hero"
-        style={{ paddingTop: "48px", paddingBottom: "32px" }}
+        style={{
+          paddingTop: "0px",
+          paddingBottom: "0px",
+          marginTop: "-25px",
+          marginBottom: "0px",
+        }}
       >
         <div className="hero-grid" style={{ alignItems: "center" }}>
-          <div className="hero-copy" style={{ marginTop: "0px" }}>
+          <div
+            className="hero-copy"
+            style={{ marginTop: "0px", paddingTop: "0px" }}
+          >
             <span
               className="eyebrow brand-line"
-              style={{ display: "inline-block", marginBottom: "12px" }}
+              style={{
+                display: "inline-block",
+                marginBottom: "12px",
+                marginTop: "-14px",
+              }}
             >
               Concept is easy. After is the work.
             </span>
-            <h1>
+            <h1
+              style={{
+                marginTop: "0px",
+                marginBottom: "18px",
+                lineHeight: "1.15",
+              }}
+            >
               We deliver products <span className="accent">SMEs</span> actually
               need.
             </h1>
-            <p className="hero-sub" style={{ marginBottom: "20px" }}>
-              Production-ready digital products for founders with validated
-              ideas. We embed as your technical co-pilot — you focus on vision,
-              we bring the product to life.
+            <p
+              className="hero-sub"
+              style={{
+                marginBottom: "24px",
+                marginTop: "0px",
+                lineHeight: "1.5",
+              }}
+            >
+              Production-ready digital products for founders. Your technical
+              co-pilot from vision to launch.
             </p>
             <div
               className="hero-actions"
               style={{
                 marginTop: "0px",
                 display: "flex",
-                gap: "16px",
+                gap: "12px",
                 alignItems: "center",
                 flexWrap: "wrap",
               }}
@@ -238,8 +554,8 @@ export default function Home() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "48px",
-                  padding: "0 24px",
+                  height: "44px",
+                  padding: "0 20px",
                   margin: "0",
                   boxSizing: "border-box",
                   verticalAlign: "middle",
@@ -255,8 +571,8 @@ export default function Home() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "48px",
-                  padding: "0 24px",
+                  height: "44px",
+                  padding: "0 20px",
                   margin: "0",
                   boxSizing: "border-box",
                   verticalAlign: "middle",
@@ -326,7 +642,11 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="marquee">
+      {/* Marquee exact position maintained with negative top margin */}
+      <div
+        className="marquee"
+        style={{ marginTop: "-45px", position: "relative", zIndex: 10 }}
+      >
         <div className="marquee-track">
           <span>Bultra Bank</span>
           <span>·</span>
@@ -364,124 +684,24 @@ export default function Home() {
       </div>
 
       <section className="origin">
-        <div className="wrap origin-grid">
+        <div className="wrap origin-grid" style={{ alignItems: "center" }}>
           <div>
             <span className="eyebrow">The origin story</span>
             <p className="origin-quote">
-              "Founders kept coming to us with beautiful decks and half-built
-              software from their last agency. We started After Concept to be
-              the team that owns the whole thing — design and engineering, spec
-              to production, no handoff to lose the plot in."
+              "Founders came with half-built agency projects. We started After
+              Concept as one team to own it all, design and engineering. No
+              handoffs, no lost focus, just production delivery."
             </p>
             <p className="body">
               That's still how we work. One embedded team follows your product
               from the first discovery call through the growth work that happens
-              after launch — not a relay of subcontractors passing the baton.
+              after launch without a relay of subcontractors passing the baton.
             </p>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "24px",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
-              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  fontWeight: 800,
-                  color: "#E05628",
-                  lineHeight: 1,
-                }}
-              >
-                40+
-              </div>
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "var(--muted, #64748B)",
-                  marginTop: "6px",
-                }}
-              >
-                Projects Shipped
-              </div>
-            </div>
 
-            <div
-              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  fontWeight: 800,
-                  color: "#E05628",
-                  lineHeight: 1,
-                }}
-              >
-                2+
-              </div>
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "var(--muted, #64748B)",
-                  marginTop: "6px",
-                }}
-              >
-                Years Building
-              </div>
-            </div>
-
-            <div
-              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  fontWeight: 800,
-                  color: "#E05628",
-                  lineHeight: 1,
-                }}
-              >
-                98%
-              </div>
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "var(--muted, #64748B)",
-                  marginTop: "6px",
-                }}
-              >
-                Client Satisfaction
-              </div>
-            </div>
-
-            <div
-              style={{ borderLeft: "2px solid #E2E8F0", paddingLeft: "20px" }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  fontWeight: 800,
-                  color: "#E05628",
-                  lineHeight: 1,
-                }}
-              >
-                9+
-              </div>
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "var(--muted, #64748B)",
-                  marginTop: "6px",
-                }}
-              >
-                Industries Served
-              </div>
-            </div>
+          {/* Compact 3D Circular Rotating Cards */}
+          <div>
+            <OriginStackedCards />
           </div>
         </div>
       </section>
@@ -492,7 +712,7 @@ export default function Home() {
             <span className="eyebrow">Why this matters</span>
             <h2>The market you're actually competing in</h2>
             <p>
-              Real, cited figures — not projections about After Concept, but the
+              Real, cited figures, not projections about After Concept, but the
               market context behind how we price and structure engagements.
             </p>
           </div>
@@ -501,7 +721,7 @@ export default function Home() {
               <div className="result-num">31%</div>
               <div className="result-label">
                 Of software projects finish on time, on budget, with full scope
-                — industry-wide
+                industry-wide
               </div>
               <div className="result-source">
                 Standish Group, CHAOS Report 2024
@@ -510,7 +730,7 @@ export default function Home() {
             <div className="result-card">
               <div className="result-num">$2K–15K</div>
               <div className="result-label">
-                Typical cost of a clickable prototype — not a production-ready
+                Typical cost of a clickable prototype, not a production-ready
                 MVP
               </div>
               <div className="result-source">2026 MVP cost benchmarks</div>
@@ -541,6 +761,17 @@ export default function Home() {
 
       <section id="ladder">
         <style>{`
+          .tier-card,
+          .tier-card.featured {
+            transform: none !important;
+            transition: none !important;
+          }
+          .tier-card:hover,
+          .tier-card.featured:hover {
+            transform: none !important;
+            box-shadow: none !important;
+          }
+
           .tier-card .tier-cta {
             display: flex;
             align-items: center;
@@ -571,7 +802,6 @@ export default function Home() {
             opacity: 0.95;
           }
           
-          /* Outcome section cards without hover transform */
           .outcome-section .result-card {
             transition: none !important;
             transform: none !important;
@@ -585,13 +815,22 @@ export default function Home() {
             box-shadow: none !important;
             border-color: inherit !important;
           }
+
+          .work-card {
+            transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out !important;
+          }
+          .work-card:hover {
+            transform: none !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+            border-color: rgba(224, 86, 40, 0.4) !important;
+          }
         `}</style>
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How we work together</span>
             <h2>Evolution, not a single revolution</h2>
             <p>
-              Wherever you are — just validating an idea or ready to build —
+              Wherever you are, just validating an idea or ready to build,
               there's a next step sized to match.
             </p>
           </div>
@@ -619,8 +858,8 @@ export default function Home() {
               <div className="tier-price">$3,000–$6,000</div>
               <h3>Product sprint</h3>
               <p>
-                A fixed-scope, fixed-price sprint — information architecture,
-                UI, and a technical plan you can hand to any team.
+                A fixed-scope, fixed-price sprint, information architecture, UI,
+                and a technical plan you can hand to any team.
               </p>
               <div className="tier-meta">2–3 weeks · Fixed price</div>
               <div className="tier-who">
@@ -636,7 +875,7 @@ export default function Home() {
               <div className="tier-price">$15,000–$50,000</div>
               <h3>Full build</h3>
               <p>
-                Embedded team delivery of your product end to end — Discover,
+                Embedded team delivery of your product end to end, Discover,
                 Design, Build, and the Scale work after launch.
               </p>
               <div className="tier-meta">Custom scope · In production</div>
@@ -674,7 +913,7 @@ export default function Home() {
               <h3>Custom Software</h3>
               <p>
                 Scalable web platforms, internal tools, and backend systems
-                designed around your business logic — not a generic SaaS
+                designed around your business logic, not a generic SaaS
                 template. We've shipped fintech backends handling 10K+ daily
                 transactions.
               </p>
@@ -688,7 +927,7 @@ export default function Home() {
             <div className="service-card">
               <h3>AI Integrations</h3>
               <p>
-                Production AI — not demos. We build LLM assistants, RAG
+                Production AI, not demos. We build LLM assistants, RAG
                 pipelines, and automation workflows that handle real user load
                 and deliver measurable outcomes.
               </p>
@@ -716,8 +955,8 @@ export default function Home() {
               <h3>Growth Engineering</h3>
               <p>
                 After launch is where most agencies disappear. We stay embedded
-                — instrumenting analytics, running A/B tests, and iterating so
-                your product compounds.
+                to instrument analytics, run A/B tests, and iterate so your
+                product compounds.
               </p>
               <div className="tag-row">
                 <span className="tag-pill">Analytics</span>
@@ -736,7 +975,7 @@ export default function Home() {
             <span className="eyebrow">How we work</span>
             <h2>Discover, design, build, scale</h2>
             <p>
-              Four stages, no handoff between them — the same team stays
+              Four stages, no handoff between them: the same team stays
               accountable from first spec to post-launch growth.
             </p>
           </div>
@@ -745,7 +984,7 @@ export default function Home() {
               <div className="tl-dot">01</div>
               <h3>Discover</h3>
               <p>
-                We dig into your business context before touching the keyboard —
+                We dig into your business context before touching the keyboard:
                 user goals, technical constraints, timelines, and what success
                 actually looks like.
               </p>
@@ -770,7 +1009,7 @@ export default function Home() {
               <div className="tl-dot">04</div>
               <h3>Scale</h3>
               <p>
-                We monitor, optimise, and keep iterating after launch — the work
+                We monitor, optimise, and keep iterating after launch. The work
                 that matters most starts after the product ships.
               </p>
             </div>
@@ -805,7 +1044,7 @@ export default function Home() {
                 <div className="work-industry">Fintech</div>
                 <h3>Bultra Bank</h3>
                 <p>
-                  A challenger bank entering a new market — secure auth,
+                  A challenger bank entering a new market: secure auth,
                   transaction APIs, a customer dashboard, and onboarding flow.
                 </p>
                 <span className="work-link">Read the case study →</span>
@@ -831,7 +1070,7 @@ export default function Home() {
                 <h3>Land Design</h3>
                 <p>
                   Digital platform for land planning and property visualisation
-                  with GIS tooling — parcels, zoning data, and interactive maps.
+                  with GIS tooling, parcels, zoning data, and interactive maps.
                 </p>
                 <span className="work-link">View Project →</span>
               </div>
@@ -918,7 +1157,7 @@ export default function Home() {
               <p className="testi-quote">
                 The team laid the foundations of an ambitious product with
                 remarkable clarity. When our brief grew in scope, we
-                restructured into a larger contract together — a sign of genuine
+                restructured into a larger contract together, a sign of genuine
                 mutual trust.
               </p>
               <div className="testi-footer">
