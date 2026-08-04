@@ -182,7 +182,7 @@ export default function Header() {
                     navRefs.current[link.href] = el;
                   }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`relative px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 rounded-md font-medium group transition-colors duration-300 ease-out ${isActive ? 'text-indigo-900' : 'text-charcoal-soft'}`}
+                  className={`relative px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 rounded-md font-medium group transition-colors duration-300 ease-out hover:text-indigo-900 ${isActive ? 'text-indigo-900' : 'text-charcoal-soft'}`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
@@ -209,7 +209,7 @@ export default function Header() {
         <div className="hidden md:block">
           <Link 
             href="/#contact" 
-            className="bg-ember-600 text-ember-100 px-5 py-1.5 rounded-lg text-[14.5px] font-semibold transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:bg-indigo-900 hover:-translate-y-px outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-2 focus-visible:ring-offset-cream inline-block relative overflow-hidden hover-shine"
+            className="bg-ember-600 text-ember-100 px-5 py-2.5 rounded-lg text-[14.5px] font-semibold transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:bg-indigo-900 hover:-translate-y-px outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-2 focus-visible:ring-offset-cream inline-block relative overflow-hidden hover-shine"
           >
             Get Started
           </Link>
@@ -242,7 +242,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col items-center group outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 rounded-md p-2 ${isActive ? 'text-indigo-900' : 'text-charcoal-soft'}`}
+                className={`transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col items-center group outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 rounded-md p-2 hover:text-indigo-900 ${isActive ? 'text-indigo-900' : 'text-charcoal-soft'}`}
                 style={{
                   transitionDelay: isMobileMenuOpen ? `${100 + i * 50}ms` : '0ms',
                   transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',

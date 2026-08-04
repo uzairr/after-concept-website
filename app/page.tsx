@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollObserver from '@/components/ScrollObserver';
 import TimelineSection from '@/components/TimelineSection';
+import Counter from '@/components/Counter';
 
 export default function Home() {
   return (
@@ -79,21 +80,22 @@ export default function Home() {
   <div className="wrap origin-grid">
     <div className="fade-in-element">
       <span className="eyebrow">The origin story </span>
-      <p className="origin-quote">Founders deserve one trusted team to own the entire journey from strategy and design to engineering and product launch."</p>
+      <p className="origin-quote">Founders came to us with beautiful decks and broken software. We started After Concept to own the entire journey design to production, no handoffs, no lost vision.
+"</p>
       <p className="body">That's still how we work. One embedded team follows your product from the first discovery call through the growth work that happens after launch not a relay of subcontractors passing the baton.</p>
-      <div className="founder-row">
-        <div className="founder-photo">FN</div>
-        <div>
+      {/* <div className="founder-row">
+        <div className="founder-photo">FN</div> */}
+        {/* <div>
           <div className="founder-name">[Founder name]</div>
           <div className="founder-title">Founder, After Concept</div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
     <div className="origin-stats">
-      <div className="stat-card fade-in-element"><div className="stat-num">40+</div><div className="stat-label">Projects Shipped</div></div>
-      <div className="stat-card fade-in-element"><div className="stat-num">6+</div><div className="stat-label">Years Building</div></div>
-      <div className="stat-card fade-in-element"><div className="stat-num">98%</div><div className="stat-label">Client Satisfaction</div></div>
-      <div className="stat-card fade-in-element"><div className="stat-num">9+</div><div className="stat-label">Industries Served</div></div>
+      <div className="stat-card fade-in-element"><div className="stat-num"><Counter value={40} suffix="+" duration={1500} /></div><div className="stat-label">Projects Shipped</div></div>
+      <div className="stat-card fade-in-element"><div className="stat-num"><Counter value={6} suffix="+" duration={1200} /></div><div className="stat-label">Years Building</div></div>
+      <div className="stat-card fade-in-element"><div className="stat-num"><Counter value={98} suffix="%" duration={1800} /></div><div className="stat-label">Client Satisfaction</div></div>
+      <div className="stat-card fade-in-element"><div className="stat-num"><Counter value={9} suffix="+" duration={1400} /></div><div className="stat-label">Industries Served</div></div>
     </div>
   </div>
 </section>
