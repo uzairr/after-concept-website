@@ -48,7 +48,7 @@ function OriginStackedCards() {
       style={{
         position: "relative",
         width: "100%",
-        maxWidth: "350px", // Width mazeed narrow kar di hai taake section mein fit aye
+        maxWidth: "350px",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
@@ -111,7 +111,7 @@ function OriginStackedCards() {
               style={{
                 position: "absolute",
                 width: "100%",
-                maxWidth: "290px", // Cards ka size bhi compact kiya hai
+                maxWidth: "290px",
                 minHeight: "290px",
                 padding: "24px 22px",
                 borderRadius: "18px",
@@ -198,7 +198,7 @@ function OriginStackedCards() {
         })}
       </div>
 
-      {/* Modern Attractive Clickable Indicator Dots (Replacing Ugly Arrows) */}
+      {/* Indicator Dots */}
       <div
         style={{
           display: "flex",
@@ -230,20 +230,26 @@ function OriginStackedCards() {
 }
 
 // Instant & Ultra-Smooth Counter Component
-function CounterStat({ value, suffix = "" }) {
-  const elementRef = useRef(null);
-  const targetNum = parseInt(value, 10);
+function CounterStat({
+  value,
+  suffix = "",
+}: {
+  value: number | string;
+  suffix?: string;
+}) {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const targetNum = parseInt(String(value), 10);
 
   useEffect(() => {
-    let animationFrame;
+    let animationFrame: number;
     const duration = 450;
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          let startTimestamp = null;
+          let startTimestamp: number | null = null;
 
-          const step = (timestamp) => {
+          const step = (timestamp: number) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min(
               (timestamp - startTimestamp) / duration,
@@ -300,7 +306,7 @@ function CounterStat({ value, suffix = "" }) {
 
 // Custom Component for Outcome Section with Background Animation
 function OutcomeSection() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -310,9 +316,9 @@ function OutcomeSection() {
 
     let w = 0;
     let h = 0;
-    let particles = [];
+    let particles: Array<{ x: number; y: number; vx: number; vy: number }> = [];
     let t = 0;
-    let animationFrameId;
+    let animationFrameId: number;
 
     const resize = () => {
       if (canvas.parentElement) {
@@ -492,6 +498,86 @@ export default function Home() {
     <>
       <Header />
 
+      {/* GLOBAL HOVER STYLES FOR CARDS */}
+      <style>{`
+        /* 1. Global Red/Orange Soft Glow on General Cards (SS1 Style) */
+        .results-grid .result-card,
+        .service-card,
+        .testi-card,
+        .work-card {
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+        }
+
+        .results-grid .result-card:hover,
+        .service-card:hover,
+        .testi-card:hover,
+        .work-card:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 12px 25px -5px rgba(224, 86, 40, 0.18), 0 6px 15px -4px rgba(224, 86, 40, 0.12) !important;
+          border-color: rgba(224, 86, 40, 0.35) !important;
+        }
+
+        /* 2. EXCLUSION: Outcome Section (Canvas Animation) Cards - No Red Shadow */
+        .outcome-section .result-card {
+          transition: none !important;
+          transform: none !important;
+          box-shadow: none !important;
+          cursor: default !important;
+          background: rgba(255, 255, 255, 0.85) !important;
+          backdrop-filter: blur(8px) !important;
+        }
+        .outcome-section .result-card:hover {
+          transform: none !important;
+          box-shadow: none !important;
+          border-color: inherit !important;
+        }
+
+        /* 3. EXCLUSION: Ladder Section Cards - Middle Card Waisa hi rahega (SS2 style) */
+        .tier-card {
+          transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+        .tier-card:hover {
+          transform: none !important;
+        }
+        .tier-card.featured {
+          transform: none !important;
+          box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05) !important;
+        }
+        .tier-card.featured:hover {
+          transform: none !important;
+        }
+
+        .tier-card .tier-cta {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 12px 20px;
+          border-radius: 8px;
+          border: 1px solid #e2e8f0;
+          background-color: transparent;
+          color: #0f172a;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.2s ease-in-out;
+          text-align: center;
+          margin-top: 16px;
+        }
+        .tier-card:not(.featured) .tier-cta:hover {
+          border-color: #e11d48 !important;
+          color: #e11d48 !important;
+        }
+        .tier-card.featured .tier-cta {
+          background-color: #e05628 !important;
+          border-color: #e05628 !important;
+          color: #ffffff !important;
+        }
+        .tier-card.featured .tier-cta:hover {
+          color: #ffffff !important;
+          opacity: 0.95;
+        }
+      `}</style>
+
       <section
         className="hero"
         style={{
@@ -642,7 +728,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Marquee exact position maintained with negative top margin */}
+      {/* Marquee */}
       <div
         className="marquee"
         style={{ marginTop: "-45px", position: "relative", zIndex: 10 }}
@@ -760,71 +846,6 @@ export default function Home() {
       </section>
 
       <section id="ladder">
-        <style>{`
-          .tier-card,
-          .tier-card.featured {
-            transform: none !important;
-            transition: none !important;
-          }
-          .tier-card:hover,
-          .tier-card.featured:hover {
-            transform: none !important;
-            box-shadow: none !important;
-          }
-
-          .tier-card .tier-cta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            background-color: transparent;
-            color: #0f172a;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease-in-out;
-            text-align: center;
-            margin-top: 16px;
-          }
-          .tier-card:not(.featured) .tier-cta:hover {
-            border-color: #e11d48 !important;
-            color: #e11d48 !important;
-          }
-          .tier-card.featured .tier-cta {
-            background-color: #e05628 !important;
-            border-color: #e05628 !important;
-            color: #ffffff !important;
-          }
-          .tier-card.featured .tier-cta:hover {
-            color: #ffffff !important;
-            opacity: 0.95;
-          }
-          
-          .outcome-section .result-card {
-            transition: none !important;
-            transform: none !important;
-            box-shadow: none !important;
-            cursor: default !important;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-          }
-          .outcome-section .result-card:hover {
-            transform: none !important;
-            box-shadow: none !important;
-            border-color: inherit !important;
-          }
-
-          .work-card {
-            transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out !important;
-          }
-          .work-card:hover {
-            transform: none !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
-            border-color: rgba(224, 86, 40, 0.4) !important;
-          }
-        `}</style>
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How we work together</span>
