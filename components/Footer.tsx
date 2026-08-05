@@ -5,18 +5,29 @@ export default function Footer() {
     <footer className="bg-indigo-900 text-indigo-300 pt-16 pb-8 px-8">
       <div className="max-w-[1160px] mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-11">
         <div>
-          {/* Logo Badge + Company Name */}
+          {/* Logo Badge + Updated Company Name */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2.5 transition-transform hover:scale-105"
+            className="inline-flex items-center gap-3 transition-transform hover:scale-105"
           >
             <span className="bg-white text-[#2e2a5e] text-sm font-bold w-9 h-9 rounded-lg flex items-center justify-center leading-none tracking-tight shadow-sm">
               ac
             </span>
-            <span className="text-white text-lg font-semibold tracking-tight">
-              After Concept
+
+            {/* Same Logo Text Style as Header */}
+            <span className="text-xl font-bold tracking-tight text-white flex items-center">
+              <span>after</span>
+              <span
+                style={{
+                  WebkitTextStroke: "1px #ffffff",
+                  color: "transparent",
+                }}
+              >
+                concept
+              </span>
             </span>
           </Link>
+
           <p className="text-white text-[15px] font-medium mt-4 max-w-[280px]">
             Every concept deserves an after.
           </p>

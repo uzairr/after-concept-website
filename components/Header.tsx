@@ -34,13 +34,27 @@ export default function Header() {
         className="flex items-center justify-between px-8 max-w-[1160px] mx-auto relative h-14 font-sans"
         aria-label="Main Navigation"
       >
-        {/* Logo Badge */}
+        {/* Logo Section: Existing 'ac' badge + Text Logo */}
         <Link
           href="/"
-          className="flex items-center justify-center transition-transform hover:scale-105"
+          className="flex items-center gap-3 transition-transform hover:scale-105"
         >
+          {/* Existing AC Mark / Logo Icon */}
           <span className="bg-[#2e2a5e] text-white text-sm font-bold w-9 h-9 rounded-lg flex items-center justify-center leading-none tracking-tight shadow-sm">
             ac
+          </span>
+
+          {/* New Logo Text Style (after = filled/bold, concept = outlined) */}
+          <span className="text-xl font-bold tracking-tight text-[#2e2a5e] flex items-center">
+            <span>after</span>
+            <span
+              style={{
+                WebkitTextStroke: "1px #2e2a5e",
+                color: "transparent",
+              }}
+            >
+              concept
+            </span>
           </span>
         </Link>
 
