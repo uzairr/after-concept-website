@@ -26,11 +26,12 @@ const steps = [
 ];
 
 export default function TimelineSection() {
-  // Pure Hover Control State (Default 0 index activated)
+  // Default active index 0 (01 - Discover)
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Line fill dynamic calculation
-  const lineProgressWidth = `${(activeIndex / (steps.length - 1)) * 100}%`;
+  // Exact distance between columns (4 columns = 25% each)
+  // Index 0 = 0%, Index 1 = 25%, Index 2 = 50%, Index 3 = 75%
+  const lineWidthPercentage = activeIndex * 25;
 
   return (
     <section
@@ -61,7 +62,6 @@ export default function TimelineSection() {
           >
             HOW WE WORK
           </span>
-          {/* Main Heading Ka Font Size Chota Kar Diya Hai */}
           <h2
             style={{
               color: "#ffffff",
@@ -87,42 +87,31 @@ export default function TimelineSection() {
         </div>
 
         {/* Timeline Container */}
-        <div style={{ position: "relative", width: "100%" }}>
-          {/* Base Track Line */}
+        <div
+          onMouseLeave={() => setActiveIndex(0)}
+          style={{ position: "relative", width: "100%" }}
+        >
+          {/* Active Smooth Orange Line (01 ke center 24px se shuru ho kar exact hovered circle center par rukegi) */}
           <div
             style={{
               position: "absolute",
               top: "24px",
-              left: "40px",
-              right: "40px",
-              height: "2px",
-              backgroundColor: "rgba(255, 255, 255, 0.15)",
-              zIndex: 0,
-            }}
-          />
-
-          {/* Active Orange Line (Animates on Hover) */}
-          <div
-            style={{
-              position: "absolute",
-              top: "24px",
-              left: "40px",
-              right: "40px",
-              width: lineProgressWidth,
+              left: "24px", // Exact center of 48px circle 01
+              width: `${lineWidthPercentage}%`,
               height: "2px",
               backgroundColor: "#ea580c",
               zIndex: 1,
-              transition: "width 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-              boxShadow: "0 0 14px rgba(234, 88, 12, 0.9)",
+              transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+              boxShadow: "0 0 12px rgba(234, 88, 12, 0.9)",
             }}
           />
 
-          {/* 4 Cards Grid */}
+          {/* 4 Step Cards Grid */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "24px",
+              gap: "0px",
               position: "relative",
               zIndex: 2,
             }}
@@ -134,13 +123,14 @@ export default function TimelineSection() {
               return (
                 <div
                   key={idx}
-                  // SIRF HOVER PE STATE CHANGE HOGI:
                   onMouseEnter={() => setActiveIndex(idx)}
                   style={{
                     cursor: "pointer",
-                    padding: "10px",
+                    paddingRight: "20px",
                     borderRadius: "8px",
-                    transition: "all 0.3s ease",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
                   }}
                 >
                   {/* Circle Step Number */}
@@ -166,9 +156,9 @@ export default function TimelineSection() {
                       fontSize: "14px",
                       fontWeight: 700,
                       marginBottom: "28px",
-                      transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                       boxShadow: isActive
-                        ? "0 0 20px rgba(234, 88, 12, 0.7)"
+                        ? "0 0 20px rgba(234, 88, 12, 0.8)"
                         : "none",
                       transform: isActive ? "scale(1.1)" : "scale(1)",
                     }}

@@ -34,11 +34,8 @@ export default function Header() {
         className="flex items-center justify-between px-8 max-w-[1160px] mx-auto relative h-14 font-sans"
         aria-label="Main Navigation"
       >
-        {/* Logo Section: Existing 'ac' badge + Text Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-3 transition-transform hover:scale-105"
-        >
+        {/* Logo Section: Completely static (no hover effect) */}
+        <Link href="/" className="flex items-center gap-3">
           {/* Existing AC Mark / Logo Icon */}
           <span className="bg-[#2e2a5e] text-white text-sm font-bold w-9 h-9 rounded-lg flex items-center justify-center leading-none tracking-tight shadow-sm">
             ac
