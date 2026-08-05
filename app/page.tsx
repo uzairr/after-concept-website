@@ -990,46 +990,219 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="process">
+      {/* UPDATED: Dark Blue "How We Work" Section (Matching SS2 / Sample standard layout) */}
+      <section
+        style={{
+          background: "#1e1b4b",
+          color: "#ffffff",
+          padding: "80px 0",
+        }}
+      >
         <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">How we work</span>
-            <h2>Discover, design, build, scale</h2>
-            <p>
+          <div className="section-head" style={{ marginBottom: "50px" }}>
+            <span
+              className="eyebrow"
+              style={{
+                color: "#e05628",
+                fontWeight: 600,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+              }}
+            >
+              HOW WE WORK
+            </span>
+            <h2
+              style={{
+                color: "#ffffff",
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                marginTop: "8px",
+                marginBottom: "16px",
+              }}
+            >
+              Discover, design, build, scale
+            </h2>
+            <p
+              style={{
+                color: "#94a3b8",
+                fontSize: "1.1rem",
+                maxWidth: "600px",
+                lineHeight: "1.6",
+              }}
+            >
               Four stages, no handoff between them: the same team stays
               accountable from first spec to post-launch growth.
             </p>
           </div>
-          <div className="timeline">
-            <div className="tl-step">
-              <div className="tl-dot">01</div>
-              <h3>Discover</h3>
-              <p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "30px",
+              position: "relative",
+            }}
+          >
+            {/* Step 01 */}
+            <div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(224, 86, 40, 0.6)",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  marginBottom: "20px",
+                }}
+              >
+                01
+              </div>
+              <h3
+                style={{
+                  color: "#ffffff",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  marginBottom: "12px",
+                }}
+              >
+                Discover
+              </h3>
+              <p
+                style={{
+                  color: "#94a3b8",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.5",
+                }}
+              >
                 We dig into your business context before touching the keyboard:
                 user goals, technical constraints, timelines, and what success
                 actually looks like.
               </p>
             </div>
-            <div className="tl-step">
-              <div className="tl-dot">02</div>
-              <h3>Design</h3>
-              <p>
+
+            {/* Step 02 */}
+            <div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(224, 86, 40, 0.6)",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  marginBottom: "20px",
+                }}
+              >
+                02
+              </div>
+              <h3
+                style={{
+                  color: "#ffffff",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  marginBottom: "12px",
+                }}
+              >
+                Design
+              </h3>
+              <p
+                style={{
+                  color: "#94a3b8",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.5",
+                }}
+              >
                 Information architecture, user flows, and interface decisions
                 are locked before engineering starts.
               </p>
             </div>
-            <div className="tl-step">
-              <div className="tl-dot">03</div>
-              <h3>Build</h3>
-              <p>
+
+            {/* Step 03 */}
+            <div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(224, 86, 40, 0.6)",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  marginBottom: "20px",
+                }}
+              >
+                03
+              </div>
+              <h3
+                style={{
+                  color: "#ffffff",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  marginBottom: "12px",
+                }}
+              >
+                Build
+              </h3>
+              <p
+                style={{
+                  color: "#94a3b8",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.5",
+                }}
+              >
                 Focused two-week sprints with weekly demos, transparent progress
                 tracking, and zero-surprise deliveries.
               </p>
             </div>
-            <div className="tl-step is-after">
-              <div className="tl-dot">04</div>
-              <h3>Scale</h3>
-              <p>
+
+            {/* Step 04 */}
+            <div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  background: "#e05628",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  marginBottom: "20px",
+                }}
+              >
+                04
+              </div>
+              <h3
+                style={{
+                  color: "#ffffff",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  marginBottom: "12px",
+                }}
+              >
+                Scale
+              </h3>
+              <p
+                style={{
+                  color: "#94a3b8",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.5",
+                }}
+              >
                 We monitor, optimise, and keep iterating after launch. The work
                 that matters most starts after the product ships.
               </p>
