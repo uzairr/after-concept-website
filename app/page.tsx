@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollObserver from "@/components/ScrollObserver";
+import TimelineSection from "@/components/TimelineSection";
 
 // Enhanced 3D Carousel / Stacked Cards Component
 function OriginStackedCards() {
@@ -490,236 +492,10 @@ function OutcomeSection() {
   );
 }
 
-// How We Work Section - Slow, Precise & Smooth Trigger Animation
-function HowWeWorkSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const steps = [
-    {
-      num: "01",
-      title: "Discover",
-      desc: "We dig into your business context before touching the keyboard: user goals, technical constraints, timelines, and what success actually looks like.",
-    },
-    {
-      num: "02",
-      title: "Design",
-      desc: "Information architecture, user flows, and interface decisions are locked before engineering starts.",
-    },
-    {
-      num: "03",
-      title: "Build",
-      desc: "Focused two-week sprints with weekly demos, transparent progress tracking, and zero-surprise deliveries.",
-    },
-    {
-      num: "04",
-      title: "Scale",
-      desc: "We monitor, optimise, and keep iterating after launch. The work that matters most starts after the product ships.",
-    },
-  ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          // Resets animation when section leaves view
-          setIsVisible(false);
-        }
-      },
-      {
-        // 0.45 threshold ensures animation starts ONLY when section is well inside the view
-        threshold: 0.45,
-      },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Hover line calculation (strictly untouched)
-  const getLineWidth = () => {
-    if (hoveredIndex === null) return "0%";
-    return `${((hoveredIndex + 1) / steps.length) * 100}%`;
-  };
-
-  return (
-    <section
-      ref={sectionRef}
-      style={{
-        background: "#1e1b4b",
-        color: "#ffffff",
-        padding: "90px 0",
-      }}
-    >
-      <div className="wrap">
-        <div className="section-head" style={{ marginBottom: "50px" }}>
-          <span
-            className="eyebrow"
-            style={{
-              color: "#e05628",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-            }}
-          >
-            HOW WE WORK
-          </span>
-          <h2
-            style={{
-              color: "#ffffff",
-              fontSize: "2.5rem",
-              fontWeight: 700,
-              marginTop: "8px",
-              marginBottom: "16px",
-            }}
-          >
-            Discover, design, build, scale
-          </h2>
-          <p
-            style={{
-              color: "#94a3b8",
-              fontSize: "1.1rem",
-              maxWidth: "600px",
-              lineHeight: "1.6",
-            }}
-          >
-            Four stages, no handoff between them: the same team stays
-            accountable from first spec to post-launch growth.
-          </p>
-        </div>
-
-        {/* Outer Container */}
-        <div
-          style={{
-            position: "relative",
-            paddingTop: "24px",
-          }}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          {/* Track Line */}
-          <div
-            style={{
-              position: "absolute",
-              top: "45px",
-              left: "22px",
-              right: "22px",
-              height: "2px",
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-              zIndex: 0,
-            }}
-          />
-
-          {/* Red Hover Line */}
-          <div
-            style={{
-              position: "absolute",
-              top: "45px",
-              left: "22px",
-              height: "2px",
-              backgroundColor: "#e05628",
-              width: getLineWidth(),
-              opacity: hoveredIndex !== null ? 1 : 0,
-              zIndex: 1,
-              transition:
-                "width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease",
-              boxShadow: "0 0 10px rgba(224, 86, 40, 0.8)",
-            }}
-          />
-
-          {/* Cards Grid with Slower and Staggered Entrance */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "30px",
-              position: "relative",
-              zIndex: 2,
-            }}
-          >
-            {steps.map((step, idx) => {
-              const isFilled = hoveredIndex !== null && idx <= hoveredIndex;
-
-              return (
-                <div
-                  key={idx}
-                  onMouseEnter={() => setHoveredIndex(idx)}
-                  style={{
-                    cursor: "pointer",
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible
-                      ? "translateY(0px) scale(1)"
-                      : "translateY(40px) scale(0.94)",
-                    // Increased duration to 1.1s and stagger delay to 0.35s for smooth slow reveal
-                    transition: `opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1) ${
-                      idx * 0.35
-                    }s, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) ${
-                      idx * 0.35
-                    }s`,
-                    willChange: "transform, opacity",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "44px",
-                      height: "44px",
-                      borderRadius: "50%",
-                      border: isFilled
-                        ? "1px solid #e05628"
-                        : "1px solid rgba(224, 86, 40, 0.6)",
-                      backgroundColor: isFilled ? "#e05628" : "#1e1b4b",
-                      color: "#ffffff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "14px",
-                      fontWeight: 600,
-                      marginBottom: "20px",
-                      transition: "all 0.3s ease",
-                      boxShadow: isFilled
-                        ? "0 0 14px rgba(224, 86, 40, 0.6)"
-                        : "none",
-                    }}
-                  >
-                    {step.num}
-                  </div>
-                  <h3
-                    style={{
-                      color: "#ffffff",
-                      fontSize: "1.25rem",
-                      fontWeight: 700,
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "#94a3b8",
-                      fontSize: "0.95rem",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    {step.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function Home() {
   return (
     <>
+      <ScrollObserver />
       <Header />
 
       <style>{`
@@ -1209,8 +985,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* "How We Work" Section with Refined Trigger & Slow Entrance */}
-      <HowWeWorkSection />
+      {/* Replaced with Friend's GSAP Timeline Scroll Component */}
+      <TimelineSection />
 
       <OutcomeSection />
 
