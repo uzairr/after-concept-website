@@ -451,7 +451,7 @@ function OutcomeSection() {
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
           <span className="eyebrow">WHAT CLIENTS GAIN</span>
-          <h2>The typical outcome</h2>
+          2. The typical outcome
           <p>
             Real figures from real engagements, with specifics filled in as each
             case study is finished.
@@ -560,8 +560,8 @@ export default function Home() {
           margin-top: 16px;
         }
         .tier-card:not(.featured) .tier-cta:hover {
-          border-color: #e11d48 !important;
-          color: #e11d48 !important;
+          border-color: #e05628 !important;
+          color: #e05628 !important;
         }
         .tier-card.featured .tier-cta {
           background-color: #e05628 !important;
@@ -572,57 +572,161 @@ export default function Home() {
           color: #ffffff !important;
           opacity: 0.95;
         }
+
+        /* Continuous Infinite Marquee Animation */
+        @keyframes scrollMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .cogent-marquee .marquee-track {
+          display: flex;
+          gap: 64px;
+          align-items: center;
+          width: max-content;
+          animation: scrollMarquee 28s linear infinite;
+        }
+
+        .cogent-marquee span {
+          font-size: 11px !important;
+          font-weight: 500 !important;
+          letter-spacing: 0.22em !important;
+          text-transform: uppercase !important;
+          color: rgba(255, 255, 255, 0.45) !important;
+          white-space: nowrap;
+        }
+
+        /* Drop shadow for text readability over bright video */
+        .hero-text-shadow {
+          text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Pill buttons hover effects */
+        .hero-actions .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 24px rgba(224, 86, 40, 0.4) !important;
+          background-color: #c8481d !important;
+        }
+
+        .hero-actions .btn-ghost:hover {
+          transform: translateY(-2px);
+          background-color: rgba(255, 255, 255, 0.1) !important;
+          border-color: rgba(255, 255, 255, 0.4) !important;
+        }
       `}</style>
 
+      {/* Hero Section takes 100vh full screen height */}
       <section
         className="hero"
         style={{
-          paddingTop: "0px",
-          paddingBottom: "0px",
-          marginTop: "-25px",
-          marginBottom: "0px",
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "#000000",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          height: "100vh",
+          width: "100%",
+          margin: 0,
+          padding: 0,
         }}
       >
-        <div className="hero-grid" style={{ alignItems: "center" }}>
-          <div
-            className="hero-copy"
-            style={{ marginTop: "0px", paddingTop: "0px" }}
-          >
-            <span
-              className="eyebrow brand-line"
-              style={{
-                display: "inline-block",
-                marginBottom: "12px",
-                marginTop: "-14px",
-              }}
-            >
-              Concept is easy. After is the work.
-            </span>
+        {/* Full-Screen Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+            pointerEvents: "none",
+            filter: "none",
+          }}
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Soft Vignette Overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.6) 100%), radial-gradient(circle at 20% 50%, rgba(0,0,0,0.45) 0%, transparent 70%)",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Hero Content Container */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            width: "100%",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            paddingTop: "60px",
+            paddingBottom: "20px",
+            paddingLeft: "clamp(24px, 6vw, 100px)",
+            paddingRight: "24px",
+          }}
+        >
+          <div className="hero-copy" style={{ maxWidth: "780px" }}>
+            {/* Main Display Heading */}
             <h1
+              className="hero-text-shadow"
               style={{
+                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                fontWeight: 600,
                 marginTop: "0px",
-                marginBottom: "18px",
-                lineHeight: "1.15",
+                marginBottom: "16px",
+                lineHeight: "1.08",
+                color: "#ffffff",
+                letterSpacing: "-0.035em",
+                fontFamily:
+                  'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
               }}
             >
-              We deliver products <span className="accent">SMEs</span> actually
-              need.
+              We build <br />
+              products SMEs <br />
+              truly need.
             </h1>
+
+            {/* Sub-heading */}
             <p
-              className="hero-sub"
+              className="hero-sub hero-text-shadow"
               style={{
+                fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)",
                 marginBottom: "24px",
                 marginTop: "0px",
-                lineHeight: "1.5",
+                lineHeight: "1.55",
+                color: "rgba(255, 255, 255, 0.65)",
+                fontWeight: 400,
+                maxWidth: "480px",
+                letterSpacing: "-0.01em",
               }}
             >
               Production-ready digital products for founders. Your technical
               co-pilot from vision to launch.
             </p>
+
+            {/* Cogent Style Rounded Pill Buttons */}
             <div
               className="hero-actions"
               style={{
-                marginTop: "0px",
                 display: "flex",
                 gap: "12px",
                 alignItems: "center",
@@ -636,12 +740,17 @@ export default function Home() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "44px",
-                  padding: "0 20px",
-                  margin: "0",
-                  boxSizing: "border-box",
-                  verticalAlign: "middle",
-                  lineHeight: "normal",
+                  height: "48px",
+                  padding: "0 28px",
+                  backgroundColor: "#e05628",
+                  color: "#ffffff",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  borderRadius: "9999px",
+                  boxShadow: "0 4px 20px rgba(224, 86, 40, 0.35)",
+                  transition: "all 0.25s ease",
+                  textDecoration: "none",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 Start a Project
@@ -653,117 +762,62 @@ export default function Home() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "44px",
-                  padding: "0 20px",
-                  margin: "0",
-                  boxSizing: "border-box",
-                  verticalAlign: "middle",
-                  lineHeight: "normal",
+                  height: "48px",
+                  padding: "0 24px",
+                  color: "rgba(255, 255, 255, 0.9)",
+                  borderRadius: "9999px",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  backdropFilter: "blur(12px)",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  letterSpacing: "-0.01em",
+                  transition: "all 0.25s ease",
                 }}
               >
                 View Our Work
               </a>
             </div>
           </div>
-          <div className="hero-stage">
-            <div className="glow"></div>
-            <div className="float-group">
-              <div className="browser">
-                <div className="browser-bar">
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="url">app.afterconcept.io</div>
-                </div>
-                <div className="app-body">
-                  <div className="sidebar">
-                    <div className="chip active"></div>
-                    <div className="chip"></div>
-                    <div className="chip"></div>
-                    <div className="chip"></div>
-                  </div>
-                  <div className="main-panel">
-                    <div className="stat-row">
-                      <div className="stat">
-                        <div className="n">4×</div>
-                        <div className="l">Throughput</div>
-                      </div>
-                      <div className="stat">
-                        <div className="n">96%</div>
-                        <div className="l">On-time</div>
-                      </div>
-                      <div className="stat">
-                        <div className="n">6 wks</div>
-                        <div className="l">To launch</div>
-                      </div>
-                    </div>
-                    <div className="chart-card">
-                      <div className="bars">
-                        <div className="bar" style={{ height: "40%" }}></div>
-                        <div className="bar" style={{ height: "55%" }}></div>
-                        <div className="bar" style={{ height: "70%" }}></div>
-                        <div className="bar" style={{ height: "50%" }}></div>
-                        <div className="bar" style={{ height: "85%" }}></div>
-                        <div className="bar" style={{ height: "65%" }}></div>
-                        <div className="bar" style={{ height: "95%" }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="peek-card">
-                <div className="tag">Onboarding</div>
-                <div className="val">-40%</div>
-                <div className="sub">Drop-off after redesign</div>
-                <div className="check">
-                  <span className="checkdot">✓</span> Shipped &amp; live
-                </div>
-              </div>
-            </div>
+        </div>
+
+        {/* Bottom Marquee Pinned Exactly at Viewport Bottom */}
+        <div
+          className="marquee cogent-marquee"
+          style={{
+            position: "relative",
+            zIndex: 10,
+            width: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backdropFilter: "blur(8px)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+            padding: "16px 0",
+            overflow: "hidden",
+            flexShrink: 0,
+          }}
+        >
+          <div className="marquee-track">
+            <span>Bultra Bank</span>
+            <span>Faraway Yachting</span>
+            <span>Nkosi &amp; Associates</span>
+            <span>EVT SaaS</span>
+            <span>Land Design</span>
+            <span>SkyRoutes</span>
+            <span>MediCore</span>
+            <span>Finova</span>
+
+            <span>Bultra Bank</span>
+            <span>Faraway Yachting</span>
+            <span>Nkosi &amp; Associates</span>
+            <span>EVT SaaS</span>
+            <span>Land Design</span>
+            <span>SkyRoutes</span>
+            <span>MediCore</span>
+            <span>Finova</span>
           </div>
         </div>
       </section>
-
-      {/* Marquee */}
-      <div
-        className="marquee"
-        style={{ marginTop: "-45px", position: "relative", zIndex: 10 }}
-      >
-        <div className="marquee-track">
-          <span>Bultra Bank</span>
-          <span>·</span>
-          <span>Faraway Yachting</span>
-          <span>·</span>
-          <span>Nkosi &amp; Associates</span>
-          <span>·</span>
-          <span>EVT SaaS</span>
-          <span>·</span>
-          <span>Land Design</span>
-          <span>·</span>
-          <span>SkyRoutes</span>
-          <span>·</span>
-          <span>MediCore</span>
-          <span>·</span>
-          <span>Finova</span>
-          <span>·</span>
-          <span>Bultra Bank</span>
-          <span>·</span>
-          <span>Faraway Yachting</span>
-          <span>·</span>
-          <span>Nkosi &amp; Associates</span>
-          <span>·</span>
-          <span>EVT SaaS</span>
-          <span>·</span>
-          <span>Land Design</span>
-          <span>·</span>
-          <span>SkyRoutes</span>
-          <span>·</span>
-          <span>MediCore</span>
-          <span>·</span>
-          <span>Finova</span>
-          <span>·</span>
-        </div>
-      </div>
 
       <section className="origin">
         <div className="wrap origin-grid" style={{ alignItems: "center" }}>
@@ -985,7 +1039,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Replaced with Friend's GSAP Timeline Scroll Component */}
+      {/* GSAP Timeline Scroll Component */}
       <TimelineSection />
 
       <OutcomeSection />
@@ -1146,7 +1200,11 @@ export default function Home() {
         <span className="eyebrow">Ready when you are</span>
         <h2>Ready to build something great?</h2>
         <div className="flex justify-center mt-4">
-          <a href="mailto:contact@afterconcept.io" className="btn-primary">
+          <a
+            href="mailto:contact@afterconcept.io"
+            className="btn-primary"
+            style={{ backgroundColor: "#e05628" }}
+          >
             Start a Conversation
           </a>
         </div>
