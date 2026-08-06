@@ -498,6 +498,12 @@ export default function Home() {
       <ScrollObserver />
       <Header />
 
+      {/* Google Font DM Sans Import via HTML link */}
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      />
+
       <style>{`
         .results-grid .result-card,
         .service-card,
@@ -596,11 +602,6 @@ export default function Home() {
           white-space: nowrap;
         }
 
-        /* Drop shadow for text readability over bright video */
-        .hero-text-shadow {
-          text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
-        }
-
         /* Pill buttons hover effects */
         .hero-actions .btn-primary:hover {
           transform: translateY(-2px);
@@ -613,19 +614,30 @@ export default function Home() {
           background-color: rgba(255, 255, 255, 0.1) !important;
           border-color: rgba(255, 255, 255, 0.4) !important;
         }
+
+        /* Dynamic Hero Heights to keep gaps original on desktop */
+        .hero-section-custom {
+          min-height: 100vh;
+          height: 100vh;
+        }
+
+        @media (max-height: 700px) {
+          .hero-section-custom {
+            height: auto !important;
+            min-height: 100vh !important;
+          }
+        }
       `}</style>
 
-      {/* Hero Section takes 100vh full screen height */}
+      {/* Hero Section */}
       <section
-        className="hero"
+        className="hero hero-section-custom"
         style={{
           position: "relative",
-          overflow: "hidden",
           backgroundColor: "#000000",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          height: "100vh",
           width: "100%",
           margin: 0,
           padding: 0,
@@ -650,7 +662,7 @@ export default function Home() {
             filter: "none",
           }}
         >
-          <source src="/hero-bg.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -660,44 +672,44 @@ export default function Home() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.6) 100%), radial-gradient(circle at 20% 50%, rgba(0,0,0,0.45) 0%, transparent 70%)",
+              "linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.6) 100%), radial-gradient(circle at 20% 50%, rgba(0,0,0,0.3) 0%, transparent 70%)",
             zIndex: 1,
             pointerEvents: "none",
           }}
         />
 
-        {/* Hero Content Container */}
+        {/* Hero Content Container with Original Spacing */}
         <div
           style={{
             position: "relative",
             zIndex: 2,
+            width: "100%",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            paddingTop: "clamp(140px, 18vh, 200px)",
+            paddingBottom: "40px",
+            paddingLeft: "clamp(24px, 6vw, 100px)",
+            paddingRight: "24px",
             flex: 1,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: "100%",
-            maxWidth: "1280px",
-            margin: "0 auto",
-            paddingTop: "60px",
-            paddingBottom: "20px",
-            paddingLeft: "clamp(24px, 6vw, 100px)",
-            paddingRight: "24px",
           }}
         >
-          <div className="hero-copy" style={{ maxWidth: "780px" }}>
-            {/* Main Display Heading */}
+          <div className="hero-copy" style={{ maxWidth: "900px" }}>
+            {/* Crisp Semi-Bold Heading */}
             <h1
-              className="hero-text-shadow"
               style={{
-                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
+                fontSize: "clamp(3.8rem, 6.8vw, 5.8rem)",
                 fontWeight: 600,
                 marginTop: "0px",
-                marginBottom: "16px",
-                lineHeight: "1.08",
+                marginBottom: "36px",
+                lineHeight: "1.02",
                 color: "#ffffff",
                 letterSpacing: "-0.035em",
-                fontFamily:
-                  'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                WebkitFontSmoothing: "antialiased",
+                MozOsxFontSmoothing: "grayscale",
               }}
             >
               We build <br />
@@ -707,28 +719,31 @@ export default function Home() {
 
             {/* Sub-heading */}
             <p
-              className="hero-sub hero-text-shadow"
               style={{
-                fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)",
-                marginBottom: "24px",
+                fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
+                fontSize: "clamp(1.1rem, 1.4vw, 1.25rem)",
+                marginBottom: "48px",
                 marginTop: "0px",
-                lineHeight: "1.55",
+                lineHeight: "1.6",
                 color: "rgba(255, 255, 255, 0.65)",
                 fontWeight: 400,
-                maxWidth: "480px",
+                maxWidth: "580px",
                 letterSpacing: "-0.01em",
+                WebkitFontSmoothing: "antialiased",
               }}
             >
-              Production-ready digital products for founders. Your technical
-              co-pilot from vision to launch.
+              <strong style={{ color: "#ffffff", fontWeight: 600 }}>
+                Production-ready digital products
+              </strong>{" "}
+              for founders. Your technical co-pilot from vision to launch.
             </p>
 
-            {/* Cogent Style Rounded Pill Buttons */}
+            {/* Rounded Pill Buttons */}
             <div
               className="hero-actions"
               style={{
                 display: "flex",
-                gap: "12px",
+                gap: "14px",
                 alignItems: "center",
                 flexWrap: "wrap",
               }}
@@ -745,12 +760,13 @@ export default function Home() {
                   backgroundColor: "#e05628",
                   color: "#ffffff",
                   fontWeight: 600,
-                  fontSize: "14px",
+                  fontSize: "15px",
                   borderRadius: "9999px",
                   boxShadow: "0 4px 20px rgba(224, 86, 40, 0.35)",
                   transition: "all 0.25s ease",
                   textDecoration: "none",
                   letterSpacing: "-0.01em",
+                  fontFamily: '"DM Sans", sans-serif',
                 }}
               >
                 Start a Project
@@ -766,14 +782,15 @@ export default function Home() {
                   padding: "0 24px",
                   color: "rgba(255, 255, 255, 0.9)",
                   borderRadius: "9999px",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
-                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  border: "1px solid rgba(255, 255, 255, 0.25)",
+                  backgroundColor: "rgba(0, 0, 0, 0.35)",
                   backdropFilter: "blur(12px)",
                   fontWeight: 500,
-                  fontSize: "14px",
+                  fontSize: "15px",
                   textDecoration: "none",
                   letterSpacing: "-0.01em",
                   transition: "all 0.25s ease",
+                  fontFamily: '"DM Sans", sans-serif',
                 }}
               >
                 View Our Work
@@ -782,19 +799,18 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom Marquee Pinned Exactly at Viewport Bottom */}
+        {/* Marquee Always Fixed to Hero Bottom */}
         <div
           className="marquee cogent-marquee"
           style={{
             position: "relative",
             zIndex: 10,
             width: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-            backdropFilter: "blur(8px)",
-            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            padding: "16px 0",
+            backgroundColor: "rgba(0, 0, 0, 0.65)",
+            backdropFilter: "blur(12px)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.12)",
+            padding: "18px 0",
             overflow: "hidden",
-            flexShrink: 0,
           }}
         >
           <div className="marquee-track">
