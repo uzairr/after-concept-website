@@ -579,6 +579,22 @@ export default function Home() {
           opacity: 0.95;
         }
 
+        /* Subheading Color Specificity Override */
+        .hero-subheading-cogent {
+          color: rgba(255, 255, 255, 0.42) !important;
+          font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
+          font-size: clamp(1rem, 1.15vw, 1.05rem) !important;
+          line-height: 1.55 !important;
+          font-weight: 400 !important;
+          text-align: left !important;
+          letter-spacing: -0.01em !important;
+        }
+
+        .hero-subheading-cogent strong {
+          color: #ffffff !important;
+          font-weight: 700 !important;
+        }
+
         /* Continuous Infinite Marquee Animation */
         @keyframes scrollMarquee {
           0% { transform: translateX(0); }
@@ -678,34 +694,37 @@ export default function Home() {
           }}
         />
 
-        {/* Hero Content Container with Original Spacing */}
+        {/* Hero Content Container aligned with left spacing (Shifted Right to match Cogent) */}
         <div
           style={{
             position: "relative",
             zIndex: 2,
             width: "100%",
-            maxWidth: "1280px",
+            maxWidth: "1400px",
             margin: "0 auto",
-            paddingTop: "clamp(140px, 18vh, 200px)",
+            paddingTop: "clamp(130px, 16vh, 180px)",
             paddingBottom: "40px",
-            paddingLeft: "clamp(24px, 6vw, 100px)",
-            paddingRight: "24px",
+            paddingLeft: "clamp(48px, 6vw, 96px)", // Added extra padding to shift text right like Cogent Labs
+            paddingRight: "32px",
             flex: 1,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <div className="hero-copy" style={{ maxWidth: "900px" }}>
+          <div
+            className="hero-copy"
+            style={{ maxWidth: "850px", textAlign: "left" }}
+          >
             {/* Crisp Semi-Bold Heading */}
             <h1
               style={{
                 fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
-                fontSize: "clamp(3.8rem, 6.8vw, 5.8rem)",
+                fontSize: "clamp(3.5rem, 6.5vw, 5.5rem)",
                 fontWeight: 600,
                 marginTop: "0px",
-                marginBottom: "36px",
-                lineHeight: "1.02",
+                marginBottom: "24px",
+                lineHeight: "1.05",
                 color: "#ffffff",
                 letterSpacing: "-0.035em",
                 WebkitFontSmoothing: "antialiased",
@@ -717,25 +736,18 @@ export default function Home() {
               truly need.
             </h1>
 
-            {/* Sub-heading */}
+            {/* Subheading styled with direct overrides */}
             <p
+              className="hero-subheading-cogent"
               style={{
-                fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
-                fontSize: "clamp(1.1rem, 1.4vw, 1.25rem)",
-                marginBottom: "48px",
+                marginBottom: "36px",
                 marginTop: "0px",
-                lineHeight: "1.6",
-                color: "rgba(255, 255, 255, 0.65)",
-                fontWeight: 400,
-                maxWidth: "580px",
-                letterSpacing: "-0.01em",
-                WebkitFontSmoothing: "antialiased",
+                maxWidth: "480px",
               }}
             >
-              <strong style={{ color: "#ffffff", fontWeight: 600 }}>
-                Production-ready digital products
-              </strong>{" "}
-              for founders. Your technical co-pilot from vision to launch.
+              <strong>Production-ready digital products.</strong> Built by an
+              embedded team of design & engineering specialists. We partner with
+              ambitious founders to go from vision to launch.
             </p>
 
             {/* Rounded Pill Buttons */}
@@ -745,6 +757,7 @@ export default function Home() {
                 display: "flex",
                 gap: "14px",
                 alignItems: "center",
+                justifyContent: "flex-start",
                 flexWrap: "wrap",
               }}
             >
