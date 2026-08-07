@@ -6,11 +6,43 @@ import Footer from "@/components/Footer";
 import ScrollObserver from "@/components/ScrollObserver";
 import TimelineSection from "@/components/TimelineSection";
 
-// Enhanced 3D Carousel / Stacked Cards Component
-function OriginStackedCards() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+// Reusable Counter Component for smooth 0 to target number animation
+function AnimatedCounter({ value }: { value: string }) {
+  const numericMatch = value.match(/\d+/);
+  const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : 0;
+  const suffix = value.replace(/[0-9]/g, '');
 
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 1500;
+    const steps = 40;
+    const increment = targetNum / steps;
+    const stepTime = duration / steps;
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= targetNum) {
+        setCount(targetNum);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [targetNum]);
+
+  return (
+    <span>
+      {count}{suffix}
+    </span>
+  );
+}
+
+// Compact Static Cards Grid Component with Orange Eyebrow support
+export function OriginStackedCards() {
   const stats = [
     {
       num: "40+",
@@ -34,200 +66,65 @@ function OriginStackedCards() {
     },
   ];
 
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % stats.length);
-    }, 2200);
-    return () => clearInterval(interval);
-  }, [isHovered, stats.length]);
-
   return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        position: "relative",
-        width: "100%",
-        maxWidth: "350px",
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "380px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          perspective: "1000px",
-        }}
-      >
-        {stats.map((stat, i) => {
-          const total = stats.length;
-          const position = (i - activeIndex + total) % total;
-
-          let transformStyle = "";
-          let zIndex = 0;
-          let opacity = 0;
-          let filter = "none";
-          let isFront = false;
-
-          if (position === 0) {
-            transformStyle =
-              "translateX(0px) translateY(0px) scale(1) rotateY(0deg)";
-            zIndex = 10;
-            opacity = 1;
-            filter = "none";
-            isFront = true;
-          } else if (position === 1) {
-            transformStyle =
-              "translateX(75px) translateY(8px) scale(0.85) rotateY(-14deg)";
-            zIndex = 5;
-            opacity = 0.75;
-            filter = "blur(1px)";
-          } else if (position === 2) {
-            transformStyle =
-              "translateX(0px) translateY(-20px) scale(0.72) rotateY(0deg)";
-            zIndex = 2;
-            opacity = 0.45;
-            filter = "blur(2px)";
-          } else if (position === 3) {
-            transformStyle =
-              "translateX(-75px) translateY(8px) scale(0.85) rotateY(14deg)";
-            zIndex = 5;
-            opacity = 0.75;
-            filter = "blur(1px)";
-          }
-
-          return (
-            <div
-              key={i}
-              onClick={() => setActiveIndex(i)}
-              style={{
-                position: "absolute",
-                width: "100%",
-                maxWidth: "290px",
-                minHeight: "290px",
-                padding: "24px 22px",
-                borderRadius: "18px",
-                background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-                border: isFront
-                  ? "1.5px solid rgba(224, 86, 40, 0.6)"
-                  : "1px solid rgba(255, 255, 255, 0.1)",
-                boxShadow: isFront
-                  ? "0 20px 35px -10px rgba(15, 23, 42, 0.4), 0 0 20px rgba(224, 86, 40, 0.2)"
-                  : "0 10px 20px -5px rgba(0, 0, 0, 0.25)",
-                transform: transformStyle,
-                zIndex: zIndex,
-                opacity: opacity,
-                filter: filter,
-                transition: "all 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
-                cursor: "pointer",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "12px",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    color: isFront ? "#e05628" : "#94a3b8",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Metric #{i + 1}
-                </span>
-                <span
-                  style={{
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    backgroundColor: isFront ? "#e05628" : "#475569",
-                    boxShadow: isFront ? "0 0 8px #e05628" : "none",
-                  }}
-                />
-              </div>
-
-              <div
-                style={{
-                  fontSize: "40px",
-                  fontWeight: 800,
-                  color: "#ffffff",
-                  lineHeight: 1,
-                  marginBottom: "8px",
-                }}
-              >
-                {stat.num}
-              </div>
-
-              <div
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 700,
-                  color: isFront ? "#ffffff" : "#cbd5e1",
-                  marginBottom: "6px",
-                }}
-              >
-                {stat.label}
-              </div>
-
-              <div
-                style={{
-                  fontSize: "12.5px",
-                  lineHeight: "1.4",
-                  color: "#94a3b8",
-                  fontWeight: 400,
-                }}
-              >
-                {stat.desc}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "12px",
-        }}
-      >
-        {stats.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setActiveIndex(idx)}
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+      width: "100%",
+      maxWidth: "420px",
+      paddingTop: "0px" // Ensures perfect alignment with the top
+    }}>
+      {stats.map((stat, i) => (
+        <div 
+          key={i} 
+          style={{
+            borderBottom: i !== stats.length - 1 ? "1px solid #e7e5e4" : "none",
+            paddingBottom: i !== stats.length - 1 ? "18px" : "0",
+          }}
+        >
+          {/* Compact Animated Big Number */}
+          <div
             style={{
-              width: activeIndex === idx ? "24px" : "8px",
-              height: "8px",
-              borderRadius: "4px",
-              backgroundColor: activeIndex === idx ? "#e05628" : "#cbd5e1",
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
+              fontSize: "42px",
+              fontWeight: 800,
+              color: "#e05628",
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
+              marginBottom: "2px",
             }}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
+          >
+            <AnimatedCounter value={stat.num} />
+          </div>
+
+          {/* Label */}
+          <div
+            style={{
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#1c1917",
+              marginBottom: "3px",
+            }}
+          >
+            {stat.label}
+          </div>
+
+          {/* Description */}
+          <div
+            style={{
+              fontSize: "12.5px",
+              lineHeight: "1.4",
+              color: "#78716c",
+              fontWeight: 400,
+            }}
+          >
+            {stat.desc}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
-
 // Counter Component
 function CounterStat({
   value,
@@ -450,14 +347,14 @@ function OutcomeSection() {
 
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
-          <span className="eyebrow">WHAT CLIENTS GAIN</span>
-          2. The typical outcome
-          <p>
-            Real figures from real engagements, with specifics filled in as each
-            case study is finished.
-          </p>
-        </div>
-        <div className="results-grid">
+  <span className="eyebrow">WHAT CLIENTS GAIN</span>
+  <h2>Outcomes That Matter</h2>
+  <p>
+    Real figures from real engagements, with specifics filled in as each
+    case study is finished.
+  </p>
+</div>
+<div className="results-grid">
           <div className="result-card">
             <CounterStat value={40} suffix="%" />
             <div className="result-label">
@@ -473,9 +370,12 @@ function OutcomeSection() {
             <div className="result-source">Client engagement</div>
           </div>
           <div className="result-card">
-            <CounterStat value={10} suffix="" />
+            <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+              <CounterStat value={10} suffix="" />
+              <span style={{ fontSize: "36px", fontWeight: 800, color: "#e05628" }}>Days</span>
+            </div>
             <div className="result-label">
-              Days average, kickoff to first release
+              Average, kickoff to first release
             </div>
             <div className="result-source">Across projects</div>
           </div>
@@ -849,26 +749,26 @@ export default function Home() {
       </section>
 
       <section className="origin">
-        <div className="wrap origin-grid" style={{ alignItems: "center" }}>
-          <div>
-            <span className="eyebrow">The origin story</span>
-            <p className="origin-quote">
-              "Founders came with half-built agency projects. We started After
-              Concept as one team to own it all, design and engineering. No
-              handoffs, no lost focus, just production delivery."
-            </p>
-            <p className="body">
-              That's still how we work. One embedded team follows your product
-              from the first discovery call through the growth work that happens
-              after launch without a relay of subcontractors passing the baton.
-            </p>
-          </div>
+  <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
+    <div>
+      <span className="eyebrow" style={{ color: "#e05628" }}>The origin story</span>
+      <p className="origin-quote">
+        "Founders came with half-built agency projects. We started After
+        Concept as one team to own it all, design and engineering. No
+        handoffs, no lost focus, just production delivery."
+      </p>
+      <p className="body">
+        That's still how we work. One embedded team follows your product
+        from the first discovery call through the growth work that happens
+        after launch without a relay of subcontractors passing the baton.
+      </p>
+    </div>
 
-          <div>
-            <OriginStackedCards />
-          </div>
-        </div>
-      </section>
+    <div>
+      <OriginStackedCards />
+    </div>
+  </div>
+</section>
 
       <section>
         <div className="wrap">
