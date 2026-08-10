@@ -305,13 +305,14 @@ const caseStudiesData: Record<
 };
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const item = caseStudiesData[params.slug];
+  const { slug } = await params;
+  const item = caseStudiesData[slug];
   if (!item) return {};
 
   return {
@@ -320,155 +321,738 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function DynamicCaseStudy({ params }: Props) {
-  const item = caseStudiesData[params.slug];
+export default async function DynamicCaseStudy({ params }: Props) {
+  const { slug } = await params;
+  const item = caseStudiesData[slug];
 
   if (!item) {
     notFound();
   }
 
   return (
-    <>
+    <main
+      style={{
+        backgroundColor: "#FAFAFA",
+        minHeight: "100vh",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
       <Header />
 
-      <div className="back wrap" style={{ maxWidth: "1120px" }}>
-        <Link href="/case-studies">← All case studies</Link>
-      </div>
-
+      {/* Back Link */}
       <div
-        className="hero wrap"
         style={{
           maxWidth: "1120px",
-          paddingTop: "36px",
-          paddingBottom: "60px",
+          margin: "0 auto",
+          padding: "32px 20px 16px",
         }}
       >
-        <span className="eyebrow">
-          {item.industry} <span className="test-tag">Test data</span>
-        </span>
-        <h1>{item.title}</h1>
-        <p className="hero-sub">{item.heroSub}</p>
-        <div className="hero-stats">
-          <div className="hstat">
-            <div className="hstat-num">{item.hstat1Num}</div>
-            <div className="hstat-label">{item.hstat1Label}</div>
-          </div>
-          <div className="hstat">
-            <div className="hstat-num">{item.hstat2Num}</div>
-            <div className="hstat-label">{item.hstat2Label}</div>
-          </div>
-          <div className="hstat">
-            <div className="hstat-num">{item.hstat3Num}</div>
-            <div className="hstat-label">{item.hstat3Label}</div>
-          </div>
-        </div>
+        <Link
+          href="/case-studies"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            color: "#6B7280",
+            fontSize: "14px",
+            textDecoration: "none",
+            fontWeight: 500,
+          }}
+        >
+          ← Back to case studies
+        </Link>
       </div>
 
-      <div className="thumb-banner">
-        <div className="box">{item.bannerText}</div>
-      </div>
-
-      <div className="meta-row">
-        <div className="meta-item">
-          <div className="meta-label">Industry</div>
-          <div className="meta-value">{item.industry}</div>
-        </div>
-        <div className="meta-item">
-          <div className="meta-label">Built by</div>
-          <div className="meta-value">After Concept</div>
-        </div>
-        <div className="meta-item">
-          <div className="meta-label">Engagement</div>
-          <div className="meta-value">{item.engagement}</div>
-        </div>
-        <div className="meta-item">
-          <div className="meta-label">Stack</div>
-          <div className="meta-value">{item.stack}</div>
-        </div>
-      </div>
-
-      <article className="wrap">
-        <span className="section-label">Challenge</span>
-        <h2>Operational Gaps & Core Bottlenecks</h2>
-        <p>{item.challengeSub}</p>
-        <ul>
-          {item.challengePoints.map((point, index) => (
-            <li key={index}>{point}</li>
-          ))}
-        </ul>
-        {item.quote && item.quoteAuthor && (
-          <p className="pull">
-            &ldquo;{item.quote}&rdquo; — {item.quoteAuthor}{" "}
-            <span className="test-tag">Test data</span>
+      {/* Hero Section */}
+      <div
+        style={{
+          maxWidth: "1120px",
+          margin: "0 auto",
+          padding: "16px 20px 56px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: "48px",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span
+              style={{
+                backgroundColor: "#EEF2FF",
+                color: "#4F46E5",
+                padding: "4px 10px",
+                borderRadius: "20px",
+                fontSize: "12px",
+                fontWeight: 600,
+                letterSpacing: "0.02em",
+                textTransform: "uppercase",
+              }}
+            >
+              {item.industry}
+            </span>
+          </div>
+          <h1
+            style={{
+              fontSize: "40px",
+              fontWeight: 800,
+              color: "#0F172A",
+              lineHeight: "1.15",
+              letterSpacing: "-0.02em",
+              margin: 0,
+            }}
+          >
+            {item.title}
+          </h1>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#475569",
+              lineHeight: "1.6",
+              margin: 0,
+            }}
+          >
+            {item.heroSub}
           </p>
-        )}
-      </article>
+        </div>
 
-      <article className="alt-bg wrap" style={{ maxWidth: "1120px" }}>
-        <div style={{ maxWidth: "860px", margin: "0 auto" }}>
-          <span className="section-label">Solution</span>
-          <h2>System Architecture & Workflow Design</h2>
-          <p>{item.solutionSub}</p>
-          <ul>
+        {/* Highlight Stats Cards */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "12px",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #E2E8F0",
+              borderRadius: "16px",
+              padding: "24px 16px",
+              textAlign: "center",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "32px",
+                fontWeight: 800,
+                color: "#4F46E5",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {item.hstat1Num}
+            </div>
+            <div
+              style={{
+                fontSize: "12px",
+                color: "#64748B",
+                marginTop: "6px",
+                lineHeight: "1.3",
+                fontWeight: 500,
+              }}
+            >
+              {item.hstat1Label}
+            </div>
+          </div>
+          <div
+            style={{
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #E2E8F0",
+              borderRadius: "16px",
+              padding: "24px 16px",
+              textAlign: "center",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "32px",
+                fontWeight: 800,
+                color: "#0F172A",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {item.hstat2Num}
+            </div>
+            <div
+              style={{
+                fontSize: "12px",
+                color: "#64748B",
+                marginTop: "6px",
+                lineHeight: "1.3",
+                fontWeight: 500,
+              }}
+            >
+              {item.hstat2Label}
+            </div>
+          </div>
+          <div
+            style={{
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #E2E8F0",
+              borderRadius: "16px",
+              padding: "24px 16px",
+              textAlign: "center",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "32px",
+                fontWeight: 800,
+                color: "#0F172A",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {item.hstat3Num}
+            </div>
+            <div
+              style={{
+                fontSize: "12px",
+                color: "#64748B",
+                marginTop: "6px",
+                lineHeight: "1.3",
+                fontWeight: 500,
+              }}
+            >
+              {item.hstat3Label}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature Banner */}
+      <div
+        style={{
+          width: "100%",
+          background: "linear-gradient(90deg, #0F172A 0%, #1E293B 100%)",
+          color: "#FFFFFF",
+          padding: "36px 20px",
+          textAlign: "center",
+          fontSize: "20px",
+          fontWeight: 600,
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {item.bannerText}
+      </div>
+
+      {/* Metadata Bar */}
+      <div
+        style={{
+          borderBottom: "1px solid #E2E8F0",
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1120px",
+            margin: "0 auto",
+            padding: "24px 20px",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+            gap: "24px",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontSize: "11px",
+                color: "#94A3B8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+              }}
+            >
+              Industry
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 600,
+                color: "#0F172A",
+                marginTop: "4px",
+              }}
+            >
+              {item.industry}
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontSize: "11px",
+                color: "#94A3B8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+              }}
+            >
+              Built by
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 600,
+                color: "#0F172A",
+                marginTop: "4px",
+              }}
+            >
+              After Concept
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontSize: "11px",
+                color: "#94A3B8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+              }}
+            >
+              Engagement
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 600,
+                color: "#0F172A",
+                marginTop: "4px",
+              }}
+            >
+              {item.engagement}
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontSize: "11px",
+                color: "#94A3B8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+              }}
+            >
+              Stack
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 600,
+                color: "#0F172A",
+                marginTop: "4px",
+              }}
+            >
+              {item.stack}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Case Content */}
+      <div
+        style={{
+          maxWidth: "860px",
+          margin: "0 auto",
+          padding: "64px 20px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "56px",
+        }}
+      >
+        {/* Challenge Section */}
+        <article
+          style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              textTransform: "uppercase",
+              color: "#4F46E5",
+              fontWeight: 800,
+              letterSpacing: "0.08em",
+            }}
+          >
+            01 / Challenge
+          </span>
+          <h2
+            style={{
+              fontSize: "28px",
+              fontWeight: 800,
+              color: "#0F172A",
+              letterSpacing: "-0.01em",
+              margin: 0,
+            }}
+          >
+            Operational Gaps & Core Bottlenecks
+          </h2>
+          <p
+            style={{
+              fontSize: "17px",
+              color: "#334155",
+              lineHeight: "1.7",
+              margin: 0,
+            }}
+          >
+            {item.challengeSub}
+          </p>
+          <ul
+            style={{
+              paddingLeft: "24px",
+              margin: "8px 0 0",
+              color: "#475569",
+              lineHeight: "1.9",
+              fontSize: "16px",
+            }}
+          >
+            {item.challengePoints.map((point, index) => (
+              <li key={index}>{point}</li>
+            ))}
+          </ul>
+          {item.quote && item.quoteAuthor && (
+            <blockquote
+              style={{
+                margin: "24px 0 0",
+                padding: "20px 24px",
+                backgroundColor: "#FFFFFF",
+                borderLeft: "4px solid #4F46E5",
+                borderRadius: "0 12px 12px 0",
+                fontStyle: "italic",
+                color: "#1E293B",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+              }}
+            >
+              &ldquo;{item.quote}&rdquo; —{" "}
+              <strong style={{ fontStyle: "normal", color: "#0F172A" }}>
+                {item.quoteAuthor}
+              </strong>
+            </blockquote>
+          )}
+        </article>
+
+        {/* Solution Section */}
+        <article
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            backgroundColor: "#FFFFFF",
+            border: "1px solid #E2E8F0",
+            padding: "40px",
+            borderRadius: "20px",
+            boxShadow: "0 4px 6px -1px rgba(0,0,0,0.02)",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              textTransform: "uppercase",
+              color: "#4F46E5",
+              fontWeight: 800,
+              letterSpacing: "0.08em",
+            }}
+          >
+            02 / Solution
+          </span>
+          <h2
+            style={{
+              fontSize: "28px",
+              fontWeight: 800,
+              color: "#0F172A",
+              letterSpacing: "-0.01em",
+              margin: 0,
+            }}
+          >
+            System Architecture & Workflow Design
+          </h2>
+          <p
+            style={{
+              fontSize: "17px",
+              color: "#334155",
+              lineHeight: "1.7",
+              margin: 0,
+            }}
+          >
+            {item.solutionSub}
+          </p>
+          <ul
+            style={{
+              paddingLeft: "24px",
+              margin: "8px 0 0",
+              color: "#475569",
+              lineHeight: "1.9",
+              fontSize: "16px",
+            }}
+          >
             {item.solutionPoints.map((point, index) => (
               <li key={index}>{point}</li>
             ))}
           </ul>
-        </div>
-      </article>
+        </article>
 
-      <article className="wrap">
-        <span className="section-label">Key capabilities</span>
-        <h2>What the system does.</h2>
-        <ul>
-          {item.capabilities.map((point, index) => (
-            <li key={index}>{point}</li>
-          ))}
-        </ul>
-      </article>
+        {/* Capabilities Section */}
+        <article
+          style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              textTransform: "uppercase",
+              color: "#4F46E5",
+              fontWeight: 800,
+              letterSpacing: "0.08em",
+            }}
+          >
+            03 / Capabilities
+          </span>
+          <h2
+            style={{
+              fontSize: "28px",
+              fontWeight: 800,
+              color: "#0F172A",
+              letterSpacing: "-0.01em",
+              margin: 0,
+            }}
+          >
+            What the system does.
+          </h2>
+          <ul
+            style={{
+              paddingLeft: "24px",
+              margin: "8px 0 0",
+              color: "#475569",
+              lineHeight: "1.9",
+              fontSize: "16px",
+            }}
+          >
+            {item.capabilities.map((point, index) => (
+              <li key={index}>{point}</li>
+            ))}
+          </ul>
+        </article>
 
-      <article className="alt-bg wrap" style={{ maxWidth: "1120px" }}>
-        <div style={{ maxWidth: "860px", margin: "0 auto" }}>
-          <span className="section-label">Results</span>
-          <h2>Measurable Outcomes & Production Value</h2>
-          <p>{item.resultsSub}</p>
-          <div className="final-stats">
-            <div className="fstat">
-              <div className="fstat-num">{item.fstat1Num}</div>
-              <div className="fstat-label">{item.fstat1Label}</div>
+        {/* Results Section */}
+        <article
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            backgroundColor: "#FFFFFF",
+            border: "1px solid #E2E8F0",
+            padding: "40px",
+            borderRadius: "20px",
+            boxShadow: "0 4px 6px -1px rgba(0,0,0,0.02)",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              textTransform: "uppercase",
+              color: "#4F46E5",
+              fontWeight: 800,
+              letterSpacing: "0.08em",
+            }}
+          >
+            04 / Results
+          </span>
+          <h2
+            style={{
+              fontSize: "28px",
+              fontWeight: 800,
+              color: "#0F172A",
+              letterSpacing: "-0.01em",
+              margin: 0,
+            }}
+          >
+            Measurable Outcomes & Production Value
+          </h2>
+          <p
+            style={{
+              fontSize: "17px",
+              color: "#334155",
+              lineHeight: "1.7",
+              margin: 0,
+            }}
+          >
+            {item.resultsSub}
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: "16px",
+              margin: "16px 0",
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "#F8FAFC",
+                border: "1px solid #E2E8F0",
+                borderRadius: "12px",
+                padding: "20px",
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{ fontSize: "28px", fontWeight: 800, color: "#0F172A" }}
+              >
+                {item.fstat1Num}
+              </div>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "#64748B",
+                  marginTop: "4px",
+                  fontWeight: 500,
+                }}
+              >
+                {item.fstat1Label}
+              </div>
             </div>
-            <div className="fstat">
-              <div className="fstat-num">{item.fstat2Num}</div>
-              <div className="fstat-label">{item.fstat2Label}</div>
+            <div
+              style={{
+                backgroundColor: "#F8FAFC",
+                border: "1px solid #E2E8F0",
+                borderRadius: "12px",
+                padding: "20px",
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{ fontSize: "28px", fontWeight: 800, color: "#0F172A" }}
+              >
+                {item.fstat2Num}
+              </div>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "#64748B",
+                  marginTop: "4px",
+                  fontWeight: 500,
+                }}
+              >
+                {item.fstat2Label}
+              </div>
             </div>
-            <div className="fstat">
-              <div className="fstat-num">{item.fstat3Num}</div>
-              <div className="fstat-label">{item.fstat3Label}</div>
+            <div
+              style={{
+                backgroundColor: "#F8FAFC",
+                border: "1px solid #E2E8F0",
+                borderRadius: "12px",
+                padding: "20px",
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{ fontSize: "28px", fontWeight: 800, color: "#0F172A" }}
+              >
+                {item.fstat3Num}
+              </div>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "#64748B",
+                  marginTop: "4px",
+                  fontWeight: 500,
+                }}
+              >
+                {item.fstat3Label}
+              </div>
             </div>
           </div>
-          <p>
+
+          <p
+            style={{
+              fontSize: "15px",
+              color: "#64748B",
+              margin: 0,
+              lineHeight: "1.6",
+            }}
+          >
             This is what After Concept builds: not a dashboard bolted onto a
             broken process, but the underlying system rebuilt so the dashboard
             has something true to show.
           </p>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <section className="cta">
-        <h2>Have a similar problem?</h2>
-        <p>
+      {/* CTA Section */}
+      <section
+        style={{
+          background: "linear-gradient(180deg, #0F172A 0%, #020617 100%)",
+          color: "#FFFFFF",
+          padding: "80px 20px",
+          textAlign: "center",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "32px",
+            fontWeight: 800,
+            margin: 0,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          Have a similar problem?
+        </h2>
+        <p
+          style={{
+            color: "#94A3B8",
+            marginTop: "12px",
+            fontSize: "18px",
+            maxWidth: "600px",
+            marginInline: "auto",
+          }}
+        >
           Tell us where your team is stuck reconciling things by hand.
           We&apos;ll show you what we&apos;d build.
         </p>
-        <Link href="/#contact" className="btn-primary">
-          Book a free scoping call
-        </Link>
-        <Link href="/case-studies" className="btn-ghost">
-          See more case studies
-        </Link>
+        <div
+          style={{
+            display: "flex",
+            gap: "16px",
+            justifyContent: "center",
+            marginTop: "32px",
+            flexWrap: "wrap",
+          }}
+        >
+          <Link
+            href="/#contact"
+            style={{
+              backgroundColor: "#4F46E5",
+              color: "#FFFFFF",
+              padding: "14px 28px",
+              borderRadius: "10px",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: "15px",
+              boxShadow: "0 10px 15px -3px rgba(79, 70, 229, 0.3)",
+            }}
+          >
+            Book a free scoping call
+          </Link>
+          <Link
+            href="/case-studies"
+            style={{
+              border: "1px solid #334155",
+              color: "#FFFFFF",
+              padding: "14px 28px",
+              borderRadius: "10px",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: "15px",
+              backgroundColor: "rgba(255,255,255,0.05)",
+            }}
+          >
+            See more case studies
+          </Link>
+        </div>
       </section>
 
       <Footer />
-    </>
+    </main>
   );
 }
