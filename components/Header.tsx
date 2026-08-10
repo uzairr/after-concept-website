@@ -7,47 +7,68 @@ const NAV_ITEMS = [{ label: "Case Studies", href: "#work" }];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Scroll effect for navbar background compression
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      const heroHeight = window.innerHeight - 80; // Detect end of Hero Section (100vh)
+
+      setIsScrolled(scrollY > 10);
+      setIsPastHero(scrollY > heroHeight);
     };
 
+    // Initial check
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
+
+  // Dynamic Background style based on scroll position
+  const getHeaderBgClass = () => {
+    if (isPastHero) {
+      // Solid Navy match when scrolled down to content sections
+      return "bg-[#18153d]/90 backdrop-blur-md border-white/10 shadow-lg py-1.5";
+    }
+    if (isScrolled) {
+      // Glassy Video overlay style while still inside Hero Section
+      return "bg-black/40 backdrop-blur-md border-white/10 shadow-md py-1.5";
+    }
+    // Top of page (pure transparent)
+    return "bg-transparent border-white/5 py-2";
+  };
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-200 ease-out border-b border-line py-2 ${
-        isScrolled
-          ? "bg-[rgba(246,244,238,0.85)] backdrop-blur-md shadow-sm"
-          : "bg-[rgba(246,244,238,0.95)]"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out border-b ${getHeaderBgClass()}`}
     >
       <nav
         ref={navRef}
-        className="flex items-center justify-between px-8 max-w-[1160px] mx-auto relative h-14 font-sans"
+        className="flex items-center justify-between px-6 md:px-12 max-w-[1280px] mx-auto relative h-14 font-sans"
         aria-label="Main Navigation"
       >
-        {/* Logo Section: Completely static (no hover effect) */}
-        <Link href="/" className="flex items-center gap-3">
-          {/* Existing AC Mark / Logo Icon */}
-          <span className="bg-[#2e2a5e] text-white text-sm font-bold w-9 h-9 rounded-lg flex items-center justify-center leading-none tracking-tight shadow-sm">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="bg-white text-[#0d0d0d] text-xs font-black w-8 h-8 rounded-lg flex items-center justify-center tracking-tighter shadow-sm">
             ac
           </span>
 
-          {/* New Logo Text Style (after = filled/bold, concept = outlined) */}
-          <span className="text-xl font-bold tracking-tight text-[#2e2a5e] flex items-center">
+          <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-0.5">
             <span>after</span>
             <span
               style={{
-                WebkitTextStroke: "1px #2e2a5e",
+                WebkitTextStroke: "1px #ffffff",
                 color: "transparent",
+                opacity: 0.9,
               }}
             >
               concept
@@ -55,26 +76,24 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop Nav Links (#3c3489 text & underline on hover) */}
-        <div className="hidden md:flex items-center gap-8 text-[15px] font-medium relative py-0 my-0 leading-none">
+        {/* Desktop Nav Link */}
+        <div className="hidden md:flex items-center gap-8 text-[14.5px] font-medium leading-none">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={`/${item.href}`}
-              className="group relative text-[#64748b] hover:text-[#3c3489] transition-colors duration-200 inline-flex flex-col items-center py-2 font-medium"
+              className="text-gray-300/80 hover:text-white transition-colors duration-200 py-1 font-medium"
             >
-              <span>{item.label}</span>
-              {/* Underline Bar with #3c3489 color */}
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#3c3489] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out origin-left" />
+              {item.label}
             </Link>
           ))}
         </div>
 
-        {/* Action CTA Button */}
+        {/* Action CTA Button ("Get Started") */}
         <div className="hidden md:flex items-center">
           <Link
             href="/#contact"
-            className="bg-ember-600 text-ember-100 px-6 py-2.5 rounded-lg text-[14px] font-medium tracking-tight transition-all duration-200 hover:bg-indigo-900 hover:-translate-y-px inline-flex items-center justify-center leading-none"
+            className="bg-[#e05628] hover:bg-[#cb491f] text-white px-5 py-2.5 rounded-lg text-[14px] font-semibold tracking-tight transition-all duration-200 shadow-md hover:shadow-orange-950/30 hover:-translate-y-0.5 inline-flex items-center justify-center leading-none"
           >
             Get Started
           </Link>
@@ -88,17 +107,17 @@ export default function Header() {
           aria-expanded={mobileMenuOpen}
         >
           <span
-            className={`w-6 h-0.5 bg-indigo-900 transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-white transition-all duration-300 ${
               mobileMenuOpen ? "rotate-45 translate-y-2" : ""
             }`}
           />
           <span
-            className={`w-6 h-0.5 bg-indigo-900 transition-all duration-200 ${
+            className={`w-6 h-0.5 bg-white transition-all duration-200 ${
               mobileMenuOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`w-6 h-0.5 bg-indigo-900 transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-white transition-all duration-300 ${
               mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           />
@@ -107,13 +126,13 @@ export default function Header() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden flex flex-col px-8 py-4 gap-3 bg-[rgba(246,244,238,0.98)] border-b border-line font-sans">
+        <div className="md:hidden flex flex-col px-8 py-6 gap-4 bg-[#18153d]/95 backdrop-blur-xl border-b border-white/10 font-sans">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={`/${item.href}`}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-[#64748b] hover:text-[#3c3489] transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-white transition-colors"
             >
               {item.label}
             </Link>
@@ -121,7 +140,7 @@ export default function Header() {
           <Link
             href="/#contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="mt-1 text-center bg-ember-600 text-ember-100 px-5 py-2.5 rounded-lg text-sm font-medium tracking-tight"
+            className="mt-2 text-center bg-[#e05628] text-white px-5 py-3 rounded-lg text-sm font-semibold tracking-tight shadow-md"
           >
             Get Started
           </Link>
