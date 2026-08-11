@@ -6,24 +6,27 @@ export default function Footer() {
       {/* Main Content Grid - Top Space (pt-32) ensures Navbar lands on dark background */}
       <div className="max-w-[1280px] w-full mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 pb-12">
         <div>
-          {/* Logo Badge + Company Name */}
+          {/* Exact Original Alignment with Original Logo Image */}
           <Link
             href="/"
-            className="inline-flex items-center gap-3 transition-transform hover:scale-105"
+            className="inline-flex items-center gap-2.5 transition-transform hover:scale-105"
           >
-            <span className="bg-white text-[#2e2a5e] text-sm font-bold w-9 h-9 rounded-lg flex items-center justify-center leading-none tracking-tight shadow-sm">
-              ac
-            </span>
-
+            <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center p-0 shadow-sm overflow-hidden">
+  <img 
+    src="/image.png" 
+    alt="After Concept Logo" 
+    className="w-full h-full object-contain scale-[1.75]"
+  />
+</div>
             <span className="text-xl font-bold tracking-tight text-white flex items-center">
-              <span>after</span>
+              <span>AFTER</span>
               <span
                 style={{
                   WebkitTextStroke: "1px #ffffff",
                   color: "transparent",
                 }}
               >
-                concept
+                CONCEPT
               </span>
             </span>
           </Link>
