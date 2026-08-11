@@ -1,77 +1,88 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import type { Metadata } from "next";
+import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: 'Case Studies — After Concept',
-  description: 'A sample of the products we\'ve taken from concept to production. Real results, real engagements.',
+  title: "Case Studies — After Concept",
+  description:
+    "A sample of the products we've taken from concept to production. Real results, real engagements.",
 };
 
 const cases = [
   {
-    href: '/case-studies/swiftcart',
-    thumb: 'SwiftCart',
-    industry: 'Retail tech',
-    title: 'Real-time inventory sync across 12 warehouses, without a single spreadsheet',
-    client: 'SwiftCart',
-    stat: '4×',
-    statLabel: 'order throughput after go-live',
-    readLabel: 'Read the case study →',
+    href: "/case-studies/swiftcart",
+    thumb: "SwiftCart",
+    industry: "Retail tech",
+    title:
+      "Real-time inventory sync across 12 warehouses, without a single spreadsheet",
+    client: "SwiftCart",
+    stat: "4×",
+    statLabel: "order throughput after go-live",
+    readLabel: "Read the case study →",
   },
   {
-    href: '#',
-    thumb: 'Northbridge Clinic',
-    industry: 'Healthcare',
-    title: 'Patient scheduling automated end to end across three clinics',
-    client: 'Northbridge Clinic',
-    stat: '27hrs',
-    statLabel: 'admin time saved weekly',
-    readLabel: 'Read the case study →',
+    href: "/case-studies/northbridge-clinic",
+    thumb: "Northbridge Clinic",
+    industry: "Healthcare",
+    title: "Patient scheduling automated end to end across three clinics",
+    client: "Northbridge Clinic",
+    stat: "27hrs",
+    statLabel: "admin time saved weekly",
+    readLabel: "Read the case study →",
   },
   {
-    href: '#',
-    thumb: 'Ledgerly',
-    industry: 'FinTech · SaaS',
-    title: 'Automated reconciliation dashboard replaces a 3-day month-end close',
-    client: 'Ledgerly',
-    stat: '3d→2h',
-    statLabel: 'month-end close time',
-    readLabel: 'Read the case study →',
+    href: "/case-studies/ledgerly",
+    thumb: "Ledgerly",
+    industry: "FinTech · SaaS",
+    title:
+      "Automated reconciliation dashboard replaces a 3-day month-end close",
+    client: "Ledgerly",
+    stat: "3d→2h",
+    statLabel: "month-end close time",
+    readLabel: "Read the case study →",
   },
   {
-    href: '#',
-    thumb: 'Fieldwise',
-    industry: 'Construction',
-    title: 'A dispatch app that routes crews without a single phone call',
-    client: 'Fieldwise',
-    stat: '2×',
-    statLabel: 'jobs completed per crew, per day',
-    readLabel: 'Read the case study →',
+    href: "/case-studies/fieldwise",
+    thumb: "Fieldwise",
+    industry: "Construction",
+    title: "A dispatch app that routes crews without a single phone call",
+    client: "Fieldwise",
+    stat: "2×",
+    statLabel: "jobs completed per crew, per day",
+    readLabel: "Read the case study →",
   },
   {
-    href: '#',
-    thumb: 'Loop Logistics',
-    industry: 'Logistics',
-    title: 'Route optimization that cut fuel spend without new hires',
-    client: 'Loop Logistics',
-    stat: '18%',
-    statLabel: 'reduction in fuel cost',
-    readLabel: 'Read the case study →',
+    href: "/case-studies/loop-logistics",
+    thumb: "Loop Logistics",
+    industry: "Logistics",
+    title: "Route optimization that cut fuel spend without new hires",
+    client: "Loop Logistics",
+    stat: "18%",
+    statLabel: "reduction in fuel cost",
+    readLabel: "Read the case study →",
   },
   {
-    href: '#',
-    thumb: 'Tandem Legal',
-    industry: 'Legal',
-    title: 'Contract review copilot cuts first-pass review time for associates',
-    client: 'Tandem Legal',
-    stat: '65%',
-    statLabel: 'faster first-pass review',
-    readLabel: 'Read the case study →',
+    href: "/case-studies/tandem-legal",
+    thumb: "Tandem Legal",
+    industry: "Legal",
+    title: "Contract review copilot cuts first-pass review time for associates",
+    client: "Tandem Legal",
+    stat: "65%",
+    statLabel: "faster first-pass review",
+    readLabel: "Read the case study →",
   },
 ];
 
-const filters = ['All', 'Retail tech', 'Healthcare', 'FinTech', 'Construction', 'Logistics', 'Legal'];
+const filters = [
+  "All",
+  "Retail tech",
+  "Healthcare",
+  "FinTech",
+  "Construction",
+  "Logistics",
+  "Legal",
+];
 
 export default function CaseStudiesPage() {
   return (
@@ -80,16 +91,21 @@ export default function CaseStudiesPage() {
 
       <div className="page-head wrap">
         <span className="eyebrow">
-          Proof{' '}
-          <span className="test-tag">Test data</span>
+          Proof <span className="test-tag">Test data</span>
         </span>
         <h1>Results that speak</h1>
-        <p>A sample of the products we&apos;ve taken from concept to production. Every figure below is illustrative — swap in your real engagements as they close.</p>
+        <p>
+          A sample of the products we&apos;ve taken from concept to production.
+          Every figure below is illustrative — swap in your real engagements as
+          they close.
+        </p>
       </div>
 
       <div className="filters">
         {filters.map((f, i) => (
-          <span key={f} className={`filter-pill${i === 0 ? ' active' : ''}`}>{f}</span>
+          <span key={f} className={`filter-pill${i === 0 ? " active" : ""}`}>
+            {f}
+          </span>
         ))}
       </div>
 
@@ -111,10 +127,17 @@ export default function CaseStudiesPage() {
         ))}
       </div>
 
-      <section className="cta" style={{ borderTop: '1px solid var(--line)', background: '#fff' }}>
+      <section
+        className="cta"
+        style={{ borderTop: "1px solid var(--line)", background: "#fff" }}
+      >
         <h2>Want results like these?</h2>
-        <p>Tell us about your workflow. We&apos;ll show you what we&apos;d build.</p>
-        <Link href="/#contact" className="btn-primary">Book a free scoping call</Link>
+        <p>
+          Tell us about your workflow. We&apos;ll show you what we&apos;d build.
+        </p>
+        <Link href="/#contact" className="btn-primary">
+          Book a free scoping call
+        </Link>
       </section>
 
       <Footer />
