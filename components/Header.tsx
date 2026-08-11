@@ -33,7 +33,7 @@ export default function Header() {
           </a>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button with Hover Effect */}
         <a 
           href="#contact" 
           className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm transition-all duration-200"
@@ -42,6 +42,14 @@ export default function Header() {
             color: '#ffffff',
             padding: '12px 24px',
             borderRadius: '12px',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#26215c';
+            e.currentTarget.style.color = '#ffffff';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#e05638';
+            e.currentTarget.style.color = '#ffffff';
           }}
         >
           Get Started
