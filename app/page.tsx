@@ -404,7 +404,7 @@ export default function Home() {
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .results-grid .result-card,
         .service-card,
         .testi-card,
@@ -543,7 +543,7 @@ export default function Home() {
             min-height: 100vh !important;
           }
         }
-      `}</style>
+      ` }} />
 
       {/* Hero Section */}
       <section
