@@ -136,7 +136,7 @@ export default function Home() {
       <div className="tier-card featured fade-in-element">
         <span className="tier-badge">Most popular</span>
         <span className="tier-num">02</span>
-        <div className="tier-price">$3,000–$6,000</div>
+        <div className="tier-price">$3K–$6K</div>
         <h3>Product sprint</h3>
         <p>A fixed-scope, fixed-price sprint information architecture, UI, and a technical plan you can hand to any team.</p>
         <div className="tier-meta">2–3 weeks · Fixed price</div>
@@ -145,7 +145,7 @@ export default function Home() {
       </div>
       <div className="tier-card fade-in-element">
         <span className="tier-num">03</span>
-        <div className="tier-price">$15,000–$50,000</div>
+        <div className="tier-price">$15K–$50K</div>
         <h3>Full build</h3>
         <p>Embedded team delivery of your product end to end Discover, Design, Build, and the Scale work after launch.</p>
         <div className="tier-meta">Custom scope · In production</div>
