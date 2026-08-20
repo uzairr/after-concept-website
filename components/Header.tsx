@@ -17,7 +17,7 @@ export default function Header() {
               style={{ width: '90px', height: '90px', objectFit: 'contain' }}
             />
           </div>
-          <div className="flex items-center font-bold tracking-tight text-xl text-white" style={{ marginLeft: '-15px' }}>
+          <div className="flex items-center font-bold tracking-tight text-xl text-white" style={{ marginLeft: '-26px' }}>
             <span>AFTER</span>
             <span className="text-transparent [-webkit-text-stroke:1px_#ffffff] ml-0.5">CONCEPT</span>
           </div>
@@ -38,20 +38,23 @@ export default function Header() {
         {/* CTA Button with Hover Effect */}
         <a 
           href="#contact" 
-          className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm transition-all duration-200"
+          className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm"
           style={{
             backgroundColor: '#e05638',
             color: '#ffffff',
             padding: '12px 24px',
             borderRadius: '12px',
+            transition: 'all 0.25s ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#26215c';
-            e.currentTarget.style.color = '#ffffff';
+            e.currentTarget.style.backgroundColor = '#c8481d';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 24px rgba(224, 86, 40, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = '#e05638';
-            e.currentTarget.style.color = '#ffffff';
+            e.currentTarget.style.transform = '';
+            e.currentTarget.style.boxShadow = '';
           }}
         >
           Get Started

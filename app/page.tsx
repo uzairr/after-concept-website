@@ -727,23 +727,21 @@ export default function Home() {
           }}
         >
           <div className="marquee-track">
-            <span>Bultra Bank</span>
-            <span>Faraway Yachting</span>
-            <span>Nkosi &amp; Associates</span>
-            <span>EVT SaaS</span>
-            <span>Land Design</span>
-            <span>SkyRoutes</span>
-            <span>MediCore</span>
-            <span>Finova</span>
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
 
-            <span>Bultra Bank</span>
-            <span>Faraway Yachting</span>
-            <span>Nkosi &amp; Associates</span>
-            <span>EVT SaaS</span>
-            <span>Land Design</span>
-            <span>SkyRoutes</span>
-            <span>MediCore</span>
-            <span>Finova</span>
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
           </div>
         </div>
       </section>
