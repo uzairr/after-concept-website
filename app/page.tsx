@@ -407,31 +407,32 @@ export default function Home() {
 
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       />
 
       <style
         dangerouslySetInnerHTML={{
           __html: `
         .hero-title-responsive {
-          font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
-          font-size: clamp(2.25rem, 6vw, 5.5rem) !important;
-          font-weight: 500 !important;
+          font-family: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, sans-serif !important;
+          font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+          font-weight: 600 !important;
           margin-top: 0px !important;
-          margin-bottom: 20px !important;
-          line-height: 1.08 !important;
+          margin-bottom: 24px !important;
+          line-height: 1.05 !important;
           color: #ffffff !important;
-          letter-spacing: -0.035em !important;
+          letter-spacing: -0.03em !important;
           text-align: left !important;
+          white-space: normal !important;
+          max-width: 42rem !important;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-        /* FORCE HERO CONTENT TO ALWAYS ALIGN LEFT ON ALL SCREENS */
         .hero-section-custom .wrap {
           margin-left: 0 !important;
           margin-right: auto !important;
-          padding-left: clamp(24px, 5vw, 80px) !important;
+          padding-left: clamp(24px, 5vw, 64px) !important;
           max-width: 100% !important;
           align-items: flex-start !important;
         }
@@ -440,19 +441,102 @@ export default function Home() {
           margin-left: 0 !important;
           margin-right: auto !important;
           text-align: left !important;
+          margin-bottom: 40px !important;
+          max-width: 42rem !important;
         }
 
-        /* ULTRA-WIDE & 2K DISPLAY OPTIMIZATION */
-        @media (min-width: 1800px) {
-          .hero-title-responsive {
-            font-size: clamp(3.5rem, 5vw, 7rem) !important;
+        .hero-subheading-cogent {
+          color: rgba(255, 255, 255, 0.55) !important;
+          font-family: "DM Sans", system-ui, sans-serif !important;
+          font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
+          line-height: 1.65 !important;
+          font-weight: 400 !important;
+          text-align: left !important;
+          letter-spacing: -0.01em !important;
+          margin-top: 0px !important;
+          margin-bottom: 32px !important;
+          max-width: 36rem !important;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        .hero-subheading-cogent strong {
+          color: rgba(255, 255, 255, 0.95) !important;
+          font-weight: 700 !important;
+        }
+
+        .hero-section-custom .wrap {
+          padding-top: clamp(140px, 18vh, 200px) !important;
+          padding-bottom: 40px !important;
+        }
+
+        @media (min-width: 1024px) and (max-width: 1536px) {
+          .hero-section-custom .wrap {
+            padding-left: clamp(32px, 4vw, 64px) !important;
+            padding-top: clamp(150px, 19vh, 210px) !important;
+            padding-bottom: 40px !important;
           }
+
           .hero-copy {
-            max-width: 1100px !important;
+            max-width: 42rem !important;
+            margin-bottom: 36px !important;
           }
+
+          .hero-title-responsive {
+            font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+            margin-bottom: 24px !important;
+            line-height: 1.05 !important;
+            letter-spacing: -0.03em !important;
+          }
+
           .hero-subheading-cogent {
-            font-size: 1.25rem !important;
-            max-width: 680px !important;
+            font-size: 1.05rem !important;
+            line-height: 1.65 !important;
+            margin-bottom: 32px !important;
+            max-width: 36rem !important;
+          }
+
+          .hero-actions {
+            gap: 20px !important;
+          }
+
+          .hero-actions .btn-primary,
+          .hero-actions .btn-ghost {
+            min-width: 210px !important;
+            padding: 16px 36px !important;
+            font-size: 0.98rem !important;
+          }
+        }
+
+        @media (min-width: 1537px) {
+          .hero-section-custom {
+            min-height: 100vh !important;
+          }
+
+          .hero-section-custom .wrap {
+            justify-content: flex-end !important;
+            padding-top: 280px !important;
+            padding-bottom: 40px !important;
+            padding-left: clamp(24px, 3vw, 48px) !important;
+            margin-left: 0 !important;
+          }
+
+          .hero-copy {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            max-width: 42rem !important;
+          }
+
+          .hero-title-responsive {
+            font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+            line-height: 1.05 !important;
+            letter-spacing: -0.03em !important;
+            margin-bottom: 24px !important;
+          }
+
+          .hero-subheading-cogent {
+            font-size: 1.15rem !important;
+            margin-bottom: 32px !important;
+            max-width: 38rem !important;
           }
         }
 
@@ -530,21 +614,6 @@ export default function Home() {
           opacity: 0.95;
         }
 
-        .hero-subheading-cogent {
-          color: rgba(255, 255, 255, 0.7) !important;
-          font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
-          font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
-          line-height: 1.5 !important;
-          font-weight: 400 !important;
-          text-align: left !important;
-          letter-spacing: -0.01em !important;
-        }
-
-        .hero-subheading-cogent strong {
-          color: #ffffff !important;
-          font-weight: 700 !important;
-        }
-
         @keyframes scrollMarquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -569,7 +638,7 @@ export default function Home() {
 
         .hero-actions .btn-primary,
         .hero-actions .btn-ghost {
-          min-width: 190px !important;
+          min-width: 210px;
           text-align: center !important;
           justify-content: center !important;
           display: inline-flex !important;
@@ -590,7 +659,7 @@ export default function Home() {
         }
 
         .hero-section-custom {
-          min-height: 100vh;
+          min-height: 70vh;
         }
       `,
         }}
@@ -650,42 +719,33 @@ export default function Home() {
             position: "relative",
             zIndex: 2,
             width: "100%",
-            paddingTop: "clamp(120px, 18vh, 240px)",
-            paddingBottom: "32px",
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
+            justifyContent: "center",
           }}
         >
           <div
             className="hero-copy"
-            style={{ maxWidth: "850px", textAlign: "left", width: "100%" }}
+            style={{ maxWidth: "42rem", textAlign: "left", width: "100%" }}
           >
+            {/* MAIN HEADING */}
             <h1 className="hero-title-responsive">
-              We build <br />
-              products SMEs <br />
-              truly need.
+              We Build Products SMEs truly need.
             </h1>
 
-            <p
-              className="hero-subheading-cogent"
-              style={{
-                marginBottom: "28px",
-                marginTop: "0px",
-                maxWidth: "520px",
-              }}
-            >
+            {/* SUBHEADING */}
+            <p className="hero-subheading-cogent">
               <strong>Production-ready digital products.</strong> Built by an
-              embedded team of design & engineering specialists. We partner with
-              ambitious founders to go from vision to launch.
+              embedded team of design &amp; engineering specialists. We partner
+              with ambitious founders to go from vision to launch.
             </p>
 
             <div
               className="hero-actions"
               style={{
                 display: "flex",
-                gap: "14px",
+                gap: "20px",
                 alignItems: "center",
                 justifyContent: "flex-start",
                 flexWrap: "wrap",
@@ -699,7 +759,8 @@ export default function Home() {
                   color: "#ffffff",
                   boxShadow: "0 4px 20px rgba(224, 86, 40, 0.35)",
                   borderRadius: "9999px",
-                  padding: "14px 28px",
+                  padding: "16px 36px",
+                  minWidth: "210px",
                 }}
               >
                 Start a Project
@@ -713,7 +774,8 @@ export default function Home() {
                   backgroundColor: "rgba(0, 0, 0, 0.35)",
                   backdropFilter: "blur(12px)",
                   borderRadius: "9999px",
-                  padding: "14px 28px",
+                  padding: "16px 36px",
+                  minWidth: "210px",
                 }}
               >
                 View Our Work
@@ -722,7 +784,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Marquee Always Fixed to Hero Bottom */}
+        {/* Marquee Fixed to Hero Bottom */}
         <div
           className="marquee cogent-marquee"
           style={{
