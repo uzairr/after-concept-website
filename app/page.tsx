@@ -10,7 +10,7 @@ import TimelineSection from "@/components/TimelineSection";
 function AnimatedCounter({ value }: { value: string }) {
   const numericMatch = value.match(/\d+/);
   const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : 0;
-  const suffix = value.replace(/[0-9]/g, '');
+  const suffix = value.replace(/[0-9]/g, "");
 
   const [count, setCount] = useState(0);
 
@@ -36,12 +36,13 @@ function AnimatedCounter({ value }: { value: string }) {
 
   return (
     <span>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 }
 
-// Compact Static Cards Grid Component with Orange Eyebrow support
+// Compact Static Cards Grid Component
 export function OriginStackedCards() {
   const stats = [
     {
@@ -67,23 +68,24 @@ export function OriginStackedCards() {
   ];
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      width: "100%",
-      maxWidth: "420px",
-      paddingTop: "0px" // Ensures perfect alignment with the top
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        width: "100%",
+        maxWidth: "420px",
+        paddingTop: "0px",
+      }}
+    >
       {stats.map((stat, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
           style={{
             borderBottom: i !== stats.length - 1 ? "1px solid #e7e5e4" : "none",
             paddingBottom: i !== stats.length - 1 ? "18px" : "0",
           }}
         >
-          {/* Compact Animated Big Number */}
           <div
             style={{
               fontSize: "42px",
@@ -97,7 +99,6 @@ export function OriginStackedCards() {
             <AnimatedCounter value={stat.num} />
           </div>
 
-          {/* Label */}
           <div
             style={{
               fontSize: "14px",
@@ -109,7 +110,6 @@ export function OriginStackedCards() {
             {stat.label}
           </div>
 
-          {/* Description */}
           <div
             style={{
               fontSize: "12.5px",
@@ -125,6 +125,7 @@ export function OriginStackedCards() {
     </div>
   );
 }
+
 // Counter Component
 function CounterStat({
   value,
@@ -347,14 +348,14 @@ function OutcomeSection() {
 
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
-  <span className="eyebrow">WHAT CLIENTS GAIN</span>
-  <h2>Outcomes That Matter</h2>
-  <p>
-    Real figures from real engagements, with specifics filled in as each
-    case study is finished.
-  </p>
-</div>
-<div className="results-grid">
+          <span className="eyebrow">WHAT CLIENTS GAIN</span>
+          <h2>Outcomes That Matter</h2>
+          <p>
+            Real figures from real engagements, with specifics filled in as each
+            case study is finished.
+          </p>
+        </div>
+        <div className="results-grid">
           <div className="result-card">
             <CounterStat value={40} suffix="%" />
             <div className="result-label">
@@ -370,9 +371,15 @@ function OutcomeSection() {
             <div className="result-source">Client engagement</div>
           </div>
           <div className="result-card">
-            <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+            <div
+              style={{ display: "flex", alignItems: "baseline", gap: "6px" }}
+            >
               <CounterStat value={10} suffix="" />
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#e05628" }}>Days</span>
+              <span
+                style={{ fontSize: "36px", fontWeight: 800, color: "#e05628" }}
+              >
+                Days
+              </span>
             </div>
             <div className="result-label">
               Average, kickoff to first release
@@ -398,13 +405,57 @@ export default function Home() {
       <ScrollObserver />
       <Header />
 
-      {/* Google Font DM Sans Import via HTML link */}
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       />
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .hero-title-responsive {
+          font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
+          font-size: clamp(2.25rem, 6vw, 5.5rem) !important;
+          font-weight: 500 !important;
+          margin-top: 0px !important;
+          margin-bottom: 20px !important;
+          line-height: 1.08 !important;
+          color: #ffffff !important;
+          letter-spacing: -0.035em !important;
+          text-align: left !important;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* FORCE HERO CONTENT TO ALWAYS ALIGN LEFT ON ALL SCREENS */
+        .hero-section-custom .wrap {
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          padding-left: clamp(24px, 5vw, 80px) !important;
+          max-width: 100% !important;
+          align-items: flex-start !important;
+        }
+
+        .hero-copy {
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          text-align: left !important;
+        }
+
+        /* ULTRA-WIDE & 2K DISPLAY OPTIMIZATION */
+        @media (min-width: 1800px) {
+          .hero-title-responsive {
+            font-size: clamp(3.5rem, 5vw, 7rem) !important;
+          }
+          .hero-copy {
+            max-width: 1100px !important;
+          }
+          .hero-subheading-cogent {
+            font-size: 1.25rem !important;
+            max-width: 680px !important;
+          }
+        }
+
         .results-grid .result-card,
         .service-card,
         .testi-card,
@@ -479,12 +530,11 @@ export default function Home() {
           opacity: 0.95;
         }
 
-        /* Subheading Color Specificity Override */
         .hero-subheading-cogent {
-          color: rgba(255, 255, 255, 0.42) !important;
+          color: rgba(255, 255, 255, 0.7) !important;
           font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
-          font-size: clamp(1rem, 1.15vw, 1.05rem) !important;
-          line-height: 1.55 !important;
+          font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+          line-height: 1.5 !important;
           font-weight: 400 !important;
           text-align: left !important;
           letter-spacing: -0.01em !important;
@@ -495,7 +545,6 @@ export default function Home() {
           font-weight: 700 !important;
         }
 
-        /* Continuous Infinite Marquee Animation */
         @keyframes scrollMarquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -518,7 +567,16 @@ export default function Home() {
           white-space: nowrap;
         }
 
-        /* Pill buttons hover effects */
+        .hero-actions .btn-primary,
+        .hero-actions .btn-ghost {
+          min-width: 190px !important;
+          text-align: center !important;
+          justify-content: center !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          box-sizing: border-box !important;
+        }
+
         .hero-actions .btn-primary:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 24px rgba(224, 86, 40, 0.4) !important;
@@ -531,19 +589,12 @@ export default function Home() {
           border-color: rgba(255, 255, 255, 0.4) !important;
         }
 
-        /* Dynamic Hero Heights to keep gaps original on desktop */
         .hero-section-custom {
           min-height: 100vh;
-          height: 100vh;
         }
-
-        @media (max-height: 700px) {
-          .hero-section-custom {
-            height: auto !important;
-            min-height: 100vh !important;
-          }
-        }
-      ` }} />
+      `,
+        }}
+      />
 
       {/* Hero Section */}
       <section
@@ -559,7 +610,6 @@ export default function Home() {
           padding: 0,
         }}
       >
-        {/* Full-Screen Background Video */}
         <video
           autoPlay
           loop
@@ -582,7 +632,6 @@ export default function Home() {
           Your browser does not support the video tag.
         </video>
 
-        {/* Soft Vignette Overlay */}
         <div
           style={{
             position: "absolute",
@@ -594,55 +643,37 @@ export default function Home() {
           }}
         />
 
-        {/* Hero Content Container aligned with left spacing (Shifted Right to match Cogent) */}
+        {/* Hero Content Container */}
         <div
+          className="wrap"
           style={{
             position: "relative",
             zIndex: 2,
             width: "100%",
-            maxWidth: "1400px",
-            margin: "0 auto",
-            paddingTop: "clamp(130px, 16vh, 180px)",
-            paddingBottom: "40px",
-            paddingLeft: "clamp(48px, 6vw, 96px)", // Added extra padding to shift text right like Cogent Labs
-            paddingRight: "32px",
+            paddingTop: "clamp(120px, 18vh, 240px)",
+            paddingBottom: "32px",
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "flex-end",
           }}
         >
           <div
             className="hero-copy"
-            style={{ maxWidth: "850px", textAlign: "left" }}
+            style={{ maxWidth: "850px", textAlign: "left", width: "100%" }}
           >
-            {/* Crisp Semi-Bold Heading */}
-            <h1
-              style={{
-                fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
-                fontSize: "clamp(3.5rem, 6.5vw, 5.5rem)",
-                fontWeight: 600,
-                marginTop: "0px",
-                marginBottom: "24px",
-                lineHeight: "1.05",
-                color: "#ffffff",
-                letterSpacing: "-0.035em",
-                WebkitFontSmoothing: "antialiased",
-                MozOsxFontSmoothing: "grayscale",
-              }}
-            >
+            <h1 className="hero-title-responsive">
               We build <br />
               products SMEs <br />
               truly need.
             </h1>
 
-            {/* Subheading styled with direct overrides */}
             <p
               className="hero-subheading-cogent"
               style={{
-                marginBottom: "36px",
+                marginBottom: "28px",
                 marginTop: "0px",
-                maxWidth: "480px",
+                maxWidth: "520px",
               }}
             >
               <strong>Production-ready digital products.</strong> Built by an
@@ -650,7 +681,6 @@ export default function Home() {
               ambitious founders to go from vision to launch.
             </p>
 
-            {/* Rounded Pill Buttons */}
             <div
               className="hero-actions"
               style={{
@@ -665,21 +695,11 @@ export default function Home() {
                 href="#contact"
                 className="btn-primary"
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "48px",
-                  padding: "0 28px",
                   backgroundColor: "#e05628",
                   color: "#ffffff",
-                  fontWeight: 600,
-                  fontSize: "15px",
-                  borderRadius: "9999px",
                   boxShadow: "0 4px 20px rgba(224, 86, 40, 0.35)",
-                  transition: "all 0.25s ease",
-                  textDecoration: "none",
-                  letterSpacing: "-0.01em",
-                  fontFamily: '"DM Sans", sans-serif',
+                  borderRadius: "9999px",
+                  padding: "14px 28px",
                 }}
               >
                 Start a Project
@@ -688,22 +708,12 @@ export default function Home() {
                 href="#work"
                 className="btn-ghost"
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "48px",
-                  padding: "0 24px",
                   color: "rgba(255, 255, 255, 0.9)",
-                  borderRadius: "9999px",
                   border: "1px solid rgba(255, 255, 255, 0.25)",
                   backgroundColor: "rgba(0, 0, 0, 0.35)",
                   backdropFilter: "blur(12px)",
-                  fontWeight: 500,
-                  fontSize: "15px",
-                  textDecoration: "none",
-                  letterSpacing: "-0.01em",
-                  transition: "all 0.25s ease",
-                  fontFamily: '"DM Sans", sans-serif',
+                  borderRadius: "9999px",
+                  padding: "14px 28px",
                 }}
               >
                 View Our Work
@@ -722,7 +732,7 @@ export default function Home() {
             backgroundColor: "rgba(0, 0, 0, 0.65)",
             backdropFilter: "blur(12px)",
             borderTop: "1px solid rgba(255, 255, 255, 0.12)",
-            padding: "18px 0",
+            padding: "16px 0",
             overflow: "hidden",
           }}
         >
@@ -747,26 +757,28 @@ export default function Home() {
       </section>
 
       <section className="origin">
-  <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
-    <div>
-      <span className="eyebrow" style={{ color: "#e05628" }}>The origin story</span>
-      <p className="origin-quote">
-        "Founders came with half-built agency projects. We started After
-        Concept as one team to own it all, design and engineering. No
-        handoffs, no lost focus, just production delivery."
-      </p>
-      <p className="body">
-        That's still how we work. One embedded team follows your product
-        from the first discovery call through the growth work that happens
-        after launch without a relay of subcontractors passing the baton.
-      </p>
-    </div>
+        <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
+          <div>
+            <span className="eyebrow" style={{ color: "#e05628" }}>
+              The origin story
+            </span>
+            <p className="origin-quote">
+              "Founders came with half-built agency projects. We started After
+              Concept as one team to own it all, design and engineering. No
+              handoffs, no lost focus, just production delivery."
+            </p>
+            <p className="body">
+              That's still how we work. One embedded team follows your product
+              from the first discovery call through the growth work that happens
+              after launch without a relay of subcontractors passing the baton.
+            </p>
+          </div>
 
-    <div>
-      <OriginStackedCards />
-    </div>
-  </div>
-</section>
+          <div>
+            <OriginStackedCards />
+          </div>
+        </div>
+      </section>
 
       <section>
         <div className="wrap">
@@ -966,7 +978,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GSAP Timeline Scroll Component */}
       <TimelineSection />
 
       <OutcomeSection />
