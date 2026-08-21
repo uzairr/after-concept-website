@@ -506,7 +506,7 @@ export default function Home() {
           gap: 64px;
           align-items: center;
           width: max-content;
-          animation: scrollMarquee 28s linear infinite;
+          animation: scrollMarquee 140s linear infinite;
         }
 
         .cogent-marquee span {
@@ -742,6 +742,70 @@ export default function Home() {
             <span>Miray Group</span>
             <span>Samui</span>
             <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
           </div>
         </div>
       </section>
@@ -751,9 +815,7 @@ export default function Home() {
     <div>
       <span className="eyebrow" style={{ color: "#e05628" }}>The origin story</span>
       <p className="origin-quote">
-        "Founders came with half-built agency projects. We started After
-        Concept as one team to own it all, design and engineering. No
-        handoffs, no lost focus, just production delivery."
+        Half-built projects. We started After Concept to own it all: design to production, no handoffs"
       </p>
       <p className="body">
         That's still how we work. One embedded team follows your product

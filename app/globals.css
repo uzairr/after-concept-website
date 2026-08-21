@@ -628,8 +628,8 @@ section {
 }
 
 .origin-quote::before {
-  content: "\201C";
-  color: var(--ember-600);
+   content: "\201C"; 
+  /* color: var(--ember-600); */
   margin-right: 2px;
 }
 
