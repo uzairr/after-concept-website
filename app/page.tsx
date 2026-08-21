@@ -624,7 +624,7 @@ export default function Home() {
           gap: 64px;
           align-items: center;
           width: max-content;
-          animation: scrollMarquee 28s linear infinite;
+          animation: scrollMarquee 140s linear infinite;
         }
 
         .cogent-marquee span {
@@ -799,6 +799,70 @@ export default function Home() {
           }}
         >
           <div className="marquee-track">
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
             <span>Landdesign</span>
             <span>MBC</span>
             <span>Lake Effect</span>
