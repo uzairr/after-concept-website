@@ -661,6 +661,13 @@ export default function Home() {
         .hero-section-custom {
           min-height: 70vh;
         }
+
+        @media (min-width: 1024px) {
+          .hero-section-custom {
+            min-height: 100vh !important;
+            min-height: 100dvh !important;
+          }
+        }
       `,
         }}
       />
