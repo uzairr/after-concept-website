@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#18153d] text-indigo-300 w-full min-h-screen flex flex-col pt-32 pb-8 px-8 border-t border-white/10 font-sans">
-      {/* Main Content Grid - Top Space (pt-32) ensures Navbar lands on dark background */}
-      <div className="max-w-[1280px] w-full mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 pb-12">
+    <footer className="bg-[#18153d] text-indigo-300 w-full flex flex-col pt-16 pb-8 px-8 border-t border-white/10 font-sans">
+      {/* Main Content Grid */}
+      <div className="max-w-[1280px] w-full mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-8">
         <div>
           {/* Exact Original Alignment with Original Logo Image */}
           <Link
@@ -182,9 +182,6 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 text-sm text-indigo-300/80 hover:text-white transition-colors"
               >
                 <span>contact@afterconcept.io</span>
-                <span className="text-[10px] font-bold tracking-wider text-[#e05628] bg-[#e05628]/15 border border-[#e05628]/30 rounded px-1.5 py-0.5 uppercase">
-                  Confirm
-                </span>
               </a>
             </li>
             <li className="text-sm text-indigo-300/80">Pakistan — Global</li>
@@ -193,8 +190,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* mt-auto pushes this section & additional space down to force natural scrolling */}
-      <div className="mt-auto max-w-[1280px] w-full mx-auto border-t border-white/10 pt-5 flex justify-between flex-wrap gap-4 text-xs text-indigo-300/60 font-mono">
+      {/* Footer Bottom */}
+      <div className="mt-3 max-w-[1280px] w-full mx-auto border-t border-white/10 pt-5 flex justify-between flex-wrap gap-4 text-xs text-indigo-300/60 font-mono">
         <span>© 2026 After Concept. All rights reserved.</span>
         <span className="space-x-3">
           <Link href="#" className="hover:text-white transition-colors">
