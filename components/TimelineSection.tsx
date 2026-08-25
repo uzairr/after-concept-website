@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function TimelineSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const timelineContainerRef = useRef<HTMLDivElement>(null);
   const lineFillRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -20,11 +21,9 @@ export default function TimelineSection() {
       mm.add("(min-width: 901px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "center center",
-            end: "+=150%", 
-            scrub: true,
-            pin: true,
+            trigger: timelineContainerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
           }
         });
 
@@ -70,11 +69,9 @@ export default function TimelineSection() {
       mm.add("(max-width: 900px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "center center",
-            end: "+=150%", 
-            scrub: true,
-            pin: true,
+            trigger: timelineContainerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
           }
         });
 
@@ -135,7 +132,7 @@ export default function TimelineSection() {
           <h2>Discover, design, build, scale</h2>
           <p>Four stages, no handoff between them — the same team stays accountable from first spec to post-launch growth.</p>
         </div>
-        <div className="timeline-container">
+        <div className="timeline-container" ref={timelineContainerRef}>
           <div className="timeline-line-track">
             <div className="timeline-line-fill" ref={lineFillRef}></div>
           </div>
