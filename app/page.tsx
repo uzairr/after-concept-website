@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 import ScrollObserver from "@/components/ScrollObserver";
 import TimelineSection from "@/components/TimelineSection";
 
-// Reusable Counter Component for smooth 0 to target number animation
+// Reusable Counter Component
 function AnimatedCounter({ value }: { value: string }) {
   const numericMatch = value.match(/\d+/);
   const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : 0;
-  const suffix = value.replace(/[0-9]/g, '');
+  const suffix = value.replace(/[0-9]/g, "");
 
   const [count, setCount] = useState(0);
 
@@ -36,96 +36,104 @@ function AnimatedCounter({ value }: { value: string }) {
 
   return (
     <span>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 }
 
-// Compact Static Cards Grid Component with Orange Eyebrow support
+// Modern & Polished Cards Grid Component for Origin Section
 export function OriginStackedCards() {
   const stats = [
-    {
-      num: "40+",
-      label: "Projects Shipped",
-      desc: "Delivering end-to-end digital platforms, custom SaaS products, and enterprise applications with speed and precision.",
-    },
-    {
-      num: "2+",
-      label: "Years Building",
-      desc: "Proven track record of turning complex technical challenges into scalable, production-ready solutions for business growth.",
-    },
-    {
-      num: "98%",
-      label: "Client Satisfaction",
-      desc: "Focused on high quality, transparent execution, and continuous alignment with founder vision from day one.",
-    },
-    {
-      num: "9+",
-      label: "Industries Served",
-      desc: "Building tailored software solutions across Fintech, Healthcare, Real Estate, Logistics, AI SaaS, and DevOps.",
-    },
+    { num: "40+", label: "Projects Shipped", sub: "Production-ready builds" },
+    { num: "2+", label: "Years Building", sub: "End-to-end expertise" },
+    { num: "98%", label: "Client Retention", sub: "Long-term relationships" },
+    { num: "9+", label: "Industries Served", sub: "SaaS, Fintech & AI" },
   ];
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      width: "100%",
-      maxWidth: "420px",
-      paddingTop: "0px" // Ensures perfect alignment with the top
-    }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap: "20px",
+        width: "100%",
+        height: "100%",
+      }}
+    >
       {stats.map((stat, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
+          className="origin-stat-card"
           style={{
-            borderBottom: i !== stats.length - 1 ? "1px solid #e7e5e4" : "none",
-            paddingBottom: i !== stats.length - 1 ? "18px" : "0",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: "28px 24px",
+            backgroundColor: "#ffffff",
+            border: "1px solid #e2e8f0",
+            borderRadius: "16px",
+            boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.02)",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          {/* Compact Animated Big Number */}
+          {/* Top accent bar on card hover */}
+          <div
+            className="card-top-indicator"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: "3px",
+              backgroundColor: "#e05628",
+              opacity: 0,
+              transition: "opacity 0.3s ease",
+            }}
+          />
+
           <div
             style={{
-              fontSize: "42px",
+              fontSize: "clamp(2.2rem, 3.2vw, 2.75rem)",
               fontWeight: 800,
               color: "#e05628",
-              lineHeight: 1.05,
+              lineHeight: 1,
               letterSpacing: "-0.03em",
-              marginBottom: "2px",
+              marginBottom: "12px",
             }}
           >
             <AnimatedCounter value={stat.num} />
           </div>
 
-          {/* Label */}
-          <div
-            style={{
-              fontSize: "14px",
-              fontWeight: 600,
-              color: "#1c1917",
-              marginBottom: "3px",
-            }}
-          >
-            {stat.label}
-          </div>
-
-          {/* Description */}
-          <div
-            style={{
-              fontSize: "12.5px",
-              lineHeight: "1.4",
-              color: "#78716c",
-              fontWeight: 400,
-            }}
-          >
-            {stat.desc}
+          <div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "#0f172a",
+                marginBottom: "4px",
+              }}
+            >
+              {stat.label}
+            </div>
+            <div
+              style={{
+                fontSize: "13px",
+                color: "#64748b",
+                fontWeight: 400,
+              }}
+            >
+              {stat.sub}
+            </div>
           </div>
         </div>
       ))}
     </div>
   );
 }
-// Counter Component
+
+// Intersection-Observer Counter Component
 function CounterStat({
   value,
   suffix = "",
@@ -200,7 +208,7 @@ function CounterStat({
   );
 }
 
-// Outcome Section Component
+// Canvas Wave & Particle Background Section
 function OutcomeSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -217,7 +225,7 @@ function OutcomeSection() {
     let animationFrameId: number;
 
     const resize = () => {
-      if (canvas.parentElement) {
+      if (canvas && canvas.parentElement) {
         w = canvas.width = canvas.parentElement.offsetWidth;
         h = canvas.height = canvas.parentElement.offsetHeight;
       }
@@ -338,7 +346,7 @@ function OutcomeSection() {
             maskImage:
               "radial-gradient(ellipse 80% 80% at 50% 50%, #000 40%, transparent 100%)",
           }}
-        ></div>
+        />
         <canvas
           ref={canvasRef}
           style={{ width: "100%", height: "100%", display: "block" }}
@@ -347,14 +355,14 @@ function OutcomeSection() {
 
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
-  <span className="eyebrow">WHAT CLIENTS GAIN</span>
-  <h2>Outcomes That Matter</h2>
-  <p>
-    Real figures from real engagements, with specifics filled in as each
-    case study is finished.
-  </p>
-</div>
-<div className="results-grid">
+          <span className="eyebrow">WHAT CLIENTS GAIN</span>
+          <h2>Outcomes That Matter</h2>
+          <p>
+            Real figures from real engagements, with specifics filled in as each
+            case study is finished.
+          </p>
+        </div>
+        <div className="results-grid">
           <div className="result-card">
             <CounterStat value={40} suffix="%" />
             <div className="result-label">
@@ -370,9 +378,19 @@ function OutcomeSection() {
             <div className="result-source">Client engagement</div>
           </div>
           <div className="result-card">
-            <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+            <div
+              style={{ display: "flex", alignItems: "baseline", gap: "6px" }}
+            >
               <CounterStat value={10} suffix="" />
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#e05628" }}>Days</span>
+              <span
+                style={{
+                  fontSize: "36px",
+                  fontWeight: 800,
+                  color: "#e05628",
+                }}
+              >
+                Days
+              </span>
             </div>
             <div className="result-label">
               Average, kickoff to first release
@@ -392,19 +410,16 @@ function OutcomeSection() {
   );
 }
 
+// Main Page Component Export
 export default function Home() {
   return (
     <>
       <ScrollObserver />
       <Header />
 
-      {/* Google Font DM Sans Import via HTML link */}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-      />
-
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .results-grid .result-card,
         .service-card,
         .testi-card,
@@ -421,6 +436,19 @@ export default function Home() {
           border-color: rgba(224, 86, 40, 0.35) !important;
         }
 
+        /* Origin Cards Hover Custom Animation */
+        .origin-stat-card {
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .origin-stat-card:hover {
+          transform: translateY(-5px) !important;
+          border-color: rgba(224, 86, 40, 0.3) !important;
+          box-shadow: 0 16px 30px -10px rgba(224, 86, 40, 0.12) !important;
+        }
+        .origin-stat-card:hover .card-top-indicator {
+          opacity: 1 !important;
+        }
+
         .outcome-section .result-card {
           transition: none !important;
           transform: none !important;
@@ -428,11 +456,6 @@ export default function Home() {
           cursor: default !important;
           background: rgba(255, 255, 255, 0.85) !important;
           backdrop-filter: blur(8px) !important;
-        }
-        .outcome-section .result-card:hover {
-          transform: none !important;
-          box-shadow: none !important;
-          border-color: inherit !important;
         }
 
         .tier-card {
@@ -444,9 +467,6 @@ export default function Home() {
         .tier-card.featured {
           transform: none !important;
           box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05) !important;
-        }
-        .tier-card.featured:hover {
-          transform: none !important;
         }
 
         .tier-card .tier-cta {
@@ -479,10 +499,9 @@ export default function Home() {
           opacity: 0.95;
         }
 
-        /* Subheading Color Specificity Override */
         .hero-subheading-cogent {
-          color: rgba(255, 255, 255, 0.42) !important;
-          font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
+          color: rgba(255, 255, 255, 0.6) !important;
+          font-family: var(--font-dm-sans), sans-serif !important;
           font-size: clamp(1rem, 1.15vw, 1.05rem) !important;
           line-height: 1.55 !important;
           font-weight: 400 !important;
@@ -495,7 +514,6 @@ export default function Home() {
           font-weight: 700 !important;
         }
 
-        /* Continuous Infinite Marquee Animation */
         @keyframes scrollMarquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -518,7 +536,6 @@ export default function Home() {
           white-space: nowrap;
         }
 
-        /* Pill buttons hover effects */
         .hero-actions .btn-primary:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 24px rgba(224, 86, 40, 0.4) !important;
@@ -531,10 +548,16 @@ export default function Home() {
           border-color: rgba(255, 255, 255, 0.4) !important;
         }
 
-        /* Dynamic Hero Heights to keep gaps original on desktop */
         .hero-section-custom {
           min-height: 100vh;
           height: 100vh;
+        }
+
+        @media (max-width: 991px) {
+          .origin-grid-custom {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
         }
 
         @media (max-height: 700px) {
@@ -543,7 +566,9 @@ export default function Home() {
             min-height: 100vh !important;
           }
         }
-      ` }} />
+      `,
+        }}
+      />
 
       {/* Hero Section */}
       <section
@@ -559,7 +584,6 @@ export default function Home() {
           padding: 0,
         }}
       >
-        {/* Full-Screen Background Video */}
         <video
           autoPlay
           loop
@@ -575,14 +599,12 @@ export default function Home() {
             objectFit: "cover",
             zIndex: 0,
             pointerEvents: "none",
-            filter: "none",
           }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
-        {/* Soft Vignette Overlay */}
         <div
           style={{
             position: "absolute",
@@ -594,7 +616,6 @@ export default function Home() {
           }}
         />
 
-        {/* Hero Content Container aligned with left spacing (Shifted Right to match Cogent) */}
         <div
           style={{
             position: "relative",
@@ -604,7 +625,7 @@ export default function Home() {
             margin: "0 auto",
             paddingTop: "clamp(130px, 16vh, 180px)",
             paddingBottom: "40px",
-            paddingLeft: "clamp(48px, 6vw, 96px)", // Added extra padding to shift text right like Cogent Labs
+            paddingLeft: "clamp(48px, 6vw, 96px)",
             paddingRight: "32px",
             flex: 1,
             display: "flex",
@@ -616,10 +637,9 @@ export default function Home() {
             className="hero-copy"
             style={{ maxWidth: "850px", textAlign: "left" }}
           >
-            {/* Crisp Semi-Bold Heading */}
             <h1
               style={{
-                fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
+                fontFamily: "var(--font-dm-sans), sans-serif",
                 fontSize: "clamp(3.5rem, 6.5vw, 5.5rem)",
                 fontWeight: 600,
                 marginTop: "0px",
@@ -628,7 +648,6 @@ export default function Home() {
                 color: "#ffffff",
                 letterSpacing: "-0.035em",
                 WebkitFontSmoothing: "antialiased",
-                MozOsxFontSmoothing: "grayscale",
               }}
             >
               We build <br />
@@ -636,7 +655,6 @@ export default function Home() {
               truly need.
             </h1>
 
-            {/* Subheading styled with direct overrides */}
             <p
               className="hero-subheading-cogent"
               style={{
@@ -650,7 +668,6 @@ export default function Home() {
               ambitious founders to go from vision to launch.
             </p>
 
-            {/* Rounded Pill Buttons */}
             <div
               className="hero-actions"
               style={{
@@ -679,7 +696,6 @@ export default function Home() {
                   transition: "all 0.25s ease",
                   textDecoration: "none",
                   letterSpacing: "-0.01em",
-                  fontFamily: '"DM Sans", sans-serif',
                 }}
               >
                 Start a Project
@@ -703,7 +719,6 @@ export default function Home() {
                   textDecoration: "none",
                   letterSpacing: "-0.01em",
                   transition: "all 0.25s ease",
-                  fontFamily: '"DM Sans", sans-serif',
                 }}
               >
                 View Our Work
@@ -712,7 +727,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Marquee Always Fixed to Hero Bottom */}
         <div
           className="marquee cogent-marquee"
           style={{
@@ -746,29 +760,142 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="origin">
-  <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
-    <div>
-      <span className="eyebrow" style={{ color: "#e05628" }}>The origin story</span>
-      <p className="origin-quote">
-        "Founders came with half-built agency projects. We started After
-        Concept as one team to own it all, design and engineering. No
-        handoffs, no lost focus, just production delivery."
-      </p>
-      <p className="body">
-        That's still how we work. One embedded team follows your product
-        from the first discovery call through the growth work that happens
-        after launch without a relay of subcontractors passing the baton.
-      </p>
-    </div>
+      {/* Redesigned Origin Story Section */}
+      <section
+        className="origin"
+        style={{
+          padding: "120px 0",
+          backgroundColor: "#fcfbf9",
+          borderBottom: "1px solid #e7e5e4",
+          position: "relative",
+        }}
+      >
+        <div
+          className="wrap origin-grid-custom"
+          style={{
+            alignItems: "stretch",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "64px",
+          }}
+        >
+          {/* Left Column: Narrative Content */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                backgroundColor: "rgba(224, 86, 40, 0.08)",
+                padding: "6px 14px",
+                borderRadius: "9999px",
+                width: "fit-content",
+                marginBottom: "20px",
+              }}
+            >
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  backgroundColor: "#e05628",
+                  display: "inline-block",
+                }}
+              />
+              <span
+                style={{
+                  color: "#e05628",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  fontSize: "12px",
+                }}
+              >
+                Our Origin Story
+              </span>
+            </div>
 
-    <div>
-      <OriginStackedCards />
-    </div>
-  </div>
-</section>
+            <h2
+              style={{
+                fontSize: "clamp(2rem, 3.2vw, 2.75rem)",
+                fontWeight: 800,
+                color: "#0f172a",
+                lineHeight: 1.15,
+                letterSpacing: "-0.03em",
+                marginBottom: "24px",
+              }}
+            >
+              Built to replace broken agency handoffs with end-to-end focus.
+            </h2>
 
-      <section>
+            <p
+              style={{
+                fontSize: "17px",
+                lineHeight: "1.65",
+                color: "#475569",
+                marginBottom: "28px",
+                fontWeight: 400,
+              }}
+            >
+              Founders repeatedly came to us stuck with half-built agency code
+              and fragmented teams. We created After Concept as one cohesive
+              unit owning both product design and full-stack engineering under
+              one roof.
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "14px",
+                borderLeft: "2px solid #e2e8f0",
+                paddingLeft: "20px",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "15px",
+                  fontWeight: 600,
+                  color: "#0f172a",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <span style={{ color: "#e05628", fontWeight: 800 }}>✓</span>{" "}
+                Zero subcontractor relays
+              </div>
+              <div
+                style={{
+                  fontSize: "15px",
+                  fontWeight: 600,
+                  color: "#0f172a",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <span style={{ color: "#e05628", fontWeight: 800 }}>✓</span>{" "}
+                Direct access to senior engineers
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Modern Cards Grid */}
+          <div style={{ display: "flex", width: "100%" }}>
+            <OriginStackedCards />
+          </div>
+        </div>
+      </section>
+
+      {/* Market Context Section */}
+      <section style={{ padding: "90px 0" }}>
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">Why this matters</span>
@@ -821,7 +948,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="ladder">
+      {/* Engagement Ladder Section */}
+      <section
+        id="ladder"
+        style={{ padding: "90px 0", backgroundColor: "#fafaf9" }}
+      >
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How we work together</span>
@@ -888,12 +1019,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services Section */}
       <section
         id="services"
         style={{
           background: "#fff",
-          borderTop: "1px solid var(--line)",
-          borderBottom: "1px solid var(--line)",
+          padding: "90px 0",
+          borderTop: "1px solid #e7e5e4",
+          borderBottom: "1px solid #e7e5e4",
         }}
       >
         <div className="wrap">
@@ -969,173 +1102,8 @@ export default function Home() {
       {/* GSAP Timeline Scroll Component */}
       <TimelineSection />
 
+      {/* Canvas Outcome Section */}
       <OutcomeSection />
-
-      <section
-        id="work"
-        style={{
-          background: "#fff",
-          borderTop: "1px solid var(--line)",
-          borderBottom: "1px solid var(--line)",
-        }}
-      >
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Projects that shipped</span>
-            <h2>Continuously delivering for ambitious SME teams</h2>
-            <p>
-              A sample of the web apps, AI engines, and cloud platforms we've
-              taken from concept to production.
-            </p>
-          </div>
-          <div className="work-grid">
-            <a href="/case-studies" className="work-card">
-              <div className="work-thumb">Bultra Bank</div>
-              <div className="work-body">
-                <div className="work-industry">Fintech</div>
-                <h3>Bultra Bank</h3>
-                <p>
-                  A challenger bank entering a new market: secure auth,
-                  transaction APIs, a customer dashboard, and onboarding flow.
-                </p>
-                <span className="work-link">Read the case study →</span>
-              </div>
-            </a>
-            <a href="/case-studies" className="work-card">
-              <div className="work-thumb">EVT SaaS</div>
-              <div className="work-body">
-                <div className="work-industry">AI SaaS</div>
-                <h3>EVT SaaS</h3>
-                <p>
-                  Greenfield AI operations platform with intelligent automation
-                  workflows. Scope grew mid-engagement, driven by delivery
-                  quality and communication.
-                </p>
-                <span className="work-link">View Project →</span>
-              </div>
-            </a>
-            <a href="/case-studies" className="work-card">
-              <div className="work-thumb">Land Design</div>
-              <div className="work-body">
-                <div className="work-industry">Real Estate</div>
-                <h3>Land Design</h3>
-                <p>
-                  Digital platform for land planning and property visualisation
-                  with GIS tooling, parcels, zoning data, and interactive maps.
-                </p>
-                <span className="work-link">View Project →</span>
-              </div>
-            </a>
-            <a href="/case-studies" className="work-card">
-              <div className="work-thumb">Mercato</div>
-              <div className="work-body">
-                <div className="work-industry">DevOps</div>
-                <h3>Mercato</h3>
-                <p>
-                  Node.js performance overhaul and AWS infrastructure rebuild
-                  for a high-throughput SaaS product.
-                </p>
-                <span className="work-link">View Project →</span>
-              </div>
-            </a>
-            <a href="/case-studies" className="work-card">
-              <div className="work-thumb">Medicore</div>
-              <div className="work-body">
-                <div className="work-industry">Healthcare</div>
-                <h3>Medicore</h3>
-                <p>
-                  Digital health platform for patient management and
-                  telemedicine services.
-                </p>
-                <span className="work-link">View Project →</span>
-              </div>
-            </a>
-            <a href="/case-studies" className="work-card">
-              <div className="work-thumb">SkyRoutes</div>
-              <div className="work-body">
-                <div className="work-industry">Logistics</div>
-                <h3>SkyRoutes</h3>
-                <p>
-                  Full-stack route optimisation tool with real-time tracking and
-                  driver assignment.
-                </p>
-                <span className="work-link">View Project →</span>
-              </div>
-            </a>
-          </div>
-          <div style={{ textAlign: "center", marginTop: "44px" }}>
-            <a href="/case-studies" className="btn-ghost">
-              See all case studies
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap">
-          <div className="section-head center">
-            <span className="eyebrow">
-              What clients say after the work ships
-            </span>
-            <h2>In their words</h2>
-          </div>
-          <div className="testi-grid">
-            <div className="testi-card">
-              <div className="testi-top">
-                <span className="testi-mark">"</span>
-                <span className="testi-company-badge">
-                  Bultra Bank · Fintech
-                </span>
-              </div>
-              <p className="testi-quote">
-                They shipped a production-grade fintech product in weeks, and
-                our onboarding drop-off rate fell 40% post-launch. Exceptional
-                technical depth and clear communication throughout.
-              </p>
-              <div className="testi-footer">
-                <div className="testi-photo">MV</div>
-                <div>
-                  <div className="testi-name">Marco Visibelli</div>
-                  <div className="testi-role">Head of Engineering</div>
-                </div>
-              </div>
-            </div>
-            <div className="testi-card">
-              <div className="testi-top">
-                <span className="testi-mark">"</span>
-                <span className="testi-company-badge">EVT SaaS · AI</span>
-              </div>
-              <p className="testi-quote">
-                The team laid the foundations of an ambitious product with
-                remarkable clarity. When our brief grew in scope, we
-                restructured into a larger contract together, a sign of genuine
-                mutual trust.
-              </p>
-              <div className="testi-footer">
-                <div className="testi-photo">M</div>
-                <div>
-                  <div className="testi-name">Michael</div>
-                  <div className="testi-role">Founder</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta" id="contact">
-        <span className="eyebrow">Ready when you are</span>
-        <h2>Ready to build something great?</h2>
-        <div className="flex justify-center mt-4">
-          <a
-            href="mailto:contact@afterconcept.io"
-            className="btn-primary"
-            style={{ backgroundColor: "#e05628" }}
-          >
-            Start a Conversation
-          </a>
-        </div>
-      </section>
 
       <Footer />
     </>

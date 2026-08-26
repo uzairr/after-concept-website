@@ -46,24 +46,21 @@ export default function Header() {
         {/* CTA Button */}
         <a
           href="#contact"
-          className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm"
+          className="hidden sm:inline-flex items-center justify-center font-semibold text-sm shadow-sm"
           style={{
-            backgroundColor: "#e05638",
+            backgroundColor: "#ff7247",
             color: "#ffffff",
-            padding: "12px 24px",
-            borderRadius: "12px",
-            transition: "all 0.25s ease",
+            padding: "11px 26px",
+            borderRadius: "9999px",
+            transition: "all 0.25s ease-in-out",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#c8481d";
-            e.currentTarget.style.transform = "translateY(-2px)";
-            e.currentTarget.style.boxShadow =
-              "0 6px 24px rgba(224, 86, 40, 0.4)";
+            e.currentTarget.style.backgroundColor = "#e85f35";
+            e.currentTarget.style.transform = "translateY(-1px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#e05638";
+            e.currentTarget.style.backgroundColor = "#ff7247";
             e.currentTarget.style.transform = "";
-            e.currentTarget.style.boxShadow = "";
           }}
         >
           Get Started
