@@ -4,39 +4,40 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const caseStudiesData: Record<
-  string,
-  {
-    industry: string;
-    title: string;
-    heroSub: string;
-    hstat1Num: string;
-    hstat1Label: string;
-    hstat2Num: string;
-    hstat2Label: string;
-    hstat3Num: string;
-    hstat3Label: string;
-    bannerText: string;
-    engagement: string;
-    stack: string;
-    client: string;
-    quote?: string;
-    quoteAuthor?: string;
-    challengeSub: string;
-    challengePoints: string[];
-    solutionSub: string;
-    solutionPoints: string[];
-    capabilities: string[];
-    resultsSub: string;
-    fstat1Num: string;
-    fstat1Label: string;
-    fstat2Num: string;
-    fstat2Label: string;
-    fstat3Num: string;
-    fstat3Label: string;
-  }
-> = {
+interface CaseStudy {
+  slug: string;
+  industry: string;
+  title: string;
+  heroSub: string;
+  hstat1Num: string;
+  hstat1Label: string;
+  hstat2Num: string;
+  hstat2Label: string;
+  hstat3Num: string;
+  hstat3Label: string;
+  bannerText: string;
+  engagement: string;
+  stack: string;
+  client: string;
+  quote?: string;
+  quoteAuthor?: string;
+  challengeSub: string;
+  challengePoints: string[];
+  solutionSub: string;
+  solutionPoints: string[];
+  capabilities: string[];
+  resultsSub: string;
+  fstat1Num: string;
+  fstat1Label: string;
+  fstat2Num: string;
+  fstat2Label: string;
+  fstat3Num: string;
+  fstat3Label: string;
+}
+
+const caseStudiesData: Record<string, CaseStudy> = {
   swiftcart: {
+    slug: "swiftcart",
     industry: "Retail tech",
     title:
       "Real-time inventory sync across 12 warehouses, without a single spreadsheet",
@@ -87,6 +88,7 @@ const caseStudiesData: Record<
     fstat3Label: "reconciliation time eliminated",
   },
   "northbridge-clinic": {
+    slug: "northbridge-clinic",
     industry: "Healthcare",
     title: "Patient scheduling automated end to end across three clinics",
     heroSub:
@@ -130,6 +132,7 @@ const caseStudiesData: Record<
     fstat3Label: "overlapping appointments",
   },
   ledgerly: {
+    slug: "ledgerly",
     industry: "FinTech · SaaS",
     title:
       "Automated reconciliation dashboard replaces a 3-day month-end close",
@@ -174,6 +177,7 @@ const caseStudiesData: Record<
     fstat3Label: "manual spreadsheet matches",
   },
   fieldwise: {
+    slug: "fieldwise",
     industry: "Construction",
     title: "A dispatch app that routes crews without a single phone call",
     heroSub:
@@ -217,6 +221,7 @@ const caseStudiesData: Record<
     fstat3Label: "real-time site tracking",
   },
   "loop-logistics": {
+    slug: "loop-logistics",
     industry: "Logistics",
     title: "Route optimization that cut fuel spend without new hires",
     heroSub:
@@ -260,6 +265,7 @@ const caseStudiesData: Record<
     fstat3Label: "extra hires needed",
   },
   "tandem-legal": {
+    slug: "tandem-legal",
     industry: "Legal",
     title: "Contract review copilot cuts first-pass review time for associates",
     heroSub:
@@ -328,6 +334,11 @@ export default async function DynamicCaseStudy({ params }: Props) {
   if (!item) {
     notFound();
   }
+
+  // Filter out current case study for the bottom "More Case Studies" section
+  const otherCases = Object.values(caseStudiesData).filter(
+    (c) => c.slug !== slug,
+  );
 
   return (
     <main
@@ -978,6 +989,101 @@ export default async function DynamicCaseStudy({ params }: Props) {
           </p>
         </article>
       </div>
+
+      {/* Dynamic Related / More Case Studies Grid */}
+      <section
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderTop: "1px solid #E2E8F0",
+          borderBottom: "1px solid #E2E8F0",
+          padding: "64px 20px",
+        }}
+      >
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <h3
+            style={{
+              fontSize: "24px",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "32px",
+            }}
+          >
+            Explore Other Case Studies
+          </h3>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: "24px",
+            }}
+          >
+            {otherCases.slice(0, 3).map((cs) => (
+              <Link
+                key={cs.slug}
+                href={`/case-studies/${cs.slug}`}
+                style={{
+                  textDecoration: "none",
+                  backgroundColor: "#FAFAFA",
+                  border: "1px solid #E2E8F0",
+                  borderRadius: "16px",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justify: "space-between",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                }}
+              >
+                <div>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      color: "#4F46E5",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {cs.industry}
+                  </span>
+                  <h4
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: 700,
+                      color: "#0F172A",
+                      marginTop: "8px",
+                      marginBottom: "8px",
+                      lineHeight: "1.3",
+                    }}
+                  >
+                    {cs.client}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "#64748B",
+                      lineHeight: "1.5",
+                      margin: 0,
+                    }}
+                  >
+                    {cs.heroSub.substring(0, 110)}...
+                  </p>
+                </div>
+                <div
+                  style={{
+                    marginTop: "20px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: "#4F46E5",
+                  }}
+                >
+                  Read case study →
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section

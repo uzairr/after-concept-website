@@ -12,12 +12,12 @@ export default function Footer() {
             className="inline-flex items-center gap-2.5 transition-transform hover:scale-105"
           >
             <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center p-0 shadow-sm overflow-hidden">
-  <img 
-    src="/image.png" 
-    alt="After Concept Logo" 
-    className="w-full h-full object-contain scale-[1.75]"
-  />
-</div>
+              <img
+                src="/image.png"
+                alt="After Concept Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
             <span className="text-xl font-bold tracking-tight text-white flex items-center">
               <span>AFTER</span>
               <span

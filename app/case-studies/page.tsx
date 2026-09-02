@@ -1,146 +1,297 @@
-import type { Metadata } from "next";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Case Studies — After Concept",
-  description:
-    "A sample of the products we've taken from concept to production. Real results, real engagements.",
-};
-
+// Data matching dynamic slugs in [slug]/page.tsx
 const cases = [
   {
+    slug: "swiftcart",
     href: "/case-studies/swiftcart",
     thumb: "SwiftCart",
-    industry: "Retail tech",
-    title:
-      "Real-time inventory sync across 12 warehouses, without a single spreadsheet",
-    client: "SwiftCart",
-    stat: "4×",
-    statLabel: "order throughput after go-live",
+    industry: "RETAIL & JEWELRY",
+    title: "SwiftCart E-Commerce",
+    desc: "A scalable e-commerce store with seamless checkout, real-time inventory updates, and multi-currency support.",
     readLabel: "Read the case study →",
   },
   {
+    slug: "northbridge-clinic",
     href: "/case-studies/northbridge-clinic",
-    thumb: "Northbridge Clinic",
-    industry: "Healthcare",
-    title: "Patient scheduling automated end to end across three clinics",
-    client: "Northbridge Clinic",
-    stat: "27hrs",
-    statLabel: "admin time saved weekly",
-    readLabel: "Read the case study →",
+    thumb: "Northbridge",
+    industry: "HEALTHCARE & LIFE SCIENCES",
+    title: "Northbridge Clinic",
+    desc: "A modern patient portal enabling online appointment booking, medical records access, and telehealth consultations.",
+    readLabel: "View Project →",
   },
   {
+    slug: "ledgerly",
     href: "/case-studies/ledgerly",
     thumb: "Ledgerly",
-    industry: "FinTech · SaaS",
-    title:
-      "Automated reconciliation dashboard replaces a 3-day month-end close",
-    client: "Ledgerly",
-    stat: "3d→2h",
-    statLabel: "month-end close time",
-    readLabel: "Read the case study →",
+    industry: "SAAS & SOFTWARE",
+    title: "Ledgerly Finance SaaS",
+    desc: "An intuitive bookkeeping dashboard with automated invoicing, expense categorization, and financial reporting.",
+    readLabel: "View Project →",
   },
   {
+    slug: "fieldwise",
     href: "/case-studies/fieldwise",
     thumb: "Fieldwise",
-    industry: "Construction",
-    title: "A dispatch app that routes crews without a single phone call",
-    client: "Fieldwise",
-    stat: "2×",
-    statLabel: "jobs completed per crew, per day",
-    readLabel: "Read the case study →",
+    industry: "CONSTRUCTION & REAL ESTATE",
+    title: "Fieldwise Construction Platform",
+    desc: "A mobile-first field management tool for real-time site logging, worker dispatch, and safety compliance tracking.",
+    readLabel: "View Project →",
   },
   {
+    slug: "loop-logistics",
     href: "/case-studies/loop-logistics",
     thumb: "Loop Logistics",
-    industry: "Logistics",
-    title: "Route optimization that cut fuel spend without new hires",
-    client: "Loop Logistics",
-    stat: "18%",
-    statLabel: "reduction in fuel cost",
-    readLabel: "Read the case study →",
+    industry: "LOGISTICS & SUPPLY CHAIN",
+    title: "Loop Logistics Tracker",
+    desc: "An end-to-end supply chain visibility dashboard with shipment tracking, route optimization, and delay alerts.",
+    readLabel: "View Project →",
   },
   {
+    slug: "tandem-legal",
     href: "/case-studies/tandem-legal",
     thumb: "Tandem Legal",
-    industry: "Legal",
-    title: "Contract review copilot cuts first-pass review time for associates",
-    client: "Tandem Legal",
-    stat: "65%",
-    statLabel: "faster first-pass review",
-    readLabel: "Read the case study →",
+    industry: "LEGAL",
+    title: "Tandem Legal Portal",
+    desc: "A secure client portal for document sharing, e-signatures, case status updates, and encrypted messaging.",
+    readLabel: "View Project →",
   },
 ];
 
-const filters = [
-  "All",
-  "Retail tech",
-  "Healthcare",
-  "FinTech",
-  "Construction",
-  "Logistics",
-  "Legal",
+const filterCategories = [
+  "ALL",
+  "HEALTHCARE & LIFE SCIENCES",
+  "RETAIL & JEWELRY",
+  "SAAS & SOFTWARE",
+  "CONSTRUCTION & REAL ESTATE",
+  "LOGISTICS & SUPPLY CHAIN",
+  "LEGAL",
 ];
 
 export default function CaseStudiesPage() {
+  const [activeFilter, setActiveFilter] = useState("ALL");
+
+  // Filtering Logic
+  const filteredCases =
+    activeFilter === "ALL"
+      ? cases
+      : cases.filter((c) => c.industry === activeFilter);
+
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: "#ffffff",
+        color: "#111111",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
 
-      <div className="page-head wrap">
-        <span className="eyebrow">
-          Proof <span className="test-tag">Test data</span>
-        </span>
-        <h1>Results that speak</h1>
-        <p>
-          A sample of the products we&apos;ve taken from concept to production.
-          Every figure below is illustrative — swap in your real engagements as
-          they close.
-        </p>
-      </div>
-
-      <div className="filters">
-        {filters.map((f, i) => (
-          <span key={f} className={`filter-pill${i === 0 ? " active" : ""}`}>
-            {f}
-          </span>
-        ))}
-      </div>
-
-      <div className="case-grid">
-        {cases.map((c) => (
-          <Link href={c.href} key={c.title} className="case-card">
-            <div className="case-thumb">{c.thumb}</div>
-            <div className="case-body">
-              <div className="case-industry">{c.industry}</div>
-              <h3>{c.title}</h3>
-              <div className="case-client">{c.client}</div>
-              <div className="case-meta">
-                <div className="case-stat">{c.stat}</div>
-                <div className="case-stat-label">{c.statLabel}</div>
-              </div>
-              <span className="read-link">{c.readLabel}</span>
-            </div>
-          </Link>
-        ))}
-      </div>
-
+      {/* Hero Header Section */}
       <section
-        className="cta"
-        style={{ borderTop: "1px solid var(--line)", background: "#fff" }}
+        style={{
+          backgroundColor: "#111111",
+          color: "#ffffff",
+          padding: "100px 24px 60px",
+        }}
       >
-        <h2>Want results like these?</h2>
-        <p>
-          Tell us about your workflow. We&apos;ll show you what we&apos;d build.
-        </p>
-        <Link href="/#contact" className="btn-primary">
-          Book a free scoping call
-        </Link>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <span
+            style={{
+              color: "#e53935",
+              fontWeight: "bold",
+              fontSize: "12px",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
+            CASE STUDIES
+          </span>
+          <h1
+            style={{
+              fontSize: "48px",
+              fontWeight: "800",
+              marginTop: "8px",
+              color: "#ffffff",
+            }}
+          >
+            Results That Speak
+          </h1>
+        </div>
+      </section>
+
+      {/* Filter Pills Section */}
+      <section
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "40px 24px 20px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "16px",
+            borderBottom: "1px solid #eee",
+            paddingBottom: "24px",
+          }}
+        >
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {filterCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "20px",
+                  fontSize: "11px",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                  border: "none",
+                  cursor: "pointer",
+                  backgroundColor: activeFilter === cat ? "#e53935" : "#f4f4f5",
+                  color: activeFilter === cat ? "#ffffff" : "#52525b",
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <span
+            style={{ fontSize: "12px", color: "#a1a1aa", fontWeight: "600" }}
+          >
+            {filteredCases.length} CASE STUDIES
+          </span>
+        </div>
+      </section>
+
+      {/* Custom Cards Grid */}
+      <section
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "20px 24px 80px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gap: "32px",
+          }}
+        >
+          {filteredCases.map((c) => (
+            <Link
+              key={c.slug}
+              href={c.href}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "#ffffff",
+                borderRadius: "24px",
+                border: "1px solid #e4e4e7",
+                overflow: "hidden",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
+              }}
+            >
+              {/* Light Gradient Top Box */}
+              <div
+                style={{
+                  height: "160px",
+                  background:
+                    "linear-gradient(180deg, #f5f0f7 0%, #fcfaff 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderBottom: "1px solid #f4f4f5",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    color: "#6b5894",
+                  }}
+                >
+                  {c.thumb}
+                </span>
+              </div>
+
+              {/* Bottom Content Area */}
+              <div
+                style={{
+                  padding: "28px",
+                  flexGrow: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: "800",
+                      color: "#e55b38",
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      display: "block",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {c.industry}
+                  </span>
+                  <h3
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: "800",
+                      color: "#18181b",
+                      margin: "0 0 12px 0",
+                      lineHeight: "1.3",
+                    }}
+                  >
+                    {c.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "#52525b",
+                      lineHeight: "1.6",
+                      margin: 0,
+                    }}
+                  >
+                    {c.desc}
+                  </p>
+                </div>
+
+                <div style={{ marginTop: "24px" }}>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "700",
+                      color: "#3b3c98",
+                    }}
+                  >
+                    {c.readLabel}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }

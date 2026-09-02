@@ -1042,69 +1042,36 @@ export default function Home() {
             <div className="service-card">
               <h3>Custom Software</h3>
               <p>
-                Scalable web platforms, internal tools, and backend systems
-                designed around your business logic, not a generic SaaS
-                template. We've shipped fintech backends handling 10K+ daily
-                transactions.
+                Tailored web apps, SaaS products, and internal tools engineered
+                for scale.
               </p>
-              <div className="tag-row">
-                <span className="tag-pill">Next.js</span>
-                <span className="tag-pill">Node.js</span>
-                <span className="tag-pill">PostgreSQL</span>
-                <span className="tag-pill">Cloud</span>
-              </div>
             </div>
             <div className="service-card">
-              <h3>AI Integrations</h3>
+              <h3>Product Design (UI/UX)</h3>
               <p>
-                Production AI, not demos. We build LLM assistants, RAG
-                pipelines, and automation workflows that handle real user load
-                and deliver measurable outcomes.
+                Intuitive user experiences and design systems built to convert
+                and retain.
               </p>
-              <div className="tag-row">
-                <span className="tag-pill">LLMs</span>
-                <span className="tag-pill">RAG</span>
-                <span className="tag-pill">LangChain</span>
-                <span className="tag-pill">OpenAI</span>
-              </div>
             </div>
             <div className="service-card">
-              <h3>Product Design</h3>
+              <h3>AI Integration</h3>
               <p>
-                Interface and system design that earns user trust from first
-                login. We work from information architecture to polished UI,
-                building design systems that scale.
+                Embedding smart LLM capabilities and automation into your core
+                workflows.
               </p>
-              <div className="tag-row">
-                <span className="tag-pill">Figma</span>
-                <span className="tag-pill">Design Systems</span>
-                <span className="tag-pill">UX Research</span>
-              </div>
             </div>
             <div className="service-card">
-              <h3>Growth Engineering</h3>
+              <h3>Growth & Scale</h3>
               <p>
-                After launch is where most agencies disappear. We stay embedded
-                to instrument analytics, run A/B tests, and iterate so your
-                product compounds.
+                Continuous optimization, performance tuning, and feature
+                expansion post-launch.
               </p>
-              <div className="tag-row">
-                <span className="tag-pill">Analytics</span>
-                <span className="tag-pill">A/B Testing</span>
-                <span className="tag-pill">SEO</span>
-                <span className="tag-pill">DevOps</span>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* GSAP Timeline Scroll Component */}
       <TimelineSection />
-
-      {/* Canvas Outcome Section */}
-      <OutcomeSection />
-
       <Footer />
     </>
   );

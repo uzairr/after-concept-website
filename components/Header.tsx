@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link"; // Client-side routing ke liye import
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -14,12 +14,12 @@ export default function Header() {
               src="/image.png"
               alt="After Concept Logo"
               className="transition-transform duration-300 ease-in-out group-hover:scale-110 brightness-0 invert"
-              style={{ width: "90px", height: "90px", objectFit: "contain" }}
+             style={{ width: "60px", height: "35px", objectFit: "contain" }}
             />
           </div>
           <div
             className="flex items-center font-bold tracking-tight text-xl text-white"
-            style={{ marginLeft: "-26px" }}
+           style={{ marginLeft: "-14px" }}
           >
             <span>AFTER</span>
             <span className="text-transparent [-webkit-text-stroke:1px_#ffffff] ml-0.5">
@@ -33,14 +33,13 @@ export default function Header() {
           className="hidden md:flex items-center gap-8 font-medium text-stone-300"
           style={{ fontSize: "1rem" }}
         >
-          <a
-            href="#case-studies"
+          <Link
+            href="/case-studies"
             className="relative transition-colors duration-300 group text-stone-300 hover:text-white"
           >
             Case Studies
-            {/* Underline Effect */}
             <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
-          </a>
+          </Link>
         </div>
 
         {/* CTA Button */}
