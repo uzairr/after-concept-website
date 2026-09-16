@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollObserver from "@/components/ScrollObserver";
 import TimelineSection from "@/components/TimelineSection";
+import HeroComponent from "../HeroComponent";
+
 
 // Reusable Counter Component for smooth 0 to target number animation
 function AnimatedCounter({ value }: { value: string }) {
@@ -396,7 +399,6 @@ export default function Home() {
   return (
     <>
       <ScrollObserver />
-      <Header />
 
       {/* Google Font DM Sans Import via HTML link */}
       <link
@@ -546,269 +548,8 @@ export default function Home() {
       ` }} />
 
       {/* Hero Section */}
-      <section
-        className="hero hero-section-custom"
-        style={{
-          position: "relative",
-          backgroundColor: "#000000",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          width: "100%",
-          margin: 0,
-          padding: 0,
-        }}
-      >
-        {/* Full-Screen Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            zIndex: 0,
-            pointerEvents: "none",
-            filter: "none",
-          }}
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <HeroComponent />
 
-        {/* Soft Vignette Overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.6) 100%), radial-gradient(circle at 20% 50%, rgba(0,0,0,0.3) 0%, transparent 70%)",
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Hero Content Container aligned with left spacing (Shifted Right to match Cogent) */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            width: "100%",
-            maxWidth: "1400px",
-            margin: "0 auto",
-            paddingTop: "clamp(130px, 16vh, 180px)",
-            paddingBottom: "40px",
-            paddingLeft: "clamp(48px, 6vw, 96px)", // Added extra padding to shift text right like Cogent Labs
-            paddingRight: "32px",
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            className="hero-copy"
-            style={{ maxWidth: "850px", textAlign: "left" }}
-          >
-            {/* Crisp Semi-Bold Heading */}
-            <h1
-              style={{
-                fontFamily: '"DM Sans", var(--font-dm-sans), sans-serif',
-                fontSize: "clamp(3.5rem, 6.5vw, 5.5rem)",
-                fontWeight: 600,
-                marginTop: "0px",
-                marginBottom: "24px",
-                lineHeight: "1.05",
-                color: "#ffffff",
-                letterSpacing: "-0.035em",
-                WebkitFontSmoothing: "antialiased",
-                MozOsxFontSmoothing: "grayscale",
-              }}
-            >
-              We build <br />
-              products SMEs <br />
-              truly need.
-            </h1>
-
-            {/* Subheading styled with direct overrides */}
-            <p
-              className="hero-subheading-cogent"
-              style={{
-                marginBottom: "36px",
-                marginTop: "0px",
-                maxWidth: "480px",
-              }}
-            >
-              <strong>Production-ready digital products.</strong> Built by an
-              embedded team of design & engineering specialists. We partner with
-              ambitious founders to go from vision to launch.
-            </p>
-
-            {/* Rounded Pill Buttons */}
-            <div
-              className="hero-actions"
-              style={{
-                display: "flex",
-                gap: "14px",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-              }}
-            >
-              <a
-                href="#contact"
-                className="btn-primary"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "48px",
-                  padding: "0 28px",
-                  backgroundColor: "#e05628",
-                  color: "#ffffff",
-                  fontWeight: 600,
-                  fontSize: "15px",
-                  borderRadius: "9999px",
-                  boxShadow: "0 4px 20px rgba(224, 86, 40, 0.35)",
-                  transition: "all 0.25s ease",
-                  textDecoration: "none",
-                  letterSpacing: "-0.01em",
-                  fontFamily: '"DM Sans", sans-serif',
-                }}
-              >
-                Start a Project
-              </a>
-              <a
-                href="#work"
-                className="btn-ghost"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "48px",
-                  padding: "0 24px",
-                  color: "rgba(255, 255, 255, 0.9)",
-                  borderRadius: "9999px",
-                  border: "1px solid rgba(255, 255, 255, 0.25)",
-                  backgroundColor: "rgba(0, 0, 0, 0.35)",
-                  backdropFilter: "blur(12px)",
-                  fontWeight: 500,
-                  fontSize: "15px",
-                  textDecoration: "none",
-                  letterSpacing: "-0.01em",
-                  transition: "all 0.25s ease",
-                  fontFamily: '"DM Sans", sans-serif',
-                }}
-              >
-                View Our Work
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Marquee Always Fixed to Hero Bottom */}
-        <div
-          className="marquee cogent-marquee"
-          style={{
-            position: "relative",
-            zIndex: 10,
-            width: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.65)",
-            backdropFilter: "blur(12px)",
-            borderTop: "1px solid rgba(255, 255, 255, 0.12)",
-            padding: "18px 0",
-            overflow: "hidden",
-          }}
-        >
-          <div className="marquee-track">
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-
-            <span>Landdesign</span>
-            <span>MBC</span>
-            <span>Lake Effect</span>
-            <span>Carion</span>
-            <span>Miray Group</span>
-            <span>Samui</span>
-            <span>Kindred Mortgage Group</span>
-          </div>
-        </div>
-      </section>
 
       <section className="origin">
   <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
