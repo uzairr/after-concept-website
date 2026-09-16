@@ -1,11 +1,7 @@
 const fs = require('fs');
-let code = fs.readFileSync('HeroComponent.jsx', 'utf8');
-
-// Replace \` with `
-code = code.replace(/\\`/g, '`');
-
-// Replace \${ with ${
-code = code.replace(/\\\${/g, '${');
-
-fs.writeFileSync('HeroComponent.jsx', code);
-console.log('Fixed syntax errors in HeroComponent.jsx');
+let f = fs.readFileSync('app/page.tsx', 'utf8');
+f = f.replace(/href="case-studies\.html"/g, 'href="/case-studies"');
+f = f.replace(/href="case-study-bultra-bank\.html"/g, 'href="/case-studies"');
+f = f.replace(/href="case-study-swiftcart\.html"/g, 'href="/case-studies/swiftcart"');
+fs.writeFileSync('app/page.tsx', f);
+console.log('done');
