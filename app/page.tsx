@@ -13,7 +13,7 @@ import HeroComponent from "../HeroComponent";
 function AnimatedCounter({ value }: { value: string }) {
   const numericMatch = value.match(/\d+/);
   const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : 0;
-  const suffix = value.replace(/[0-9]/g, '');
+  const suffix = value.replace(/[0-9]/g, "");
 
   const [count, setCount] = useState(0);
 
@@ -39,12 +39,13 @@ function AnimatedCounter({ value }: { value: string }) {
 
   return (
     <span>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 }
 
-// Compact Static Cards Grid Component with Orange Eyebrow support
+// Compact Static Cards Grid Component
 export function OriginStackedCards() {
   const stats = [
     {
@@ -70,23 +71,24 @@ export function OriginStackedCards() {
   ];
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      width: "100%",
-      maxWidth: "420px",
-      paddingTop: "0px" // Ensures perfect alignment with the top
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        width: "100%",
+        maxWidth: "420px",
+        paddingTop: "0px",
+      }}
+    >
       {stats.map((stat, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
           style={{
             borderBottom: i !== stats.length - 1 ? "1px solid #e7e5e4" : "none",
             paddingBottom: i !== stats.length - 1 ? "18px" : "0",
           }}
         >
-          {/* Compact Animated Big Number */}
           <div
             style={{
               fontSize: "42px",
@@ -100,7 +102,6 @@ export function OriginStackedCards() {
             <AnimatedCounter value={stat.num} />
           </div>
 
-          {/* Label */}
           <div
             style={{
               fontSize: "14px",
@@ -112,7 +113,6 @@ export function OriginStackedCards() {
             {stat.label}
           </div>
 
-          {/* Description */}
           <div
             style={{
               fontSize: "12.5px",
@@ -128,6 +128,7 @@ export function OriginStackedCards() {
     </div>
   );
 }
+
 // Counter Component
 function CounterStat({
   value,
@@ -350,14 +351,14 @@ function OutcomeSection() {
 
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
-  <span className="eyebrow">WHAT CLIENTS GAIN</span>
-  <h2>Outcomes That Matter</h2>
-  <p>
-    Real figures from real engagements, with specifics filled in as each
-    case study is finished.
-  </p>
-</div>
-<div className="results-grid">
+          <span className="eyebrow">WHAT CLIENTS GAIN</span>
+          <h2>Outcomes That Matter</h2>
+          <p>
+            Real figures from real engagements, with specifics filled in as each
+            case study is finished.
+          </p>
+        </div>
+        <div className="results-grid">
           <div className="result-card">
             <CounterStat value={40} suffix="%" />
             <div className="result-label">
@@ -373,9 +374,15 @@ function OutcomeSection() {
             <div className="result-source">Client engagement</div>
           </div>
           <div className="result-card">
-            <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+            <div
+              style={{ display: "flex", alignItems: "baseline", gap: "6px" }}
+            >
               <CounterStat value={10} suffix="" />
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#e05628" }}>Days</span>
+              <span
+                style={{ fontSize: "36px", fontWeight: 800, color: "#e05628" }}
+              >
+                Days
+              </span>
             </div>
             <div className="result-label">
               Average, kickoff to first release
@@ -400,13 +407,141 @@ export default function Home() {
     <>
       <ScrollObserver />
 
-      {/* Google Font DM Sans Import via HTML link */}
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       />
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .hero-title-responsive {
+          font-family: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, sans-serif !important;
+          font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+          font-weight: 600 !important;
+          margin-top: 0px !important;
+          margin-bottom: 24px !important;
+          line-height: 1.05 !important;
+          color: #ffffff !important;
+          letter-spacing: -0.03em !important;
+          text-align: left !important;
+          white-space: normal !important;
+          max-width: 42rem !important;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        .hero-section-custom .wrap {
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          padding-left: clamp(24px, 5vw, 64px) !important;
+          max-width: 100% !important;
+          align-items: flex-start !important;
+        }
+
+        .hero-copy {
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          text-align: left !important;
+          margin-bottom: 40px !important;
+          max-width: 42rem !important;
+        }
+
+        .hero-subheading-cogent {
+          color: rgba(255, 255, 255, 0.55) !important;
+          font-family: "DM Sans", system-ui, sans-serif !important;
+          font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
+          line-height: 1.65 !important;
+          font-weight: 400 !important;
+          text-align: left !important;
+          letter-spacing: -0.01em !important;
+          margin-top: 0px !important;
+          margin-bottom: 32px !important;
+          max-width: 36rem !important;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        .hero-subheading-cogent strong {
+          color: rgba(255, 255, 255, 0.95) !important;
+          font-weight: 700 !important;
+        }
+
+        .hero-section-custom .wrap {
+          padding-top: clamp(140px, 18vh, 200px) !important;
+          padding-bottom: 40px !important;
+        }
+
+        @media (min-width: 1024px) and (max-width: 1536px) {
+          .hero-section-custom .wrap {
+            padding-left: clamp(32px, 4vw, 64px) !important;
+            padding-top: clamp(150px, 19vh, 210px) !important;
+            padding-bottom: 40px !important;
+          }
+
+          .hero-copy {
+            max-width: 42rem !important;
+            margin-bottom: 36px !important;
+          }
+
+          .hero-title-responsive {
+            font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+            margin-bottom: 24px !important;
+            line-height: 1.05 !important;
+            letter-spacing: -0.03em !important;
+          }
+
+          .hero-subheading-cogent {
+            font-size: 1.05rem !important;
+            line-height: 1.65 !important;
+            margin-bottom: 32px !important;
+            max-width: 36rem !important;
+          }
+
+          .hero-actions {
+            gap: 20px !important;
+          }
+
+          .hero-actions .btn-primary,
+          .hero-actions .btn-ghost {
+            min-width: 210px !important;
+            padding: 16px 36px !important;
+            font-size: 0.98rem !important;
+          }
+        }
+
+        @media (min-width: 1537px) {
+          .hero-section-custom {
+            min-height: 100vh !important;
+          }
+
+          .hero-section-custom .wrap {
+            justify-content: flex-end !important;
+            padding-top: 280px !important;
+            padding-bottom: 40px !important;
+            padding-left: clamp(24px, 3vw, 48px) !important;
+            margin-left: 0 !important;
+          }
+
+          .hero-copy {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            max-width: 42rem !important;
+          }
+
+          .hero-title-responsive {
+            font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+            line-height: 1.05 !important;
+            letter-spacing: -0.03em !important;
+            margin-bottom: 24px !important;
+          }
+
+          .hero-subheading-cogent {
+            font-size: 1.15rem !important;
+            margin-bottom: 32px !important;
+            max-width: 38rem !important;
+          }
+        }
+
         .results-grid .result-card,
         .service-card,
         .testi-card,
@@ -481,23 +616,6 @@ export default function Home() {
           opacity: 0.95;
         }
 
-        /* Subheading Color Specificity Override */
-        .hero-subheading-cogent {
-          color: rgba(255, 255, 255, 0.42) !important;
-          font-family: "DM Sans", var(--font-dm-sans), sans-serif !important;
-          font-size: clamp(1rem, 1.15vw, 1.05rem) !important;
-          line-height: 1.55 !important;
-          font-weight: 400 !important;
-          text-align: left !important;
-          letter-spacing: -0.01em !important;
-        }
-
-        .hero-subheading-cogent strong {
-          color: #ffffff !important;
-          font-weight: 700 !important;
-        }
-
-        /* Continuous Infinite Marquee Animation */
         @keyframes scrollMarquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -520,7 +638,16 @@ export default function Home() {
           white-space: nowrap;
         }
 
-        /* Pill buttons hover effects */
+        .hero-actions .btn-primary,
+        .hero-actions .btn-ghost {
+          min-width: 210px;
+          text-align: center !important;
+          justify-content: center !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          box-sizing: border-box !important;
+        }
+
         .hero-actions .btn-primary:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 24px rgba(224, 86, 40, 0.4) !important;
@@ -533,43 +660,260 @@ export default function Home() {
           border-color: rgba(255, 255, 255, 0.4) !important;
         }
 
-        /* Dynamic Hero Heights to keep gaps original on desktop */
         .hero-section-custom {
-          min-height: 100vh;
-          height: 100vh;
+          min-height: 70vh;
         }
 
-        @media (max-height: 700px) {
+        @media (min-width: 1024px) {
           .hero-section-custom {
-            height: auto !important;
             min-height: 100vh !important;
+            min-height: 100dvh !important;
           }
         }
-      ` }} />
+      `,
+        }}
+      />
 
       {/* Hero Section */}
-      <HeroComponent />
+      <section
+        className="hero hero-section-custom"
+        style={{
+          position: "relative",
+          backgroundColor: "#000000",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          width: "100%",
+          margin: 0,
+          padding: 0,
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+            pointerEvents: "none",
+            filter: "none",
+          }}
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.6) 100%), radial-gradient(circle at 20% 50%, rgba(0,0,0,0.3) 0%, transparent 70%)",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Hero Content Container */}
+        <div
+          className="wrap"
+          style={{
+            position: "relative",
+            zIndex: 2,
+            width: "100%",
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            className="hero-copy"
+            style={{ maxWidth: "42rem", textAlign: "left", width: "100%" }}
+          >
+            {/* MAIN HEADING */}
+            <h1 className="hero-title-responsive">
+              We Build Products SMEs truly need.
+            </h1>
+
+            {/* SUBHEADING */}
+            <p className="hero-subheading-cogent">
+              <strong>Production-ready digital products.</strong> Built by an
+              embedded team of design &amp; engineering specialists. We partner
+              with ambitious founders to go from vision to launch.
+            </p>
+
+            <div
+              className="hero-actions"
+              style={{
+                display: "flex",
+                gap: "20px",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                flexWrap: "wrap",
+              }}
+            >
+              <a
+                href="#contact"
+                className="btn-primary"
+                style={{
+                  backgroundColor: "#e05628",
+                  color: "#ffffff",
+                  boxShadow: "0 4px 20px rgba(224, 86, 40, 0.35)",
+                  borderRadius: "9999px",
+                  padding: "16px 36px",
+                  minWidth: "210px",
+                }}
+              >
+                Start a Project
+              </a>
+              <a
+                href="#work"
+                className="btn-ghost"
+                style={{
+                  color: "rgba(255, 255, 255, 0.9)",
+                  border: "1px solid rgba(255, 255, 255, 0.25)",
+                  backgroundColor: "rgba(0, 0, 0, 0.35)",
+                  backdropFilter: "blur(12px)",
+                  borderRadius: "9999px",
+                  padding: "16px 36px",
+                  minWidth: "210px",
+                }}
+              >
+                View Our Work
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Marquee Fixed to Hero Bottom */}
+        <div
+          className="marquee cogent-marquee"
+          style={{
+            position: "relative",
+            zIndex: 10,
+            width: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.65)",
+            backdropFilter: "blur(12px)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.12)",
+            padding: "16px 0",
+            overflow: "hidden",
+          }}
+        >
+          <div className="marquee-track">
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+
+            <span>Landdesign</span>
+            <span>MBC</span>
+            <span>Lake Effect</span>
+            <span>Carion</span>
+            <span>Miray Group</span>
+            <span>Samui</span>
+            <span>Kindred Mortgage Group</span>
+          </div>
+        </div>
+      </section>
 
       <section className="origin">
-  <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
-    <div>
-      <span className="eyebrow" style={{ color: "#e05628" }}>The origin story</span>
-      <p className="origin-quote">
-        Half-built projects. We started After Concept to own it all: design to production, no handoffs"
-      </p>
-      <p className="body">
-        That's still how we work. One embedded team follows your product
-        from the first discovery call through the growth work that happens
-        after launch without a relay of subcontractors passing the baton.
-      </p>
-    </div>
+        <div className="wrap origin-grid" style={{ alignItems: "flex-start" }}>
+          <div>
+            <span className="eyebrow" style={{ color: "#e05628" }}>
+              The origin story
+            </span>
+            <p className="origin-quote">
+              "Founders came with half-built agency projects. We started After
+              Concept as one team to own it all, design and engineering. No
+              handoffs, no lost focus, just production delivery."
+            </p>
+            <p className="body">
+              That's still how we work. One embedded team follows your product
+              from the first discovery call through the growth work that happens
+              after launch without a relay of subcontractors passing the baton.
+            </p>
+          </div>
 
-    <div>
-      <OriginStackedCards />
-    </div>
-  </div>
-</section>
+          <div>
+            <OriginStackedCards />
+          </div>
+        </div>
+      </section>
 
       <section>
         <div className="wrap">
@@ -769,7 +1113,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GSAP Timeline Scroll Component */}
       <TimelineSection />
 
       <OutcomeSection />
