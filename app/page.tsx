@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollObserver from "@/components/ScrollObserver";
 import TimelineSection from "@/components/TimelineSection";
-import HeroComponent from "../HeroComponent";
-
 
 // Reusable Counter Component for smooth 0 to target number animation
 function AnimatedCounter({ value }: { value: string }) {
@@ -406,6 +403,7 @@ export default function Home() {
   return (
     <>
       <ScrollObserver />
+      <Header />
 
       <link
         rel="stylesheet"
