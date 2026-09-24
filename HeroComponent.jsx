@@ -40,16 +40,16 @@ const COLORS = ["#1d70b8", "#A31F34", "#00C853", "#0A2540", "#0070B8", "#0055A5"
 
 const SLIDES_DATA = [
   [
-    { t: "We Accelerate With ", cls: "" },
+    { t: "We Accelerate\nWith ", cls: "" },
     { t: "AI", cls: "highlight" }
   ],
   [
     { t: "We Bridge ", cls: "" },
     { t: "Hardware", cls: "highlight highlight-hardware" },
-    { t: " and Software", cls: "" }
+    { t: "\nand Software", cls: "" }
   ],
   [
-    { t: "We Turn Data Into ", cls: "" },
+    { t: "We Turn Data\nInto ", cls: "" },
     { t: "Edge", cls: "highlight highlight-edge" }
   ]
 ];
@@ -69,15 +69,62 @@ export default function HeroComponent() {
   
   const seqTimeoutRef = useRef(null);
   const progressTimerRef = useRef(null);
+  const overlayRef = useRef(null);
+  const lastScrollY = useRef(0);
+  const scrollDirection = useRef('down');
+  const rafId = useRef(null);
   
-  // Handle scroll for header
+  // Real-time scroll handler for header and fluid opacity fade overlay
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+    const updateOverlay = () => {
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 40);
+
+      if (currentY <= 2) {
+        scrollDirection.current = 'down';
+      } else if (currentY > lastScrollY.current) {
+        scrollDirection.current = 'down';
+      } else if (currentY < lastScrollY.current) {
+        scrollDirection.current = 'up';
+      }
+      lastScrollY.current = currentY;
+
+      const heroHeight = window.innerHeight || 800;
+      const peakY = heroHeight * 0.65;
+      const exitY = heroHeight;
+
+      let targetOpacity = 0;
+
+      if (currentY <= 5 || currentY >= exitY) {
+        targetOpacity = 0;
+      } else if (currentY <= peakY) {
+        // Increases/decreases by 10% on every scroll notch (0% up to 70%)
+        const step = Math.min(7, Math.max(0, Math.round((currentY / peakY) * 7)));
+        targetOpacity = step * 0.10;
+      } else {
+        // Fades out by 10% steps towards exit of hero (70% down to 0%)
+        const remaining = Math.max(0, Math.min(1, (exitY - currentY) / (exitY - peakY)));
+        const step = Math.min(7, Math.max(0, Math.round(remaining * 7)));
+        targetOpacity = step * 0.10;
+      }
+
+      if (overlayRef.current) {
+        overlayRef.current.style.opacity = targetOpacity.toFixed(2);
+      }
     };
+
+    const handleScroll = () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(updateOverlay);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    updateOverlay();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   // Handle mobile nav body overflow
@@ -118,20 +165,22 @@ export default function HeroComponent() {
         charIdx++;
         
         let buildHTML = currentHTML;
+        const currentTyped = chunk.t.substring(0, charIdx).replace(/\n/g, '<br />');
         if (chunk.cls) {
-          buildHTML += `<span class="${chunk.cls}">${chunk.t.substring(0, charIdx)}</span>`;
+          buildHTML += `<span class="${chunk.cls}">${currentTyped}</span>`;
         } else {
-          buildHTML += chunk.t.substring(0, charIdx);
+          buildHTML += currentTyped;
         }
         
         setTypewriterHtml(buildHTML + '<span class="cursor"></span>');
         seqTimeoutRef.current = setTimeout(typeNext, 40); // typing speed
       } else {
         // Finished this chunk
+        const fullChunk = chunk.t.replace(/\n/g, '<br />');
         if (chunk.cls) {
-          currentHTML += `<span class="${chunk.cls}">${chunk.t}</span>`;
+          currentHTML += `<span class="${chunk.cls}">${fullChunk}</span>`;
         } else {
-          currentHTML += chunk.t;
+          currentHTML += fullChunk;
         }
         chunkIdx++;
         charIdx = 0;
@@ -203,17 +252,26 @@ export default function HeroComponent() {
           ))}
         </div>
         <div className="hero-overlay"></div>
+        <div 
+          ref={overlayRef}
+          style={{ 
+            position: 'absolute', inset: 0, zIndex: 1, 
+            backgroundColor: '#ffffff', pointerEvents: 'none', 
+            opacity: 0,
+            willChange: 'opacity',
+            transition: 'opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1)'
+          }} 
+        ></div>
 
-        <div className="hero-container hero-content">
+        <div className="w-full max-w-[1920px] mx-auto px-8 md:px-16 lg:px-24 hero-content">
           <h1 
             className="hero-title" 
             dangerouslySetInnerHTML={{ __html: typewriterHtml }}
           ></h1>
         </div>
 
-        <div className="hero-controls">
-          <div className="hero-container">
-            <div className="hero-indicators">
+        <div className="hero-controls w-full max-w-[1920px] mx-auto px-8 md:px-16 lg:px-24">
+          <div className="hero-indicators">
               {SLIDE_IMAGES.map((_, idx) => (
                 <button 
                   key={idx}
@@ -237,7 +295,6 @@ export default function HeroComponent() {
               ))}
             </div>
           </div>
-        </div>
 
         <button 
           className="scroll-indicator" 
@@ -253,8 +310,7 @@ export default function HeroComponent() {
           <span className="scroll-line"><span className="scroll-dot"></span></span>
         </button>
 
-        <div className="hero-logos-strip">
-          <div className="hero-container">
+        <div className="hero-logos-strip w-full max-w-[1920px] mx-auto px-8 md:px-16 lg:px-24">
             <p className="hero-logos-label">
               Trusted by Market Leaders Serving 500M+ People
             </p>
@@ -270,7 +326,6 @@ export default function HeroComponent() {
               ))}
             </div>
           </div>
-        </div>
       </section>
 
       {/* ===================== COMPONENT STYLES ===================== */}
@@ -348,12 +403,7 @@ export default function HeroComponent() {
         }
         
         .hero-content { position: absolute; left: 0; right: 0; top: 45%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; align-items: flex-start; }
-        .hero-eyebrow {
-          display: inline-flex; align-items: center; background: rgba(6, 15, 28, 0.85); color: #fff;
-          font-size: 14px; font-weight: 600; padding: 8px 20px 8px 0; margin-bottom: 24px; letter-spacing: 0.02em;
-        }
-        .eyebrow-line { width: 4px; height: 20px; background: #e05628; margin-right: 16px; }
-        .hero-title { color: #fff !important; font-size: clamp(36px, 4.5vw, 64px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; max-width: 480px; margin: 0; text-align: left; }
+        .hero-title { color: #fff !important; font-size: clamp(36px, 4.5vw, 64px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; max-width: 800px; margin: 0; text-align: left; }
         .hero-title .highlight { color: #0a76db; }
         .hero-title .highlight-hardware { color: #86efac; } /* Mint / Light Green */
         .hero-title .highlight-edge { color: #c4b5fd; } /* Light Violet */
@@ -388,32 +438,9 @@ export default function HeroComponent() {
 
         /* HERO LOGOS STRIP */
         .hero-logos-strip {
-          position: absolute; bottom: 0; left: 0; right: 0; padding: 0 0 20px; z-index: 2;
+          position: absolute; bottom: 0; left: 0; right: 0; padding-bottom: 20px; z-index: 2;
         }
-        .hero-logos-strip::before {
-          content: "";
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, 
-            rgba(96, 165, 250, 0.4) 0%, 
-            rgba(96, 165, 250, 0.7) 30%, 
-            rgba(96, 165, 250, 1) 50%, 
-            rgba(96, 165, 250, 0.7) 70%, 
-            rgba(96, 165, 250, 0.4) 100%
-          );
-          box-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
-        }
-        .hero-logos-strip::after {
-          content: "";
-          position: absolute;
-          top: -1.5px; left: 50%;
-          transform: translateX(-50%);
-          width: 4px; height: 4px;
-          border-radius: 50%;
-          background: #bfdbfe;
-          box-shadow: 0 0 8px 3px rgba(96, 165, 250, 0.9);
-        }
+
         .hero-logos-label { 
           padding-top: 16px;
           text-align: left; font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 12px; opacity: 0.9; 
