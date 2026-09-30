@@ -99,94 +99,98 @@ export default function CarouselSection() {
   return (
     <section className="h-[calc(100vh-80px)] min-h-[600px] bg-white relative flex flex-col justify-center border-b border-gray-200 overflow-hidden">
       {/* Fixed UI Layer for Arrows & Pagination */}
-      <div className="absolute inset-0 w-full pointer-events-none z-30 flex flex-col justify-center">
-        {/* Previous Button */}
-        <button
-          onClick={prevSlide}
-          className="pointer-events-auto hidden lg:flex absolute top-1/2 left-4 lg:left-5 -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
-          aria-label="Previous slide"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-gray-600"
+      <div className="absolute inset-0 w-full pointer-events-none z-30 flex justify-center items-center">
+        <div className="relative w-full h-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto">
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            className="pointer-events-auto hidden lg:flex absolute top-1/2 left-4 lg:left-[50px] min-[2500px]:left-[calc(590px+2rem)] -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
+            aria-label="Previous slide"
           >
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-gray-600"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
 
-        {/* Next Button */}
-        <button
-          onClick={nextSlide}
-          className="pointer-events-auto hidden lg:flex absolute top-1/2 right-4 lg:right-5 -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
-          aria-label="Next slide"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-gray-600"
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="pointer-events-auto hidden lg:flex absolute top-1/2 right-4 lg:right-[50px] min-[2500px]:right-[calc(590px+2rem)] -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
+            aria-label="Next slide"
           >
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-gray-600"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* Full Width Sliding Track */}
-      <div className="w-full relative z-10">
-        <div className="grid">
-          {dummyCards.map((card, idx) => {
-            const isCurrent = idx === current;
-            const isPrev = idx === prev;
+      {/* Padded Container for Huge Screens */}
+      <div className="w-full min-[2500px]:px-[590px] lg:px-[50px]">
+        {/* Clipped Sliding Track */}
+        <div className="lg:max-w-none min-[2500px]:max-w-none w-full mx-auto relative z-10 overflow-hidden">
+          <div className="grid w-full">
+            {dummyCards.map((card, idx) => {
+              const isCurrent = idx === current;
+              const isPrev = idx === prev;
 
-            let zIndex = 0;
-            let transform = 'translate3d(0, 0, 0)';
-            let animation = 'none';
-            const isVisible = isCurrent || isPrev;
+              let zIndex = 0;
+              let transform = 'translate3d(0, 0, 0)';
+              let animation = 'none';
+              const isVisible = isCurrent || isPrev;
 
-            if (isCurrent) {
-              zIndex = 20;
-              if (isTransitioning) {
-                animation = dir === 1
-                  ? 'carouselSlideInRight 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards'
-                  : 'carouselSlideInLeft 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards';
+              if (isCurrent) {
+                zIndex = 20;
+                if (isTransitioning) {
+                  animation = dir === 1
+                    ? 'carouselSlideInRight 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards'
+                    : 'carouselSlideInLeft 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards';
+                }
+              } else if (isPrev) {
+                zIndex = 10;
+                transform = 'translate3d(0, 0, 0)';
               }
-            } else if (isPrev) {
-              zIndex = 10;
-              transform = 'translate3d(0, 0, 0)';
-            }
 
-            return (
-              <div
-                key={card.id}
-                className="col-start-1 row-start-1 w-full"
-                style={{
-                  transform,
-                  animation,
-                  zIndex,
-                  visibility: isVisible ? 'visible' : 'hidden',
-                  pointerEvents: isCurrent ? 'auto' : 'none',
-                  willChange: isTransitioning ? 'transform' : 'auto',
-                }}
-              >
-                {/* Inner Content Centered */}
-                <div className="max-w-[1500px] w-full mx-auto px-8 lg:px-24 bg-white flex items-center justify-center">
-                  <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full min-h-[400px]">
-                    {/* Left Content */}
-                    <div className="flex-1 relative">
+              return (
+                <div
+                  key={card.id}
+                  className="col-start-1 row-start-1 w-full"
+                  style={{
+                    transform,
+                    animation,
+                    zIndex,
+                    visibility: isVisible ? 'visible' : 'hidden',
+                    pointerEvents: isCurrent ? 'auto' : 'none',
+                    willChange: isTransitioning ? 'transform' : 'auto',
+                  }}
+                >
+                  {/* Inner Content Centered */}
+                  <div className="w-full bg-white flex items-center justify-center px-8 lg:px-[88px]">
+                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full min-h-[400px]">
+                      {/* Left Content */}
+                      <div className="flex-1 relative">
                       <div className="inline-block px-6 py-3 mb-6 text-[#e05628] bg-[#e05628]/10 border-l-[3px] border-[#e05628] text-base lg:text-lg font-bold tracking-wide">
                         {card.tag}
                       </div>
@@ -229,21 +233,22 @@ export default function CarouselSection() {
           })}
         </div>
       </div>
+      </div>
 
       {/* Pagination Dots */}
-      <div className="flex justify-center items-center gap-3 mt-12 h-[24px]">
+      <div className="flex justify-center items-center gap-3 mt-12 h-[20px] lg:h-[24px]">
         {dummyCards.map((_, idx) => {
           const isActive = idx === current;
           return (
             <button
               key={idx}
               onClick={() => goToSlide(idx, idx > current ? 1 : -1)}
-              className="relative flex items-center justify-center w-[24px] h-[24px] rounded-full focus:outline-none group"
+              className="relative flex items-center justify-center w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] rounded-full focus:outline-none group"
               aria-label={`Go to slide ${idx + 1}`}
             >
               {/* Outer Ring */}
               <div
-                className={`absolute inset-0 rounded-full border-2 border-[#1877F2] transition-all duration-300 ease-out ${
+                className={`absolute inset-0 rounded-full border-[1.5px] lg:border-2 border-[#0a76db] transition-all duration-300 ease-out ${
                   isActive ? "opacity-100 scale-100" : "opacity-0 scale-50"
                 }`}
               />
@@ -252,8 +257,8 @@ export default function CarouselSection() {
               <div
                 className={`rounded-full transition-all duration-300 ease-out ${
                   isActive
-                    ? "w-[8px] h-[8px] bg-[#1877F2]"
-                    : "w-[14px] h-[14px] bg-[#bfdbfe] group-hover:bg-[#93c5fd]"
+                    ? "w-[4px] h-[4px] lg:w-[8px] lg:h-[8px] bg-[#0a76db]"
+                    : "w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] bg-[#bfdbfe] group-hover:bg-[#93c5fd]"
                 }`}
               />
             </button>
@@ -273,3 +278,5 @@ export default function CarouselSection() {
     </section>
   );
 }
+
+

@@ -89,7 +89,7 @@ export default function CaseStudiesPage() {
     <>
       <Header />
 
-      <div className="page-head wrap">
+      <div className="page-head w-full lg:max-w-none mx-auto px-6 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px]">
         <span className="eyebrow">
           Proof <span className="test-tag">Test data</span>
         </span>
@@ -144,3 +144,4 @@ export default function CaseStudiesPage() {
     </>
   );
 }
+

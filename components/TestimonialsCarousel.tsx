@@ -38,12 +38,12 @@ export default function TestimonialsCarousel() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section style={{
+    <section className="w-full lg:h-[calc(100vh-80px)] flex flex-col justify-center box-border overflow-hidden" style={{
       background: "#fff",
       padding: "80px 0",
       position: "relative"
     }}>
-      <div className="wrap" style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 40px", position: "relative" }}>
+      <div className="w-full lg:max-w-none mx-auto px-10 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px] relative">
         
         <h2 style={{ fontSize: "2.5rem", fontWeight: "600", marginBottom: "3rem", textAlign: "left" }}>
           In The Words of Those We Build With
@@ -52,7 +52,7 @@ export default function TestimonialsCarousel() {
         {/* Cards Container */}
         <div style={{ margin: "0", padding: "0" }}>
           <div style={{ 
-            display: "grid", 
+            display: "grid", width: "100%", margin: "0", padding: "0", justifyItems: "stretch", 
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: "24px"
           }}>
@@ -159,3 +159,4 @@ export default function TestimonialsCarousel() {
     </section>
   );
 }
+

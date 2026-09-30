@@ -126,7 +126,7 @@ export default function TimelineSection() {
 
   return (
     <section className="process" ref={sectionRef}>
-      <div className="wrap">
+      <div className="w-full lg:max-w-none mx-auto px-6 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px]">
         <div className="section-head">
           <span className="eyebrow">How we work</span>
           <h2>Discover, design, build, scale</h2>
@@ -154,3 +154,4 @@ export default function TimelineSection() {
     </section>
   );
 }
+
