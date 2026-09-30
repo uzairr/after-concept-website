@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import ScrollObserver from "@/components/ScrollObserver";
 import TimelineSection from "@/components/TimelineSection";
 import HeroComponent from "../HeroComponent";
 import CarouselSection from "@/components/CarouselSection";
 import CoreCapabilities from "@/components/CoreCapabilities";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import SuccessStories from "@/components/SuccessStories";
 function AnimatedCounter({ value, color = "#e05628" }: { value: string; color?: string }) {
   const numericMatch = value.match(/\d+/);
   const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : 0;
@@ -81,10 +83,10 @@ export function OriginSection() {
   ];
 
   return (
-    <section className="relative w-full min-h-[80vh] flex flex-col justify-center bg-[#26215C] overflow-hidden py-16">
+    <section className="relative w-full min-h-[80vh] flex flex-col justify-center bg-[#26215C] overflow-hidden py-16 !px-6 lg:!px-[50px]">
 
 
-      <div className="relative z-10 max-w-[1800px] mx-auto px-6 lg:px-16 xl:px-20">
+      <div className="relative z-10 w-full">
         {/* Top Content: Title & Description */}
         <div className="w-full mb-24 text-left">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
@@ -96,9 +98,9 @@ export function OriginSection() {
         </div>
 
         {/* Bottom Content: 4 Column Horizontal Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 w-full">
           {stats.map((stat, i) => (
-            <div key={i} className="flex flex-col">
+            <div key={i} className={`flex flex-col ${i === 3 ? "lg:items-end lg:text-right" : i === 0 ? "lg:items-start lg:text-left" : "lg:items-center lg:text-center"}`}>
               
               {/* Giant Stat Number */}
               <div className="text-5xl md:text-[5.5rem] font-bold text-white mb-4 lg:mb-6 tracking-tighter leading-none">
@@ -337,7 +339,7 @@ function OutcomeSection() {
         />
       </div>
 
-      <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+      <div className="w-full lg:max-w-none mx-auto px-6 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px]" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-head">
           <span className="eyebrow">WHAT CLIENTS GAIN</span>
           <h2>Outcomes That Matter</h2>
@@ -671,8 +673,11 @@ export default function Home() {
       <CoreCapabilities />
       <TestimonialsCarousel />
 
-
-      <Footer />
+      <SuccessStories />
+      <ContactSection />
+        <Footer />
     </>
   );
 }
+
+

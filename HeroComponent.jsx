@@ -263,14 +263,11 @@ export default function HeroComponent() {
           }} 
         ></div>
 
-        <div className="w-full max-w-[1920px] mx-auto px-8 md:px-16 lg:px-24 hero-content">
-          <h1 
-            className="hero-title" 
-            dangerouslySetInnerHTML={{ __html: typewriterHtml }}
-          ></h1>
+        <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-start", width: "100%", left: 0, right: "auto" }}>
+          <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
         </div>
 
-        <div className="hero-controls w-full max-w-[1920px] mx-auto px-8 md:px-16 lg:px-24">
+        <div className="hero-controls w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", justifyContent: "flex-start", width: "100%", left: 0, right: "auto" }}>
           <div className="hero-indicators">
               {SLIDE_IMAGES.map((_, idx) => (
                 <button 
@@ -310,7 +307,7 @@ export default function HeroComponent() {
           <span className="scroll-line"><span className="scroll-dot"></span></span>
         </button>
 
-        <div className="hero-logos-strip w-full max-w-[1920px] mx-auto px-8 md:px-16 lg:px-24">
+        <div className="hero-logos-strip w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto" }}>
             <p className="hero-logos-label">
               Trusted by Market Leaders Serving 500M+ People
             </p>
@@ -513,3 +510,10 @@ export default function HeroComponent() {
     </>
   );
 }
+
+
+
+
+
+
+

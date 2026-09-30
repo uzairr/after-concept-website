@@ -195,55 +195,48 @@ export default function Header() {
   return (
     <>
       <header ref={headerRef} onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${activeMenu ? 'bg-white border-b border-gray-200' : (isScrolledTop ? 'bg-transparent border-transparent' : 'bg-[#060f1c] border-b border-[#1f3f66]')}`}>
-        <nav className="w-full max-w-none px-6 md:px-12 lg:px-16 h-20 flex items-center justify-between relative">
+        <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-12 lg:px-[50px] h-20 flex items-center justify-between relative">
           
           {/* Logo & Brand Name (Left) */}
-          <a href="#" className="flex items-center group">
-            <div className="relative">
-              <img 
-                src="/image.png" 
-                alt="After Concept Logo" 
-                className={`transition-all duration-300 ease-in-out ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'brightness-0 invert' : ''}`} 
-                style={{ width: '110px', height: '110px', objectFit: 'contain' }}
-              />
+          <a href="#" className="flex items-center group lg:-ml-[8px]">
+            <div className="relative flex items-center justify-center w-[110px] h-[110px] lg:w-[44px] lg:h-[44px] lg:overflow-hidden lg:mr-2">
+              <img src="/image.png" alt="After Concept Logo" className={`w-[110px] h-[110px] lg:max-w-none lg:w-[110px] lg:h-[110px] transition-all duration-300 ease-in-out ${ (!activeMenu && (isDark || !isScrolledTop)) ? "brightness-0 invert" : ""}`} style={{ objectFit: "contain" }} />
             </div>
-            <div className={`flex items-center font-bold tracking-tight text-xl transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-[#26215c]'}`} style={{ marginLeft: '-32px' }}>
+            <div className={`flex items-center font-bold tracking-tight text-xl transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-[#26215c]'} -ml-[32px] lg:ml-0`}>
               <span>AFTER</span>
               <span className={`text-transparent ml-0.5 transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? '[-webkit-text-stroke:1px_#ffffff]' : '[-webkit-text-stroke:1px_#26215c]'}`}>CONCEPT</span>
             </div>
           </a>
           
-          {/* Right Side Group (Links + Button) */}
-          <div className="flex items-center gap-6 lg:gap-10 h-full">
-            {/* Desktop Nav Links */}
-            <div className={`hidden lg:flex items-center h-full font-medium transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-stone-300' : 'text-stone-600'}`} style={{ fontSize: '0.95rem' }}>
-              {navData.map((item) => (
+          {/* Center Group (Desktop Nav Links) */}
+          <div className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center h-full font-medium transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-stone-300' : 'text-stone-600'}`} style={{ fontSize: '0.95rem' }}>
+            {navData.map((item) => (
+              <div 
+                key={item.name}
+                className="relative h-full flex items-center px-6 cursor-pointer"
+                onMouseEnter={() => setActiveMenu(item.name)}
+                onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
+              >
                 <div 
-                  key={item.name}
-                  className="relative h-full flex items-center px-4 cursor-pointer"
-                  onMouseEnter={() => setActiveMenu(item.name)}
-                  onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
+                  className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
                 >
-                  <div 
-                    className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
-                  >
-                    {item.name}
-                    <svg className={`w-4 h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                    {/* Underline Effect */}
-                    <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
-                  </div>
+                  {item.name}
+                  <svg className={`w-4 h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                  {/* Underline Effect */}
+                  <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
 
-            {/* CTA & Mobile Menu */}
-            <div className="flex items-center gap-4">
-              {/* CTA Button with Hover Effect */}
+          {/* Right Side Group (CTA & Mobile Menu) */}
+          <div className="flex items-center gap-4">
+            {/* CTA Button with Hover Effect */}
               <a 
                 href="#contact" 
-                className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm"
+                className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm "
                 style={{
                   backgroundColor: '#0a76db',
                   color: '#ffffff',
@@ -280,7 +273,6 @@ export default function Header() {
                 </svg>
               </button>
             </div>
-          </div>
         </nav>
 
         {/* Mega Menu Dropdown */}
@@ -288,7 +280,7 @@ export default function Header() {
           className={`hidden lg:block absolute left-0 w-full bg-white border-t border-b border-gray-200 shadow-2xl transition-all duration-300 origin-top overflow-hidden ${activeMenu ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-95 invisible'}`}
           style={{ top: '100%', height: 'calc(100dvh - 200px)' }}
         >
-          <div className="max-w-[1400px] mx-auto flex h-full">
+          <div className="w-full flex h-full justify-between">
             {/* Left Column: Categories */}
             <div className="w-[280px] shrink-0 border-r border-gray-200 py-4 px-4 bg-gray-50 overflow-y-auto">
               <div className="flex flex-col gap-1">
@@ -394,3 +386,12 @@ export default function Header() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+

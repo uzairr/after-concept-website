@@ -1801,3 +1801,8 @@ article li b {
     transform: scaleY(0.7);
   }
 }
+
+@media (min-width: 1024px) { .wrap { max-width: none !important; padding: 0 50px !important; } }
+@media (min-width: 2500px) { .wrap { max-width: none !important; padding-left: 590px !important; padding-right: 590px !important; } }
+
+

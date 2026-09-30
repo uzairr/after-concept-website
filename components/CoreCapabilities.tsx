@@ -40,7 +40,7 @@ export default function CoreCapabilities() {
   const [expanded, setExpanded] = useState<number>(0);
 
   return (
-    <section id="capabilities" style={{
+    <section id="capabilities" className="w-full lg:h-[calc(100vh-80px)] flex flex-col justify-center box-border" style={{
       background: "#fff",
       borderTop: "1px solid var(--line)",
       borderBottom: "1px solid var(--line)",
@@ -70,7 +70,7 @@ export default function CoreCapabilities() {
           border-radius: 4px;
         }
       `}} />
-      <div className="wrap" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
+      <div className="w-full lg:max-w-none mx-auto px-5 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px]">
         <div style={{ display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "space-between" }}>
           
           {/* Left Column */}
@@ -140,3 +140,4 @@ export default function CoreCapabilities() {
     </section>
   );
 }
+
