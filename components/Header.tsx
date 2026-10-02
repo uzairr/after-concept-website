@@ -75,72 +75,72 @@ type NavCategory = {
 const navData: NavCategory[] = [
   {
     name: 'About',
-    href: '#about',
+    href: '/about',
     description: 'What After Concept is All About',
     submenus: [
-      { title: 'Leadership', description: 'Guiding After Concept forward', href: '#', icon: <IconUser /> },
-      { title: 'Open Source', description: 'Powered by Open Source', href: '#', icon: <IconCode />, isExternal: true },
-      { title: 'Partners', description: 'Trusted partners across proven platforms', href: '#', icon: <IconCheck /> },
-      { title: 'Testimonials', description: 'In the words of those we build with', href: '#', icon: <IconHeart /> },
-      { title: 'Awards & Certificates', description: 'Recognized for quality & excellence', href: '#', icon: <IconAward /> },
-      { title: 'Platform Expertise', description: 'Expertise that spans your stack', href: '#', icon: <IconCloud /> },
-      { title: 'Venture Studio', description: 'We build for ourselves', href: '#', icon: <IconGeneric />, isExternal: true },
-      { title: 'Careers', description: 'Explore open roles & life', href: '#', icon: <IconBriefcase />, isExternal: true }
+      { title: 'Leadership', description: 'Guiding After Concept forward', href: '/about/leadership', icon: <IconUser /> },
+      { title: 'Open Source', description: 'Powered by Open Source', href: '/about/open-source', icon: <IconCode />, isExternal: true },
+      { title: 'Partners', description: 'Trusted partners across proven platforms', href: '/about/partners', icon: <IconCheck /> },
+      { title: 'Testimonials', description: 'In the words of those we build with', href: '/about/testimonials', icon: <IconHeart /> },
+      { title: 'Awards & Certificates', description: 'Recognized for quality & excellence', href: '/about/awards-certificates', icon: <IconAward /> },
+      { title: 'Platform Expertise', description: 'Expertise that spans your stack', href: '/about/platform-expertise', icon: <IconCloud /> },
+      { title: 'Venture Studio', description: 'We build for ourselves', href: '/about/venture-studio', icon: <IconGeneric />, isExternal: true },
+      { title: 'Careers', description: 'Explore open roles & life', href: '/about/careers', icon: <IconBriefcase />, isExternal: true }
     ]
   },
   {
     name: 'Services',
-    href: '#services',
+    href: '/services',
     description: 'Explore What We Offer',
     submenus: [
-      { title: 'Web Development', description: 'Custom web applications', href: '#', icon: <IconCode /> },
-      { title: 'Mobile App Development', description: 'iOS and Android solutions', href: '#', icon: <IconCode /> },
-      { title: 'UI/UX Design', description: 'Intuitive and engaging designs', href: '#', icon: <IconHeart /> },
-      { title: 'Cloud Computing', description: 'Scalable cloud architecture', href: '#', icon: <IconCloud /> },
-      { title: 'DevOps', description: 'Streamlined deployment pipelines', href: '#', icon: <IconGeneric /> },
-      { title: 'QA & Testing', description: 'Rigorous quality assurance', href: '#', icon: <IconCheck /> }
+      { title: 'Web Development', description: 'Custom web applications', href: '/services', icon: <IconCode /> },
+      { title: 'Mobile App Development', description: 'iOS and Android solutions', href: '/services', icon: <IconCode /> },
+      { title: 'UI/UX Design', description: 'Intuitive and engaging designs', href: '/services', icon: <IconHeart /> },
+      { title: 'Cloud Computing', description: 'Scalable cloud architecture', href: '/services', icon: <IconCloud /> },
+      { title: 'DevOps', description: 'Streamlined deployment pipelines', href: '/services', icon: <IconGeneric /> },
+      { title: 'QA & Testing', description: 'Rigorous quality assurance', href: '/services', icon: <IconCheck /> }
     ]
   },
   {
     name: 'Solutions',
-    href: '#solutions',
+    href: '/solutions',
     description: 'Targeted Industry Solutions',
     submenus: [
-      { title: 'E-commerce', description: 'Digital storefronts and platforms', href: '#', icon: <IconBriefcase /> },
-      { title: 'Fintech', description: 'Financial technology applications', href: '#', icon: <IconAward /> },
-      { title: 'Healthcare', description: 'Medical and health solutions', href: '#', icon: <IconHeart /> },
-      { title: 'Education', description: 'EdTech platforms and tools', href: '#', icon: <IconUser /> }
+      { title: 'E-commerce', description: 'Digital storefronts and platforms', href: '/solutions', icon: <IconBriefcase /> },
+      { title: 'Fintech', description: 'Financial technology applications', href: '/solutions', icon: <IconAward /> },
+      { title: 'Healthcare', description: 'Medical and health solutions', href: '/solutions', icon: <IconHeart /> },
+      { title: 'Education', description: 'EdTech platforms and tools', href: '/solutions', icon: <IconUser /> }
     ]
   },
   {
     name: 'Industries',
-    href: '#industries',
+    href: '/industries',
     description: 'Sectors We Specialize In',
     submenus: [
-      { title: 'Retail', description: 'Transforming retail experiences', href: '#', icon: <IconBriefcase /> },
-      { title: 'Finance', description: 'Secure financial systems', href: '#', icon: <IconAward /> },
-      { title: 'Healthcare', description: 'Innovative health solutions', href: '#', icon: <IconHeart /> },
-      { title: 'Logistics', description: 'Supply chain management', href: '#', icon: <IconGeneric /> }
+      { title: 'Retail', description: 'Transforming retail experiences', href: '/industries', icon: <IconBriefcase /> },
+      { title: 'Finance', description: 'Secure financial systems', href: '/industries', icon: <IconAward /> },
+      { title: 'Healthcare', description: 'Innovative health solutions', href: '/industries', icon: <IconHeart /> },
+      { title: 'Logistics', description: 'Supply chain management', href: '/industries', icon: <IconGeneric /> }
     ]
   },
   {
     name: 'Our Products',
-    href: '#products',
+    href: '/products',
     description: 'Software Built By Us',
     submenus: [
-      { title: 'Product Alpha', description: 'Enterprise management tool', href: '#', icon: <IconCloud />, isExternal: true },
-      { title: 'Product Beta', description: 'Analytics and reporting suite', href: '#', icon: <IconCode />, isExternal: true },
-      { title: 'Product Gamma', description: 'Customer engagement platform', href: '#', icon: <IconHeart />, isExternal: true }
+      { title: 'Product Alpha', description: 'Enterprise management tool', href: '/products', icon: <IconCloud />, isExternal: true },
+      { title: 'Product Beta', description: 'Analytics and reporting suite', href: '/products', icon: <IconCode />, isExternal: true },
+      { title: 'Product Gamma', description: 'Customer engagement platform', href: '/products', icon: <IconHeart />, isExternal: true }
     ]
   },
   {
     name: 'Engagement Models',
-    href: '#engagement-models',
+    href: '/engagement-models',
     description: 'How We Collaborate',
     submenus: [
-      { title: 'Dedicated Team', description: 'Your extended development team', href: '#', icon: <IconUser /> },
-      { title: 'Fixed Price', description: 'Defined scope and budget', href: '#', icon: <IconAward /> },
-      { title: 'Time & Material', description: 'Flexible ongoing development', href: '#', icon: <IconCheck /> }
+      { title: 'Dedicated Team', description: 'Your extended development team', href: '/engagement-models', icon: <IconUser /> },
+      { title: 'Fixed Price', description: 'Defined scope and budget', href: '/engagement-models', icon: <IconAward /> },
+      { title: 'Time & Material', description: 'Flexible ongoing development', href: '/engagement-models', icon: <IconCheck /> }
     ]
   }
 ];
@@ -213,7 +213,7 @@ export default function Header() {
             {navData.map((item) => (
               <div 
                 key={item.name}
-                className="relative h-full flex items-center px-6 cursor-pointer"
+                className="relative h-full flex items-center px-3 cursor-pointer"
                 onMouseEnter={() => setActiveMenu(item.name)}
                 onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
               >
@@ -278,11 +278,11 @@ export default function Header() {
         {/* Mega Menu Dropdown */}
         <div 
           className={`hidden lg:block absolute left-0 w-full bg-white border-t border-b border-gray-200 shadow-2xl transition-all duration-300 origin-top overflow-hidden ${activeMenu ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-95 invisible'}`}
-          style={{ top: '100%', height: 'calc(100dvh - 200px)' }}
+          style={{ top: '100%', height: 'auto', maxHeight: '80vh' }}
         >
-          <div className="w-full flex h-full justify-between">
+          <div className="w-full flex justify-between">
             {/* Left Column: Categories */}
-            <div className="w-[280px] shrink-0 border-r border-gray-200 py-4 px-4 bg-gray-50 overflow-y-auto">
+            <div className="w-[280px] shrink-0 border-r border-gray-200 py-3 px-3 bg-gray-50 overflow-y-auto">
               <div className="flex flex-col gap-1">
                 {navData.map((category) => (
                   <button
@@ -306,14 +306,16 @@ export default function Header() {
             </div>
 
             {/* Right Column: Submenus Grid */}
-            <div className="flex-1 p-8 py-8 overflow-y-auto bg-white">
+            <div className="flex-1 p-5 py-5 overflow-y-auto bg-white">
               {activeCategory && (
-                <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                   {activeCategory.submenus.map((sub, idx) => (
                     <a
                       key={idx}
                       href={sub.href}
-                      className="group flex items-start gap-3 p-3 rounded-xl transition-all hover:bg-gray-200 border border-transparent w-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-start gap-3 p-2 rounded-xl transition-all hover:bg-gray-200 border border-transparent w-full"
                       onClick={() => setActiveMenu(null)}
                     >
                       <div className="shrink-0 mt-0.5 p-1.5 rounded-lg bg-[#0a76db]/10 group-hover:bg-[#0a76db] transition-colors">
@@ -358,6 +360,8 @@ export default function Header() {
                     <a
                       key={idx}
                       href={sub.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-stone-400 hover:text-[#0a76db] text-sm flex items-center gap-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
