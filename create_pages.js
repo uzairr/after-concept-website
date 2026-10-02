@@ -51,6 +51,6 @@ routes.forEach(route => {
   if (!fs.existsSync(filePath)) {
     const title = route.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     fs.writeFileSync(filePath, template(title));
-    console.log(\`Created \${filePath}\`);
+    console.log("Created " + filePath);
   }
 });

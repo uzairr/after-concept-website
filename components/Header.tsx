@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // Icons
 const IconGeneric = () => (
@@ -146,6 +148,7 @@ const navData: NavCategory[] = [
 ];
 
 export default function Header() {
+  const router = useRouter();
   const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolledTop, setIsScrolledTop] = useState(true);
@@ -198,7 +201,7 @@ export default function Header() {
         <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-12 lg:px-[50px] h-20 flex items-center justify-between relative">
           
           {/* Logo & Brand Name (Left) */}
-          <a href="#" className="flex items-center group lg:-ml-[8px]">
+          <Link href="/" className="flex items-center group lg:-ml-[8px]">
             <div className="relative flex items-center justify-center w-[110px] h-[110px] lg:w-[44px] lg:h-[44px] lg:overflow-hidden lg:mr-2">
               <img src="/image.png" alt="After Concept Logo" className={`w-[110px] h-[110px] lg:max-w-none lg:w-[110px] lg:h-[110px] transition-all duration-300 ease-in-out ${ (!activeMenu && (isDark || !isScrolledTop)) ? "brightness-0 invert" : ""}`} style={{ objectFit: "contain" }} />
             </div>
@@ -206,7 +209,7 @@ export default function Header() {
               <span>AFTER</span>
               <span className={`text-transparent ml-0.5 transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? '[-webkit-text-stroke:1px_#ffffff]' : '[-webkit-text-stroke:1px_#26215c]'}`}>CONCEPT</span>
             </div>
-          </a>
+          </Link>
           
           {/* Center Group (Desktop Nav Links) */}
           <div className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center h-full font-medium transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-stone-300' : 'text-stone-600'}`} style={{ fontSize: '0.95rem' }}>
@@ -234,8 +237,8 @@ export default function Header() {
           {/* Right Side Group (CTA & Mobile Menu) */}
           <div className="flex items-center gap-4">
             {/* CTA Button with Hover Effect */}
-              <a 
-                href="#contact" 
+              <Link 
+                href="/contact" 
                 className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm "
                 style={{
                   backgroundColor: '#0a76db',
@@ -256,7 +259,7 @@ export default function Header() {
                 }}
               >
                 Contact Us
-              </a>
+              </Link>
 
               {/* Mobile Menu Button */}
               <button 
@@ -289,7 +292,7 @@ export default function Header() {
                     key={category.name}
                     className={`text-left p-2 rounded-xl transition-all duration-200 group flex items-center justify-between ${activeMenu === category.name ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-gray-900'}`}
                     onMouseEnter={() => setActiveMenu(category.name)}
-                    onClick={() => { window.location.href = category.href; setActiveMenu(null); }}
+                    onClick={() => { router.push(category.href); setActiveMenu(null); }}
                   >
                     <div>
                       <div className="font-semibold text-sm">{category.name}</div>
@@ -310,7 +313,7 @@ export default function Header() {
               {activeCategory && (
                 <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                   {activeCategory.submenus.map((sub, idx) => (
-                    <a
+                    <Link
                       key={idx}
                       href={sub.href}
                       target="_blank"
@@ -335,7 +338,7 @@ export default function Header() {
                           {sub.description}
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -348,16 +351,16 @@ export default function Header() {
           <div className="lg:hidden bg-[#060f1c] border-b border-[#1f3f66] px-4 pt-2 pb-6 absolute top-full left-0 w-full shadow-lg max-h-[80vh] overflow-y-auto">
             {navData.map((item) => (
               <div key={item.name} className="border-b border-[#1f3f66]/50 last:border-0">
-                <a
+                <Link
                   href={item.href}
                   className="block text-white py-4 text-lg font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
                 <div className="pl-4 pb-2 flex flex-col gap-3">
                   {item.submenus.map((sub, idx) => (
-                    <a
+                    <Link
                       key={idx}
                       href={sub.href}
                       target="_blank"
@@ -372,18 +375,18 @@ export default function Header() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       )}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
             ))}
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className="block mt-6 text-center text-white bg-[#0a76db] hover:bg-[#085ab3] rounded-lg py-3 font-medium transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         )}
       </header>
