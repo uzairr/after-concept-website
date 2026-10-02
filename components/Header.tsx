@@ -198,10 +198,10 @@ export default function Header() {
   return (
     <>
       <header ref={headerRef} onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${activeMenu ? 'bg-white border-b border-gray-200' : (isScrolledTop ? 'bg-transparent border-transparent' : 'bg-[#060f1c] border-b border-[#1f3f66]')}`}>
-        <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-12 lg:px-[50px] h-20 flex items-center justify-between relative">
+        <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-8 xl:px-[50px] h-20 flex items-center justify-between relative">
           
           {/* Logo & Brand Name (Left) */}
-          <Link href="/" className="flex items-center group lg:-ml-[8px]">
+          <Link href="/" className="flex items-center group lg:-ml-[8px] shrink-0">
             <div className="relative flex items-center justify-center w-[110px] h-[110px] lg:w-[44px] lg:h-[44px] lg:overflow-hidden lg:mr-2">
               <img src="/image.png" alt="After Concept Logo" className={`w-[110px] h-[110px] lg:max-w-none lg:w-[110px] lg:h-[110px] transition-all duration-300 ease-in-out ${ (!activeMenu && (isDark || !isScrolledTop)) ? "brightness-0 invert" : ""}`} style={{ objectFit: "contain" }} />
             </div>
@@ -212,11 +212,11 @@ export default function Header() {
           </Link>
           
           {/* Center Group (Desktop Nav Links) */}
-          <div className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center h-full font-medium transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-stone-300' : 'text-stone-600'}`} style={{ fontSize: '0.95rem' }}>
+          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-stone-300' : 'text-stone-600'}`} style={{ fontSize: '0.88rem' }}>
             {navData.map((item) => (
               <div 
                 key={item.name}
-                className="relative h-full flex items-center px-3 cursor-pointer"
+                className="relative h-full flex items-center px-1.5 xl:px-3.5 2xl:px-6 cursor-pointer"
                 onMouseEnter={() => setActiveMenu(item.name)}
                 onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
               >
@@ -224,7 +224,7 @@ export default function Header() {
                   className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
                 >
                   {item.name}
-                  <svg className={`w-4 h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                   {/* Underline Effect */}
@@ -235,15 +235,15 @@ export default function Header() {
           </div>
 
           {/* Right Side Group (CTA & Mobile Menu) */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 shrink-0">
             {/* CTA Button with Hover Effect */}
               <Link 
                 href="/contact" 
-                className="hidden sm:inline-flex items-center justify-center font-medium text-sm shadow-sm "
+                className="hidden sm:inline-flex items-center justify-center font-medium text-xs xl:text-sm shadow-sm"
                 style={{
                   backgroundColor: '#0a76db',
                   color: '#ffffff',
-                  padding: '12px 24px',
+                  padding: '10px 18px',
                   borderRadius: '12px',
                   transition: 'all 0.25s ease',
                 }}
@@ -281,16 +281,16 @@ export default function Header() {
         {/* Mega Menu Dropdown */}
         <div 
           className={`hidden lg:block absolute left-0 w-full bg-white border-t border-b border-gray-200 shadow-2xl transition-all duration-300 origin-top overflow-hidden ${activeMenu ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-95 invisible'}`}
-          style={{ top: '100%', height: 'auto', maxHeight: '80vh' }}
+          style={{ top: '100%', height: 'auto', maxHeight: 'calc(100dvh - 120px)' }}
         >
           <div className="w-full flex justify-between">
             {/* Left Column: Categories */}
-            <div className="w-[280px] shrink-0 border-r border-gray-200 py-3 px-3 bg-gray-50 overflow-y-auto">
+            <div className="w-[280px] shrink-0 border-r border-gray-200 py-3 px-4 bg-gray-50 overflow-y-auto">
               <div className="flex flex-col gap-1">
                 {navData.map((category) => (
                   <button
                     key={category.name}
-                    className={`text-left p-2 rounded-xl transition-all duration-200 group flex items-center justify-between ${activeMenu === category.name ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-gray-900'}`}
+                    className={`text-left py-1.5 px-2.5 rounded-xl transition-all duration-200 group flex items-center justify-between ${activeMenu === category.name ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-gray-900'}`}
                     onMouseEnter={() => setActiveMenu(category.name)}
                     onClick={() => { router.push(category.href); setActiveMenu(null); }}
                   >
@@ -309,7 +309,7 @@ export default function Header() {
             </div>
 
             {/* Right Column: Submenus Grid */}
-            <div className="flex-1 p-5 py-5 overflow-y-auto bg-white">
+            <div className="flex-1 px-8 py-4 overflow-y-auto bg-white flex flex-col justify-center">
               {activeCategory && (
                 <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                   {activeCategory.submenus.map((sub, idx) => (
@@ -318,7 +318,7 @@ export default function Header() {
                       href={sub.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-start gap-3 p-2 rounded-xl transition-all hover:bg-gray-200 border border-transparent w-full"
+                      className="group flex items-start gap-3 py-1.5 px-2.5 rounded-xl transition-all hover:bg-gray-200 border border-transparent w-full"
                       onClick={() => setActiveMenu(null)}
                     >
                       <div className="shrink-0 mt-0.5 p-1.5 rounded-lg bg-[#0a76db]/10 group-hover:bg-[#0a76db] transition-colors">
@@ -334,7 +334,7 @@ export default function Header() {
                           </div>
                           {sub.isExternal && <IconExternalLink />}
                         </div>
-                        <div className="text-gray-500 text-sm mt-1">
+                        <div className="text-gray-500 text-sm mt-0.5">
                           {sub.description}
                         </div>
                       </div>
