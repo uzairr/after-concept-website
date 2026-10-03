@@ -12,6 +12,7 @@ import CarouselSection from "@/components/CarouselSection";
 import CoreCapabilities from "@/components/CoreCapabilities";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import SuccessStories from "@/components/SuccessStories";
+import FeaturedInsights from "@/components/FeaturedInsights";
 function AnimatedCounter({ value, color = "#e05628" }: { value: string; color?: string }) {
   const numericMatch = value.match(/\d+/);
   const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : 0;
@@ -674,6 +675,7 @@ export default function Home() {
       <TestimonialsCarousel />
 
       <SuccessStories />
+      <FeaturedInsights />
       <ContactSection />
         <Footer />
     </>

@@ -59,6 +59,36 @@ const IconExternalLink = () => (
   </svg>
 );
 
+const IconGrid = () => (
+  <svg className="w-5 h-5 text-[#0a76db] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+  </svg>
+);
+
+const IconPlusBox = () => (
+  <svg className="w-5 h-5 text-[#0a76db] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-3-3v6m-6 3a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2H8a2 2 0 00-2 2v10z" />
+  </svg>
+);
+
+const IconDocument = () => (
+  <svg className="w-5 h-5 text-[#0a76db] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2zM9 9h3m-3 4h6m-6 4h6" />
+  </svg>
+);
+
+const IconBookmark = () => (
+  <svg className="w-5 h-5 text-[#0a76db] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+  </svg>
+);
+
+const IconMenuLines = () => (
+  <svg className="w-5 h-5 text-[#0a76db] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+);
+
 type SubmenuItem = {
   title: string;
   description: string;
@@ -71,7 +101,14 @@ type NavCategory = {
   name: string;
   href: string;
   description: string;
-  submenus: SubmenuItem[];
+  submenuLayout?: 'grid' | 'list';
+  submenus?: SubmenuItem[];
+  customContent?: {
+    title: string;
+    description: string;
+    linkText: string;
+    linkHref: string;
+  };
 };
 
 const navData: NavCategory[] = [
@@ -81,68 +118,81 @@ const navData: NavCategory[] = [
     description: 'What After Concept is All About',
     submenus: [
       { title: 'Leadership', description: 'Guiding After Concept forward', href: '/about/leadership', icon: <IconUser /> },
-      { title: 'Open Source', description: 'Powered by Open Source', href: '/about/open-source', icon: <IconCode />, isExternal: true },
-      { title: 'Partners', description: 'Trusted partners across proven platforms', href: '/about/partners', icon: <IconCheck /> },
-      { title: 'Testimonials', description: 'In the words of those we build with', href: '/about/testimonials', icon: <IconHeart /> },
       { title: 'Awards & Certificates', description: 'Recognized for quality & excellence', href: '/about/awards-certificates', icon: <IconAward /> },
+      { title: 'Open Source Tech Expertise', description: 'Powered by Open Source through and through', href: '/about/open-source', icon: <IconCode />, isExternal: true },
       { title: 'Platform Expertise', description: 'Expertise that spans your stack', href: '/about/platform-expertise', icon: <IconCloud /> },
+      { title: 'Partners', description: 'Trusted partners across proven platforms', href: '/about/partners', icon: <IconCheck /> },
       { title: 'Venture Studio', description: 'We build for ourselves', href: '/about/venture-studio', icon: <IconGeneric />, isExternal: true },
-      { title: 'Careers', description: 'Explore open roles & life', href: '/about/careers', icon: <IconBriefcase />, isExternal: true }
+      { title: 'Testimonials', description: 'In the words of those we build with', href: '/about/testimonials', icon: <IconHeart /> },
+      { title: 'Careers', description: 'Explore open roles & life at After Concept', href: '/about/careers', icon: <IconBriefcase />, isExternal: true }
     ]
   },
   {
-    name: 'Services',
-    href: '/services',
-    description: 'Explore What We Offer',
+    name: 'How We Work',
+    href: '/how-we-work',
+    description: 'Our Methodology',
+    customContent: {
+      title: 'How We Work',
+      description: 'We lead with design, leverage open source, and accelerate with AI - the three pillars that define who we are and how we go about our work.',
+      linkText: 'See how we work',
+      linkHref: '/how-we-work'
+    }
+  },
+  {
+    name: 'What We Do',
+    href: '/what-we-do',
+    description: "Explore What We've Built Across the Years",
+    submenuLayout: 'list',
     submenus: [
-      { title: 'Web Development', description: 'Custom web applications', href: '/services', icon: <IconCode /> },
-      { title: 'Mobile App Development', description: 'iOS and Android solutions', href: '/services', icon: <IconCode /> },
-      { title: 'UI/UX Design', description: 'Intuitive and engaging designs', href: '/services', icon: <IconHeart /> },
-      { title: 'Cloud Computing', description: 'Scalable cloud architecture', href: '/services', icon: <IconCloud /> },
-      { title: 'DevOps', description: 'Streamlined deployment pipelines', href: '/services', icon: <IconGeneric /> },
-      { title: 'QA & Testing', description: 'Rigorous quality assurance', href: '/services', icon: <IconCheck /> }
+      {
+        title: 'Domain Expertise',
+        description: 'Our pedigree spans every major vertical, from education, healthcare and finance to travel, technology and e-commerce.',
+        href: '/what-we-do/domain-expertise',
+        icon: <IconPlusBox />
+      },
+      {
+        title: 'Core Capabilities',
+        description: 'From Stack Modernization, New Product Development, and Managed Services to AI Gateways and Enterprise AI, our capabilities offer everything a modern enterprise needs to modernize, build, and scale, under one roof.',
+        href: '/what-we-do/core-capabilities',
+        icon: <IconGrid />
+      }
     ]
   },
   {
-    name: 'Solutions',
-    href: '/solutions',
-    description: 'Targeted Industry Solutions',
-    submenus: [
-      { title: 'E-commerce', description: 'Digital storefronts and platforms', href: '/solutions', icon: <IconBriefcase /> },
-      { title: 'Fintech', description: 'Financial technology applications', href: '/solutions', icon: <IconAward /> },
-      { title: 'Healthcare', description: 'Medical and health solutions', href: '/solutions', icon: <IconHeart /> },
-      { title: 'Education', description: 'EdTech platforms and tools', href: '/solutions', icon: <IconUser /> }
-    ]
+    name: 'Success Stories',
+    href: '/success-stories',
+    description: 'See Our Work in Action',
+    customContent: {
+      title: 'Success Stories',
+      description: 'Real case studies and success stories from our global clients, across industries and technologies.',
+      linkText: 'View case studies',
+      linkHref: '/success-stories'
+    }
   },
   {
-    name: 'Industries',
-    href: '/industries',
-    description: 'Sectors We Specialize In',
+    name: 'Insights',
+    href: '/insights',
+    description: 'Ideas Worth Pondering',
+    submenuLayout: 'list',
     submenus: [
-      { title: 'Retail', description: 'Transforming retail experiences', href: '/industries', icon: <IconBriefcase /> },
-      { title: 'Finance', description: 'Secure financial systems', href: '/industries', icon: <IconAward /> },
-      { title: 'Healthcare', description: 'Innovative health solutions', href: '/industries', icon: <IconHeart /> },
-      { title: 'Logistics', description: 'Supply chain management', href: '/industries', icon: <IconGeneric /> }
-    ]
-  },
-  {
-    name: 'Our Products',
-    href: '/products',
-    description: 'Software Built By Us',
-    submenus: [
-      { title: 'Product Alpha', description: 'Enterprise management tool', href: '/products', icon: <IconCloud />, isExternal: true },
-      { title: 'Product Beta', description: 'Analytics and reporting suite', href: '/products', icon: <IconCode />, isExternal: true },
-      { title: 'Product Gamma', description: 'Customer engagement platform', href: '/products', icon: <IconHeart />, isExternal: true }
-    ]
-  },
-  {
-    name: 'Engagement Models',
-    href: '/engagement-models',
-    description: 'How We Collaborate',
-    submenus: [
-      { title: 'Dedicated Team', description: 'Your extended development team', href: '/engagement-models', icon: <IconUser /> },
-      { title: 'Fixed Price', description: 'Defined scope and budget', href: '/engagement-models', icon: <IconAward /> },
-      { title: 'Time & Material', description: 'Flexible ongoing development', href: '/engagement-models', icon: <IconCheck /> }
+      {
+        title: 'Whitepapers',
+        description: 'In-depth research and reports',
+        href: '/insights/whitepapers',
+        icon: <IconDocument />
+      },
+      {
+        title: 'Executive Briefs',
+        description: 'Concise insights for decision makers',
+        href: '/insights/executive-briefs',
+        icon: <IconBookmark />
+      },
+      {
+        title: 'Blogs',
+        description: 'Perspectives from our engineering teams',
+        href: '/insights/blogs',
+        icon: <IconMenuLines />
+      }
     ]
   }
 ];
@@ -308,10 +358,23 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Right Column: Submenus Grid */}
+            {/* Right Column: Content / Submenus Grid */}
             <div className="flex-1 px-8 py-4 overflow-y-auto bg-white flex flex-col justify-center">
-              {activeCategory && (
-                <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+              {activeCategory && activeCategory.customContent ? (
+                <div className="max-w-xl pl-4">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{activeCategory.customContent.title}</h2>
+                  <p className="text-gray-500 mb-6 leading-relaxed text-lg">
+                    {activeCategory.customContent.description}
+                  </p>
+                  <Link href={activeCategory.customContent.linkHref} className="inline-flex items-center text-[#0a76db] font-semibold hover:text-[#085ab3] transition-colors" onClick={() => setActiveMenu(null)}>
+                    {activeCategory.customContent.linkText}
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              ) : activeCategory && activeCategory.submenus ? (
+                <div className={`grid ${activeCategory.submenuLayout === 'list' ? 'grid-cols-1 gap-y-6 max-w-3xl' : 'grid-cols-2 gap-x-8 gap-y-2'}`}>
                   {activeCategory.submenus.map((sub, idx) => (
                     <Link
                       key={idx}
@@ -341,7 +404,7 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
@@ -359,7 +422,16 @@ export default function Header() {
                   {item.name}
                 </Link>
                 <div className="pl-4 pb-2 flex flex-col gap-3">
-                  {item.submenus.map((sub, idx) => (
+                  {item.customContent ? (
+                    <Link
+                      href={item.customContent.linkHref}
+                      className="text-stone-400 hover:text-[#0a76db] text-sm flex items-center gap-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0a76db]/50"></span>
+                      {item.customContent.linkText}
+                    </Link>
+                  ) : item.submenus ? item.submenus.map((sub, idx) => (
                     <Link
                       key={idx}
                       href={sub.href}
@@ -376,7 +448,7 @@ export default function Header() {
                         </svg>
                       )}
                     </Link>
-                  ))}
+                  )) : null}
                 </div>
               </div>
             ))}
