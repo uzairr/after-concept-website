@@ -267,32 +267,6 @@ export default function HeroComponent() {
           <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
         </div>
 
-        <div className="hero-controls w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", justifyContent: "flex-start", width: "100%", left: 0, right: "auto" }}>
-          <div className="hero-indicators">
-            {SLIDE_IMAGES.map((_, idx) => (
-              <button
-                key={idx}
-                id={`indicator-${idx}`}
-                className={`indicator ${idx === currentSlide ? 'active' : ''}`}
-                aria-label={`Go to slide ${idx + 1}`}
-                onClick={() => setCurrentSlide(idx)}
-              >
-                <svg className="progress-ring" width="24" height="24">
-                  <circle
-                    className="progress-ring-circle"
-                    stroke="#ffffff"
-                    strokeWidth="2"
-                    fill="transparent"
-                    r="10"
-                    cx="12"
-                    cy="12"
-                  />
-                </svg>
-              </button>
-            ))}
-          </div>
-        </div>
-
         <button
           className="scroll-indicator"
           aria-label="Scroll down"
@@ -308,6 +282,36 @@ export default function HeroComponent() {
         </button>
 
         <div className="hero-logos-strip w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto" }}>
+          
+          {/* Dots aligned just above the border */}
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, transform: "translateY(-100%)", width: "100%", paddingBottom: "24px" }}>
+            <div className="hero-controls w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", justifyContent: "flex-start", width: "100%", margin: 0 }}>
+              <div className="hero-indicators">
+                {SLIDE_IMAGES.map((_, idx) => (
+                  <button
+                    key={idx}
+                    id={`indicator-${idx}`}
+                    className={`indicator ${idx === currentSlide ? 'active' : ''}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    onClick={() => setCurrentSlide(idx)}
+                  >
+                    <svg className="progress-ring" width="24" height="24">
+                      <circle
+                        className="progress-ring-circle"
+                        stroke="#ffffff"
+                        strokeWidth="2"
+                        fill="transparent"
+                        r="10"
+                        cx="12"
+                        cy="12"
+                      />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <p className="hero-logos-label">
             Trusted by Market Leaders Serving 500M+ People
           </p>
