@@ -262,7 +262,7 @@ export default function Header() {
           </Link>
           
           {/* Center Group (Desktop Nav Links) */}
-          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-stone-300' : 'text-stone-600'}`} style={{ fontSize: '0.88rem' }}>
+          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>
             {navData.map((item) => (
               <div 
                 key={item.name}
