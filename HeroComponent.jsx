@@ -263,7 +263,10 @@ export default function HeroComponent() {
           }}
         ></div>
 
-        <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-start", width: "100%", left: 0, right: "auto" }}>
+        <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-start", width: "100%", left: 0, right: "auto", flexDirection: "column" }}>
+          <div className="hero-subtitle-badge">
+            Engineering Software Solutions Since 2016
+          </div>
           <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
         </div>
 
@@ -405,6 +408,22 @@ export default function HeroComponent() {
         }
         
         .hero-content { position: relative; flex: 1; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-top: 120px; padding-bottom: 40px; width: 100%; }
+        
+        .hero-subtitle-badge {
+          display: inline-flex;
+          align-items: center;
+          margin-bottom: 24px;
+          background: rgba(14, 23, 38, 0.65);
+          padding: 8px 20px 8px 16px;
+          border-left: 4px solid #0a76db;
+          color: #ffffff;
+          font-weight: 700;
+          font-size: 15px;
+          letter-spacing: 0.01em;
+          line-height: 1.4;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
         .hero-title { color: #fff !important; font-size: clamp(36px, 4.5vw, 64px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; max-width: 800px; margin: 0; text-align: left; }
         .hero-title .highlight { color: #0a76db; }
         .hero-title .highlight-hardware { color: #86efac; } /* Mint / Light Green */
