@@ -251,7 +251,7 @@ export default function Header() {
         <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-8 xl:px-[50px] h-20 flex items-center justify-between relative">
           
           {/* Logo & Brand Name (Left) */}
-          <Link href="/" className="flex items-center group lg:-ml-[8px] shrink-0">
+          <Link href="/" className="flex items-center group lg:-ml-[8px] shrink-0 transition-transform duration-300 ease-in-out hover:scale-[1.02]">
             <div className="relative flex items-center justify-center w-[110px] h-[110px] lg:w-[44px] lg:h-[44px] lg:overflow-hidden lg:mr-2">
               <img src="/image.png" alt="After Concept Logo" className={`w-[110px] h-[110px] lg:max-w-none lg:w-[110px] lg:h-[110px] transition-all duration-300 ease-in-out ${ (!activeMenu && (isDark || !isScrolledTop)) ? "brightness-0 invert" : ""}`} style={{ objectFit: "contain" }} />
             </div>
