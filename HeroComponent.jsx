@@ -263,7 +263,7 @@ export default function HeroComponent() {
           }}
         ></div>
 
-        <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-start", width: "100%", left: 0, right: "auto", flexDirection: "column" }}>
+        <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", width: "100%", left: 0, right: "auto", flexDirection: "column" }}>
           <div className="hero-subtitle-badge">
             Engineering Software Solutions Since 2016
           </div>
@@ -285,7 +285,7 @@ export default function HeroComponent() {
         </button>
 
         <div className="hero-logos-strip w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto" }}>
-          
+
           {/* Dots aligned just above the border */}
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, transform: "translateY(-100%)", width: "100%", paddingBottom: "24px" }}>
             <div className="hero-controls w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", justifyContent: "flex-start", width: "100%", margin: 0 }}>
