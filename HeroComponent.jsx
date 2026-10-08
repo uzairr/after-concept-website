@@ -66,14 +66,14 @@ export default function HeroComponent() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [typewriterHtml, setTypewriterHtml] = useState('<span class="cursor"></span>');
-  
+
   const seqTimeoutRef = useRef(null);
   const progressTimerRef = useRef(null);
   const overlayRef = useRef(null);
   const lastScrollY = useRef(0);
   const scrollDirection = useRef('down');
   const rafId = useRef(null);
-  
+
   // Real-time scroll handler for header and fluid opacity fade overlay
   useEffect(() => {
     const updateOverlay = () => {
@@ -142,7 +142,7 @@ export default function HeroComponent() {
     let charIdx = 0;
     let currentHTML = "";
     let localTyping = true;
-    
+
     const chunks = SLIDES_DATA[currentSlide];
 
     const typeNext = () => {
@@ -158,12 +158,12 @@ export default function HeroComponent() {
       }
 
       const chunk = chunks[chunkIdx];
-      
+
       // normal or highlight text
       if (charIdx < chunk.t.length) {
         const char = chunk.t.charAt(charIdx);
         charIdx++;
-        
+
         let buildHTML = currentHTML;
         const currentTyped = chunk.t.substring(0, charIdx).replace(/\n/g, '<br />');
         if (chunk.cls) {
@@ -171,7 +171,7 @@ export default function HeroComponent() {
         } else {
           buildHTML += currentTyped;
         }
-        
+
         setTypewriterHtml(buildHTML + '<span class="cursor"></span>');
         seqTimeoutRef.current = setTimeout(typeNext, 40); // typing speed
       } else {
@@ -191,17 +191,17 @@ export default function HeroComponent() {
     const startProgress = () => {
       const duration = 4000; // 4 seconds loader
       const startTime = performance.now();
-      
+
       const updateProgress = (now) => {
         const elapsed = now - startTime;
         let p = elapsed / duration;
         if (p > 1) p = 1;
-        
+
         const offset = 62.83 - (62.83 * p);
-        
+
         const circle = document.querySelector(`#indicator-${currentSlide} .progress-ring-circle`);
         if (circle) circle.style.strokeDashoffset = offset;
-        
+
         if (p < 1) {
           progressTimerRef.current = requestAnimationFrame(updateProgress);
         } else {
@@ -209,14 +209,14 @@ export default function HeroComponent() {
           setCurrentSlide((prev) => (prev + 1) % SLIDE_IMAGES.length);
         }
       };
-      
+
       progressTimerRef.current = requestAnimationFrame(updateProgress);
     };
 
     // Clean up previous timeouts/animations
     if (seqTimeoutRef.current) clearTimeout(seqTimeoutRef.current);
     if (progressTimerRef.current) cancelAnimationFrame(progressTimerRef.current);
-    
+
     // reset dash offsets
     document.querySelectorAll('.progress-ring-circle').forEach(circle => {
       circle.style.strokeDashoffset = "62.83";
@@ -252,15 +252,15 @@ export default function HeroComponent() {
           ))}
         </div>
         <div className="hero-overlay"></div>
-        <div 
+        <div
           ref={overlayRef}
-          style={{ 
-            position: 'absolute', inset: 0, zIndex: 1, 
-            backgroundColor: '#ffffff', pointerEvents: 'none', 
+          style={{
+            position: 'absolute', inset: 0, zIndex: 1,
+            backgroundColor: '#ffffff', pointerEvents: 'none',
             opacity: 0,
             willChange: 'opacity',
             transition: 'opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1)'
-          }} 
+          }}
         ></div>
 
         <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-start", width: "100%", left: 0, right: "auto" }}>
@@ -269,32 +269,32 @@ export default function HeroComponent() {
 
         <div className="hero-controls w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", justifyContent: "flex-start", width: "100%", left: 0, right: "auto" }}>
           <div className="hero-indicators">
-              {SLIDE_IMAGES.map((_, idx) => (
-                <button 
-                  key={idx}
-                  id={`indicator-${idx}`}
-                  className={`indicator ${idx === currentSlide ? 'active' : ''}`} 
-                  aria-label={`Go to slide ${idx + 1}`}
-                  onClick={() => setCurrentSlide(idx)}
-                >
-                  <svg className="progress-ring" width="24" height="24">
-                    <circle 
-                      className="progress-ring-circle" 
-                      stroke="#ffffff" 
-                      strokeWidth="2" 
-                      fill="transparent" 
-                      r="10" 
-                      cx="12" 
-                      cy="12"
-                    />
-                  </svg>
-                </button>
-              ))}
-            </div>
+            {SLIDE_IMAGES.map((_, idx) => (
+              <button
+                key={idx}
+                id={`indicator-${idx}`}
+                className={`indicator ${idx === currentSlide ? 'active' : ''}`}
+                aria-label={`Go to slide ${idx + 1}`}
+                onClick={() => setCurrentSlide(idx)}
+              >
+                <svg className="progress-ring" width="24" height="24">
+                  <circle
+                    className="progress-ring-circle"
+                    stroke="#ffffff"
+                    strokeWidth="2"
+                    fill="transparent"
+                    r="10"
+                    cx="12"
+                    cy="12"
+                  />
+                </svg>
+              </button>
+            ))}
           </div>
+        </div>
 
-        <button 
-          className="scroll-indicator" 
+        <button
+          className="scroll-indicator"
           aria-label="Scroll down"
           onClick={() => {
             window.scrollTo({
@@ -308,25 +308,26 @@ export default function HeroComponent() {
         </button>
 
         <div className="hero-logos-strip w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto" }}>
-            <p className="hero-logos-label">
-              Trusted by Market Leaders Serving 500M+ People
-            </p>
-            <div className="hero-logos-row">
-              {CLIENT_LOGOS.map((logo, i) => (
-                <div 
-                  key={i}
-                  className={`hero-client-box ${logo.className || ''}`} 
-                  style={{ '--hover-color': COLORS[i % COLORS.length] }}
-                  dangerouslySetInnerHTML={{ __html: logo.svg }}
-                >
-                </div>
-              ))}
-            </div>
+          <p className="hero-logos-label">
+            Trusted by Market Leaders Serving 500M+ People
+          </p>
+          <div className="hero-logos-row">
+            {CLIENT_LOGOS.map((logo, i) => (
+              <div
+                key={i}
+                className={`hero-client-box ${logo.className || ''}`}
+                style={{ '--hover-color': COLORS[i % COLORS.length] }}
+                dangerouslySetInnerHTML={{ __html: logo.svg }}
+              >
+              </div>
+            ))}
           </div>
+        </div>
       </section>
 
       {/* ===================== COMPONENT STYLES ===================== */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         :root {
           --navy-950: #1c1917;
           --navy-900: #0a0a0a;
@@ -380,7 +381,7 @@ export default function HeroComponent() {
 
         /* HERO SECTION */
         .hero-custom-container {
-          position: relative; height: 100dvh; min-height: 560px; display: flex; align-items: center;
+          position: relative; min-height: 100dvh; height: auto; display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch;
           overflow: hidden; background: var(--navy-950);
         }
         .hero-bg-slider { position: absolute; inset: 0; }
@@ -399,7 +400,7 @@ export default function HeroComponent() {
           background: linear-gradient(180deg, rgba(6, 15, 28, 0.5) 0%, transparent 25%, transparent 75%, rgba(6, 15, 28, 0.4) 100%);
         }
         
-        .hero-content { position: absolute; left: 0; right: 0; top: 45%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; align-items: flex-start; }
+        .hero-content { position: relative; flex: 1; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-top: 120px; padding-bottom: 40px; width: 100%; }
         .hero-title { color: #fff !important; font-size: clamp(36px, 4.5vw, 64px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; max-width: 800px; margin: 0; text-align: left; }
         .hero-title .highlight { color: #0a76db; }
         .hero-title .highlight-hardware { color: #86efac; } /* Mint / Light Green */
@@ -410,7 +411,7 @@ export default function HeroComponent() {
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        .hero-controls { position: absolute; bottom: 160px; left: 0; right: 0; z-index: 2; }
+        .hero-controls { position: relative; z-index: 2; margin-bottom: 24px; width: 100%; }
         .hero-indicators { display: flex; gap: 16px; align-items: center; }
         .indicator {
           position: relative; width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.4);
@@ -422,8 +423,8 @@ export default function HeroComponent() {
         .progress-ring-circle { stroke-dasharray: 62.83; stroke-dashoffset: 62.83; transition: opacity 0.3s ease; }
 
         .scroll-indicator {
-          position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column;
-          align-items: center; gap: 12px; background: none; border: none; color: #fff; z-index: 2; cursor: pointer; padding: 10px;
+          position: relative; display: flex; flex-direction: column;
+          align-items: center; gap: 12px; background: none; border: none; color: #fff; z-index: 2; cursor: pointer; padding: 10px; margin: 0 auto 16px auto;
         }
         .scroll-text { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); opacity: 0.7; }
         .scroll-line { width: 1px; height: 42px; background: rgba(255, 255, 255, 0.2); position: relative; overflow: hidden; }
@@ -435,7 +436,8 @@ export default function HeroComponent() {
 
         /* HERO LOGOS STRIP */
         .hero-logos-strip {
-          position: absolute; bottom: 0; left: 0; right: 0; padding-bottom: 20px; z-index: 2;
+          position: relative; padding-bottom: 20px; z-index: 2; width: 100%;
+          border-top: 1px solid rgba(10, 118, 219, 0.5); /* Subtle blue divider line (darker) */
         }
 
         .hero-logos-label { 
