@@ -270,19 +270,25 @@ export default function HeroComponent() {
           <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
         </div>
 
-        <button
-          className="scroll-indicator"
-          aria-label="Scroll down"
-          onClick={() => {
-            window.scrollTo({
-              top: window.innerHeight,
-              behavior: 'smooth'
-            });
-          }}
-        >
-          <span className="scroll-text">Scroll</span>
-          <span className="scroll-line"><span className="scroll-dot"></span></span>
-        </button>
+        <div className="hero-horizontal-line-wrapper">
+          <div className="hero-traveling-track">
+            <div className="hero-traveling-light"></div>
+          </div>
+          <button
+            className="scroll-indicator-container"
+            aria-label="Scroll down"
+            onClick={() => {
+              window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+              });
+            }}
+          >
+            <span className="scroll-text">SCROLL</span>
+            <span className="scroll-vertical-line"></span>
+          </button>
+          <div className="hero-center-point"></div>
+        </div>
 
         <div className="hero-logos-strip w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto" }}>
 
@@ -445,22 +451,64 @@ export default function HeroComponent() {
         .indicator.active .progress-ring { opacity: 1; }
         .progress-ring-circle { stroke-dasharray: 62.83; stroke-dashoffset: 62.83; transition: opacity 0.3s ease; }
 
-        .scroll-indicator {
-          position: relative; display: flex; flex-direction: column;
-          align-items: center; gap: 12px; background: none; border: none; color: #fff; z-index: 2; cursor: pointer; padding: 10px; margin: 0 auto 16px auto;
+        .hero-horizontal-line-wrapper {
+          position: relative; width: 100%; height: 1px;
+          background: rgba(10, 118, 219, 0.4); box-shadow: 0 0 8px rgba(10, 118, 219, 0.5); z-index: 10;
+          display: flex; justify-content: center; align-items: center;
         }
-        .scroll-text { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); opacity: 0.7; }
-        .scroll-line { width: 1px; height: 42px; background: rgba(255, 255, 255, 0.2); position: relative; overflow: hidden; }
-        .scroll-dot {
-          position: absolute; left: -2px; top: -10px; width: 5px; height: 5px; border-radius: 50%; background: #e05628;
-          box-shadow: 0 0 6px 1px rgba(224, 86, 40, 0.7); animation: scrollDot 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        .hero-traveling-track {
+          position: absolute; left: 0; right: 0; top: -20px; bottom: -20px;
+          overflow: hidden; pointer-events: none; z-index: 11;
+        }
+        .hero-traveling-light {
+          position: absolute; left: 0; top: 50%; width: 250px; height: 1px;
+          transform: translateY(-50%);
+          background: linear-gradient(to right, transparent 0%, rgba(10, 118, 219, 0.5) 60%, rgba(255, 255, 255, 0.9) 100%);
+          animation: travelLight 5.5s linear infinite;
+          will-change: transform;
+        }
+        .hero-traveling-light::after {
+          content: ""; position: absolute; right: 0; top: 50%; transform: translateY(-50%) translateX(50%);
+          width: 5px; height: 5px; background-color: #ffffff; border-radius: 50%;
+          box-shadow: 0 0 12px 3px rgba(10, 118, 219, 1), 0 0 24px 6px rgba(10, 118, 219, 0.6);
+        }
+        @keyframes travelLight {
+          0% { transform: translate3d(-250px, -50%, 0); }
+          100% { transform: translate3d(100vw, -50%, 0); }
+        }
+        .hero-center-point {
+          width: 4px; height: 4px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%;
+          box-shadow: 0 0 8px rgba(10, 118, 219, 0.8);
+          position: relative; z-index: 12;
+        }
+        .scroll-indicator-container {
+          position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center;
+          margin-bottom: 2px; animation: floatScroll 3.5s ease-in-out infinite; background: none; border: none; cursor: pointer; padding: 0;
+        }
+        @keyframes floatScroll {
+          0%, 100% { transform: translate(-50%, 0); opacity: 0.8; }
+          50% { transform: translate(-50%, -6px); opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .scroll-indicator-container, .hero-traveling-light { animation: none; }
+        }
+        .scroll-text {
+          font-family: inherit; font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+          writing-mode: vertical-rl; transform: rotate(180deg); color: #e2e8f0; text-shadow: 0 0 6px rgba(10, 118, 219, 0.5); margin-bottom: 12px;
+        }
+        .scroll-vertical-line {
+          width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(10, 118, 219, 0), rgba(10, 118, 219, 0.9));
+          box-shadow: 0 0 6px rgba(10, 118, 219, 0.5);
+        }
+        @media (max-width: 768px) {
+          .scroll-vertical-line { height: 40px; }
+          .scroll-text { font-size: 9px; margin-bottom: 8px; }
         }
         @keyframes scrollDot { 0% { top: -10px; opacity: 0; } 20% { opacity: 1; } 80% { top: 42px; opacity: 1; } 100% { top: 42px; opacity: 0; } }
 
         /* HERO LOGOS STRIP */
         .hero-logos-strip {
           position: relative; padding-bottom: 20px; z-index: 2; width: 100%;
-          border-top: 1px solid rgba(10, 118, 219, 0.5); /* Subtle blue divider line (darker) */
         }
 
         .hero-logos-label { 
