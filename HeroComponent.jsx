@@ -275,6 +275,39 @@ export default function HeroComponent() {
 
         <div className="hero-bottom-trust-wrapper w-full box-border" style={{ position: "absolute", bottom: "25px", left: 0, width: "100%", zIndex: 10 }}>
           <div className="hero-horizontal-line-wrapper">
+            <div className="hero-dots">
+              {SLIDE_IMAGES.map((_, idx) => (
+                <button
+                  key={idx}
+                  id={`indicator-${idx}`}
+                  className={`dot indicator ${idx === currentSlide ? 'active' : ''}`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  onClick={() => setCurrentSlide(idx)}
+                >
+                  <svg className="progress-ring" width="26" height="26" viewBox="0 0 26 26">
+                    <circle
+                      className="progress-ring-track"
+                      stroke="rgba(255, 255, 255, 0.22)"
+                      strokeWidth="1.5"
+                      fill="none"
+                      r="10"
+                      cx="13"
+                      cy="13"
+                    />
+                    <circle
+                      className="progress-ring-circle"
+                      stroke="#ffffff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      fill="none"
+                      r="10"
+                      cx="13"
+                      cy="13"
+                    />
+                  </svg>
+                </button>
+              ))}
+            </div>
             <div className="hero-traveling-track">
               <div className="hero-traveling-light"></div>
             </div>
@@ -295,35 +328,6 @@ export default function HeroComponent() {
           </div>
 
           <div className="hero-logos-strip w-full px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto", boxSizing: "border-box" }}>
-
-            {/* Dots aligned just above the border */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, transform: "translateY(-100%)", width: "100%", paddingBottom: "24px" }}>
-              <div className="hero-controls w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", justifyContent: "flex-start", width: "100%", margin: 0 }}>
-                <div className="hero-indicators">
-                  {SLIDE_IMAGES.map((_, idx) => (
-                    <button
-                      key={idx}
-                      id={`indicator-${idx}`}
-                      className={`indicator ${idx === currentSlide ? 'active' : ''}`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                      onClick={() => setCurrentSlide(idx)}
-                    >
-                      <svg className="progress-ring" width="24" height="24">
-                        <circle
-                          className="progress-ring-circle"
-                          stroke="#ffffff"
-                          strokeWidth="2"
-                          fill="transparent"
-                          r="10"
-                          cx="12"
-                          cy="12"
-                        />
-                      </svg>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
 
             <p className="hero-logos-label">
               Trusted by Market Leaders Serving 500M+ People
@@ -493,16 +497,66 @@ export default function HeroComponent() {
           .hero-subtitle-badge { font-size: 13px !important; }
         }
 
-        .hero-controls { position: relative; z-index: 2; margin-bottom: 24px; width: 100%; }
-        .hero-indicators { display: flex; gap: 16px; align-items: center; }
-        .indicator {
-          position: relative; width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.4);
-          border: none; padding: 0; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        .hero-dots {
+          position: absolute;
+          bottom: 40px;
+          left: 60px;
+          display: flex;
+          align-items: center;
+          gap: 12px !important;
+          z-index: 10;
         }
-        .indicator.active { background: #fff; }
-        .progress-ring { position: absolute; top: -6px; left: -6px; width: 24px; height: 24px; transform: rotate(-90deg); opacity: 0; pointer-events: none; }
-        .indicator.active .progress-ring { opacity: 1; }
-        .progress-ring-circle { stroke-dasharray: 62.83; stroke-dashoffset: 62.83; transition: opacity 0.3s ease; }
+
+        .dot, .indicator {
+          width: 10px;
+          height: 10px;
+          background: #656971;
+          border-radius: 50%;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          position: relative;
+        }
+
+        .dot.active, .indicator.active {
+          width: 7px;
+          height: 7px;
+          background: #87C5FF !important;
+          position: relative;
+        }
+
+        .progress-ring {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-90deg);
+          width: 26px;
+          height: 26px;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          overflow: visible;
+        }
+
+        .dot.active .progress-ring, .indicator.active .progress-ring {
+          opacity: 1;
+        }
+
+        .progress-ring-track {
+          stroke: rgba(255, 255, 255, 0.22);
+        }
+
+        .progress-ring-circle {
+          stroke: #ffffff;
+          stroke-dasharray: 62.83;
+          stroke-dashoffset: 62.83;
+          transition: stroke-dashoffset 0.05s linear;
+        }
 
         .hero-horizontal-line-wrapper {
           position: relative; width: 100%; height: 1px;
@@ -557,6 +611,7 @@ export default function HeroComponent() {
         @media (max-width: 768px) {
           .scroll-vertical-line { height: 40px; }
           .scroll-text { font-size: 9px; margin-bottom: 8px; }
+          .hero-dots { left: 32px; bottom: 30px; }
         }
         @keyframes scrollDot { 0% { top: -10px; opacity: 0; } 20% { opacity: 1; } 80% { top: 42px; opacity: 1; } 100% { top: 42px; opacity: 0; } }
 
