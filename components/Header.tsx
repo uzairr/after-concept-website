@@ -333,14 +333,14 @@ export default function Header() {
           className={`hidden lg:block absolute left-0 w-full bg-[#e3e8ef] shadow-2xl transition-all duration-300 origin-top overflow-hidden ${activeMenu ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-95 invisible'}`}
           style={{ top: '100%', height: 'auto', maxHeight: 'calc(100dvh - 120px)' }}
         >
-          <div className="w-full flex justify-between lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-8 xl:px-[50px] py-2">
+          <div className="w-full flex justify-center gap-12 xl:gap-20 lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-8 xl:px-[50px] py-10">
             {/* Left Column: Categories */}
-            <div className="w-[320px] shrink-0 py-2 pr-6 bg-transparent overflow-y-auto">
-              <div className="flex flex-col gap-1">
+            <div className="w-[280px] xl:w-[320px] shrink-0 bg-transparent overflow-y-auto">
+              <div className="flex flex-col gap-2">
                 {navData.map((category) => (
                   <button
                     key={category.name}
-                    className={`text-left py-1 px-4 rounded-xl transition-all duration-200 group flex items-center justify-between ${activeMenu === category.name ? 'bg-[#bde0fe] text-[#0a76db]' : 'text-gray-900 hover:bg-[#d4dce6]'}`}
+                    className={`text-left py-2 px-4 rounded-xl transition-all duration-200 group flex items-center justify-between ${activeMenu === category.name ? 'bg-[#bde0fe] text-[#0a76db]' : 'text-gray-900 hover:bg-[#d4dce6]'}`}
                     onMouseEnter={() => setActiveMenu(category.name)}
                     onClick={() => { router.push(category.href); setActiveMenu(null); }}
                   >
@@ -350,18 +350,24 @@ export default function Header() {
                         {category.description}
                       </div>
                     </div>
-                    <svg className="w-5 h-5 ml-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+                    {category.customContent && !category.submenus ? (
+                      <svg className="w-5 h-5 ml-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 ml-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    )}
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Right Column: Content / Submenus Grid */}
-            <div className="flex-1 px-8 py-2 overflow-y-auto bg-transparent flex flex-col justify-start">
+            <div className="bg-transparent overflow-y-auto">
               {activeCategory && activeCategory.customContent ? (
-                <div className="max-w-xl pl-4">
+                <div className="max-w-xl pl-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-4">{activeCategory.customContent.title}</h2>
                   <p className="text-gray-500 mb-6 leading-relaxed text-lg">
                     {activeCategory.customContent.description}
@@ -374,32 +380,89 @@ export default function Header() {
                   </Link>
                 </div>
               ) : activeCategory && activeCategory.submenus ? (
-                <div className={`grid ${activeCategory.submenuLayout === 'list' ? 'grid-cols-1 gap-y-1 max-w-3xl' : 'grid-cols-2 gap-x-12 gap-y-1'}`}>
-                  {activeCategory.submenus.map((sub, idx) => (
-                    <Link
-                      key={idx}
-                      href={sub.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-start gap-4 py-1 px-3 rounded-xl transition-all hover:bg-[#d4dce6] border border-transparent w-full"
-                      onClick={() => setActiveMenu(null)}
-                    >
-                      <div className="shrink-0 mt-0.5 p-3 rounded-xl bg-white shadow-sm text-[#0a76db] transition-colors">
-                        {sub.icon}
-                      </div>
-                      <div className="flex-1 mt-1">
-                        <div className="font-bold text-[17px] text-gray-900 transition-colors flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            {sub.title}
+                activeCategory.submenuLayout === 'list' ? (
+                  <div className="flex flex-col gap-y-3 max-w-xl">
+                    {activeCategory.submenus.map((sub, idx) => (
+                      <Link
+                        key={idx}
+                        href={sub.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-start gap-4 py-2 px-3 rounded-xl transition-all hover:bg-[#d4dce6] border border-transparent w-full"
+                        onClick={() => setActiveMenu(null)}
+                      >
+                        <div className="shrink-0 mt-0.5 p-3 rounded-xl bg-white shadow-sm text-[#0a76db] transition-colors">
+                          {sub.icon}
+                        </div>
+                        <div className="flex-1 mt-1">
+                          <div className="font-bold text-[17px] text-gray-900 transition-colors flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              {sub.title}
+                            </div>
+                          </div>
+                          <div className="text-gray-500 text-[14px] mt-1">
+                            {sub.description}
                           </div>
                         </div>
-                        <div className="text-gray-500 text-[14px] mt-1">
-                          {sub.description}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex gap-12 xl:gap-20 h-full">
+                    <div className="w-[320px] xl:w-[380px] flex flex-col gap-y-3">
+                      {activeCategory.submenus.slice(0, Math.ceil(activeCategory.submenus.length / 2)).map((sub, idx) => (
+                        <Link
+                          key={idx}
+                          href={sub.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex items-start gap-4 py-2 px-3 rounded-xl transition-all hover:bg-[#d4dce6] border border-transparent w-full"
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          <div className="shrink-0 mt-0.5 p-3 rounded-xl bg-white shadow-sm text-[#0a76db] transition-colors">
+                            {sub.icon}
+                          </div>
+                          <div className="flex-1 mt-1">
+                            <div className="font-bold text-[17px] text-gray-900 transition-colors flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                {sub.title}
+                              </div>
+                            </div>
+                            <div className="text-gray-500 text-[14px] mt-1">
+                              {sub.description}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="w-[320px] xl:w-[380px] flex flex-col gap-y-3">
+                      {activeCategory.submenus.slice(Math.ceil(activeCategory.submenus.length / 2)).map((sub, idx) => (
+                        <Link
+                          key={idx}
+                          href={sub.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex items-start gap-4 py-2 px-3 rounded-xl transition-all hover:bg-[#d4dce6] border border-transparent w-full"
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          <div className="shrink-0 mt-0.5 p-3 rounded-xl bg-white shadow-sm text-[#0a76db] transition-colors">
+                            {sub.icon}
+                          </div>
+                          <div className="flex-1 mt-1">
+                            <div className="font-bold text-[17px] text-gray-900 transition-colors flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                {sub.title}
+                              </div>
+                            </div>
+                            <div className="text-gray-500 text-[14px] mt-1">
+                              {sub.description}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )
               ) : null}
             </div>
           </div>
