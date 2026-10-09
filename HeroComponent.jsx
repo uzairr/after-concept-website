@@ -270,7 +270,7 @@ export default function HeroComponent() {
           <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
         </div>
 
-        <div className="hero-bottom-trust-wrapper" style={{ marginTop: "auto", width: "100%", position: "relative", zIndex: 10 }}>
+        <div className="hero-bottom-trust-wrapper w-full box-border" style={{ position: "absolute", bottom: "25px", left: 0, width: "100%", zIndex: 10 }}>
           <div className="hero-horizontal-line-wrapper">
             <div className="hero-traveling-track">
               <div className="hero-traveling-light"></div>
@@ -291,7 +291,7 @@ export default function HeroComponent() {
             <div className="hero-center-point"></div>
           </div>
 
-          <div className="hero-logos-strip w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto" }}>
+          <div className="hero-logos-strip w-full px-8 md:px-16 lg:px-[50px]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", left: 0, right: "auto", boxSizing: "border-box" }}>
 
             {/* Dots aligned just above the border */}
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, transform: "translateY(-100%)", width: "100%", paddingBottom: "24px" }}>
@@ -457,6 +457,7 @@ export default function HeroComponent() {
           position: relative; width: 100%; height: 1px;
           background: rgba(10, 118, 219, 0.4); box-shadow: 0 0 8px rgba(10, 118, 219, 0.5); z-index: 10;
           display: flex; justify-content: center; align-items: center;
+          margin-bottom: 18px;
         }
         .hero-traveling-track {
           position: absolute; left: 0; right: 0; top: -20px; bottom: -20px;
@@ -510,79 +511,75 @@ export default function HeroComponent() {
 
         /* HERO LOGOS STRIP */
         .hero-logos-strip {
-          position: relative; padding-bottom: 24px; z-index: 2; width: 100%;
+          position: relative; z-index: 2; width: 100%;
         }
 
         .hero-logos-label { 
-          padding-top: 16px;
+          padding-top: 0px;
           text-align: left;
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          font-size: 13px;
-          font-weight: 500;
-          color: rgba(255, 255, 255, 0.85);
-          letter-spacing: 0.01em;
-          margin-bottom: 12px;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+          font-size: 15.5px !important;
+          font-weight: 600 !important;
+          letter-spacing: 0.3px !important;
+          text-transform: none !important;
+          color: rgba(255, 255, 255, 0.9) !important;
+          margin-bottom: 14px !important;
           line-height: 1.4;
         }
         
         .hero-logos-row { 
-          display: flex; align-items: center; justify-content: flex-start; gap: 10px; width: 100%; 
+          display: flex; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; 
           overflow-x: auto; overflow-y: hidden; padding-bottom: 4px;
           -ms-overflow-style: none; scrollbar-width: none;
         }
         .hero-logos-row::-webkit-scrollbar { display: none; }
         .hero-client-box {
-          flex: 1 1 0; min-width: 100px; max-width: 200px; display: flex; align-items: center; justify-content: center; height: 48px; padding: 0 16px;
-          border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 5px; background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-          color: #fff; transition: border-color 0.3s ease-out, background 0.3s ease-out, color 0.3s ease-out; box-sizing: border-box;
-        }
-        .hero-client-box:first-child {
-          padding: 0 20px;
+          width: auto !important;
+          height: 58px !important;
+          min-width: 110px !important;
+          padding: 0px 16px !important;
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
+          border-radius: 6px !important;
+          background: rgba(255, 255, 255, 0.03) !important;
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-sizing: border-box !important;
+          flex: 0 0 auto;
+          color: #fff;
+          transition: border-color 0.3s ease-out, background 0.3s ease-out, color 0.3s ease-out;
         }
         .hero-client-box:hover {
-          border-color: #ffffff; background: #ffffff; color: var(--hover-color, #0a0a0a);
+          border-color: #ffffff !important; background: #ffffff !important; color: var(--hover-color, #0a0a0a);
         }
-        .samui-box {
-          max-width: 210px;
-        }
-        .mbc-box {
-          flex: 0 0 auto;
-          min-width: 105px;
-          padding: 0 20px;
-        }
-        .landdesign-box {
-          flex: 0 0 auto;
-          padding: 0 20px;
-        }
-        .carion-box {
-          flex: 0 0 auto;
-          padding: 0 20px;
-        }
-        .hero-client-box svg { height: 26px; width: auto; max-width: 100%; object-fit: contain; }
+        .hero-client-box svg { height: 24px; width: auto; max-width: 100%; object-fit: contain; }
+        .hero-client-box img { max-height: 24px !important; width: auto !important; object-fit: contain !important; }
+
         .two-u-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .two-u-logo-img { max-height: 20px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: all 0.3s ease-out; }
+        .two-u-logo-img { max-height: 22px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: all 0.3s ease-out; }
         .hero-client-box:hover .two-u-logo-img { filter: none; }
 
         .lake-effect-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .lake-effect-logo-img { max-height: 26px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: all 0.3s ease-out; }
+        .lake-effect-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: all 0.3s ease-out; }
         .hero-client-box:hover .lake-effect-logo-img { filter: none; }
 
-        .samui-wrapper { display: flex; align-items: center; gap: 8px; justify-content: center; }
-        .samui-logo-img { height: 20px; width: auto; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
+        .samui-wrapper { display: flex; align-items: center; gap: 6px; justify-content: center; }
+        .samui-logo-img { height: 22px !important; max-height: 24px !important; width: auto !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
         .hero-client-box:hover .samui-logo-img { filter: none; }
-        .samui-text { font-family: Arial, sans-serif; font-weight: 900; font-size: 13px; white-space: nowrap; line-height: 1; letter-spacing: 0.01em; }
+        .samui-text { font-family: Arial, sans-serif; font-weight: 700; font-size: 13.5px; white-space: nowrap; line-height: 1; letter-spacing: 0.01em; }
 
         .kindred-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .kindred-logo-img { max-height: 24px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
+        .kindred-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
         .hero-client-box:hover .kindred-logo-img { filter: none; }
 
         .landdesign-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .landdesign-logo-img { max-height: 26px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.3s ease-out; }
+        .landdesign-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1); transition: filter 0.3s ease-out; }
         .hero-client-box:hover .landdesign-logo-img { filter: contrast(1.2); }
 
         .mbc-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .mbc-logo-img { max-height: 26px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
+        .mbc-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
         .hero-client-box:hover .mbc-logo-img { filter: none; }
 
         @media (max-width: 768px) {
