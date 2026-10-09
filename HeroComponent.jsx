@@ -44,9 +44,8 @@ const SLIDES_DATA = [
     { t: "AI", cls: "highlight" }
   ],
   [
-    { t: "We Bridge ", cls: "" },
-    { t: "Hardware", cls: "highlight highlight-hardware" },
-    { t: "\nand Software", cls: "" }
+    { t: "We Bridge Hardware\nand ", cls: "" },
+    { t: "Software", cls: "highlight highlight-software" }
   ],
   [
     { t: "We Turn Data\nInto ", cls: "" },
@@ -150,7 +149,7 @@ export default function HeroComponent() {
       if (chunkIdx >= chunks.length) {
         // Finished typing
         localTyping = false;
-        setTypewriterHtml(currentHTML); // remove cursor
+        setTypewriterHtml(currentHTML + '<span class="cursor"></span>'); // keep white cursor block
         seqTimeoutRef.current = setTimeout(() => {
           startProgress();
         }, 500); // Wait a bit before loader starts
@@ -263,11 +262,15 @@ export default function HeroComponent() {
           }}
         ></div>
 
-        <div className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] !ml-0 px-8 md:px-16 lg:px-[50px] hero-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", width: "100%", left: 0, right: "auto", flexDirection: "column" }}>
-          <div className="hero-subtitle-badge">
-            Engineering Software Solutions Since 2016
+        <div className="hero-content" style={{ position: "absolute", top: "42%", left: "5%", transform: "translateY(-50%)", zIndex: 2, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", width: "auto", maxWidth: "90%", padding: 0 }}>
+          <div className="badge-wrapper">
+            <div className="hero-subtitle-badge">
+              Engineering Software Solutions Since 2016
+            </div>
           </div>
-          <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
+          <div className="heading-container">
+            <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
+          </div>
         </div>
 
         <div className="hero-bottom-trust-wrapper w-full box-border" style={{ position: "absolute", bottom: "25px", left: 0, width: "100%", zIndex: 10 }}>
@@ -421,10 +424,22 @@ export default function HeroComponent() {
         
         .hero-content { position: relative; flex: 1 0 auto; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-top: 120px; padding-bottom: 24px; width: 100%; }
         
+        .badge-wrapper {
+          position: relative;
+          top: 0;
+          margin-bottom: 24px !important;
+          transform: none !important;
+        }
+
+        .heading-container {
+          min-height: 180px;
+          display: block;
+        }
+
         .hero-subtitle-badge {
           display: inline-flex;
           align-items: center;
-          margin-bottom: 24px;
+          margin-bottom: 0 !important;
           background: rgba(14, 23, 38, 0.65);
           padding: 8px 20px 8px 16px;
           border-left: 4px solid #0a76db;
@@ -436,15 +451,51 @@ export default function HeroComponent() {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .hero-title { color: #fff !important; font-size: clamp(36px, 4.5vw, 64px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; max-width: 800px; margin: 0; text-align: left; }
-        .hero-title .highlight { color: #0a76db; }
-        .hero-title .highlight-hardware { color: #86efac; } /* Mint / Light Green */
-        .hero-title .highlight-edge { color: #c4b5fd; } /* Light Violet */
+        h1, .hero-title {
+          color: #FFFFFF !important;
+          opacity: 1 !important;
+          font-size: 75px !important;
+          font-weight: 700 !important;
+          line-height: 1.05 !important;
+          letter-spacing: -0.5px !important;
+          font-family: 'Inter', 'Sora', sans-serif !important;
+          text-transform: none !important;
+          max-width: 1000px;
+          margin: 0 !important;
+          padding: 0 !important;
+          text-align: left !important;
+        }
+        .hero-title .highlight { color: #A78BFA !important; font-weight: 700 !important; }
+        .hero-title .highlight-software,
+        .hero-title .highlight.highlight-software { color: #6EE7A0 !important; font-weight: 700 !important; } /* Green mint */
+        .hero-title .highlight-edge,
+        .hero-title .highlight.highlight-edge { color: #8CC6FF !important; font-weight: 700 !important; } /* Light Blue */
+        .cursor,
         .hero-title .cursor {
-          display: inline-block; width: 20px; height: 0.85em; background: #fff; vertical-align: text-bottom;
-          margin-left: 8px; animation: blink 1s step-end infinite;
+          width: 19px !important;
+          height: 0.95em !important;
+          background: white !important;
+          display: inline-block !important;
+          vertical-align: -2px !important;
+          margin-left: 6px !important;
+          margin-bottom: 0 !important;
+          line-height: 1 !important;
+          border: none !important;
+          animation: blink 1s infinite;
         }
         @keyframes blink { 50% { opacity: 0; } }
+
+        @media (max-width: 1024px) {
+          .hero-title { font-size: 52px !important; letter-spacing: -0.5px !important; line-height: 1.05 !important; }
+          .heading-container { min-height: 130px; }
+        }
+        @media (max-width: 768px) {
+          .hero-content { left: 6% !important; top: 40% !important; }
+          .hero-title { font-size: 40px !important; letter-spacing: -0.5px !important; line-height: 1.05 !important; }
+          .heading-container { min-height: 105px; }
+          .badge-wrapper { margin-bottom: 20px !important; }
+          .hero-subtitle-badge { font-size: 13px !important; }
+        }
 
         .hero-dots {
           position: absolute;
