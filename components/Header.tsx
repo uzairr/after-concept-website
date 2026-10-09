@@ -202,6 +202,7 @@ export default function Header() {
   const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolledTop, setIsScrolledTop] = useState(true);
+  const [isContactHovered, setIsContactHovered] = useState(false);
 
   // Mega menu states
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -286,29 +287,65 @@ export default function Header() {
 
           {/* Right Side Group (CTA & Mobile Menu) */}
           <div className="flex items-center gap-4 shrink-0">
-            {/* CTA Button with Hover Effect */}
+            {/* CTA Button with Hover Effect - Arbisoft style */}
               <Link 
                 href="/contact" 
-                className="hidden sm:inline-flex items-center justify-center font-medium text-xs xl:text-sm shadow-sm"
+                className="hidden sm:inline-flex items-center justify-center header-contact-btn"
                 style={{
-                  backgroundColor: '#0a76db',
-                  color: '#ffffff',
-                  padding: '10px 18px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  height: '44px',
+                  minWidth: '142px',
+                  padding: '0 20px',
                   borderRadius: '12px',
-                  transition: 'all 0.25s ease',
+                  backgroundColor: '#0F6CFF',
+                  color: '#FFFFFF',
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '15px',
+                  fontWeight: 600,
+                  lineHeight: '1',
+                  whiteSpace: 'nowrap',
+                  textDecoration: 'none',
+                  border: 'none',
+                  outline: 'none',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  zIndex: 3,
+                  flexShrink: 0,
+                  transform: isContactHovered ? 'translateY(-3px)' : 'translateY(0)',
+                  boxShadow: isContactHovered ? '0 10px 20px -6px rgba(15, 108, 255, 0.5)' : 'none',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#085ab3';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(10, 118, 219, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#0a76db';
-                  e.currentTarget.style.transform = '';
-                  e.currentTarget.style.boxShadow = '';
-                }}
+                onMouseEnter={() => setIsContactHovered(true)}
+                onMouseLeave={() => setIsContactHovered(false)}
               >
-                Contact Us
+                <span>Contact Us</span>
+                <svg 
+                  width="14" 
+                  height="14" 
+                  viewBox="0 0 16 16" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="header-contact-arrow"
+                  style={{
+                    width: '14px',
+                    height: '14px',
+                    marginLeft: '2px',
+                    transform: isContactHovered ? 'translateX(4px)' : 'translateX(0)',
+                    transition: 'transform 0.3s ease',
+                    flexShrink: 0,
+                  }}
+                >
+                  <path 
+                    d="M3 8H13M13 8L9 4M13 8L9 12" 
+                    stroke="white" 
+                    strokeWidth="1.6" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
 
               {/* Mobile Menu Button */}
