@@ -41,18 +41,18 @@ const dummyCards = [
     id: 3,
     tag: "Why Market Leaders Trust Us",
     title:
-      "Built a Price Intelligence Engine Tracking 120K+ Products Across 9 Retailers",
+      "Powering Next-Generation Fintech & Insurtech Products for Millions of Users",
     stats: [
       {
-        value: "120K+",
-        label: "Products Monitored",
+        value: "10M+",
+        label: "Active App Users",
       },
       {
-        value: "7+",
-        label: "Competitor Retailers Tracked",
+        value: "99.99%",
+        label: "Platform Reliability",
       },
     ],
-    image: "/images/project-pricewatch.jpg",
+    image: "/images/project-fintech.jpg",
   },
 ];
 
