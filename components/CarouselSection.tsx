@@ -185,28 +185,28 @@ export default function CarouselSection() {
                   <div className="w-full bg-white flex items-center justify-center py-2">
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 xl:gap-16 w-full">
                       {/* Left Content */}
-                      <div className="flex-1 max-w-[530px] xl:max-w-[560px] text-left">
+                      <div className="flex-1 max-w-[560px] xl:max-w-[600px] text-left">
                         {/* Tag Badge */}
-                        <div className="inline-flex items-center px-3.5 py-1 mb-6 text-[#e05628] bg-[#FFF4EE] border-l-[3.5px] border-[#e05628] text-sm font-semibold tracking-[-0.01em]">
+                        <div className="inline-flex items-center pl-5 pr-6 py-2 mb-7 lg:mb-8 text-[#e05628] bg-[#FFF4EE] border-l-4 border-[#e05628] text-[15px] font-semibold tracking-[-0.01em]">
                           {card.tag}
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[2.7rem] font-bold text-[#101828] mb-9 lg:mb-10 leading-[1.14] tracking-[-0.025em]">
+                        <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3.15rem] font-bold text-[#101828] mb-12 lg:mb-14 leading-[1.14] tracking-[-0.03em]">
                           {card.title}
                         </h2>
 
                         {/* Stats Row */}
-                        <div className="flex flex-row items-start gap-10 sm:gap-14 lg:gap-16">
+                        <div className="flex flex-row items-start gap-12 sm:gap-16 lg:gap-20">
                           {card.stats?.map((stat, sIdx) => (
                             <div
                               key={sIdx}
-                              className="flex flex-col border-l border-gray-300 pl-4 lg:pl-5 py-0.5"
+                              className="flex flex-col border-l border-gray-300 pl-6 lg:pl-7 py-1"
                             >
-                              <span className="text-3xl lg:text-[2.5rem] xl:text-[2.65rem] font-bold text-[#101828] mb-2 tracking-[-0.02em] leading-none">
+                              <span className="text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3rem] font-bold text-[#101828] mb-3 tracking-[-0.025em] leading-none">
                                 {stat.value}
                               </span>
-                              <span className="text-[#475467] text-sm lg:text-[15px] font-normal leading-[1.38] tracking-normal max-w-[175px]">
+                              <span className="text-[#475467] text-[15px] lg:text-[16px] font-normal leading-[1.42] tracking-normal max-w-[190px]">
                                 {stat.label}
                               </span>
                             </div>
