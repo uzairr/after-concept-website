@@ -24,15 +24,15 @@ const dummyCards = [
     id: 2,
     tag: "Why Market Leaders Trust Us",
     title:
-      "Deliver Inspiring Learning Experiences on Any Scale with Open edX",
+      "One of the Biggest Open Source Contributors for Open edX",
     stats: [
       {
-        value: "45M+",
-        label: "Learners Worldwide",
+        value: "3000+",
+        label: "Pull Requests Across All GitHub Repos.",
       },
       {
-        value: "10+ Years",
-        label: "Engineering Partnership",
+        value: "10+",
+        label: "Years of Contribution",
       },
     ],
     image: "/images/project-openedx.jpg",
@@ -41,15 +41,15 @@ const dummyCards = [
     id: 3,
     tag: "Why Market Leaders Trust Us",
     title:
-      "Powering Next-Generation Fintech & Insurtech Products for Millions of Users",
+      "Creating Real Value: Our Track Record with 50+ Tech Startups",
     stats: [
       {
-        value: "10M+",
-        label: "Active App Users",
+        value: "$1B+",
+        label: "In Revenue",
       },
       {
-        value: "99.99%",
-        label: "Platform Reliability",
+        value: "500M+",
+        label: "Number of Users",
       },
     ],
     image: "/images/project-fintech.jpg",
@@ -97,7 +97,7 @@ export default function CarouselSection() {
   }, [current, isTransitioning]);
 
   return (
-    <section className="w-full bg-white relative py-12 lg:py-16 border-b border-gray-200 overflow-hidden">
+    <section className="w-full bg-white relative py-12 lg:py-16 border-b border-gray-200 overflow-hidden font-sans">
       {/* Outer Centered Container with Navigation Arrows */}
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-14 relative">
         {/* Previous Button */}
@@ -185,28 +185,28 @@ export default function CarouselSection() {
                   <div className="w-full bg-white flex items-center justify-center py-2">
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 xl:gap-16 w-full">
                       {/* Left Content */}
-                      <div className="flex-1 max-w-xl text-left">
+                      <div className="flex-1 max-w-[530px] xl:max-w-[560px] text-left">
                         {/* Tag Badge */}
-                        <div className="inline-flex items-center px-3.5 py-1 mb-5 text-[#e05628] bg-[#FFF4EE] border-l-[3px] border-[#e05628] text-sm font-semibold tracking-wide">
+                        <div className="inline-flex items-center px-3.5 py-1 mb-6 text-[#e05628] bg-[#FFF4EE] border-l-[3.5px] border-[#e05628] text-sm font-semibold tracking-[-0.01em]">
                           {card.tag}
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-2xl sm:text-3xl lg:text-[2.35rem] xl:text-[2.6rem] font-bold text-[#101828] mb-8 leading-[1.16] tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[2.7rem] font-bold text-[#101828] mb-9 lg:mb-10 leading-[1.14] tracking-[-0.025em]">
                           {card.title}
                         </h2>
 
                         {/* Stats Row */}
-                        <div className="flex flex-row items-start gap-8 sm:gap-12">
+                        <div className="flex flex-row items-start gap-10 sm:gap-14 lg:gap-16">
                           {card.stats?.map((stat, sIdx) => (
                             <div
                               key={sIdx}
                               className="flex flex-col border-l border-gray-300 pl-4 lg:pl-5 py-0.5"
                             >
-                              <span className="text-3xl lg:text-[2.35rem] font-bold text-[#101828] mb-1.5 tracking-tight leading-none">
+                              <span className="text-3xl lg:text-[2.5rem] xl:text-[2.65rem] font-bold text-[#101828] mb-2 tracking-[-0.02em] leading-none">
                                 {stat.value}
                               </span>
-                              <span className="text-[#475467] text-sm lg:text-[15px] font-normal leading-snug max-w-[180px]">
+                              <span className="text-[#475467] text-sm lg:text-[15px] font-normal leading-[1.38] tracking-normal max-w-[175px]">
                                 {stat.label}
                               </span>
                             </div>
@@ -234,7 +234,7 @@ export default function CarouselSection() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center items-center gap-2.5 mt-8 lg:mt-11 h-[26px]">
+        <div className="flex justify-center items-center gap-2.5 mt-9 lg:mt-12 h-[26px]">
           {dummyCards.map((_, idx) => {
             const isActive = idx === current;
             return (
