@@ -66,50 +66,53 @@ function AnimatedCounter({ value, color = "#e05628" }: { value: string; color?: 
 export function OriginSection() {
   const stats = [
     {
-      num: "40+",
-      label: "projects shipped",
-    },
-    {
-      num: "2+",
+      num: "19+",
       label: "years of proven market experience",
     },
     {
-      num: "98%",
-      label: "clients rate us better than others",
+      num: "750+",
+      label: "experts in Engineering, Data, AI, Design & QA",
     },
     {
-      num: "9+",
-      label: "industries served across verticals",
+      num: "550+",
+      label: "collaborations across six verticals",
+    },
+    {
+      num: "80%",
+      label: "clients rate us better than others",
     },
   ];
 
   return (
-    <section className="relative w-full min-h-[80vh] flex flex-col justify-center bg-[#26215C] overflow-hidden py-16 !px-6 lg:!px-[50px]">
+    <section 
+      className="relative w-full overflow-hidden py-20 lg:py-28 bg-[#0a2f7d] bg-cover bg-center text-white" 
+      style={{ backgroundImage: "url('/images/why-arbisoft-bg.jpg')" }}
+    >
+      {/* Subtle overlay gradient to ensure high contrast and vivid colors */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00256e]/40 via-transparent to-[#0a184a]/30 pointer-events-none" />
 
-
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16 w-full">
         {/* Top Content: Title & Description */}
-        <div className="w-full mb-24 text-left">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+        <div className="w-full mb-16 lg:mb-20 text-left max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white tracking-tight">
             Why AfterConcept
           </h2>
-          <p className="text-lg md:text-xl text-blue-50 leading-relaxed">
-            After Concept gives you one team with full ownership from idea to production. We bring strategy, design, engineering, and growth together under one roof, eliminating handoffs, protecting product vision, and delivering software built to perform in the real world.
+          <p className="text-base sm:text-lg lg:text-[1.15rem] text-white/90 leading-relaxed">
+            At AfterConcept, we envision to create technology that delivers meaningful lasting value. We achieve this by helping organizations build better products through design-led thinking, open-source expertise, and AI-accelerated engineering.
           </p>
         </div>
 
         {/* Bottom Content: 4 Column Horizontal Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 w-full">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 xl:gap-12 w-full">
           {stats.map((stat, i) => (
-            <div key={i} className={`flex flex-col ${i === 3 ? "lg:items-end lg:text-right" : i === 0 ? "lg:items-start lg:text-left" : "lg:items-center lg:text-center"}`}>
-              
-              {/* Giant Stat Number */}
-              <div className="text-5xl md:text-[5.5rem] font-bold text-white mb-4 lg:mb-6 tracking-tighter leading-none">
+            <div key={i} className="flex flex-col items-start text-left pt-6 border-t border-white/20">
+              {/* Stat Number */}
+              <div className="text-4xl sm:text-5xl lg:text-[4.5rem] font-bold text-white mb-2 lg:mb-3 tracking-tight leading-none">
                 <AnimatedCounter value={stat.num} color="#ffffff" />
               </div>
               
               {/* Short Label */}
-              <div className="text-sm md:text-base text-blue-50 leading-snug">
+              <div className="text-sm sm:text-[15px] lg:text-base text-white/85 leading-snug max-w-[220px]">
                 {stat.label}
               </div>
             </div>
