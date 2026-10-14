@@ -99,17 +99,17 @@ export default function CarouselSection() {
   return (
     <section className="w-full bg-white relative py-12 lg:py-16 border-b border-gray-200 overflow-hidden">
       {/* Outer Centered Container with Navigation Arrows */}
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-14 relative">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-14 relative">
         {/* Previous Button */}
         <button
           onClick={prevSlide}
-          className="pointer-events-auto hidden lg:flex absolute top-1/2 left-2 xl:left-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm z-30"
+          className="pointer-events-auto hidden lg:flex absolute top-1/2 left-2 xl:left-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-50 transition-all items-center justify-center bg-white shadow-sm z-30"
           aria-label="Previous slide"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -125,13 +125,13 @@ export default function CarouselSection() {
         {/* Next Button */}
         <button
           onClick={nextSlide}
-          className="pointer-events-auto hidden lg:flex absolute top-1/2 right-2 xl:right-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm z-30"
+          className="pointer-events-auto hidden lg:flex absolute top-1/2 right-2 xl:right-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-50 transition-all items-center justify-center bg-white shadow-sm z-30"
           aria-label="Next slide"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -145,7 +145,7 @@ export default function CarouselSection() {
         </button>
 
         {/* Clipped Sliding Track */}
-        <div className="max-w-[1160px] mx-auto w-full relative z-10 overflow-hidden">
+        <div className="max-w-[1140px] xl:max-w-[1180px] mx-auto w-full relative z-10 overflow-hidden">
           <div className="grid w-full">
             {dummyCards.map((card, idx) => {
               const isCurrent = idx === current;
@@ -186,23 +186,27 @@ export default function CarouselSection() {
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 xl:gap-16 w-full">
                       {/* Left Content */}
                       <div className="flex-1 max-w-xl text-left">
-                        <div className="inline-flex items-center px-3.5 py-1.5 mb-5 text-[#e05628] bg-[#fff3ee] border-l-[3px] border-[#e05628] text-sm lg:text-[15px] font-bold tracking-wide">
+                        {/* Tag Badge */}
+                        <div className="inline-flex items-center px-3.5 py-1 mb-5 text-[#e05628] bg-[#FFF4EE] border-l-[3px] border-[#e05628] text-sm font-semibold tracking-wide">
                           {card.tag}
                         </div>
-                        <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] xl:text-[2.5rem] font-bold text-[#111827] mb-7 leading-[1.2] tracking-tight">
+
+                        {/* Title */}
+                        <h2 className="text-2xl sm:text-3xl lg:text-[2.35rem] xl:text-[2.6rem] font-bold text-[#101828] mb-8 leading-[1.16] tracking-tight">
                           {card.title}
                         </h2>
 
+                        {/* Stats Row */}
                         <div className="flex flex-row items-start gap-8 sm:gap-12">
-                          {card.stats?.map((stat, idx) => (
+                          {card.stats?.map((stat, sIdx) => (
                             <div
-                              key={idx}
+                              key={sIdx}
                               className="flex flex-col border-l border-gray-300 pl-4 lg:pl-5 py-0.5"
                             >
-                              <span className="text-3xl lg:text-[2.25rem] font-bold text-[#111827] mb-1.5 tracking-tight leading-none">
+                              <span className="text-3xl lg:text-[2.35rem] font-bold text-[#101828] mb-1.5 tracking-tight leading-none">
                                 {stat.value}
                               </span>
-                              <span className="text-gray-500 text-sm lg:text-[15px] leading-snug max-w-[180px]">
+                              <span className="text-[#475467] text-sm lg:text-[15px] font-normal leading-snug max-w-[180px]">
                                 {stat.label}
                               </span>
                             </div>
@@ -210,9 +214,9 @@ export default function CarouselSection() {
                         </div>
                       </div>
 
-                      {/* Right Content - Image */}
+                      {/* Right Content - Picture */}
                       <div className="w-full lg:w-[480px] xl:w-[540px] shrink-0 relative">
-                        <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden bg-gray-100 cursor-pointer shadow-md border border-gray-100">
+                        <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden bg-gray-100 cursor-pointer">
                           <img
                             src={card.image}
                             alt={card.title}
@@ -230,31 +234,25 @@ export default function CarouselSection() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center items-center gap-3 mt-8 lg:mt-10 h-[24px]">
+        <div className="flex justify-center items-center gap-2.5 mt-8 lg:mt-11 h-[26px]">
           {dummyCards.map((_, idx) => {
             const isActive = idx === current;
             return (
               <button
                 key={idx}
                 onClick={() => goToSlide(idx, idx > current ? 1 : -1)}
-                className="relative flex items-center justify-center w-[20px] h-[20px] lg:w-[24px] lg:h-[24px] rounded-full focus:outline-none group"
+                className="focus:outline-none flex items-center justify-center transition-all duration-300"
                 aria-label={`Go to slide ${idx + 1}`}
               >
-                {/* Outer Ring */}
-                <div
-                  className={`absolute inset-0 rounded-full border-[1.5px] lg:border-2 border-[#0a76db] transition-all duration-300 ease-out ${
-                    isActive ? "opacity-100 scale-100" : "opacity-0 scale-50"
-                  }`}
-                />
-
-                {/* Inner Dot */}
-                <div
-                  className={`rounded-full transition-all duration-300 ease-out ${
-                    isActive
-                      ? "w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] bg-[#0a76db]"
-                      : "w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] bg-[#bfdbfe] group-hover:bg-[#93c5fd]"
-                  }`}
-                />
+                {isActive ? (
+                  /* Active Dot: Outer Ring with Centered Solid Dot */
+                  <div className="w-[22px] h-[22px] rounded-full border-2 border-[#0F6CFF] flex items-center justify-center transition-all duration-300">
+                    <div className="w-[6px] h-[6px] rounded-full bg-[#0F6CFF]" />
+                  </div>
+                ) : (
+                  /* Inactive Dot: Solid Light Blue Dot */
+                  <div className="w-[8px] h-[8px] rounded-full bg-[#bfdbfe] hover:bg-[#93c5fd] transition-all duration-300" />
+                )}
               </button>
             );
           })}

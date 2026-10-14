@@ -250,7 +250,7 @@ export default function Header() {
 
   return (
     <>
-      <header ref={headerRef} onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isHeaderWhite ? 'bg-white border-b border-gray-200 shadow-sm' : 'bg-transparent border-transparent'}`}>
+      <header ref={headerRef} onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isHeaderWhite ? 'bg-white border-b border-gray-200' : 'bg-transparent border-transparent'}`}>
         <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-8 xl:px-[50px] h-20 flex items-center justify-between relative">
           
           {/* Logo & Brand Name (Left) */}
