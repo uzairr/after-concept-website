@@ -24,18 +24,18 @@ const dummyCards = [
     id: 2,
     tag: "Why Market Leaders Trust Us",
     title:
-      "Unified Analytics Platform Connecting Cities, Projects, and Development Data",
+      "Deliver Inspiring Learning Experiences on Any Scale with Open edX",
     stats: [
       {
-        value: "6+",
-        label: "Active Jurisdictions",
+        value: "45M+",
+        label: "Learners Worldwide",
       },
       {
-        value: "4,300+",
-        label: "Projects Tracked",
+        value: "10+ Years",
+        label: "Engineering Partnership",
       },
     ],
-    image: "/images/project-landdesign.jpg",
+    image: "/images/project-openedx.jpg",
   },
   {
     id: 3,
