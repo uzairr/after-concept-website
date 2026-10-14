@@ -69,37 +69,52 @@ export default function CoreCapabilities() {
                 return (
                   <div
                     key={index}
-                    className="border-b border-gray-200 transition-colors"
+                    className="border-b border-gray-200 transition-colors py-5 lg:py-6"
                   >
-                    <button
-                      type="button"
+                    <div
                       onClick={() => setExpanded(index)}
-                      className="w-full py-5 lg:py-6 flex items-center justify-between text-left focus:outline-none group cursor-pointer"
-                      aria-expanded={isExpanded}
+                      className="w-full flex items-start justify-between cursor-pointer group"
                     >
-                      <div className="flex items-center gap-4 sm:gap-6">
-                        {/* Number: Bold Black when Open, Muted Gray when Closed */}
-                        <span
-                          className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
-                            isExpanded ? "text-[#101828]" : "text-[#98A2B3] group-hover:text-gray-600"
-                          }`}
-                        >
-                          {cap.num}
-                        </span>
+                      {/* Left: Number, Title, and Description */}
+                      <div className="flex-1 pr-4 sm:pr-8">
+                        {/* Title Row */}
+                        <div className="flex items-center gap-4 sm:gap-6">
+                          <span
+                            className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
+                              isExpanded ? "text-[#101828]" : "text-[#98A2B3] group-hover:text-gray-600"
+                            }`}
+                          >
+                            {cap.num}
+                          </span>
 
-                        {/* Title: Bold Black when Open */}
-                        <h3
-                          className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
-                            isExpanded ? "text-[#101828]" : "text-[#101828] group-hover:text-gray-900"
-                          }`}
-                        >
-                          {cap.title}
-                        </h3>
+                          <h3
+                            className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
+                              isExpanded ? "text-[#101828]" : "text-[#101828] group-hover:text-gray-900"
+                            }`}
+                          >
+                            {cap.title}
+                          </h3>
+                        </div>
+
+                        {/* Description under Title when Open */}
+                        {isExpanded && (
+                          <p className="mt-3.5 text-[#475467] text-sm sm:text-[15px] lg:text-base leading-relaxed pl-9 sm:pl-12 max-w-[480px]">
+                            {cap.content}
+                          </p>
+                        )}
                       </div>
 
-                      {/* Opening Arrow ONLY when Closed (NO closing arrow when open) */}
-                      {!isExpanded && (
-                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F2F4F7] group-hover:bg-[#EAECF0] flex items-center justify-center text-[#344054] transition-all duration-200 shrink-0 ml-4">
+                      {/* Right: Thumbnail when Open, Down-arrow when Closed */}
+                      {isExpanded ? (
+                        <div className="w-[100px] h-[80px] sm:w-[130px] sm:h-[100px] rounded-lg overflow-hidden shrink-0 bg-gray-100 border border-gray-200 shadow-xs cursor-pointer group/img">
+                          <img
+                            src={cap.image}
+                            alt={cap.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F2F4F7] group-hover:bg-[#EAECF0] flex items-center justify-center text-[#344054] transition-all duration-200 shrink-0 self-center">
                           <svg
                             width="16"
                             height="16"
@@ -114,23 +129,7 @@ export default function CoreCapabilities() {
                           </svg>
                         </div>
                       )}
-                    </button>
-
-                    {/* Expanded Content with Description and Thumbnail */}
-                    {isExpanded && (
-                      <div className="pb-6 lg:pb-7 flex flex-col sm:flex-row items-start justify-between gap-5 sm:gap-8 transition-all duration-300">
-                        <p className="flex-1 text-[#475467] text-sm sm:text-[15px] lg:text-base leading-relaxed pl-9 sm:pl-12">
-                          {cap.content}
-                        </p>
-                        <div className="w-[120px] h-[80px] sm:w-[135px] sm:h-[90px] rounded-lg overflow-hidden shrink-0 bg-gray-100 border border-gray-200 shadow-xs cursor-pointer group/img ml-9 sm:ml-0">
-                          <img
-                            src={cap.image}
-                            alt={cap.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
-                          />
-                        </div>
-                      </div>
-                    )}
+                    </div>
                   </div>
                 );
               })}
