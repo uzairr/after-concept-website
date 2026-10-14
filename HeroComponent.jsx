@@ -57,7 +57,7 @@ const SLIDES_DATA = [
 const SLIDE_IMAGES = [
   "/images/hero-bg-ai-orig.png",
   "/assets/images/hero/hardware-circuit.webp",
-  "/assets/images/hero/edge.webp"
+  "/assets/images/hero/we-turn-data-into-edge-new.jpg"
 ];
 
 export default function HeroComponent() {
