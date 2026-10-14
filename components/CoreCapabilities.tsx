@@ -19,14 +19,14 @@ const capabilities = [
   {
     num: "03",
     title: "Managed Services",
-    content: "We provide ongoing support and maintenance to ensure your systems remain performant, secure, and up-to-date.",
-    image: "/core-capabilities-test.png"
+    content: "We can help manage your infrastructure hosted on public and private clouds or on-prem with 24x7 SLAs.",
+    image: "/core-capabilities-mini-3.png"
   },
   {
     num: "04",
     title: "AI Gateways",
-    content: "Integrate large language models into your existing infrastructure safely and securely.",
-    image: "/core-capabilities-test.png"
+    content: "We ensure central AI usage for your organization to enforce governance, including optimization of cost, security and performance. Our OpenRouter and LiteLLM combination make sure all agents across the organization use the same infrastructure in a secure and high-performance manner.",
+    image: "/core-capabilities-mini-4.png"
   },
   {
     num: "05",
