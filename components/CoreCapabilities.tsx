@@ -40,99 +40,101 @@ export default function CoreCapabilities() {
   const [expanded, setExpanded] = useState<number>(0);
 
   return (
-    <section id="capabilities" className="w-full lg:h-[calc(100vh-80px)] flex flex-col justify-center box-border" style={{
-      background: "#fff",
-      borderTop: "1px solid var(--line)",
-      borderBottom: "1px solid var(--line)",
-      padding: "80px 0"
-    }}>
-      <style dangerouslySetInnerHTML={{ __html: `
-        .main-img-container:hover .main-img {
-          transform: scale(1.05);
-        }
-        .main-img {
-          transition: transform 0.4s ease;
-          width: 100%;
-          height: 100%;
-          background-image: url('/core-capabilities-main.png');
-          background-size: cover;
-          background-position: center;
-        }
-        .tile-container:hover .mini-img {
-          transform: scale(1.1);
-        }
-        .mini-img {
-          transition: transform 0.4s ease;
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-position: center;
-          border-radius: 4px;
-        }
-      `}} />
-      <div className="w-full lg:max-w-none mx-auto px-5 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px]">
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "space-between" }}>
+    <section id="capabilities" className="w-full bg-white border-t border-b border-gray-200 py-16 lg:py-24 box-border font-sans">
+      <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16 w-full">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16 xl:gap-20">
           
-          {/* Left Column */}
-          <div style={{ flex: "1 1 40%", minWidth: "300px" }}>
-            <h2 style={{ fontSize: "3rem", fontWeight: "600", marginBottom: "1rem" }}>Core Capabilities</h2>
-            <p style={{ fontSize: "1.25rem", color: "#4B5563", marginBottom: "2rem" }}>
+          {/* Left Column: Heading, Subtitle & Main Image */}
+          <div className="w-full lg:w-[48%] xl:w-[46%] shrink-0 text-left">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#101828] mb-3 tracking-tight leading-tight">
+              Core Capabilities
+            </h2>
+            <p className="text-[#475467] text-base lg:text-lg mb-8 leading-relaxed max-w-md">
               Delivering technical ingenuity and rapid innovation across industries.
             </p>
-            <div className="main-img-container" style={{ position: "relative", width: "100%", height: "400px", background: "#f3f4f6", borderRadius: "8px", overflow: "hidden", cursor: "pointer" }}>
-               {/* Main image placeholder */}
-               <div className="main-img">
-                 {/* This represents the left image from the mockup */}
-               </div>
+            <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 relative group cursor-pointer shadow-xs">
+              <img
+                src="/core-capabilities-main.png"
+                alt="Core Capabilities"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
             </div>
           </div>
 
-          {/* Right Column */}
-          <div style={{ flex: "1 1 50%", minWidth: "300px" }}>
-            {capabilities.map((cap, index) => {
-              const isExpanded = expanded === index;
-              return (
-                <div key={index} className="tile-container" style={{ borderBottom: "1px solid #e5e7eb", padding: "20px 0" }}>
-                  <div 
-                    onClick={() => setExpanded(index)}
-                    style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" }}
+          {/* Right Column: Accordion List */}
+          <div className="w-full lg:flex-1">
+            <div className="border-t border-gray-200 w-full">
+              {capabilities.map((cap, index) => {
+                const isExpanded = expanded === index;
+                return (
+                  <div
+                    key={index}
+                    className="border-b border-gray-200 transition-colors"
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                      <span style={{ fontSize: "1.5rem", color: "#9ca3af", fontWeight: "500" }}>{cap.num}</span>
-                      <h3 style={{ fontSize: "1.75rem", fontWeight: "500", margin: 0 }}>{cap.title}</h3>
-                    </div>
-                    <div style={{ 
-                      width: "32px", 
-                      height: "32px", 
-                      borderRadius: "50%", 
-                      background: "#f3f4f6", 
-                      display: "flex", 
-                      alignItems: "center", 
-                      justifyContent: "center",
-                      transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-                      transition: "transform 0.3s ease"
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M6 9l6 6 6-6"/>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  {isExpanded && (
-                    <div style={{ display: "flex", gap: "20px", marginTop: "20px", alignItems: "flex-start" }}>
-                      <p style={{ flex: 1, fontSize: "1.1rem", color: "#4B5563", lineHeight: "1.6", margin: 0 }}>
-                        {cap.content}
-                      </p>
-                      <div style={{ width: "120px", height: "80px", borderRadius: "4px", flexShrink: 0, overflow: "hidden" }}>
-                        <div className="mini-img" style={{ backgroundImage: `url(${cap.image})` }}>
-                          {/* Smaller thumbnail image */}
+                    <button
+                      type="button"
+                      onClick={() => setExpanded(index)}
+                      className="w-full py-5 lg:py-6 flex items-center justify-between text-left focus:outline-none group cursor-pointer"
+                      aria-expanded={isExpanded}
+                    >
+                      <div className="flex items-center gap-4 sm:gap-6">
+                        {/* Number: Bold Black when Open, Muted Gray when Closed */}
+                        <span
+                          className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
+                            isExpanded ? "text-[#101828]" : "text-[#98A2B3] group-hover:text-gray-600"
+                          }`}
+                        >
+                          {cap.num}
+                        </span>
+
+                        {/* Title: Bold Black when Open */}
+                        <h3
+                          className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
+                            isExpanded ? "text-[#101828]" : "text-[#101828] group-hover:text-gray-900"
+                          }`}
+                        >
+                          {cap.title}
+                        </h3>
+                      </div>
+
+                      {/* Opening Arrow ONLY when Closed (NO closing arrow when open) */}
+                      {!isExpanded && (
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F2F4F7] group-hover:bg-[#EAECF0] flex items-center justify-center text-[#344054] transition-all duration-200 shrink-0 ml-4">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M12 4v16m0 0l-6-6m6 6l6-6" />
+                          </svg>
+                        </div>
+                      )}
+                    </button>
+
+                    {/* Expanded Content with Description and Thumbnail */}
+                    {isExpanded && (
+                      <div className="pb-6 lg:pb-7 flex flex-col sm:flex-row items-start justify-between gap-5 sm:gap-8 transition-all duration-300">
+                        <p className="flex-1 text-[#475467] text-sm sm:text-[15px] lg:text-base leading-relaxed pl-9 sm:pl-12">
+                          {cap.content}
+                        </p>
+                        <div className="w-[120px] h-[80px] sm:w-[135px] sm:h-[90px] rounded-lg overflow-hidden shrink-0 bg-gray-100 border border-gray-200 shadow-xs cursor-pointer group/img ml-9 sm:ml-0">
+                          <img
+                            src={cap.image}
+                            alt={cap.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                          />
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
         </div>
