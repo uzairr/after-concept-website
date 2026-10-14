@@ -69,24 +69,27 @@ export default function CoreCapabilities() {
                 return (
                   <div
                     key={index}
-                    className="border-b border-gray-200 transition-colors py-5 lg:py-6"
+                    className={`border-b border-gray-200 transition-colors ${
+                      isExpanded ? "pt-7 pb-9 lg:pt-8 lg:pb-11" : "py-5 lg:py-6"
+                    }`}
                   >
                     <div
                       onClick={() => setExpanded(index)}
                       className="w-full flex items-start justify-between cursor-pointer group"
                     >
-                      {/* Left: Number, Title, and Description */}
-                      <div className="flex-1 pr-4 sm:pr-8">
-                        {/* Title Row */}
-                        <div className="flex items-center gap-4 sm:gap-6">
-                          <span
-                            className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
-                              isExpanded ? "text-[#101828]" : "text-[#98A2B3] group-hover:text-gray-600"
-                            }`}
-                          >
-                            {cap.num}
-                          </span>
+                      {/* Left: Number and Title/Description Container */}
+                      <div className="flex items-start gap-4 sm:gap-6 flex-1 pr-4 sm:pr-8">
+                        {/* Number */}
+                        <span
+                          className={`text-xl sm:text-2xl font-bold transition-colors duration-200 shrink-0 ${
+                            isExpanded ? "text-[#101828]" : "text-[#98A2B3] group-hover:text-gray-600"
+                          }`}
+                        >
+                          {cap.num}
+                        </span>
 
+                        {/* Title and Description */}
+                        <div className="flex-1 max-w-[540px]">
                           <h3
                             className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${
                               isExpanded ? "text-[#101828]" : "text-[#101828] group-hover:text-gray-900"
@@ -94,19 +97,19 @@ export default function CoreCapabilities() {
                           >
                             {cap.title}
                           </h3>
-                        </div>
 
-                        {/* Description under Title when Open */}
-                        {isExpanded && (
-                          <p className="mt-3.5 text-[#475467] text-sm sm:text-[15px] lg:text-base leading-relaxed pl-9 sm:pl-12 max-w-[480px]">
-                            {cap.content}
-                          </p>
-                        )}
+                          {/* Description directly under Title when Open */}
+                          {isExpanded && (
+                            <p className="mt-3.5 text-[#475467] text-sm sm:text-[15px] lg:text-base leading-relaxed">
+                              {cap.content}
+                            </p>
+                          )}
+                        </div>
                       </div>
 
                       {/* Right: Thumbnail when Open, Down-arrow when Closed */}
                       {isExpanded ? (
-                        <div className="w-[100px] h-[80px] sm:w-[130px] sm:h-[100px] rounded-lg overflow-hidden shrink-0 bg-gray-100 border border-gray-200 shadow-xs cursor-pointer group/img">
+                        <div className="w-[125px] h-[108px] sm:w-[150px] sm:h-[130px] overflow-hidden shrink-0 bg-gray-100 cursor-pointer group/img">
                           <img
                             src={cap.image}
                             alt={cap.title}
