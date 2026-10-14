@@ -245,27 +245,25 @@ export default function Header() {
   }, []);
 
   const activeCategory = navData.find(cat => cat.name === activeMenu);
-  const isHeaderWhite = Boolean(activeMenu || !isScrolledTop || isMobileMenuOpen);
-  const isDarkText = isHeaderWhite || !isDark;
 
   return (
     <>
-      <header ref={headerRef} onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isHeaderWhite ? 'bg-white border-b border-gray-200' : 'bg-transparent border-transparent'}`}>
+      <header ref={headerRef} onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${activeMenu ? 'bg-white border-b border-gray-200' : (isScrolledTop ? 'bg-transparent border-transparent' : 'bg-[#060f1c] border-b border-[#1f3f66]')}`}>
         <nav className="w-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto px-6 md:px-8 xl:px-[50px] h-20 flex items-center justify-between relative">
           
           {/* Logo & Brand Name (Left) */}
           <Link href="/" className="flex items-center group lg:-ml-[8px] shrink-0 transition-transform duration-300 ease-in-out hover:scale-[1.02]">
             <div className="relative flex items-center justify-center w-[110px] h-[110px] lg:w-[44px] lg:h-[44px] lg:overflow-hidden lg:mr-2">
-              <img src="/image.png" alt="After Concept Logo" className={`w-[110px] h-[110px] lg:max-w-none lg:w-[110px] lg:h-[110px] transition-all duration-300 ease-in-out ${!isDarkText ? "brightness-0 invert" : ""}`} style={{ objectFit: "contain" }} />
+              <img src="/image.png" alt="After Concept Logo" className={`w-[110px] h-[110px] lg:max-w-none lg:w-[110px] lg:h-[110px] transition-all duration-300 ease-in-out ${ (!activeMenu && (isDark || !isScrolledTop)) ? "brightness-0 invert" : ""}`} style={{ objectFit: "contain" }} />
             </div>
-            <div className={`flex items-center font-bold tracking-tight text-xl transition-colors duration-300 ${!isDarkText ? 'text-white' : 'text-[#26215c]'} -ml-[32px] lg:ml-0`}>
+            <div className={`flex items-center font-bold tracking-tight text-xl transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-[#26215c]'} -ml-[32px] lg:ml-0`}>
               <span>AFTER</span>
-              <span className={`text-transparent ml-0.5 transition-colors duration-300 ${!isDarkText ? '[-webkit-text-stroke:1px_#ffffff]' : '[-webkit-text-stroke:1px_#26215c]'}`}>CONCEPT</span>
+              <span className={`text-transparent ml-0.5 transition-colors duration-300 ${ (!activeMenu && (isDark || !isScrolledTop)) ? '[-webkit-text-stroke:1px_#ffffff]' : '[-webkit-text-stroke:1px_#26215c]'}`}>CONCEPT</span>
             </div>
           </Link>
           
           {/* Center Group (Desktop Nav Links) */}
-          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${!isDarkText ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>
+          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>
             {navData.map((item) => (
               <div 
                 key={item.name}
@@ -274,14 +272,14 @@ export default function Header() {
                 onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
               >
                 <div 
-                  className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${!isDarkText ? 'hover:text-white' : 'hover:text-[#0a76db]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
+                  className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
                 >
                   {item.name}
                   <svg className={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                   {/* Underline Effect */}
-                  <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${!isDarkText ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
+                  <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
                 </div>
               </div>
             ))}
@@ -352,7 +350,7 @@ export default function Header() {
 
               {/* Mobile Menu Button */}
               <button 
-                className={`lg:hidden p-2 transition-colors duration-300 ${!isDarkText ? 'text-white' : 'text-[#26215c]'}`}
+                className={`lg:hidden p-2 ${(!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-[#26215c]'}`}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
@@ -509,24 +507,24 @@ export default function Header() {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-gray-200 px-6 pt-3 pb-8 absolute top-full left-0 w-full shadow-xl max-h-[80vh] overflow-y-auto">
+          <div className="lg:hidden bg-[#060f1c] border-b border-[#1f3f66] px-4 pt-2 pb-6 absolute top-full left-0 w-full shadow-lg max-h-[80vh] overflow-y-auto">
             {navData.map((item) => (
-              <div key={item.name} className="border-b border-gray-100 last:border-0 py-2">
+              <div key={item.name} className="border-b border-[#1f3f66]/50 last:border-0">
                 <Link
                   href={item.href}
-                  className="block text-gray-900 hover:text-[#0a76db] py-2 text-lg font-bold transition-colors"
+                  className="block text-white py-4 text-lg font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
-                <div className="pl-3 pb-2 flex flex-col gap-2.5">
+                <div className="pl-4 pb-2 flex flex-col gap-3">
                   {item.customContent ? (
                     <Link
                       href={item.customContent.linkHref}
-                      className="text-gray-600 hover:text-[#0a76db] text-sm flex items-center gap-2 transition-colors"
+                      className="text-stone-400 hover:text-[#0a76db] text-sm flex items-center gap-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0a76db]"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0a76db]/50"></span>
                       {item.customContent.linkText}
                     </Link>
                   ) : item.submenus ? item.submenus.map((sub, idx) => (
@@ -535,10 +533,10 @@ export default function Header() {
                       href={sub.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-[#0a76db] text-sm flex items-center gap-2 transition-colors"
+                      className="text-stone-400 hover:text-[#0a76db] text-sm flex items-center gap-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0a76db]"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0a76db]/50"></span>
                       {sub.title}
                       {sub.isExternal && (
                         <svg className="w-3 h-3 ml-1 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -552,7 +550,7 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
-              className="block mt-6 text-center text-white bg-[#0F6CFF] hover:bg-[#085ab3] rounded-xl py-3 font-semibold transition-colors shadow-md"
+              className="block mt-6 text-center text-white bg-[#0a76db] hover:bg-[#085ab3] rounded-lg py-3 font-medium transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact Us
