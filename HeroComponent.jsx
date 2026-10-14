@@ -56,8 +56,8 @@ const SLIDES_DATA = [
 // Ensure you copy the 'images' folder to your Next.js 'public' directory
 const SLIDE_IMAGES = [
   "/images/hero-bg-ai-orig.png",
-  "/images/hero-bg-data-orig.jpg",
-  "/images/hero-bg-data-orig.jpg"
+  "/assets/images/hero/hardware.webp",
+  "/assets/images/hero/edge.webp"
 ];
 
 export default function HeroComponent() {
@@ -244,7 +244,11 @@ export default function HeroComponent() {
             <div
               key={idx}
               className={`hero-img ${idx === currentSlide ? 'active' : ''}`}
-              style={{ backgroundImage: `url('${img}')` }}
+              style={{
+                backgroundImage: idx === 0
+                  ? `url('${img}')`
+                  : `linear-gradient(rgba(10,25,60,0.6), rgba(10,25,60,0.6)), url('${img}')`
+              }}
               role="img"
               aria-label="Background slide"
             ></div>
