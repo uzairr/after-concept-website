@@ -7,18 +7,18 @@ const dummyCards = [
     id: 1,
     tag: "Why Market Leaders Trust Us",
     title:
-      "Built an Intelligent Quoting Engine for Construction & Renovation Projects",
+      "Work with the Team that Made KAYAK into a Leading Travel Search Engine",
     stats: [
       {
-        value: "€17.2K",
-        label: "Revenue Generated",
+        value: "50M+",
+        label: "Travelers Served Worldwide",
       },
       {
-        value: "7+",
-        label: "Active Estimations",
+        value: "18+ Years",
+        label: "In the Travel Tech Industry",
       },
     ],
-    image: "/images/project-mbc.jpg",
+    image: "/images/project-kayak.jpg",
   },
   {
     id: 2,
