@@ -56,7 +56,7 @@ const SLIDES_DATA = [
 // Ensure you copy the 'images' folder to your Next.js 'public' directory
 const SLIDE_IMAGES = [
   "/images/hero-bg-ai-orig.png",
-  "/assets/images/hero/hardware.webp",
+  "/assets/images/hero/hardware-circuit.webp",
   "/assets/images/hero/edge.webp"
 ];
 
