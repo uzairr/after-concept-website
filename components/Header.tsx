@@ -263,7 +263,17 @@ export default function Header() {
           </Link>
           
           {/* Center Group (Desktop Nav Links) */}
-          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>
+          <div 
+            className="hidden lg:flex items-center justify-center flex-1 h-full mx-1 xl:mx-4 2xl:mx-8"
+            style={{
+              fontFamily: "var(--font-inter), 'Inter', sans-serif",
+              fontSize: '14.5px',
+              fontWeight: 500,
+              letterSpacing: '-0.01em',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+            }}
+          >
             {navData.map((item) => (
               <div 
                 key={item.name}
@@ -272,11 +282,23 @@ export default function Header() {
                 onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
               >
                 <div 
-                  className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
+                  className={`relative transition-colors duration-200 group whitespace-nowrap flex items-center gap-1.5 ${
+                    activeMenu === item.name 
+                      ? 'text-[#0a76db]' 
+                      : (!activeMenu && (isDark || !isScrolledTop)) 
+                        ? 'text-white/80 hover:text-white' 
+                        : 'text-gray-700 hover:text-[#26215c]'
+                  }`}
+                  style={{
+                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                    fontSize: '14.5px',
+                    fontWeight: 500,
+                    letterSpacing: '-0.01em',
+                  }}
                 >
                   {item.name}
-                  <svg className={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg className={`w-3 h-3 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''} ${(!activeMenu && (isDark || !isScrolledTop)) ? 'text-white/70 group-hover:text-white' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                   </svg>
                   {/* Underline Effect */}
                   <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
