@@ -36,6 +36,104 @@ const caseStudiesData: Record<
     fstat3Label: string;
   }
 > = {
+  landdesign: {
+    industry: "Real Estate Tech · Data Intelligence",
+    title: "Automated contract data collection across six US jurisdictions",
+    heroSub:
+      "We automated contract data collection across six US jurisdictions, transforming awarded contract information into structured Excel sheets and a web dashboard for real estate business intelligence.",
+    hstat1Num: "6",
+    hstat1Label: "US jurisdictions automated",
+    hstat2Num: "100%",
+    hstat2Label: "structured data accuracy",
+    hstat3Num: "Real-Time",
+    hstat3Label: "business intelligence dashboard",
+    bannerText: "LandDesign — Contract Intelligence & Web Dashboard",
+    engagement: "Automated Data Pipeline & Web Dashboard",
+    stack: "Next.js, Python, PostgreSQL, Automated Ingestion, Excel Reporting",
+    client: "LandDesign",
+    quote:
+      "Turning fragmented municipal contract awards into clean, structured intelligence transformed how we identify opportunities across every jurisdiction.",
+    quoteAuthor: "Director of Business Development, LandDesign",
+    challengeSub:
+      "Awarded contract records across multiple municipal jurisdictions were published inconsistently in varied formats, requiring hundreds of manual hours to find, parse, and verify.",
+    challengePoints: [
+      "Scattered procurement portals across six distinct US jurisdictions with disparate data structures.",
+      "Manual data extraction resulting in delays, human entry errors, and missed bid intelligence.",
+      "Lack of centralized historical records for competitive real estate analysis.",
+      "Need for both immediate Excel report export for analysts and a real-time web dashboard for executives.",
+    ],
+    solutionSub:
+      "After Concept engineered an automated data collection and validation pipeline paired with custom spreadsheet generation and an interactive BI dashboard.",
+    solutionPoints: [
+      "Resilient multi-jurisdiction data collection agents handling dynamic government portal layouts.",
+      "Automated data normalizer and deduplication engine ensuring 100% schema consistency.",
+      "Direct-to-Excel export pipeline formatted with real estate intelligence metrics.",
+      "Executive web dashboard with filtering, search, and trend visualization.",
+    ],
+    capabilities: [
+      "Multi-jurisdiction automated contract ingestion.",
+      "Instant formatted Excel report distribution.",
+      "Real-time analytics and award trend dashboards.",
+      "Automated jurisdiction change alerts and status tracking.",
+    ],
+    resultsSub:
+      "LandDesign eliminated manual contract extraction entirely, unlocking instant cross-jurisdiction market visibility and actionable real estate intelligence.",
+    fstat1Num: "6",
+    fstat1Label: "jurisdictions continuously synced",
+    fstat2Num: "100%",
+    fstat2Label: "automated data pipeline",
+    fstat3Num: "Zero",
+    fstat3Label: "manual extraction overhead",
+  },
+  "land-design": {
+    industry: "Real Estate Tech · Data Intelligence",
+    title: "Automated contract data collection across six US jurisdictions",
+    heroSub:
+      "We automated contract data collection across six US jurisdictions, transforming awarded contract information into structured Excel sheets and a web dashboard for real estate business intelligence.",
+    hstat1Num: "6",
+    hstat1Label: "US jurisdictions automated",
+    hstat2Num: "100%",
+    hstat2Label: "structured data accuracy",
+    hstat3Num: "Real-Time",
+    hstat3Label: "business intelligence dashboard",
+    bannerText: "LandDesign — Contract Intelligence & Web Dashboard",
+    engagement: "Automated Data Pipeline & Web Dashboard",
+    stack: "Next.js, Python, PostgreSQL, Automated Ingestion, Excel Reporting",
+    client: "LandDesign",
+    quote:
+      "Turning fragmented municipal contract awards into clean, structured intelligence transformed how we identify opportunities across every jurisdiction.",
+    quoteAuthor: "Director of Business Development, LandDesign",
+    challengeSub:
+      "Awarded contract records across multiple municipal jurisdictions were published inconsistently in varied formats, requiring hundreds of manual hours to find, parse, and verify.",
+    challengePoints: [
+      "Scattered procurement portals across six distinct US jurisdictions with disparate data structures.",
+      "Manual data extraction resulting in delays, human entry errors, and missed bid intelligence.",
+      "Lack of centralized historical records for competitive real estate analysis.",
+      "Need for both immediate Excel report export for analysts and a real-time web dashboard for executives.",
+    ],
+    solutionSub:
+      "After Concept engineered an automated data collection and validation pipeline paired with custom spreadsheet generation and an interactive BI dashboard.",
+    solutionPoints: [
+      "Resilient multi-jurisdiction data collection agents handling dynamic government portal layouts.",
+      "Automated data normalizer and deduplication engine ensuring 100% schema consistency.",
+      "Direct-to-Excel export pipeline formatted with real estate intelligence metrics.",
+      "Executive web dashboard with filtering, search, and trend visualization.",
+    ],
+    capabilities: [
+      "Multi-jurisdiction automated contract ingestion.",
+      "Instant formatted Excel report distribution.",
+      "Real-time analytics and award trend dashboards.",
+      "Automated jurisdiction change alerts and status tracking.",
+    ],
+    resultsSub:
+      "LandDesign eliminated manual contract extraction entirely, unlocking instant cross-jurisdiction market visibility and actionable real estate intelligence.",
+    fstat1Num: "6",
+    fstat1Label: "jurisdictions continuously synced",
+    fstat2Num: "100%",
+    fstat2Label: "automated data pipeline",
+    fstat3Num: "Zero",
+    fstat3Label: "manual extraction overhead",
+  },
   alfred: {
     industry: "Consumer Tech · FinTech",
     title: "Unifying four regulated industries into a single membership platform",

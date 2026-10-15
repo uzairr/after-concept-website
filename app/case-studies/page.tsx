@@ -6,32 +6,18 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Alfred Logo SVG Component
-function AlfredLogo() {
+// Land Design Logo Component
+function LandDesignLogo() {
   return (
-    <div className="flex items-center gap-2.5">
-      <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Colorful faceted ribbon triangle "A" logo */}
-        <path d="M18 4L4 28H11L18 15L25 28H32L18 4Z" fill="url(#alfred-grad-main)" />
-        <path d="M18 4L11 28H15L18 21L21 28H25L18 4Z" fill="url(#alfred-grad-accent)" opacity="0.9" />
-        <path d="M12 21H24L26 25H10L12 21Z" fill="#F59E0B" />
-        <path d="M18 4L25 28H29L18 4Z" fill="#EF4444" />
-        <path d="M18 4L11 28H7L18 4Z" fill="#06B6D4" />
-        <defs>
-          <linearGradient id="alfred-grad-main" x1="4" y1="4" x2="32" y2="28" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#06B6D4" />
-            <stop offset="0.5" stopColor="#3B82F6" />
-            <stop offset="1" stopColor="#EF4444" />
-          </linearGradient>
-          <linearGradient id="alfred-grad-accent" x1="18" y1="4" x2="18" y2="28" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#10B981" />
-            <stop offset="1" stopColor="#F59E0B" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <span className="text-2xl font-bold tracking-tight text-slate-900 font-sans">
-        Alfred
-      </span>
+    <div className="flex items-center">
+      <Image
+        src="/images/landdesign-card-logo-cropped.png"
+        alt="Land Design"
+        width={160}
+        height={56}
+        className="h-12 sm:h-14 w-auto object-contain"
+        priority
+      />
     </div>
   );
 }
@@ -83,14 +69,14 @@ interface CaseItem {
 
 const allCaseStudies: CaseItem[] = [
   {
-    id: "alfred",
-    name: "Alfred",
-    category: "Consumer Tech",
-    logo: <AlfredLogo />,
+    id: "landdesign",
+    name: "Land Design",
+    category: "Real Estate Tech",
+    logo: <LandDesignLogo />,
     description:
-      "We built the Alfred app and backend from the ground up, from broadband and mobile to energy and insurance, unified under one checkout.",
-    href: "/case-studies/alfred",
-    metrics: { label: "Unified Combos", value: "31" },
+      "We automated contract data collection across six US jurisdictions, transforming awarded contract information into structured Excel sheets and a web dashboard for real estate business intelligence.",
+    href: "/case-studies/landdesign",
+    metrics: { label: "US Jurisdictions", value: "6" },
     badge: "Featured Build"
   },
   {
@@ -150,7 +136,7 @@ const allCaseStudies: CaseItem[] = [
   }
 ];
 
-const categories = ["All", "Consumer Tech", "Travel", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
+const categories = ["All", "Real Estate Tech", "Travel", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
 
 export default function CaseStudiesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
