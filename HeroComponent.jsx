@@ -237,6 +237,10 @@ export default function HeroComponent() {
   return (
     <>
       {/* ===================== HERO ===================== */}
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      />
       <section className="hero-custom-container" id="hero">
         <Header />
         <div className="hero-bg-slider" id="heroBgSlider">
@@ -273,7 +277,7 @@ export default function HeroComponent() {
             </div>
           </div>
           <div className="heading-container">
-            <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
+            <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start", fontWeight: 800, WebkitFontSmoothing: "antialiased" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
           </div>
         </div>
 
@@ -459,21 +463,33 @@ export default function HeroComponent() {
           color: #FFFFFF !important;
           opacity: 1 !important;
           font-size: 75px !important;
-          font-weight: 700 !important;
+          font-weight: 800 !important;
           line-height: 1.05 !important;
           letter-spacing: -0.5px !important;
-          font-family: 'Inter', 'Sora', sans-serif !important;
+          font-family: var(--font-inter), 'Inter', 'Sora', sans-serif !important;
           text-transform: none !important;
           max-width: 1000px;
           margin: 0 !important;
           padding: 0 !important;
           text-align: left !important;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
         }
-        .hero-title .highlight { color: #A78BFA !important; font-weight: 700 !important; }
+        .hero-title span:not(.cursor),
+        .hero-title .highlight,
         .hero-title .highlight-software,
-        .hero-title .highlight.highlight-software { color: #6EE7A0 !important; font-weight: 700 !important; } /* Green mint */
+        .hero-title .highlight.highlight-software,
         .hero-title .highlight-edge,
-        .hero-title .highlight.highlight-edge { color: #8CC6FF !important; font-weight: 700 !important; } /* Light Blue */
+        .hero-title .highlight.highlight-edge {
+          font-weight: 800 !important;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+        }
+        .hero-title .highlight { color: #A78BFA !important; }
+        .hero-title .highlight-software,
+        .hero-title .highlight.highlight-software { color: #6EE7A0 !important; } /* Green mint */
+        .hero-title .highlight-edge,
+        .hero-title .highlight.highlight-edge { color: #8CC6FF !important; } /* Light Blue */
         .cursor,
         .hero-title .cursor {
           width: 19px !important;
