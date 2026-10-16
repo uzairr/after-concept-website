@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
+import ScrollIndicator from './components/ScrollIndicator';
 
 // ============================================================
 // DATA FOR LOGOS
@@ -319,19 +320,7 @@ export default function HeroComponent() {
             <div className="hero-traveling-track">
               <div className="hero-traveling-light"></div>
             </div>
-            <button
-              className="scroll-indicator-container"
-              aria-label="Scroll down"
-              onClick={() => {
-                window.scrollTo({
-                  top: window.innerHeight,
-                  behavior: 'smooth'
-                });
-              }}
-            >
-              <span className="scroll-text">SCROLL</span>
-              <span className="scroll-vertical-line"></span>
-            </button>
+            <ScrollIndicator />
             <div className="hero-center-point"></div>
           </div>
 
@@ -605,35 +594,14 @@ export default function HeroComponent() {
           100% { transform: translate3d(100vw, -50%, 0); }
         }
         .hero-center-point {
-          width: 4px; height: 4px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%;
-          box-shadow: 0 0 8px rgba(10, 118, 219, 0.8);
-          position: relative; z-index: 12;
-        }
-        .scroll-indicator-container {
-          position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center;
-          margin-bottom: 2px; animation: floatScroll 3.5s ease-in-out infinite; background: none; border: none; cursor: pointer; padding: 0;
-        }
-        @keyframes floatScroll {
-          0%, 100% { transform: translate(-50%, 0); opacity: 0.8; }
-          50% { transform: translate(-50%, -6px); opacity: 1; }
+          display: none;
         }
         @media (prefers-reduced-motion: reduce) {
-          .scroll-indicator-container, .hero-traveling-light { animation: none; }
-        }
-        .scroll-text {
-          font-family: inherit; font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
-          writing-mode: vertical-rl; transform: rotate(180deg); color: #e2e8f0; text-shadow: 0 0 6px rgba(10, 118, 219, 0.5); margin-bottom: 12px;
-        }
-        .scroll-vertical-line {
-          width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(10, 118, 219, 0), rgba(10, 118, 219, 0.9));
-          box-shadow: 0 0 6px rgba(10, 118, 219, 0.5);
+          .hero-traveling-light { animation: none; }
         }
         @media (max-width: 768px) {
-          .scroll-vertical-line { height: 40px; }
-          .scroll-text { font-size: 9px; margin-bottom: 8px; }
           .hero-dots { left: 32px; bottom: 30px; }
         }
-        @keyframes scrollDot { 0% { top: -10px; opacity: 0; } 20% { opacity: 1; } 80% { top: 42px; opacity: 1; } 100% { top: 42px; opacity: 0; } }
 
         /* HERO LOGOS STRIP */
         .hero-logos-strip {
