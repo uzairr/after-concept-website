@@ -262,24 +262,57 @@ export default function Header() {
             </div>
           </Link>
           
-          {/* Center Group (Desktop Nav Links) */}
-          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>
+          {/* Center Group (Desktop Nav Links) - Exact Arbisoft Replica */}
+          <div 
+            className="hidden lg:flex items-center justify-center flex-1 h-full gap-7 xl:gap-10"
+            style={{
+              fontFamily: "var(--font-inter), 'Inter', sans-serif",
+              fontSize: '16px',
+              fontWeight: 500,
+              letterSpacing: '-0.01em',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+            }}
+          >
             {navData.map((item) => (
               <div 
                 key={item.name}
-                className="relative h-full flex items-center px-1.5 xl:px-3.5 2xl:px-6 cursor-pointer"
+                className="relative h-full flex items-center cursor-pointer"
                 onMouseEnter={() => setActiveMenu(item.name)}
                 onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
               >
                 <div 
-                  className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
+                  className={`relative transition-colors duration-200 group whitespace-nowrap flex items-center gap-[6px] ${
+                    activeMenu === item.name 
+                      ? 'text-[#87c5ff]' 
+                      : (!activeMenu && (isDark || !isScrolledTop)) 
+                        ? 'text-white/85 hover:text-[#87c5ff]' 
+                        : 'text-stone-600 hover:text-[#0a76db]'
+                  }`}
+                  style={{
+                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    letterSpacing: '-0.01em',
+                  }}
                 >
                   {item.name}
-                  <svg className={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg 
+                    className={`transition-transform duration-200 flex-shrink-0 ${activeMenu === item.name ? 'rotate-180 text-[#87c5ff]' : ''} ${(!activeMenu && (isDark || !isScrolledTop)) ? 'text-white/70 group-hover:text-[#87c5ff]' : 'text-stone-500 group-hover:text-[#0a76db]'}`} 
+                    width="10" 
+                    height="6" 
+                    viewBox="0 0 10 6" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    style={{ width: '10px', height: '6px' }}
+                  >
+                    <path d="M1 1L5 5L9 1" />
                   </svg>
                   {/* Underline Effect */}
-                  <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
+                  <span className={`absolute left-0 -bottom-1 h-[2.5px] rounded-full transition-all duration-200 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${ (!activeMenu && (isDark || !isScrolledTop)) ? 'bg-[#87c5ff]' : 'bg-[#0a76db]'}`}></span>
                 </div>
               </div>
             ))}
