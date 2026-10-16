@@ -36,6 +36,202 @@ const caseStudiesData: Record<
     fstat3Label: string;
   }
 > = {
+  landdesign: {
+    industry: "Real Estate Tech · Data Intelligence",
+    title: "Automated contract data collection across six US jurisdictions",
+    heroSub:
+      "We automated contract data collection across six US jurisdictions, transforming awarded contract information into structured Excel sheets and a web dashboard for real estate business intelligence.",
+    hstat1Num: "6",
+    hstat1Label: "US jurisdictions automated",
+    hstat2Num: "100%",
+    hstat2Label: "structured data accuracy",
+    hstat3Num: "Real-Time",
+    hstat3Label: "business intelligence dashboard",
+    bannerText: "LandDesign — Contract Intelligence & Web Dashboard",
+    engagement: "Automated Data Pipeline & Web Dashboard",
+    stack: "Next.js, Python, PostgreSQL, Automated Ingestion, Excel Reporting",
+    client: "LandDesign",
+    quote:
+      "Turning fragmented municipal contract awards into clean, structured intelligence transformed how we identify opportunities across every jurisdiction.",
+    quoteAuthor: "Director of Business Development, LandDesign",
+    challengeSub:
+      "Awarded contract records across multiple municipal jurisdictions were published inconsistently in varied formats, requiring hundreds of manual hours to find, parse, and verify.",
+    challengePoints: [
+      "Scattered procurement portals across six distinct US jurisdictions with disparate data structures.",
+      "Manual data extraction resulting in delays, human entry errors, and missed bid intelligence.",
+      "Lack of centralized historical records for competitive real estate analysis.",
+      "Need for both immediate Excel report export for analysts and a real-time web dashboard for executives.",
+    ],
+    solutionSub:
+      "After Concept engineered an automated data collection and validation pipeline paired with custom spreadsheet generation and an interactive BI dashboard.",
+    solutionPoints: [
+      "Resilient multi-jurisdiction data collection agents handling dynamic government portal layouts.",
+      "Automated data normalizer and deduplication engine ensuring 100% schema consistency.",
+      "Direct-to-Excel export pipeline formatted with real estate intelligence metrics.",
+      "Executive web dashboard with filtering, search, and trend visualization.",
+    ],
+    capabilities: [
+      "Multi-jurisdiction automated contract ingestion.",
+      "Instant formatted Excel report distribution.",
+      "Real-time analytics and award trend dashboards.",
+      "Automated jurisdiction change alerts and status tracking.",
+    ],
+    resultsSub:
+      "LandDesign eliminated manual contract extraction entirely, unlocking instant cross-jurisdiction market visibility and actionable real estate intelligence.",
+    fstat1Num: "6",
+    fstat1Label: "jurisdictions continuously synced",
+    fstat2Num: "100%",
+    fstat2Label: "automated data pipeline",
+    fstat3Num: "Zero",
+    fstat3Label: "manual extraction overhead",
+  },
+  "land-design": {
+    industry: "Real Estate Tech · Data Intelligence",
+    title: "Automated contract data collection across six US jurisdictions",
+    heroSub:
+      "We automated contract data collection across six US jurisdictions, transforming awarded contract information into structured Excel sheets and a web dashboard for real estate business intelligence.",
+    hstat1Num: "6",
+    hstat1Label: "US jurisdictions automated",
+    hstat2Num: "100%",
+    hstat2Label: "structured data accuracy",
+    hstat3Num: "Real-Time",
+    hstat3Label: "business intelligence dashboard",
+    bannerText: "LandDesign — Contract Intelligence & Web Dashboard",
+    engagement: "Automated Data Pipeline & Web Dashboard",
+    stack: "Next.js, Python, PostgreSQL, Automated Ingestion, Excel Reporting",
+    client: "LandDesign",
+    quote:
+      "Turning fragmented municipal contract awards into clean, structured intelligence transformed how we identify opportunities across every jurisdiction.",
+    quoteAuthor: "Director of Business Development, LandDesign",
+    challengeSub:
+      "Awarded contract records across multiple municipal jurisdictions were published inconsistently in varied formats, requiring hundreds of manual hours to find, parse, and verify.",
+    challengePoints: [
+      "Scattered procurement portals across six distinct US jurisdictions with disparate data structures.",
+      "Manual data extraction resulting in delays, human entry errors, and missed bid intelligence.",
+      "Lack of centralized historical records for competitive real estate analysis.",
+      "Need for both immediate Excel report export for analysts and a real-time web dashboard for executives.",
+    ],
+    solutionSub:
+      "After Concept engineered an automated data collection and validation pipeline paired with custom spreadsheet generation and an interactive BI dashboard.",
+    solutionPoints: [
+      "Resilient multi-jurisdiction data collection agents handling dynamic government portal layouts.",
+      "Automated data normalizer and deduplication engine ensuring 100% schema consistency.",
+      "Direct-to-Excel export pipeline formatted with real estate intelligence metrics.",
+      "Executive web dashboard with filtering, search, and trend visualization.",
+    ],
+    capabilities: [
+      "Multi-jurisdiction automated contract ingestion.",
+      "Instant formatted Excel report distribution.",
+      "Real-time analytics and award trend dashboards.",
+      "Automated jurisdiction change alerts and status tracking.",
+    ],
+    resultsSub:
+      "LandDesign eliminated manual contract extraction entirely, unlocking instant cross-jurisdiction market visibility and actionable real estate intelligence.",
+    fstat1Num: "6",
+    fstat1Label: "jurisdictions continuously synced",
+    fstat2Num: "100%",
+    fstat2Label: "automated data pipeline",
+    fstat3Num: "Zero",
+    fstat3Label: "manual extraction overhead",
+  },
+  alfred: {
+    industry: "Consumer Tech · FinTech",
+    title: "Unifying four regulated industries into a single membership platform",
+    heroSub:
+      "We built the Alfred app and backend from the ground up, from broadband and mobile to energy and insurance, unified under one checkout, one credit check, and one support experience.",
+    hstat1Num: "31",
+    hstat1Label: "product combinations in unified checkout",
+    hstat2Num: "10+",
+    hstat2Label: "regulated vendors behind one seamless UX",
+    hstat3Num: "<60s",
+    hstat3Label: "time to isolate production issues",
+    bannerText: "Alfred — Multi-Vertical Household Utilities Platform",
+    engagement: "Full-Lifecycle Architecture & Engineering",
+    stack: "React Native, FastAPI (Python), PostgreSQL, AWS, GoCardless, Equifax",
+    client: "Alfred",
+    quote:
+      "What used to require four disconnected systems and fragmented vendor logins now runs seamlessly as one unified experience for our members.",
+    quoteAuthor: "Head of Product & Delivery, Alfred",
+    challengeSub:
+      "Alfred set out to reinvent household utilities across broadband, mobile, energy, and insurance. The market is defined by murky pricing and fragmented vendor siloes. Alfred required a unified platform operating across 4 distinct regulatory frameworks without compromising user simplicity.",
+    challengePoints: [
+      "Operating across 4 regulated verticals (Energy, Telecom, Mobile eSIM, Insurance) each with legacy APIs and strict compliance rules.",
+      "Basket checkout supporting 31 valid combinations with cross-cutting KYC and credit thresholds.",
+      "Complex third-party vendor orchestration (Seaglass, Fibre Cafe, TOTSco, VMO2) hidden completely from the member.",
+      "Fragmented data silos risking broken customer support and reconciliation nightmares.",
+    ],
+    solutionSub:
+      "After Concept engineered an end-to-end mobile and cloud ecosystem with a centralized state control plane and unified checkout engine.",
+    solutionPoints: [
+      "Cross-platform member app in React Native paired with a high-concurrency FastAPI Python microservices engine.",
+      "Single-page multi-product checkout with automated background credit verification via Equifax and Direct Debit integration via GoCardless.",
+      "Canonical data layer unifying customer lifecycle, billing, and event-driven notifications across all service providers.",
+      "AI-first automated member support (Alfred Care) integrated directly into the app for instant issue triage.",
+    ],
+    capabilities: [
+      "Dynamic multi-service checkout with real-time deposit calculations.",
+      "Zero-touch eSIM and fibre broadband provisioning.",
+      "Automated regulatory compliance audit trails and consent tracking.",
+      "Centralized billing engine with automated exception reconciliation.",
+    ],
+    resultsSub:
+      "Alfred launched on schedule with 100% regulatory compliance, sub-minute observability, and zero checkout friction across 31 product combinations.",
+    fstat1Num: "31",
+    fstat1Label: "valid product combinations checked out seamlessly",
+    fstat2Num: "10+",
+    fstat2Label: "vendor integrations unified behind one app",
+    fstat3Num: "0",
+    fstat3Label: "checkout drop-offs from complex KYC rules",
+  },
+  travly: {
+    industry: "Travel Tech · AI Systems",
+    title: "Agile-driven engineering system that tripled team sprint velocity",
+    heroSub:
+      "We designed and built a structured agile-driven engineering system that tripled Travly's 5-person team output while scaling travel search and inventory aggregation.",
+    hstat1Num: "3×",
+    hstat1Label: "sprint output with same 5-person team",
+    hstat2Num: "85%",
+    hstat2Label: "faster travel search response times",
+    hstat3Num: "99.99%",
+    hstat3Label: "uptime across global travel GDS networks",
+    bannerText: "Travly — High-Throughput Travel Booking Engine",
+    engagement: "Core Architecture & Agile Engineering Transformation",
+    stack: "Next.js, Python, Golang, Redis, Kubernetes, Travel Distribution APIs",
+    client: "Travly",
+    quote:
+      "After Concept transformed our compact engineering team into a high-output powerhouse that outpaced competitors ten times our size.",
+    quoteAuthor: "CTO, Travly",
+    challengeSub:
+      "Travly had a lean 5-person engineering team attempting to build high-volume airline and hotel search. Legacy travel inventory GDS APIs had crippling latency, frequent rate-limiting, and inconsistent data formats.",
+    challengePoints: [
+      "5 engineers stretched thin between maintenance, third-party API quirks, and product feature velocity.",
+      "High query latency and timeouts from legacy airline and hotel distribution partners.",
+      "Real-time price drift and seat availability discrepancies between search and final booking checkout.",
+      "Manual deployment pipelines causing release delays and regression risks.",
+    ],
+    solutionSub:
+      "We engineered a distributed caching and rate-aggregation middleware with AI-assisted developer tooling and automated test pipelines.",
+    solutionPoints: [
+      "Ultra-low latency inventory aggregation service written in Golang with Redis multi-tiered caching.",
+      "Automated supplier health monitoring with self-healing connection pooling and fallbacks.",
+      "Structured agile CI/CD pipelines incorporating AI-assisted regression test generation.",
+      "Real-time pricing synchronization engine eliminating checkout booking discrepancies.",
+    ],
+    capabilities: [
+      "Sub-120ms travel inventory aggregation across dozens of suppliers.",
+      "Automated API contract testing and mock environments for instant feature prototyping.",
+      "Intelligent rate-matching and currency conversion algorithms.",
+      "Distributed lock management preventing duplicate reservation attempts.",
+    ],
+    resultsSub:
+      "Travly tripled its sprint release velocity, cut search latency by 85%, and scaled booking volume without adding a single engineer.",
+    fstat1Num: "3×",
+    fstat1Label: "engineering team output",
+    fstat2Num: "85%",
+    fstat2Label: "latency reduction on travel queries",
+    fstat3Num: "0",
+    fstat3Label: "booking discrepancies since go-live",
+  },
   swiftcart: {
     industry: "Retail tech",
     title:
