@@ -282,10 +282,10 @@ export default function Header() {
           
           {/* Center Group (Desktop Nav Links) - Exact Arbisoft Replica */}
           <div 
-            className="hidden lg:flex items-center justify-center flex-1 h-full gap-7 xl:gap-10"
+            className="hidden lg:flex items-center justify-center flex-1 h-full gap-[40px]"
             style={{
               fontFamily: "var(--font-inter), 'Inter', sans-serif",
-              fontSize: '16px',
+              fontSize: '15px',
               fontWeight: 500,
               letterSpacing: '-0.01em',
               WebkitFontSmoothing: 'antialiased',
@@ -304,19 +304,21 @@ export default function Header() {
                     activeMenu === item.name 
                       ? 'text-[#87c5ff]' 
                       : isHeaderDark
-                        ? 'text-white/85 hover:text-[#87c5ff]' 
+                        ? 'text-white/80 hover:text-white' 
                         : 'text-stone-600 hover:text-[#0a76db]'
                   }`}
                   style={{
                     fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                    fontSize: '16px',
+                    fontSize: '15px',
                     fontWeight: 500,
                     letterSpacing: '-0.01em',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
                   }}
                 >
                   {item.name}
                   <svg 
-                    className={`transition-transform duration-200 flex-shrink-0 ${activeMenu === item.name ? 'rotate-180 text-[#87c5ff]' : ''} ${isHeaderDark ? 'text-white/70 group-hover:text-[#87c5ff]' : 'text-stone-500 group-hover:text-[#0a76db]'}`}
+                    className={`transition-transform duration-200 flex-shrink-0 ${activeMenu === item.name ? 'rotate-180 text-[#87c5ff]' : ''} ${isHeaderDark ? 'text-white/70 group-hover:text-white' : 'text-stone-500 group-hover:text-[#0a76db]'}`}
                     width="10" 
                     height="6" 
                     viewBox="0 0 10 6" 
@@ -330,7 +332,7 @@ export default function Header() {
                     <path d="M1 1L5 5L9 1" />
                   </svg>
                   {/* Underline Effect */}
-                  <span className={`absolute left-0 -bottom-1 h-[2.5px] rounded-full transition-all duration-200 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${isHeaderDark ? 'bg-[#87c5ff]' : 'bg-[#0a76db]'}`}></span>
+                  <span className={`absolute left-0 -bottom-1 h-[2px] rounded-full transition-all duration-200 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${isHeaderDark ? 'bg-[#87c5ff]' : 'bg-[#0a76db]'}`}></span>
                 </div>
               </div>
             ))}
