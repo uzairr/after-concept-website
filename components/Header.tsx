@@ -285,9 +285,9 @@ export default function Header() {
             className="hidden lg:flex items-center justify-center flex-1 h-full gap-[40px]"
             style={{
               fontFamily: "var(--font-inter), 'Inter', sans-serif",
-              fontSize: '15px',
+              fontSize: '16px',
               fontWeight: 500,
-              letterSpacing: '-0.01em',
+              letterSpacing: '0px',
               WebkitFontSmoothing: 'antialiased',
               MozOsxFontSmoothing: 'grayscale',
             }}
@@ -309,9 +309,9 @@ export default function Header() {
                   }`}
                   style={{
                     fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                    fontSize: '15px',
+                    fontSize: '16px',
                     fontWeight: 500,
-                    letterSpacing: '-0.01em',
+                    letterSpacing: '0px',
                     WebkitFontSmoothing: 'antialiased',
                     MozOsxFontSmoothing: 'grayscale',
                   }}
