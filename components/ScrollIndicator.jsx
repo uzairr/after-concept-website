@@ -7,7 +7,7 @@ export default function ScrollIndicator({ onClick }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Fade out indicator when user scrolls past 30px
+      // Hide on scroll down past 30px
       if (window.scrollY > 30) {
         setIsVisible(false);
       } else {
@@ -19,7 +19,7 @@ export default function ScrollIndicator({ onClick }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleScrollClick = () => {
+  const handleClick = () => {
     if (onClick) {
       onClick();
     } else {
@@ -34,18 +34,18 @@ export default function ScrollIndicator({ onClick }) {
     <>
       <button
         type="button"
-        className={`scroll-indicator-root ${isVisible ? 'visible' : 'hidden'}`}
+        className={`scroll-indicator-container ${isVisible ? 'visible' : 'hidden'}`}
         aria-label="Scroll down"
-        onClick={handleScrollClick}
+        onClick={handleClick}
       >
-        <span className="scroll-text-label">SCROLL</span>
-        <div className="scroll-line-track">
-          <div className="scroll-glowing-dot"></div>
+        <span className="scroll-text">SCROLL</span>
+        <div className="scroll-vertical-line">
+          <div className="scroll-dot"></div>
         </div>
       </button>
 
       <style jsx>{`
-        .scroll-indicator-root {
+        .scroll-indicator-container {
           position: absolute;
           bottom: 0px;
           left: 50%;
@@ -53,123 +53,104 @@ export default function ScrollIndicator({ onClick }) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          background: transparent;
+          background: none;
           border: none;
           outline: none;
           cursor: pointer;
           padding: 0;
           margin: 0;
           z-index: 20;
-          transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+          transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
         }
 
-        .scroll-indicator-root.visible {
+        .scroll-indicator-container.visible {
           opacity: 1;
           visibility: visible;
           transform: translateX(-50%) translateY(0);
         }
 
-        .scroll-indicator-root.hidden {
+        .scroll-indicator-container.hidden {
           opacity: 0;
           visibility: hidden;
-          transform: translateX(-50%) translateY(10px);
+          transform: translateX(-50%) translateY(8px);
           pointer-events: none;
         }
 
-        .scroll-text-label {
+        .scroll-text {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          font-size: 10.5px;
-          font-weight: 600;
-          letter-spacing: 0.28em;
+          font-size: 10px;
+          font-weight: 400;
+          letter-spacing: 4.5px;
           text-transform: uppercase;
           writing-mode: vertical-rl;
           transform: rotate(180deg);
-          color: rgba(255, 255, 255, 0.9);
+          color: #ffffff;
+          opacity: 0.8;
           margin-bottom: 12px;
-          user-select: none;
           line-height: 1;
+          user-select: none;
         }
 
-        .scroll-line-track {
+        .scroll-vertical-line {
           position: relative;
           width: 1px;
-          height: 70px;
-          background: rgba(255, 255, 255, 0.22);
+          height: 80px;
+          background: rgba(255, 255, 255, 0.3);
           overflow: visible;
           display: flex;
           justify-content: center;
         }
 
-        .scroll-glowing-dot {
+        .scroll-dot {
           position: absolute;
-          top: 0;
           left: 50%;
-          width: 6px;
-          height: 6px;
+          transform: translateX(-50%);
+          width: 9px;
+          height: 9px;
           border-radius: 50%;
-          background-color: #7dd3fc;
-          box-shadow: 0 0 10px 2px #38bdf8, 0 0 16px 4px rgba(56, 189, 248, 0.6);
-          margin-left: -3px;
-          animation: scrollDot 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-          will-change: transform, opacity;
+          background-color: #7DD3FC;
+          box-shadow: 0 0 12px rgba(125, 211, 252, 0.8), 0 0 4px rgba(125, 211, 252, 0.9);
+          animation: scrollDotMove 2.2s ease-in-out infinite;
+          will-change: top, opacity;
         }
 
-        @keyframes scrollDot {
+        @keyframes scrollDotMove {
           0% {
-            transform: translateY(0);
+            top: 0;
             opacity: 0;
           }
           15% {
             opacity: 1;
           }
-          80% {
+          85% {
             opacity: 1;
           }
           100% {
-            transform: translateY(70px);
+            top: calc(100% - 8px);
             opacity: 0;
           }
         }
 
         @media (max-width: 768px) {
-          .scroll-text-label {
-            font-size: 9px;
-            letter-spacing: 0.22em;
+          .scroll-text {
+            font-size: 8.5px;
+            letter-spacing: 3.5px;
             margin-bottom: 8px;
           }
-          .scroll-line-track {
-            height: 48px;
+          .scroll-vertical-line {
+            height: 52px;
           }
-          .scroll-glowing-dot {
-            width: 5px;
-            height: 5px;
-            margin-left: -2.5px;
-            animation: scrollDotMobile 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-          }
-          @keyframes scrollDotMobile {
-            0% {
-              transform: translateY(0);
-              opacity: 0;
-            }
-            15% {
-              opacity: 1;
-            }
-            80% {
-              opacity: 1;
-            }
-            100% {
-              transform: translateY(48px);
-              opacity: 0;
-            }
+          .scroll-dot {
+            width: 7px;
+            height: 7px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .scroll-glowing-dot {
+          .scroll-dot {
             animation: none;
             opacity: 1;
-            top: 50%;
-            transform: translateY(-50%);
+            top: calc(50% - 4.5px);
           }
         }
       `}</style>

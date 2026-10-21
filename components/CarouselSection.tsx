@@ -18,7 +18,8 @@ const dummyCards = [
         label: "Active Estimations",
       },
     ],
-    image: "/images/project-mbc.jpg",
+    image: "/images/project-mbc-v3.jpg",
+    aspect: "aspect-[1024/777] max-w-[530px]",
   },
   {
     id: 2,
@@ -35,7 +36,8 @@ const dummyCards = [
         label: "Projects Tracked",
       },
     ],
-    image: "/images/project-landdesign.jpg",
+    image: "/images/project-landdesign-v4.jpg",
+    aspect: "aspect-[1024/777] max-w-[530px]",
   },
   {
     id: 3,
@@ -52,7 +54,8 @@ const dummyCards = [
         label: "Competitor Retailers Tracked",
       },
     ],
-    image: "/images/project-pricewatch.jpg",
+    image: "/images/project-pricewatch-v4.jpg",
+    aspect: "aspect-[1024/777] max-w-[530px]",
   },
 ];
 
@@ -188,46 +191,46 @@ export default function CarouselSection() {
                 >
                   {/* Inner Content Centered */}
                   <div className="w-full bg-white flex items-center justify-center px-8 lg:px-[88px]">
-                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full min-h-[400px]">
+                    <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 xl:gap-20 w-full min-h-[400px]">
                       {/* Left Content */}
                       <div className="flex-1 relative">
-                      <div className="inline-block px-6 py-3 mb-6 text-[#e05628] bg-[#e05628]/10 border-l-[3px] border-[#e05628] text-base lg:text-lg font-bold tracking-wide">
-                        {card.tag}
-                      </div>
-                      <h2 className="text-3xl lg:text-[2.6rem] font-bold text-[#26215C] mb-12 leading-[1.15] tracking-tight">
-                        {card.title}
-                      </h2>
+                        <div className="inline-block px-6 py-3 mb-6 text-[#e05628] bg-[#e05628]/10 border-l-[3px] border-[#e05628] text-base lg:text-lg font-bold tracking-wide">
+                          {card.tag}
+                        </div>
+                        <h2 className="text-3xl lg:text-[2.6rem] font-bold text-[#26215C] mb-12 leading-[1.15] tracking-tight">
+                          {card.title}
+                        </h2>
 
-                      <div className="flex flex-col sm:flex-row gap-10 sm:gap-14">
-                        {card.stats?.map((stat, idx) => (
-                          <div
-                            key={idx}
-                            className="flex flex-col border-l border-[#26215C] pl-6 py-1"
-                          >
-                            <span className="text-4xl lg:text-[2.5rem] font-bold text-[#26215C] mb-2 tracking-tight">
-                              {stat.value}
-                            </span>
-                            <span className="text-[#26215C]/70 text-lg leading-relaxed max-w-[220px]">
-                              {stat.label}
-                            </span>
-                          </div>
-                        ))}
+                        <div className="flex flex-col sm:flex-row gap-10 sm:gap-14">
+                          {card.stats?.map((stat, idx) => (
+                            <div
+                              key={idx}
+                              className="flex flex-col border-l border-[#26215C] pl-6 py-1"
+                            >
+                              <span className="text-4xl lg:text-[2.5rem] font-bold text-[#26215C] mb-2 tracking-tight">
+                                {stat.value}
+                              </span>
+                              <span className="text-[#26215C]/70 text-lg leading-relaxed max-w-[220px]">
+                                {stat.label}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Right Content - Image */}
-                    <div className="flex-1 w-full relative">
-                      <div className="aspect-[16/9] w-full rounded-xl overflow-hidden bg-gray-100 cursor-pointer shadow-md border border-gray-100">
-                        <img
-                          src={card.image}
-                          alt={card.title}
-                          style={{ willChange: "transform" }}
-                          className="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105"
-                        />
+                      {/* Right Content - Image */}
+                      <div className="flex-1 w-full relative flex justify-end">
+                        <div className={`w-full overflow-hidden bg-transparent cursor-pointer ${card.aspect || 'aspect-[16/10]'}`}>
+                          <img
+                            src={card.image}
+                            alt={card.title}
+                            style={{ willChange: "transform" }}
+                            className="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             );
           })}

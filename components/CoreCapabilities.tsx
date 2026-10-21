@@ -8,7 +8,7 @@ const capabilities = [
     num: "01",
     title: "Stack Modernization",
     content: "Our AI-accelerated development methodology allows us to rapidly transition away from outdated and outmoded software to the high-performance, open-source foundations without operational downtime risk.",
-    image: "/core-capabilities-mini-1.png"
+    image: "/core-capabilities-mini-1-v3.png"
   },
   {
     num: "02",
@@ -40,96 +40,92 @@ export default function CoreCapabilities() {
   const [expanded, setExpanded] = useState<number>(0);
 
   return (
-    <section id="capabilities" className="w-full lg:h-[calc(100vh-80px)] flex flex-col justify-center box-border" style={{
-      background: "#fff",
-      borderTop: "1px solid var(--line)",
-      borderBottom: "1px solid var(--line)",
-      padding: "80px 0"
-    }}>
-      <style dangerouslySetInnerHTML={{ __html: `
-        .main-img-container:hover .main-img {
-          transform: scale(1.05);
-        }
-        .main-img {
-          transition: transform 0.4s ease;
-          width: 100%;
-          height: 100%;
-          background-image: url('/core-capabilities-main.png');
-          background-size: cover;
-          background-position: center;
-        }
-        .tile-container:hover .mini-img {
-          transform: scale(1.1);
-        }
-        .mini-img {
-          transition: transform 0.4s ease;
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-position: center;
-          border-radius: 4px;
-        }
-      `}} />
-      <div className="w-full lg:max-w-none mx-auto px-5 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px]">
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "space-between" }}>
+    <section id="capabilities" className="w-full bg-white py-16 lg:py-24 border-t border-b border-gray-200">
+      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-8 lg:px-12 min-[2500px]:max-w-[1600px]">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16 xl:gap-20">
           
           {/* Left Column */}
-          <div style={{ flex: "1 1 40%", minWidth: "300px" }}>
-            <h2 style={{ fontSize: "3rem", fontWeight: "600", marginBottom: "1rem" }}>Core Capabilities</h2>
-            <p style={{ fontSize: "1.25rem", color: "#4B5563", marginBottom: "2rem" }}>
+          <div className="w-full lg:w-[44%] shrink-0">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-black tracking-tight leading-[1.15] mb-3 sm:mb-4">
+              Core Capabilities
+            </h2>
+            <p className="text-base sm:text-lg text-[#4B5563] leading-relaxed mb-6 sm:mb-8 max-w-md">
               Delivering technical ingenuity and rapid innovation across industries.
             </p>
-            <div className="main-img-container" style={{ position: "relative", width: "100%", height: "400px", background: "#f3f4f6", borderRadius: "8px", overflow: "hidden", cursor: "pointer" }}>
-               {/* Main image placeholder */}
-               <div className="main-img">
-                 {/* This represents the left image from the mockup */}
-               </div>
+            <div className="w-full aspect-[645/360] rounded-[4px] overflow-hidden bg-gray-100 cursor-pointer group shadow-sm">
+              <img
+                src="/core-capabilities-main.png"
+                alt="Core Capabilities"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              />
             </div>
           </div>
 
           {/* Right Column */}
-          <div style={{ flex: "1 1 50%", minWidth: "300px" }}>
+          <div className="w-full lg:w-[50%] flex-1 border-t border-gray-200">
             {capabilities.map((cap, index) => {
               const isExpanded = expanded === index;
               return (
-                <div key={index} className="tile-container" style={{ borderBottom: "1px solid #e5e7eb", padding: "20px 0" }}>
+                <div 
+                  key={index} 
+                  className="border-b border-gray-200 transition-colors"
+                >
                   <div 
-                    onClick={() => setExpanded(index)}
-                    style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" }}
+                    onClick={() => setExpanded(isExpanded ? -1 : index)}
+                    className="flex items-start justify-between gap-6 cursor-pointer select-none py-5 sm:py-6"
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                      <span style={{ fontSize: "1.5rem", color: "#9ca3af", fontWeight: "500" }}>{cap.num}</span>
-                      <h3 style={{ fontSize: "1.75rem", fontWeight: "500", margin: 0 }}>{cap.title}</h3>
-                    </div>
-                    <div style={{ 
-                      width: "32px", 
-                      height: "32px", 
-                      borderRadius: "50%", 
-                      background: "#f3f4f6", 
-                      display: "flex", 
-                      alignItems: "center", 
-                      justifyContent: "center",
-                      transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-                      transition: "transform 0.3s ease"
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M6 9l6 6 6-6"/>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  {isExpanded && (
-                    <div style={{ display: "flex", gap: "20px", marginTop: "20px", alignItems: "flex-start" }}>
-                      <p style={{ flex: 1, fontSize: "1.1rem", color: "#4B5563", lineHeight: "1.6", margin: 0 }}>
-                        {cap.content}
-                      </p>
-                      <div style={{ width: "120px", height: "80px", borderRadius: "4px", flexShrink: 0, overflow: "hidden" }}>
-                        <div className="mini-img" style={{ backgroundImage: `url(${cap.image})` }}>
-                          {/* Smaller thumbnail image */}
-                        </div>
+                    {/* Left: Number + Title + Description */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-4 sm:gap-6">
+                        <span className={`w-8 sm:w-10 text-xl sm:text-2xl shrink-0 transition-colors ${
+                          isExpanded ? "font-bold text-black" : "font-medium text-[#9CA3AF]"
+                        }`}>
+                          {cap.num}
+                        </span>
+                        <h3 className={`text-xl sm:text-2xl transition-colors ${
+                          isExpanded ? "font-bold text-black" : "font-medium text-black"
+                        }`}>
+                          {cap.title}
+                        </h3>
                       </div>
+
+                      {/* Description when expanded */}
+                      {isExpanded && (
+                        <div className="pl-[48px] sm:pl-[64px] pt-4 pr-4">
+                          <p className="text-[14px] sm:text-[15px] text-[#4B5563] leading-[1.65] max-w-[460px]">
+                            {cap.content}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  )}
+
+                    {/* Right: Thumbnail image when expanded, or Downward Arrow when collapsed */}
+                    {isExpanded ? (
+                      <div className="w-[125px] h-[120px] sm:w-[155px] sm:h-[148px] rounded overflow-hidden shrink-0 group cursor-pointer shadow-sm">
+                        <img
+                          src={cap.image}
+                          alt={cap.title}
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-[#F3F4F6] hover:bg-[#E5E7EB] transition-colors flex items-center justify-center shrink-0 mt-0.5">
+                        <svg 
+                          width="14" 
+                          height="14" 
+                          viewBox="0 0 24 24" 
+                          fill="none" 
+                          stroke="#374151" 
+                          strokeWidth="2.2" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round"
+                        >
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })}
