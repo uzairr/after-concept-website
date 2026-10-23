@@ -19,7 +19,6 @@ const dummyCards = [
       },
     ],
     image: "/images/project-mbc-v3.jpg",
-    aspect: "aspect-[1024/777] max-w-[530px]",
   },
   {
     id: 2,
@@ -37,7 +36,6 @@ const dummyCards = [
       },
     ],
     image: "/images/project-landdesign-v4.jpg",
-    aspect: "aspect-[1024/777] max-w-[530px]",
   },
   {
     id: 3,
@@ -55,231 +53,183 @@ const dummyCards = [
       },
     ],
     image: "/images/project-pricewatch-v4.jpg",
-    aspect: "aspect-[1024/777] max-w-[530px]",
   },
 ];
 
 export default function CarouselSection() {
   const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
-  const [dir, setDir] = useState<1 | -1>(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  const goToSlide = (nextIndex: number, direction: 1 | -1 = 1) => {
-    if (nextIndex === current || isTransitioning) return;
-    setPrev(current);
+  const goToSlide = (nextIndex: number) => {
     setCurrent(nextIndex);
-    setDir(direction);
-    setIsTransitioning(true);
   };
 
   const nextSlide = () => {
-    goToSlide((current + 1) % dummyCards.length, 1);
+    setCurrent((prev) => (prev + 1) % dummyCards.length);
   };
 
   const prevSlide = () => {
-    goToSlide((current - 1 + dummyCards.length) % dummyCards.length, -1);
+    setCurrent((prev) => (prev - 1 + dummyCards.length) % dummyCards.length);
   };
 
-  useEffect(() => {
-    if (isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-        setPrev(null);
-      }, 800);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning]);
+  const minSwipeDistance = 50;
 
-  // Auto-play effect: advances the slide every 10 seconds of inactivity
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  // Auto-play effect: advances slide every 7 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      goToSlide((current + 1) % dummyCards.length, 1);
-    }, 10000);
-    return () => clearTimeout(timer);
-  }, [current, isTransitioning]);
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % dummyCards.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [current]);
 
   return (
-    <section className="h-[calc(100vh-80px)] min-h-[600px] bg-white relative flex flex-col justify-center border-b border-gray-200 overflow-hidden">
-      {/* Fixed UI Layer for Arrows & Pagination */}
-      <div className="absolute inset-0 w-full pointer-events-none z-30 flex justify-center items-center">
-        <div className="relative w-full h-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto">
-          {/* Previous Button */}
-          <button
-            onClick={prevSlide}
-            className="pointer-events-auto hidden lg:flex absolute top-1/2 left-4 lg:left-[50px] min-[2500px]:left-[calc(590px+2rem)] -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
-            aria-label="Previous slide"
+    <section className="w-full bg-white pt-6 md:pt-8 pb-8 relative overflow-hidden">
+      {/* Inner Container */}
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 relative flex flex-col">
+        {/* Left Arrow */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 md:left-2 lg:-left-2 top-[45%] -translate-y-1/2 w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:bg-gray-50 z-10 shadow-sm transition-colors cursor-pointer"
+          aria-label="Previous slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-black"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
 
-          {/* Next Button */}
-          <button
-            onClick={nextSlide}
-            className="pointer-events-auto hidden lg:flex absolute top-1/2 right-4 lg:right-[50px] min-[2500px]:right-[calc(590px+2rem)] -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
-            aria-label="Next slide"
+        {/* Right Arrow */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 md:right-2 lg:-right-2 top-[45%] -translate-y-1/2 w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:bg-gray-50 z-10 shadow-sm transition-colors cursor-pointer"
+          aria-label="Next slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-black"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-        </div>
-      </div>
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
 
-      {/* Padded Container for Huge Screens */}
-      <div className="w-full min-[2500px]:px-[590px] lg:px-[50px]">
-        {/* Clipped Sliding Track */}
-        <div className="lg:max-w-none min-[2500px]:max-w-none w-full mx-auto relative z-10 overflow-hidden">
-          <div className="grid w-full">
-            {dummyCards.map((card, idx) => {
-              const isCurrent = idx === current;
-              const isPrev = idx === prev;
+        {/* Sliding Track with horizontal flex layout */}
+        <div
+          className="w-full overflow-hidden"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
+          <div
+            className="flex transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${current * 100}%)` }}
+          >
+            {dummyCards.map((card) => (
+              <div key={card.id} className="w-full flex-shrink-0 min-w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+                  {/* Left Content */}
+                  <div className="flex flex-col">
+                    <div className="inline-flex items-center px-2.5 py-1 bg-[#FFF1EB] text-[#E86A2C] text-[12px] font-semibold border-l-[3px] border-l-[#FF6B35] mb-3 rounded-r self-start">
+                      {card.tag}
+                    </div>
 
-              let zIndex = 0;
-              let transform = 'translate3d(0, 0, 0)';
-              let animation = 'none';
-              const isVisible = isCurrent || isPrev;
+                    <h2 className="text-[28px] md:text-[32px] lg:text-[38px] font-bold leading-[1.15] tracking-tight text-[#0B0B0F] md:text-black max-w-[550px]">
+                      {card.title}
+                    </h2>
 
-              if (isCurrent) {
-                zIndex = 20;
-                if (isTransitioning) {
-                  animation = dir === 1
-                    ? 'carouselSlideInRight 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards'
-                    : 'carouselSlideInLeft 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards';
-                }
-              } else if (isPrev) {
-                zIndex = 10;
-                transform = 'translate3d(0, 0, 0)';
-              }
-
-              return (
-                <div
-                  key={card.id}
-                  className="col-start-1 row-start-1 w-full"
-                  style={{
-                    transform,
-                    animation,
-                    zIndex,
-                    visibility: isVisible ? 'visible' : 'hidden',
-                    pointerEvents: isCurrent ? 'auto' : 'none',
-                    willChange: isTransitioning ? 'transform' : 'auto',
-                  }}
-                >
-                  {/* Inner Content Centered */}
-                  <div className="w-full bg-white flex items-center justify-center px-8 lg:px-[88px]">
-                    <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 xl:gap-20 w-full min-h-[400px]">
-                      {/* Left Content */}
-                      <div className="flex-1 relative">
-                        <div className="inline-block px-6 py-3 mb-6 text-[#e05628] bg-[#e05628]/10 border-l-[3px] border-[#e05628] text-base lg:text-lg font-bold tracking-wide">
-                          {card.tag}
+                    <div className="grid grid-cols-2 gap-8 mt-6 md:mt-8 max-w-[400px]">
+                      {card.stats?.map((stat, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="flex flex-col pl-4 border-l border-gray-300"
+                        >
+                          <span className="text-[26px] md:text-[28px] font-bold text-black leading-none">
+                            {stat.value}
+                          </span>
+                          <span className="text-[13px] md:text-[14px] text-gray-500 font-normal leading-[1.3] mt-1.5">
+                            {stat.label}
+                          </span>
                         </div>
-                        <h2 className="text-3xl lg:text-[2.6rem] font-bold text-[#26215C] mb-12 leading-[1.15] tracking-tight">
-                          {card.title}
-                        </h2>
-
-                        <div className="flex flex-col sm:flex-row gap-10 sm:gap-14">
-                          {card.stats?.map((stat, idx) => (
-                            <div
-                              key={idx}
-                              className="flex flex-col border-l border-[#26215C] pl-6 py-1"
-                            >
-                              <span className="text-4xl lg:text-[2.5rem] font-bold text-[#26215C] mb-2 tracking-tight">
-                                {stat.value}
-                              </span>
-                              <span className="text-[#26215C]/70 text-lg leading-relaxed max-w-[220px]">
-                                {stat.label}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Right Content - Image */}
-                      <div className="flex-1 w-full relative flex justify-end">
-                        <div className={`w-full overflow-hidden bg-transparent cursor-pointer ${card.aspect || 'aspect-[16/10]'}`}>
-                          <img
-                            src={card.image}
-                            alt={card.title}
-                            style={{ willChange: "transform" }}
-                            className="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105"
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
+
+                  {/* Right Image Box */}
+                  <div className="relative w-full h-[300px] md:h-[340px] lg:h-[380px] flex items-center justify-center bg-[#F9F6F0] rounded-lg overflow-hidden shadow-sm">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="w-full h-[300px] md:h-[340px] lg:h-[380px] object-contain p-4 md:p-0"
+                    />
+                  </div>
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom 3 Dots */}
+        <div className="flex items-center justify-center gap-[12px] mt-12">
+          {dummyCards.map((_, idx) => {
+            const isActive = idx === current;
+            return (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                className="flex items-center justify-center focus:outline-none p-0.5 cursor-pointer"
+                aria-label={`Go to slide ${idx + 1}`}
+              >
+                {isActive ? (
+                  <div className="w-[22px] h-[22px] rounded-full border-[1.8px] border-[#0A66C2] flex items-center justify-center">
+                    <div className="w-[7px] h-[7px] bg-[#0A66C2] rounded-full" />
+                  </div>
+                ) : (
+                  <div className="w-[9px] h-[9px] rounded-full bg-[#B8D8F8] hover:bg-[#8EC2F5] transition-colors" />
+                )}
+              </button>
             );
           })}
         </div>
       </div>
-      </div>
-
-      {/* Pagination Dots */}
-      <div className="flex justify-center items-center gap-3 mt-12 h-[20px] lg:h-[24px]">
-        {dummyCards.map((_, idx) => {
-          const isActive = idx === current;
-          return (
-            <button
-              key={idx}
-              onClick={() => goToSlide(idx, idx > current ? 1 : -1)}
-              className="relative flex items-center justify-center w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] rounded-full focus:outline-none group"
-              aria-label={`Go to slide ${idx + 1}`}
-            >
-              {/* Outer Ring */}
-              <div
-                className={`absolute inset-0 rounded-full border-[1.5px] lg:border-2 border-[#0a76db] transition-all duration-300 ease-out ${
-                  isActive ? "opacity-100 scale-100" : "opacity-0 scale-50"
-                }`}
-              />
-
-              {/* Inner Dot */}
-              <div
-                className={`rounded-full transition-all duration-300 ease-out ${
-                  isActive
-                    ? "w-[4px] h-[4px] lg:w-[8px] lg:h-[8px] bg-[#0a76db]"
-                    : "w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] bg-[#bfdbfe] group-hover:bg-[#93c5fd]"
-                }`}
-              />
-            </button>
-          );
-        })}
-      </div>
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes carouselSlideInRight {
-          0% { transform: translate3d(100%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
-        }
-        @keyframes carouselSlideInLeft {
-          0% { transform: translate3d(-100%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
-        }
-      `}} />
     </section>
   );
 }
-
-
