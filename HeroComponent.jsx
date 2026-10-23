@@ -317,9 +317,6 @@ export default function HeroComponent() {
                 </button>
               ))}
             </div>
-            <div className="hero-traveling-track">
-              <div className="hero-traveling-light"></div>
-            </div>
             <ScrollIndicator />
             <div className="hero-center-point"></div>
           </div>
@@ -573,31 +570,8 @@ export default function HeroComponent() {
           display: flex; justify-content: center; align-items: center;
           margin-bottom: 18px;
         }
-        .hero-traveling-track {
-          position: absolute; left: 0; right: 0; top: -20px; bottom: -20px;
-          overflow: hidden; pointer-events: none; z-index: 11;
-        }
-        .hero-traveling-light {
-          position: absolute; left: 0; top: 50%; width: 250px; height: 1px;
-          transform: translateY(-50%);
-          background: linear-gradient(to right, transparent 0%, rgba(10, 118, 219, 0.5) 60%, rgba(255, 255, 255, 0.9) 100%);
-          animation: travelLight 5.5s linear infinite;
-          will-change: transform;
-        }
-        .hero-traveling-light::after {
-          content: ""; position: absolute; right: 0; top: 50%; transform: translateY(-50%) translateX(50%);
-          width: 5px; height: 5px; background-color: #ffffff; border-radius: 50%;
-          box-shadow: 0 0 12px 3px rgba(10, 118, 219, 1), 0 0 24px 6px rgba(10, 118, 219, 0.6);
-        }
-        @keyframes travelLight {
-          0% { transform: translate3d(-250px, -50%, 0); }
-          100% { transform: translate3d(100vw, -50%, 0); }
-        }
         .hero-center-point {
           display: none;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-traveling-light { animation: none; }
         }
         @media (max-width: 768px) {
           .hero-dots { left: 32px; bottom: 30px; }
