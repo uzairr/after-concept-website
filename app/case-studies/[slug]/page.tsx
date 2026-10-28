@@ -554,6 +554,55 @@ const caseStudiesData: Record<
     fstat3Num: "Direct",
     fstat3Label: "troubleshooting support",
   },
+  "data-download-transformation-stacking-bigquery": {
+    industry: "Data Engineering",
+    title: "Data Download Transformation Stacking for BigQuery Upload",
+    heroSub:
+      "A Data Engineering engagement providing dedicated support for downloading source data, transforming individual files into a consistent structure, and stacking datasets into a unified table prepared for BigQuery upload.",
+    hstat1Num: "Pipeline",
+    hstat1Label: "Data Engineering",
+    hstat2Num: "100%",
+    hstat2Label: "Schema Consistency",
+    hstat3Num: "BigQuery",
+    hstat3Label: "Unified Dataset",
+    bannerText: "Data Download Transformation Stacking for BigQuery Upload",
+    engagement: "Dedicated Data Engineering Support · Single Engagement Focus",
+    stack: "BigQuery Pipeline, Data Transformation, Dataset Stacking, Schema Consistency",
+    client: "BigQuery Data Pipeline",
+    quote:
+      "Consistent data structures prevented upload errors and created a solid foundation for querying across all transformed files.",
+    quoteAuthor: "Data Engineering Lead",
+    challengeSub:
+      "Consistent data structures help prevent upload errors and reduce unnecessary rework. Stacking transformed datasets into one unified table creates a consistent foundation for querying, while clear communication keeps the client informed throughout the engagement.",
+    challengePoints: [
+      "Downloading source data reliably from client-defined endpoints.",
+      "Cleaning and reshaping heterogeneous files into a unified schema.",
+      "Stacking transformed datasets into a single consolidated table.",
+      "Preparing clean, validated data ready for direct BigQuery ingestion.",
+    ],
+    solutionSub:
+      "Provide dedicated Data Engineering support for a single engagement, focusing on data downloading, transformation, dataset stacking, and preparation for BigQuery upload.",
+    solutionPoints: [
+      "01 — Download: Collect source data reliably from the client-defined sources.",
+      "02 — Transform: Clean and reshape each file into a consistent structure.",
+      "03 — Stack: Combine the transformed datasets into one unified dataset.",
+      "04 — Dedicated Support: Provide dedicated Data Engineering support throughout the engagement.",
+    ],
+    capabilities: [
+      "01 — Role: BigQuery Data Pipeline",
+      "02 — Focus: Data Engineering",
+      "03 — Objective: Dedicated support for the project",
+      "04 — Scope: Data Engineering",
+    ],
+    resultsSub:
+      "A Data Engineering engagement focused on building a consistent, BigQuery-ready dataset through a structured data preparation process.",
+    fstat1Num: "100%",
+    fstat1Label: "schema alignment",
+    fstat2Num: "Single",
+    fstat2Label: "stacked dataset",
+    fstat3Num: "BigQuery",
+    fstat3Label: "ready for upload",
+  },
   "tandem-legal": {
     industry: "Legal",
     title: "Contract review copilot cuts first-pass review time for associates",

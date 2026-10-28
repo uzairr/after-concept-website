@@ -95,6 +95,32 @@ function RestApiIntegrationLogo() {
   );
 }
 
+// BigQuery Data Pipeline Logo Component
+function BigQueryPipelineLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7]">
+        <svg
+          className="w-5 h-5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <ellipse cx="12" cy="5" rx="9" ry="3" />
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        BigQuery Pipeline
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -213,10 +239,30 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "Third-Party Services",
     bgColor: "#EEF2FF",
     textColor: "#4F46E5",
+  },
+  {
+    id: "data-download-transformation-stacking-bigquery",
+    name: "Data Download Transformation Stacking for BigQuery Upload",
+    category: "Data Engineering",
+    logo: <BigQueryPipelineLogo />,
+    description:
+      "A Data Engineering engagement providing dedicated support for downloading source data, transforming individual files into a consistent structure, and stacking datasets into a unified table prepared for BigQuery upload.",
+    href: "/case-studies/data-download-transformation-stacking-bigquery",
+    metrics: { label: "Focus", value: "BigQuery Pipeline" },
+    badge: "Data Engineering",
+    tags: [
+      "Data Download",
+      "Data Transformation",
+      "Dataset Stacking",
+      "BigQuery Upload",
+    ],
+    statsPreview: "Data Engineering",
+    bgColor: "#EFF6FF",
+    textColor: "#0284C7",
   }
 ];
 
-const categories = ["All", "Real Estate Tech", "Web Development", "Retail Tech", "Healthcare", "FinTech", "Third-Party Services"];
+const categories = ["All", "Real Estate Tech", "Web Development", "Retail Tech", "Healthcare", "FinTech", "Third-Party Services", "Data Engineering"];
 
 export default function CaseStudiesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -345,6 +391,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#E6F0FA] text-[#4A8AB8] border-[#4A8AB8]/20"
                               : item.id === "connecting-apps-third-party-services-rest"
                               ? "bg-[#EEF2FF] text-[#4F46E5] border-[#4F46E5]/20"
+                              : item.id === "data-download-transformation-stacking-bigquery"
+                              ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -363,6 +411,8 @@ export default function CaseStudiesPage() {
                                   ? "bg-[#E6F0FA] text-[#4A8AB8]"
                                   : item.id === "connecting-apps-third-party-services-rest"
                                   ? "bg-[#EEF2FF] text-[#4F46E5]"
+                                  : item.id === "data-download-transformation-stacking-bigquery"
+                                  ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
                             >
