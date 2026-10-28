@@ -343,21 +343,19 @@ export default function Header() {
             {/* CTA Button with Hover Effect - Arbisoft style */}
               <Link 
                 href="/contact" 
-                className="hidden sm:inline-flex items-center justify-center header-contact-btn"
+                className="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 text-[14px] font-medium rounded-lg header-contact-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
+                  gap: '6px',
                   height: '44px',
-                  minWidth: '142px',
-                  padding: '0 20px',
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   backgroundColor: '#0F6CFF',
                   color: '#FFFFFF',
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 600,
+                  fontSize: '14px',
+                  fontWeight: 500,
                   lineHeight: '1',
                   whiteSpace: 'nowrap',
                   textDecoration: 'none',
