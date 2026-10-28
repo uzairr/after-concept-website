@@ -48,7 +48,7 @@ const dummyCards = [
         label: "Products Monitored",
       },
       {
-        value: "7+",
+        value: "9+",
         label: "Competitor Retailers Tracked",
       },
     ],

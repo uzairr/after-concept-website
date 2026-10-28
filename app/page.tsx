@@ -66,7 +66,7 @@ function AnimatedCounter({ value, color = "#e05628" }: { value: string; color?: 
 export function OriginSection() {
   const stats = [
     {
-      num: "19+",
+      num: "10+",
       label: "years of proven market experience",
     },
     {

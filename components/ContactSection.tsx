@@ -29,37 +29,37 @@ export default function ContactSection() {
   ];
 
   return (
-    <section className="w-full bg-[#f4f7f9] !py-0 !px-6 lg:!px-[50px] min-[2500px]:!px-[590px] lg:h-[calc(100vh-80px)] flex flex-col">
-      <div className="w-full mx-auto my-auto flex flex-col lg:flex-row gap-10 lg:gap-8 items-stretch">
+    <section className="w-full bg-[#f4f7f9] py-10 lg:py-12 border-t border-gray-200 flex flex-col font-sans">
+      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-between">
         
         {/* Left Column */}
-        <div className="flex-1 flex flex-col justify-between pb-2">
+        <div className="w-full lg:w-[48%] flex flex-col justify-between">
           <div>
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-black mb-6 xl:mb-8 tracking-tight leading-tight max-w-lg">
-              From Introduction <br/> to Proposal in Days
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-black mb-4 lg:mb-5 tracking-tight leading-tight">
+              From Introduction to Proposal in Days
             </h2>
             
-            <div className="flex flex-col gap-5 xl:gap-6">
+            <div className="flex flex-col gap-3.5 sm:gap-4">
               <div>
-                <h3 className="text-[#0d6efd] font-bold text-lg xl:text-xl mb-1">Discovery Call</h3>
-                <p className="text-gray-800 text-sm xl:text-base leading-snug">Our sales team reviews your message and asks for a discovery call to gather more information.</p>
+                <h3 className="text-[#0d6efd] font-bold text-base sm:text-lg mb-0.5">Discovery Call</h3>
+                <p className="text-gray-700 text-xs sm:text-[13.5px] leading-relaxed">Our sales team reviews your message and asks for a discovery call to gather more information.</p>
               </div>
               <div>
-                <h3 className="text-[#0d6efd] font-bold text-lg xl:text-xl mb-1">Expert Input</h3>
-                <p className="text-gray-800 text-sm xl:text-base leading-snug">Our veterans go through your requirements to provide their take, backed by decades of experience.</p>
+                <h3 className="text-[#0d6efd] font-bold text-base sm:text-lg mb-0.5">Expert Input</h3>
+                <p className="text-gray-700 text-xs sm:text-[13.5px] leading-relaxed">Our veterans go through your requirements to provide their take, backed by decades of experience.</p>
               </div>
               <div>
-                <h3 className="text-[#0d6efd] font-bold text-lg xl:text-xl mb-1">Proposal</h3>
-                <p className="text-gray-800 text-sm xl:text-base leading-snug">We provide a proposal specific to what you're building, for you to review at your own pace.</p>
+                <h3 className="text-[#0d6efd] font-bold text-base sm:text-lg mb-0.5">Proposal</h3>
+                <p className="text-gray-700 text-xs sm:text-[13.5px] leading-relaxed">We provide a proposal specific to what you&apos;re building, for you to review at your own pace.</p>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 xl:mt-12">
-            <p className="text-xs xl:text-sm text-gray-700 mb-4 font-medium">Trusted by top platforms for our transformative solutions and exceptional results:</p>
+          <div className="mt-6 lg:mt-8">
+            <p className="text-[11px] sm:text-xs text-gray-600 mb-2.5 font-medium">Trusted by top platforms for our transformative solutions and exceptional results:</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {CLIENT_LOGOS.map((logo, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-md h-[55px] xl:h-[65px] flex items-center justify-center p-2 shadow-sm hover:shadow-md transition-shadow">
+                <div key={i} className="bg-white border border-gray-200 rounded-[3px] h-[42px] sm:h-[46px] flex items-center justify-center p-1.5 shadow-sm hover:shadow transition-shadow">
                   {logo.svg}
                 </div>
               ))}
@@ -67,27 +67,27 @@ export default function ContactSection() {
           </div>
         </div>
 
-                {/* Right Column - Form */}
-        <div className="w-full lg:w-[48%] xl:w-[45%] min-[2500px]:w-[40%] flex flex-col justify-center">
-          <div className="bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8 lg:p-10 border border-gray-100">
-            <h3 className="text-2xl lg:text-3xl font-bold text-[#1e293b] mb-8">
+        {/* Right Column - Form */}
+        <div className="w-full lg:w-[48%] xl:w-[45%] flex flex-col justify-center">
+          <div className="bg-white rounded-lg shadow-[0_4px_25px_rgb(0,0,0,0.06)] p-6 sm:p-7 border border-gray-100">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#1e293b] mb-4 sm:mb-5">
               How Can We Help <span className="text-[#0d6efd]">You Build?</span>
             </h3>
             
-            <form className="flex flex-col gap-5">
-              <div className="flex flex-col sm:flex-row gap-5">
-                <input type="text" placeholder="Full name *" className="flex-1 border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd]" />
-                <input type="email" placeholder="Work email *" className="flex-1 border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd]" />
+            <form className="flex flex-col gap-3 sm:gap-3.5">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input type="text" placeholder="Full name *" className="flex-1 border border-gray-300 rounded px-3 py-2 text-xs sm:text-sm focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd]" />
+                <input type="email" placeholder="Work email *" className="flex-1 border border-gray-300 rounded px-3 py-2 text-xs sm:text-sm focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd]" />
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-5">
-                <div className="flex-1 flex border border-gray-300 rounded-md overflow-hidden focus-within:border-[#0d6efd] focus-within:ring-1 focus-within:ring-[#0d6efd]">
-                  <div className="bg-gray-50 border-r border-gray-300 px-3 py-3 text-sm text-gray-600 flex items-center">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-1 flex border border-gray-300 rounded overflow-hidden focus-within:border-[#0d6efd] focus-within:ring-1 focus-within:ring-[#0d6efd]">
+                  <div className="bg-gray-50 border-r border-gray-300 px-2.5 py-2 text-xs text-gray-600 flex items-center">
                     <span className="mr-1">PK</span> +92
                   </div>
-                  <input type="tel" placeholder="Phone number *" className="flex-1 px-4 py-3 text-sm focus:outline-none" />
+                  <input type="tel" placeholder="Phone number *" className="flex-1 px-3 py-2 text-xs sm:text-sm focus:outline-none" />
                 </div>
-                <select className="flex-1 border border-gray-300 rounded-md px-4 py-3 text-sm text-gray-500 focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd] bg-white" defaultValue="">
+                <select className="flex-1 border border-gray-300 rounded px-3 py-2 text-xs sm:text-sm text-gray-500 focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd] bg-white" defaultValue="">
                   <option value="" disabled hidden>Select a service *</option>
                   <optgroup label="Development & QA">
                     <option value="ux_product_design">UX, Product and Design</option>
@@ -127,7 +127,7 @@ export default function ContactSection() {
                 </select>
               </div>
 
-              <select className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm text-gray-500 focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd] bg-white" defaultValue="">
+              <select className="w-full border border-gray-300 rounded px-3 py-2 text-xs sm:text-sm text-gray-500 focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd] bg-white" defaultValue="">
                   <option value="" disabled hidden>What is your budget? *</option>
                   <option value="1">Less than USD 50,000</option>
                   <option value="2">USD 50,000 - USD 100,000</option>
@@ -136,17 +136,17 @@ export default function ContactSection() {
                   <option value="5">Above USD 500,000</option>
               </select>
 
-              <textarea rows={4} placeholder="Tell us about your project *" className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd] resize-none"></textarea>
+              <textarea rows={3} placeholder="Tell us about your project *" className="w-full border border-gray-300 rounded px-3 py-2 text-xs sm:text-sm focus:outline-none focus:border-[#0d6efd] focus:ring-1 focus:ring-[#0d6efd] resize-none"></textarea>
 
-              <div className="flex items-center gap-2 mt-2">
-                <input type="checkbox" id="nda" className="w-4 h-4 rounded border-gray-300 text-[#0d6efd] focus:ring-[#0d6efd]" />
-                <label htmlFor="nda" className="text-sm text-gray-600 flex items-center gap-1 cursor-pointer">
+              <div className="flex items-center gap-2 mt-0.5">
+                <input type="checkbox" id="nda" className="w-3.5 h-3.5 rounded border-gray-300 text-[#0d6efd] focus:ring-[#0d6efd]" />
+                <label htmlFor="nda" className="text-xs text-gray-600 flex items-center gap-1 cursor-pointer">
                   Request NDA
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </label>
               </div>
 
-              <button type="button" className="w-full bg-[#0d6efd] hover:bg-blue-700 text-white font-bold py-4 rounded-md transition-colors mt-2">
+              <button type="button" className="w-full bg-[#0d6efd] hover:bg-blue-700 text-white font-bold py-2.5 sm:py-3 text-xs sm:text-sm rounded transition-colors mt-1">
                 Book a Free Discovery Call
               </button>
             </form>
