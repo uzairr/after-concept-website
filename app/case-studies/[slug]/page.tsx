@@ -505,6 +505,55 @@ const caseStudiesData: Record<
     fstat3Num: "0",
     fstat3Label: "extra hires needed",
   },
+  "connecting-apps-third-party-services-rest": {
+    industry: "Third-Party Services",
+    title: "Connecting Apps to Third-Party Services via REST",
+    heroSub:
+      "A Third-Party Services engagement providing dedicated support for connecting existing applications to external services through RESTful APIs, troubleshooting integration issues, and improving system communication.",
+    hstat1Num: "REST",
+    hstat1Label: "API Integration",
+    hstat2Num: "100%",
+    hstat2Label: "Reliable Connectivity",
+    hstat3Num: "Direct",
+    hstat3Label: "Systems Integration",
+    bannerText: "Connecting Apps to Third-Party Services via REST",
+    engagement: "Dedicated Third-Party Services Support · Single Engagement Focus",
+    stack: "RESTful APIs, API Integration, Systems Integration, Process Optimization",
+    client: "Connecting Apps",
+    quote:
+      "Reliable API integration and responsive troubleshooting ensured our application connected smoothly with all required external services.",
+    quoteAuthor: "Lead Systems Architect",
+    challengeSub:
+      "Every new connection between systems introduces complexity, including differing data formats, authentication requirements, error handling, and performance considerations. The client needed integrations that exchanged data seamlessly, alongside support for diagnosing issues and improving existing integration processes.",
+    challengePoints: [
+      "Connecting existing applications to third-party services through REST APIs.",
+      "Differing data formats and authentication requirements across external endpoints.",
+      "Diagnosing integration errors and optimizing data exchange performance.",
+      "Working with the development team to diagnose and resolve integration issues.",
+    ],
+    solutionSub:
+      "Provide dedicated Third-Party Services support for the engagement, with an emphasis on reliable API integration and improving communication between connected systems.",
+    solutionPoints: [
+      "1. RESTful Integration: Connecting existing applications to third-party services through REST APIs.",
+      "2. Troubleshooting: Working with the development team to diagnose and resolve integration issues.",
+      "3. Reliable Connections: Ensuring stable, secure communication between existing applications and external services.",
+      "4. Process Optimization: Supporting process improvements and robust error-handling workflows.",
+    ],
+    capabilities: [
+      "01 — Role: API Integration",
+      "02 — Focus: Third-Party Services",
+      "03 — Objective: Dedicated support for the project",
+      "04 — Scope: Third-Party Services",
+    ],
+    resultsSub:
+      "A Third-Party Services engagement focused on API integration and its project objectives, delivering seamless communication and responsive integration support.",
+    fstat1Num: "REST",
+    fstat1Label: "APIs connected",
+    fstat2Num: "100%",
+    fstat2Label: "reliable communication",
+    fstat3Num: "Direct",
+    fstat3Label: "troubleshooting support",
+  },
   "tandem-legal": {
     industry: "Legal",
     title: "Contract review copilot cuts first-pass review time for associates",

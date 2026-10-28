@@ -70,6 +70,31 @@ function AngularNewFeaturesLogo() {
   );
 }
 
+// Connecting Apps to Third-Party Services via REST Logo Component
+function RestApiIntegrationLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#4F46E5]">
+        <svg
+          className="w-5 h-5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Connecting Apps
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -171,19 +196,27 @@ const allCaseStudies: CaseItem[] = [
     badge: "FinTech Automation"
   },
   {
-    id: "loop-logistics",
-    name: "Loop Logistics",
-    category: "Logistics",
-    logo: <GenericBrandLogo name="Loop Logistics" color="#f97316" />,
+    id: "connecting-apps-third-party-services-rest",
+    name: "Connecting Apps to Third-Party Services via REST",
+    category: "Third-Party Services",
+    logo: <RestApiIntegrationLogo />,
     description:
-      "Dynamic fleet route optimization algorithm that reduced overall fuel expenditures by 18% without requiring any additional dispatch hires.",
-    href: "/case-studies/loop-logistics",
-    metrics: { label: "Fuel Saved", value: "18%" },
-    badge: "Supply Chain"
+      "A Third-Party Services engagement providing dedicated support for connecting existing applications to external services through RESTful APIs, troubleshooting integration issues, and improving system communication.",
+    href: "/case-studies/connecting-apps-third-party-services-rest",
+    metrics: { label: "Focus", value: "Third-Party Services" },
+    badge: "Third-Party Services",
+    tags: [
+      "RESTful API integration",
+      "Third-party service connectivity",
+      "Systems integration",
+    ],
+    statsPreview: "Third-Party Services",
+    bgColor: "#EEF2FF",
+    textColor: "#4F46E5",
   }
 ];
 
-const categories = ["All", "Real Estate Tech", "Web Development", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
+const categories = ["All", "Real Estate Tech", "Web Development", "Retail Tech", "Healthcare", "FinTech", "Third-Party Services"];
 
 export default function CaseStudiesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -310,6 +343,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#E6EEF2] text-[#4A6A7C] border-[#4A6A7C]/20"
                               : item.id === "healthcare-saas-project"
                               ? "bg-[#E6F0FA] text-[#4A8AB8] border-[#4A8AB8]/20"
+                              : item.id === "connecting-apps-third-party-services-rest"
+                              ? "bg-[#EEF2FF] text-[#4F46E5] border-[#4F46E5]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -326,6 +361,8 @@ export default function CaseStudiesPage() {
                               className={`text-xs font-semibold px-3 py-1 rounded-full ${
                                 item.id === "healthcare-saas-project"
                                   ? "bg-[#E6F0FA] text-[#4A8AB8]"
+                                  : item.id === "connecting-apps-third-party-services-rest"
+                                  ? "bg-[#EEF2FF] text-[#4F46E5]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
                             >
