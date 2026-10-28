@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
+import ScrollIndicator from './components/ScrollIndicator';
 
 // ============================================================
 // DATA FOR LOGOS
@@ -237,6 +238,10 @@ export default function HeroComponent() {
   return (
     <>
       {/* ===================== HERO ===================== */}
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      />
       <section className="hero-custom-container" id="hero">
         <Header />
         <div className="hero-bg-slider" id="heroBgSlider">
@@ -273,7 +278,7 @@ export default function HeroComponent() {
             </div>
           </div>
           <div className="heading-container">
-            <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
+            <h1 className="hero-title" style={{ margin: 0, padding: 0, textAlign: "left", alignSelf: "flex-start", fontWeight: 800, WebkitFontSmoothing: "antialiased" }} dangerouslySetInnerHTML={{ __html: typewriterHtml }}></h1>
           </div>
         </div>
 
@@ -312,22 +317,7 @@ export default function HeroComponent() {
                 </button>
               ))}
             </div>
-            <div className="hero-traveling-track">
-              <div className="hero-traveling-light"></div>
-            </div>
-            <button
-              className="scroll-indicator-container"
-              aria-label="Scroll down"
-              onClick={() => {
-                window.scrollTo({
-                  top: window.innerHeight,
-                  behavior: 'smooth'
-                });
-              }}
-            >
-              <span className="scroll-text">SCROLL</span>
-              <span className="scroll-vertical-line"></span>
-            </button>
+            <ScrollIndicator />
             <div className="hero-center-point"></div>
           </div>
 
@@ -459,21 +449,33 @@ export default function HeroComponent() {
           color: #FFFFFF !important;
           opacity: 1 !important;
           font-size: 75px !important;
-          font-weight: 700 !important;
+          font-weight: 800 !important;
           line-height: 1.05 !important;
           letter-spacing: -0.5px !important;
-          font-family: 'Inter', 'Sora', sans-serif !important;
+          font-family: var(--font-inter), 'Inter', 'Sora', sans-serif !important;
           text-transform: none !important;
           max-width: 1000px;
           margin: 0 !important;
           padding: 0 !important;
           text-align: left !important;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
         }
-        .hero-title .highlight { color: #A78BFA !important; font-weight: 700 !important; }
+        .hero-title span:not(.cursor),
+        .hero-title .highlight,
         .hero-title .highlight-software,
-        .hero-title .highlight.highlight-software { color: #6EE7A0 !important; font-weight: 700 !important; } /* Green mint */
+        .hero-title .highlight.highlight-software,
         .hero-title .highlight-edge,
-        .hero-title .highlight.highlight-edge { color: #8CC6FF !important; font-weight: 700 !important; } /* Light Blue */
+        .hero-title .highlight.highlight-edge {
+          font-weight: 800 !important;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+        }
+        .hero-title .highlight { color: #A78BFA !important; }
+        .hero-title .highlight-software,
+        .hero-title .highlight.highlight-software { color: #6EE7A0 !important; } /* Green mint */
+        .hero-title .highlight-edge,
+        .hero-title .highlight.highlight-edge { color: #8CC6FF !important; } /* Light Blue */
         .cursor,
         .hero-title .cursor {
           width: 19px !important;
@@ -568,56 +570,12 @@ export default function HeroComponent() {
           display: flex; justify-content: center; align-items: center;
           margin-bottom: 18px;
         }
-        .hero-traveling-track {
-          position: absolute; left: 0; right: 0; top: -20px; bottom: -20px;
-          overflow: hidden; pointer-events: none; z-index: 11;
-        }
-        .hero-traveling-light {
-          position: absolute; left: 0; top: 50%; width: 250px; height: 1px;
-          transform: translateY(-50%);
-          background: linear-gradient(to right, transparent 0%, rgba(10, 118, 219, 0.5) 60%, rgba(255, 255, 255, 0.9) 100%);
-          animation: travelLight 5.5s linear infinite;
-          will-change: transform;
-        }
-        .hero-traveling-light::after {
-          content: ""; position: absolute; right: 0; top: 50%; transform: translateY(-50%) translateX(50%);
-          width: 5px; height: 5px; background-color: #ffffff; border-radius: 50%;
-          box-shadow: 0 0 12px 3px rgba(10, 118, 219, 1), 0 0 24px 6px rgba(10, 118, 219, 0.6);
-        }
-        @keyframes travelLight {
-          0% { transform: translate3d(-250px, -50%, 0); }
-          100% { transform: translate3d(100vw, -50%, 0); }
-        }
         .hero-center-point {
-          width: 4px; height: 4px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%;
-          box-shadow: 0 0 8px rgba(10, 118, 219, 0.8);
-          position: relative; z-index: 12;
-        }
-        .scroll-indicator-container {
-          position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center;
-          margin-bottom: 2px; animation: floatScroll 3.5s ease-in-out infinite; background: none; border: none; cursor: pointer; padding: 0;
-        }
-        @keyframes floatScroll {
-          0%, 100% { transform: translate(-50%, 0); opacity: 0.8; }
-          50% { transform: translate(-50%, -6px); opacity: 1; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .scroll-indicator-container, .hero-traveling-light { animation: none; }
-        }
-        .scroll-text {
-          font-family: inherit; font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
-          writing-mode: vertical-rl; transform: rotate(180deg); color: #e2e8f0; text-shadow: 0 0 6px rgba(10, 118, 219, 0.5); margin-bottom: 12px;
-        }
-        .scroll-vertical-line {
-          width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(10, 118, 219, 0), rgba(10, 118, 219, 0.9));
-          box-shadow: 0 0 6px rgba(10, 118, 219, 0.5);
+          display: none;
         }
         @media (max-width: 768px) {
-          .scroll-vertical-line { height: 40px; }
-          .scroll-text { font-size: 9px; margin-bottom: 8px; }
           .hero-dots { left: 32px; bottom: 30px; }
         }
-        @keyframes scrollDot { 0% { top: -10px; opacity: 0; } 20% { opacity: 1; } 80% { top: 42px; opacity: 1; } 100% { top: 42px; opacity: 0; } }
 
         /* HERO LOGOS STRIP */
         .hero-logos-strip {
@@ -638,63 +596,76 @@ export default function HeroComponent() {
         }
         
         .hero-logos-row { 
-          display: flex; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; 
-          overflow-x: auto; overflow-y: hidden; padding-bottom: 4px;
-          -ms-overflow-style: none; scrollbar-width: none;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 14px;
+          width: 100%; 
+          overflow-x: auto;
+          overflow-y: hidden;
+          padding-bottom: 4px;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         .hero-logos-row::-webkit-scrollbar { display: none; }
         .hero-client-box {
-          width: auto !important;
-          height: 58px !important;
-          min-width: 110px !important;
-          padding: 0px 16px !important;
-          border: 1px solid rgba(255, 255, 255, 0.12) !important;
-          border-radius: 6px !important;
-          background: rgba(255, 255, 255, 0.03) !important;
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
+          flex: 1 1 0px !important;
+          min-width: 170px !important;
+          height: 68px !important;
+          padding: 0px 20px !important;
+          border: 1px solid rgba(255, 255, 255, 0.15) !important;
+          border-radius: 8px !important;
+          background: rgba(255, 255, 255, 0.04) !important;
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           display: flex !important;
           align-items: center !important;
           justify-content: center !important;
           box-sizing: border-box !important;
-          flex: 0 0 auto;
-          color: #fff;
-          transition: border-color 0.3s ease-out, background 0.3s ease-out, color 0.3s ease-out;
+          color: #ffffff;
+          transition: border-color 0.25s ease-out, background 0.25s ease-out, color 0.25s ease-out;
         }
         .hero-client-box:hover {
-          border-color: #ffffff !important; background: #ffffff !important; color: var(--hover-color, #0a0a0a);
+          border-color: #ffffff !important;
+          background: #ffffff !important;
+          color: var(--hover-color, #0a0a0a);
         }
-        .hero-client-box svg { height: 24px; width: auto; max-width: 100%; object-fit: contain; }
-        .hero-client-box img { max-height: 24px !important; width: auto !important; object-fit: contain !important; }
+        .hero-client-box svg { height: 32px; width: auto; max-width: 100%; object-fit: contain; }
+        .hero-client-box img { width: auto !important; object-fit: contain !important; opacity: 1 !important; }
 
         .two-u-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .two-u-logo-img { max-height: 22px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: all 0.3s ease-out; }
-        .hero-client-box:hover .two-u-logo-img { filter: none; }
+        .two-u-logo-img { height: 32px !important; max-height: 34px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) !important; opacity: 1 !important; transition: filter 0.25s ease-out; }
+        .hero-client-box:hover .two-u-logo-img { filter: none !important; }
 
         .lake-effect-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .lake-effect-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: all 0.3s ease-out; }
-        .hero-client-box:hover .lake-effect-logo-img { filter: none; }
+        .lake-effect-logo-img { height: 38px !important; max-height: 42px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) contrast(150%) !important; opacity: 1 !important; transition: filter 0.25s ease-out; }
+        .hero-client-box:hover .lake-effect-logo-img { filter: none !important; }
 
-        .samui-wrapper { display: flex; align-items: center; gap: 6px; justify-content: center; }
-        .samui-logo-img { height: 22px !important; max-height: 24px !important; width: auto !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
-        .hero-client-box:hover .samui-logo-img { filter: none; }
-        .samui-text { font-family: Arial, sans-serif; font-weight: 700; font-size: 13.5px; white-space: nowrap; line-height: 1; letter-spacing: 0.01em; }
+        .samui-wrapper { display: flex; align-items: center; gap: 8px; justify-content: center; width: 100%; height: 100%; }
+        .samui-logo-img { height: 28px !important; max-height: 30px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) !important; opacity: 1 !important; transition: filter 0.25s ease-out; }
+        .hero-client-box:hover .samui-logo-img { filter: none !important; }
+        .samui-text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 14.5px; white-space: nowrap; line-height: 1; letter-spacing: -0.01em; color: #ffffff !important; }
+        .hero-client-box:hover .samui-text { color: inherit !important; }
 
         .kindred-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .kindred-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
-        .hero-client-box:hover .kindred-logo-img { filter: none; }
+        .kindred-logo-img { height: 28px !important; max-height: 32px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) !important; opacity: 1 !important; transition: filter 0.25s ease-out; }
+        .hero-client-box:hover .kindred-logo-img { filter: none !important; }
 
         .landdesign-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .landdesign-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1); transition: filter 0.3s ease-out; }
-        .hero-client-box:hover .landdesign-logo-img { filter: contrast(1.2); }
+        .landdesign-logo-img { height: 42px !important; max-height: 44px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) contrast(150%) !important; opacity: 1 !important; transition: filter 0.25s ease-out; }
+        .hero-client-box:hover .landdesign-logo-img { filter: contrast(1.2) !important; }
 
         .mbc-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .mbc-logo-img { max-height: 24px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) drop-shadow(0 0 0.5px rgba(255,255,255,0.3)); transition: filter 0.3s ease-out; }
-        .hero-client-box:hover .mbc-logo-img { filter: none; }
+        .mbc-logo-img { height: 40px !important; max-height: 44px !important; width: auto !important; object-fit: contain !important; filter: brightness(0) invert(1) contrast(150%) !important; opacity: 1 !important; transition: filter 0.25s ease-out; }
+        .hero-client-box:hover .mbc-logo-img { filter: none !important; }
+
+        @media (max-width: 1024px) {
+          .hero-client-box { min-width: 150px !important; height: 62px !important; }
+        }
 
         @media (max-width: 768px) {
-          .hero-logos-row { justify-content: flex-start; }
-          .hero-client-box { flex: 0 0 auto; }
+          .hero-logos-row { justify-content: flex-start; gap: 10px; }
+          .hero-client-box { flex: 0 0 auto !important; min-width: 140px !important; height: 56px !important; padding: 0 14px !important; }
         }
       `}} />
     </>

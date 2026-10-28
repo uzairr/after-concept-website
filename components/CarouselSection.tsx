@@ -19,7 +19,6 @@ const dummyCards = [
       },
     ],
     image: "/images/project-mbc-v3.jpg",
-    aspect: "aspect-[1024/777] max-w-[530px]",
   },
   {
     id: 2,
@@ -37,7 +36,6 @@ const dummyCards = [
       },
     ],
     image: "/images/project-landdesign-v4.jpg",
-    aspect: "aspect-[1024/777] max-w-[530px]",
   },
   {
     id: 3,
@@ -55,225 +53,183 @@ const dummyCards = [
       },
     ],
     image: "/images/project-pricewatch-v4.jpg",
-    aspect: "aspect-[1024/777] max-w-[530px]",
   },
 ];
 
 export default function CarouselSection() {
   const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
-  const [dir, setDir] = useState<1 | -1>(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  const goToSlide = (nextIndex: number, direction: 1 | -1 = 1) => {
-    if (nextIndex === current || isTransitioning) return;
-    setPrev(current);
+  const goToSlide = (nextIndex: number) => {
     setCurrent(nextIndex);
-    setDir(direction);
-    setIsTransitioning(true);
   };
 
   const nextSlide = () => {
-    goToSlide((current + 1) % dummyCards.length, 1);
+    setCurrent((prev) => (prev + 1) % dummyCards.length);
   };
 
   const prevSlide = () => {
-    goToSlide((current - 1 + dummyCards.length) % dummyCards.length, -1);
+    setCurrent((prev) => (prev - 1 + dummyCards.length) % dummyCards.length);
   };
 
-  useEffect(() => {
-    if (isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-        setPrev(null);
-      }, 800);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning]);
+  const minSwipeDistance = 50;
 
-  // Auto-play effect: advances the slide every 10 seconds of inactivity
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  // Auto-play effect: advances slide every 7 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      goToSlide((current + 1) % dummyCards.length, 1);
-    }, 10000);
-    return () => clearTimeout(timer);
-  }, [current, isTransitioning]);
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % dummyCards.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [current]);
 
   return (
-    <section className="w-full bg-white relative py-10 lg:py-14 border-b border-gray-200 overflow-hidden font-sans">
-      {/* Outer Centered Container with Navigation Arrows */}
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-14 relative">
-        {/* Previous Button */}
+    <section className="w-full bg-white pt-6 md:pt-8 pb-8 relative overflow-hidden">
+      {/* Inner Container */}
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 relative flex flex-col">
+        {/* Left Arrow */}
         <button
           onClick={prevSlide}
-          className="pointer-events-auto hidden lg:flex absolute top-1/2 left-2 xl:left-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-50 transition-all items-center justify-center bg-white shadow-sm z-30"
+          className="absolute left-0 md:left-2 lg:-left-2 top-[45%] -translate-y-1/2 w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:bg-gray-50 z-10 shadow-sm transition-colors cursor-pointer"
           aria-label="Previous slide"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.8"
+            strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-gray-700"
+            className="text-black"
           >
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
 
-        {/* Next Button */}
+        {/* Right Arrow */}
         <button
           onClick={nextSlide}
-          className="pointer-events-auto hidden lg:flex absolute top-1/2 right-2 xl:right-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-50 transition-all items-center justify-center bg-white shadow-sm z-30"
+          className="absolute right-0 md:right-2 lg:-right-2 top-[45%] -translate-y-1/2 w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:bg-gray-50 z-10 shadow-sm transition-colors cursor-pointer"
           aria-label="Next slide"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.8"
+            strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-gray-700"
+            className="text-black"
           >
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
 
-        {/* Clipped Sliding Track */}
-        <div className="max-w-[1140px] xl:max-w-[1180px] mx-auto w-full relative z-10 overflow-hidden">
-          <div className="grid w-full">
-            {dummyCards.map((card, idx) => {
-              const isCurrent = idx === current;
-              const isPrev = idx === prev;
+        {/* Sliding Track with horizontal flex layout */}
+        <div
+          className="w-full overflow-hidden"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
+          <div
+            className="flex transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${current * 100}%)` }}
+          >
+            {dummyCards.map((card) => (
+              <div key={card.id} className="w-full flex-shrink-0 min-w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+                  {/* Left Content */}
+                  <div className="flex flex-col">
+                    <div className="inline-flex items-center px-2.5 py-1 bg-[#FFF1EB] text-[#E86A2C] text-[12px] font-semibold border-l-[3px] border-l-[#FF6B35] mb-3 rounded-r self-start">
+                      {card.tag}
+                    </div>
 
-              let zIndex = 0;
-              let transform = 'translate3d(0, 0, 0)';
-              let animation = 'none';
-              const isVisible = isCurrent || isPrev;
+                    <h2 className="text-[28px] md:text-[32px] lg:text-[38px] font-bold leading-[1.15] tracking-tight text-[#0B0B0F] md:text-black max-w-[550px]">
+                      {card.title}
+                    </h2>
 
-              if (isCurrent) {
-                zIndex = 20;
-                if (isTransitioning) {
-                  animation = dir === 1
-                    ? 'carouselSlideInRight 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards'
-                    : 'carouselSlideInLeft 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards';
-                }
-              } else if (isPrev) {
-                zIndex = 10;
-                transform = 'translate3d(0, 0, 0)';
-              }
-
-              return (
-                <div
-                  key={card.id}
-                  className="col-start-1 row-start-1 w-full"
-                  style={{
-                    transform,
-                    animation,
-                    zIndex,
-                    visibility: isVisible ? 'visible' : 'hidden',
-                    pointerEvents: isCurrent ? 'auto' : 'none',
-                    willChange: isTransitioning ? 'transform' : 'auto',
-                  }}
-                >
-                  {/* Inner Content Centered */}
-                  <div className="w-full bg-white flex items-center justify-center py-2">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 xl:gap-16 w-full">
-                      {/* Left Content */}
-                      <div className="flex-1 max-w-[500px] lg:max-w-[530px] text-left">
-                        {/* Tag Badge */}
-                        <div className="inline-flex items-center px-3.5 py-1 mb-5 lg:mb-6 text-[#e05628] bg-[#FFF4EE] border-l-[3.5px] border-[#e05628] text-sm font-semibold tracking-[-0.01em]">
-                          {card.tag}
+                    <div className="grid grid-cols-2 gap-8 mt-6 md:mt-8 max-w-[400px]">
+                      {card.stats?.map((stat, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="flex flex-col pl-4 border-l border-gray-300"
+                        >
+                          <span className="text-[26px] md:text-[28px] font-bold text-black leading-none">
+                            {stat.value}
+                          </span>
+                          <span className="text-[13px] md:text-[14px] text-gray-500 font-normal leading-[1.3] mt-1.5">
+                            {stat.label}
+                          </span>
                         </div>
-
-                        {/* Title */}
-                        <h2 className="text-2xl sm:text-3xl lg:text-[2.35rem] xl:text-[2.55rem] font-bold text-[#101828] mb-6 lg:mb-8 leading-[1.16] tracking-[-0.025em]">
-                          {card.title}
-                        </h2>
-
-                        {/* Stats Row */}
-                        <div className="flex flex-row items-start gap-8 sm:gap-11 lg:gap-12">
-                          {card.stats?.map((stat, sIdx) => (
-                            <div
-                              key={sIdx}
-                              className="flex flex-col border-l border-gray-300 pl-4 lg:pl-4.5 py-0.5"
-                            >
-                              <span className="text-3xl lg:text-[2.35rem] xl:text-[2.5rem] font-bold text-[#101828] mb-1.5 tracking-[-0.02em] leading-none">
-                                {stat.value}
-                              </span>
-                              <span className="text-[#475467] text-sm lg:text-[15px] font-normal leading-[1.38] tracking-normal max-w-[170px]">
-                                {stat.label}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Right Content - Image */}
-                      <div className="w-full lg:w-[460px] xl:w-[500px] shrink-0 relative flex justify-end">
-                        <div className={`w-full overflow-hidden bg-transparent cursor-pointer ${card.aspect || 'aspect-[16/10]'}`}>
-                          <img
-                            src={card.image}
-                            alt={card.title}
-                            style={{ willChange: "transform" }}
-                            className="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105"
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
+
+                  {/* Right Image Box */}
+                  <div className="relative w-full h-[300px] md:h-[340px] lg:h-[380px] flex items-center justify-center bg-[#F9F6F0] rounded-lg overflow-hidden shadow-sm">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="w-full h-[300px] md:h-[340px] lg:h-[380px] object-contain p-4 md:p-0"
+                    />
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center items-center gap-2.5 mt-8 lg:mt-10 h-[24px]">
+        {/* Bottom 3 Dots */}
+        <div className="flex items-center justify-center gap-[12px] mt-12">
           {dummyCards.map((_, idx) => {
             const isActive = idx === current;
             return (
               <button
                 key={idx}
-                onClick={() => goToSlide(idx, idx > current ? 1 : -1)}
-                className="focus:outline-none flex items-center justify-center transition-all duration-300"
+                onClick={() => goToSlide(idx)}
+                className="flex items-center justify-center focus:outline-none p-0.5 cursor-pointer"
                 aria-label={`Go to slide ${idx + 1}`}
               >
                 {isActive ? (
-                  /* Active Dot: Outer Ring with Centered Solid Dot */
-                  <div className="w-[20px] h-[20px] lg:w-[22px] lg:h-[22px] rounded-full border-2 border-[#0a76db] flex items-center justify-center transition-all duration-300">
-                    <div className="w-[5px] h-[5px] lg:w-[6px] lg:h-[6px] rounded-full bg-[#0a76db]" />
+                  <div className="w-[22px] h-[22px] rounded-full border-[1.8px] border-[#0A66C2] flex items-center justify-center">
+                    <div className="w-[7px] h-[7px] bg-[#0A66C2] rounded-full" />
                   </div>
                 ) : (
-                  /* Inactive Dot: Solid Light Blue Dot */
-                  <div className="w-[7px] h-[7px] lg:w-[8px] lg:h-[8px] rounded-full bg-[#bfdbfe] hover:bg-[#93c5fd] transition-all duration-300" />
+                  <div className="w-[9px] h-[9px] rounded-full bg-[#B8D8F8] hover:bg-[#8EC2F5] transition-colors" />
                 )}
               </button>
             );
           })}
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes carouselSlideInRight {
-          0% { transform: translate3d(100%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
-        }
-        @keyframes carouselSlideInLeft {
-          0% { transform: translate3d(-100%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
-        }
-      `}} />
     </section>
   );
 }
-
-

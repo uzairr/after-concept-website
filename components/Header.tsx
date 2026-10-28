@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 // Icons
 const IconGeneric = () => (
@@ -199,6 +199,15 @@ const navData: NavCategory[] = [
 
 export default function Header() {
   const router = useRouter();
+  const pathname = usePathname() || '';
+  const isCaseStudyPage = 
+    pathname.includes('/success-stories') || 
+    pathname.includes('/case-studies') || 
+    pathname.includes('/case-study') || 
+    pathname.includes('/featured-build') || 
+    pathname.startsWith('/work') || 
+    pathname.includes('/insights');
+
   const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolledTop, setIsScrolledTop] = useState(true);
@@ -245,7 +254,7 @@ export default function Header() {
   }, []);
 
   const activeCategory = navData.find(cat => cat.name === activeMenu);
-  const isHeaderDark = !activeMenu && !isMobileMenuOpen && isScrolledTop && isDark;
+  const isHeaderDark = !isCaseStudyPage && !activeMenu && !isMobileMenuOpen && isScrolledTop && isDark;
 
   return (
     <>
@@ -253,7 +262,9 @@ export default function Header() {
         ref={headerRef}
         onMouseLeave={() => setActiveMenu(null)}
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          activeMenu || isMobileMenuOpen
+          isCaseStudyPage
+            ? 'bg-white border-b border-gray-200 shadow-sm'
+            : activeMenu || isMobileMenuOpen
             ? 'bg-white border-b border-gray-200'
             : isScrolledTop
             ? 'bg-transparent border-transparent'
@@ -280,24 +291,61 @@ export default function Header() {
             </div>
           </Link>
           
-          {/* Center Group (Desktop Nav Links) */}
-          <div className={`hidden lg:flex items-center justify-center flex-1 h-full font-medium transition-colors duration-300 mx-1 xl:mx-4 2xl:mx-8 ${isHeaderDark ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>
+          {/* Center Group (Desktop Nav Links) - Exact Arbisoft Replica */}
+          <div 
+            className="hidden lg:flex items-center justify-center flex-1 h-full gap-[40px]"
+            style={{
+              fontFamily: "var(--font-inter), 'Inter', sans-serif",
+              fontSize: '16px',
+              fontWeight: 500,
+              letterSpacing: '0px',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+            }}
+          >
             {navData.map((item) => (
               <div 
                 key={item.name}
-                className="relative h-full flex items-center px-1.5 xl:px-3.5 2xl:px-6 cursor-pointer"
+                className="relative h-full flex items-center cursor-pointer"
                 onMouseEnter={() => setActiveMenu(item.name)}
                 onClick={() => setActiveMenu(activeMenu === item.name ? null : item.name)}
               >
                 <div 
-                  className={`relative transition-colors duration-300 group whitespace-nowrap flex items-center gap-1 ${isHeaderDark ? 'hover:text-white' : 'hover:text-[#26215c]'} ${activeMenu === item.name ? 'text-[#0a76db]' : ''}`}
+                  className={`relative transition-colors duration-200 group whitespace-nowrap flex items-center gap-[6px] ${
+                    activeMenu === item.name 
+                      ? 'text-[#87c5ff]' 
+                      : isHeaderDark
+                        ? 'text-white/80 hover:text-white' 
+                        : isCaseStudyPage
+                        ? 'text-[#1F2937] hover:text-[#0a76db]'
+                        : 'text-stone-600 hover:text-[#0a76db]'
+                  }`}
+                  style={{
+                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    letterSpacing: '0px',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                  }}
                 >
                   {item.name}
-                  <svg className={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg 
+                    className={`transition-transform duration-200 flex-shrink-0 ${activeMenu === item.name ? 'rotate-180 text-[#87c5ff]' : ''} ${isHeaderDark ? 'text-white/70 group-hover:text-white' : 'text-stone-500 group-hover:text-[#0a76db]'}`}
+                    width="10" 
+                    height="6" 
+                    viewBox="0 0 10 6" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    style={{ width: '10px', height: '6px' }}
+                  >
+                    <path d="M1 1L5 5L9 1" />
                   </svg>
                   {/* Underline Effect */}
-                  <span className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${isHeaderDark ? 'bg-white' : 'bg-[#0a76db]'}`}></span>
+                  <span className={`absolute left-0 -bottom-1 h-[2px] rounded-full transition-all duration-200 ${activeMenu === item.name ? 'w-full' : 'w-0 group-hover:w-full'} ${isHeaderDark ? 'bg-[#87c5ff]' : 'bg-[#0a76db]'}`}></span>
                 </div>
               </div>
             ))}
@@ -308,21 +356,19 @@ export default function Header() {
             {/* CTA Button with Hover Effect - Arbisoft style */}
               <Link 
                 href="/contact" 
-                className="hidden sm:inline-flex items-center justify-center header-contact-btn"
+                className="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 text-[14px] font-medium rounded-lg header-contact-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
+                  gap: '6px',
                   height: '44px',
-                  minWidth: '142px',
-                  padding: '0 20px',
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   backgroundColor: '#0F6CFF',
                   color: '#FFFFFF',
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 600,
+                  fontSize: '14px',
+                  fontWeight: 500,
                   lineHeight: '1',
                   whiteSpace: 'nowrap',
                   textDecoration: 'none',
