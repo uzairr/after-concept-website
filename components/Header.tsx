@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 // Icons
 const IconGeneric = () => (
@@ -199,6 +199,15 @@ const navData: NavCategory[] = [
 
 export default function Header() {
   const router = useRouter();
+  const pathname = usePathname() || '';
+  const isCaseStudyPage = 
+    pathname.includes('/success-stories') || 
+    pathname.includes('/case-studies') || 
+    pathname.includes('/case-study') || 
+    pathname.includes('/featured-build') || 
+    pathname.startsWith('/work') || 
+    pathname.includes('/insights');
+
   const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolledTop, setIsScrolledTop] = useState(true);
@@ -245,7 +254,7 @@ export default function Header() {
   }, []);
 
   const activeCategory = navData.find(cat => cat.name === activeMenu);
-  const isHeaderDark = !activeMenu && !isMobileMenuOpen && isScrolledTop && isDark;
+  const isHeaderDark = !isCaseStudyPage && !activeMenu && !isMobileMenuOpen && isScrolledTop && isDark;
 
   return (
     <>
@@ -253,7 +262,9 @@ export default function Header() {
         ref={headerRef}
         onMouseLeave={() => setActiveMenu(null)}
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          activeMenu || isMobileMenuOpen
+          isCaseStudyPage
+            ? 'bg-white border-b border-gray-200 shadow-sm'
+            : activeMenu || isMobileMenuOpen
             ? 'bg-white border-b border-gray-200'
             : isScrolledTop
             ? 'bg-transparent border-transparent'
@@ -305,6 +316,8 @@ export default function Header() {
                       ? 'text-[#87c5ff]' 
                       : isHeaderDark
                         ? 'text-white/80 hover:text-white' 
+                        : isCaseStudyPage
+                        ? 'text-[#1F2937] hover:text-[#0a76db]'
                         : 'text-stone-600 hover:text-[#0a76db]'
                   }`}
                   style={{
