@@ -283,6 +283,55 @@ const caseStudiesData: Record<
     fstat3Num: "Zero",
     fstat3Label: "unplanned clinical downtime",
   },
+  "angular-project-new-features": {
+    industry: "Angular Project — New Features",
+    title: "Dedicated New Features support for the Angular Project",
+    heroSub:
+      "A New Features engagement providing dedicated support for a single project, focused on delivering new features and maintaining clean, reusable code.",
+    hstat1Num: "01",
+    hstat1Label: "Single Engagement Focus",
+    hstat2Num: "100%",
+    hstat2Label: "Codebase Alignment",
+    hstat3Num: "Angular",
+    hstat3Label: "New Features Delivered",
+    bannerText: "Angular Project — New Features",
+    engagement: "Dedicated New Features Support · Single Engagement Focus",
+    stack: "Angular Framework, TypeScript, Clean Code, Reusable Components",
+    client: "Angular Project",
+    quote:
+      "The dedicated New Features support delivered maintainable, well-structured code with prompt communication throughout the engagement.",
+    quoteAuthor: "Lead Architect, Angular Project",
+    challengeSub:
+      "The objective was to provide dedicated New Features support for the engagement, with a focus on implementing requested features in line with the existing Angular codebase.",
+    challengePoints: [
+      "Dedicated support for the engagement.",
+      "Focused implementation of new features.",
+      "Alignment with the existing Angular codebase.",
+      "Single-engagement project focus.",
+    ],
+    solutionSub:
+      "A structured 4-step process was adopted to implement new features with clean, maintainable, and reusable code:",
+    solutionPoints: [
+      "01 — Understand: Reviewed the existing Angular codebase and the requested features to ensure new code would fit naturally into the existing project structure.",
+      "02 — Plan: Identified the project requirements and determined an appropriate implementation approach consistent with the existing architecture.",
+      "03 — Build: Implemented new features following the project's structure, with clean, maintainable, and reusable code.",
+      "04 — Support: Provided dedicated support for the engagement, with a focus on the project's new features and requirements.",
+    ],
+    capabilities: [
+      "01 — Clean: Maintainable, well-structured code.",
+      "02 — Clear: Regular updates and prompt communication.",
+      "03 — Role: Angular Project.",
+      "04 — Focus: New Features.",
+    ],
+    resultsSub:
+      "Dedicated New Features support for the project, with a focus on its requirements and implementation.",
+    fstat1Num: "100%",
+    fstat1Label: "requirements met",
+    fstat2Num: "Clean",
+    fstat2Label: "reusable code",
+    fstat3Num: "Prompt",
+    fstat3Label: "communication",
+  },
   "northbridge-clinic": {
     industry: "Healthcare",
     title: "Patient scheduling automated end to end across three clinics",
