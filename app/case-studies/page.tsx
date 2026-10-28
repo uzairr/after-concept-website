@@ -22,18 +22,17 @@ function LandDesignLogo() {
   );
 }
 
-// Travly Logo SVG Component
-function TravlyLogo() {
+// Internal Angular Project Logo Component
+function AngularProjectLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Origami modern flight symbol */}
-        <path d="M4 16L28 4L19 28L14 18L4 16Z" fill="#0F172A" />
-        <path d="M14 18L28 4L16 16L14 18Z" fill="#334155" />
-        <path d="M14 18L19 28L16 20L14 18Z" fill="#64748B" />
-      </svg>
-      <span className="text-2xl font-bold tracking-tight text-slate-900 lowercase font-sans">
-        travly
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Internal Angular
       </span>
     </div>
   );
@@ -65,6 +64,10 @@ interface CaseItem {
   href: string;
   metrics?: { label: string; value: string };
   badge?: string;
+  tags?: string[];
+  statsPreview?: string;
+  bgColor?: string;
+  textColor?: string;
 }
 
 const allCaseStudies: CaseItem[] = [
@@ -80,15 +83,19 @@ const allCaseStudies: CaseItem[] = [
     badge: "Featured Build"
   },
   {
-    id: "travly",
-    name: "travly",
-    category: "Travel",
-    logo: <TravlyLogo />,
+    id: "internal-angular-project",
+    name: "Internal Angular Project",
+    category: "Web Development",
+    logo: <AngularProjectLogo />,
     description:
-      "We designed and built a structured agile-driven engineering system that tripled Travly's 5-person team output.",
-    href: "/case-studies/travly",
-    metrics: { label: "Team Velocity", value: "3×" },
-    badge: "AI Engineering"
+      "Provided focused technical support ensuring project requirements were met without compromise by leveraging Angular's robust ecosystem.",
+    href: "/success-stories/internal-angular-project",
+    metrics: { label: "Engagement", value: "Single Focus" },
+    badge: "Web Development",
+    tags: ["Angular", "Web Development"],
+    statsPreview: "Single Focus",
+    bgColor: "#E6EEF2",
+    textColor: "#4A6A7C",
   },
   {
     id: "swiftcart",
@@ -136,7 +143,7 @@ const allCaseStudies: CaseItem[] = [
   }
 ];
 
-const categories = ["All", "Real Estate Tech", "Travel", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
+const categories = ["All", "Real Estate Tech", "Web Development", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
 
 export default function CaseStudiesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -258,11 +265,29 @@ export default function CaseStudiesPage() {
                       <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
                         {item.logo}
                         {item.badge && (
-                          <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100">
+                          <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-md border ${
+                            item.id === "internal-angular-project"
+                              ? "bg-[#E6EEF2] text-[#4A6A7C] border-[#4A6A7C]/20"
+                              : "text-blue-700 bg-blue-50 border-blue-100"
+                          }`}>
                             {item.badge}
                           </span>
                         )}
                       </div>
+
+                      {/* Tag pills */}
+                      {item.tags && item.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {item.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="bg-[#E6EEF2] text-[#4A6A7C] text-xs font-semibold px-3 py-1 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
 
                       {/* Description Text - Verbatim matching the mock */}
                       <p className="text-[15px] sm:text-base text-slate-600 leading-relaxed font-normal mb-8 min-h-[72px]">
@@ -274,7 +299,13 @@ export default function CaseStudiesPage() {
                     <div className="pt-4 mt-auto">
                       <Link
                         href={item.href}
-                        className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-lg bg-[#0a76db] text-white font-semibold text-sm transition-all duration-200 hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
+                        className={`inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 active:translate-y-0.5 ${
+                          item.id === "internal-angular-project"
+                            ? "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
+                            : item.id === "landdesign"
+                            ? "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
+                            : "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
+                        }`}
                       >
                         <span>View Case Study</span>
                         <svg

@@ -17,9 +17,9 @@ const stories = [
     link: "#"
   },
   {
-    title: "Travly", // Dummy project
-    image: "https://placehold.co/600x600/e2e8f0/1e293b?text=Travly",
-    link: "#"
+    title: "Internal Angular Project",
+    image: "/images/case-studies/angular-project.png",
+    link: "/success-stories/internal-angular-project"
   }
 ];
 
