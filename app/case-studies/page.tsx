@@ -54,6 +54,22 @@ function HealthcareSaaSLogo() {
   );
 }
 
+// Internal Angular Front-End Project Logo Component
+function AngularFrontendLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Angular Front-End
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -140,15 +156,19 @@ const allCaseStudies: CaseItem[] = [
     badge: "HealthTech"
   },
   {
-    id: "ledgerly",
-    name: "Ledgerly",
-    category: "FinTech",
-    logo: <GenericBrandLogo name="Ledgerly" color="#6366f1" />,
+    id: "internal-angular-frontend-project",
+    name: "Internal Angular Front-End Project",
+    category: "Software Development",
+    logo: <AngularFrontendLogo />,
     description:
-      "Automated multi-bank reconciliation engine and financial dashboard that condensed a 3-day month-end close down to just 2 hours.",
-    href: "/case-studies/ledgerly",
-    metrics: { label: "Close Time", value: "3d → 2h" },
-    badge: "FinTech Automation"
+      "Dedicated Angular front-end engagement focused on clean, reusable, and scalable UI with TypeScript and modern front-end architecture.",
+    href: "/success-stories/internal-angular-frontend-project",
+    metrics: { label: "Engagement", value: "Single Focus" },
+    badge: "Front-End",
+    tags: ["Angular", "TypeScript", "Front-End"],
+    statsPreview: "Single Focus",
+    bgColor: "#E6EEF2",
+    textColor: "#4A6A7C",
   },
   {
     id: "loop-logistics",
@@ -163,7 +183,7 @@ const allCaseStudies: CaseItem[] = [
   }
 ];
 
-const categories = ["All", "Real Estate Tech", "Web Development", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
+const categories = ["All", "Real Estate Tech", "Web Development", "Software Development", "Retail Tech", "Healthcare", "FinTech", "Logistics"];
 
 export default function CaseStudiesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -286,7 +306,7 @@ export default function CaseStudiesPage() {
                         {item.logo}
                         {item.badge && (
                           <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-md border ${
-                            item.id === "internal-angular-project"
+                            item.id === "internal-angular-project" || item.id === "internal-angular-frontend-project"
                               ? "bg-[#E6EEF2] text-[#4A6A7C] border-[#4A6A7C]/20"
                               : item.id === "healthcare-saas-project"
                               ? "bg-[#E6F0FA] text-[#4A8AB8] border-[#4A8AB8]/20"
