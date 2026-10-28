@@ -38,6 +38,22 @@ function AngularProjectLogo() {
   );
 }
 
+// Healthcare SaaS Project Logo Component
+function HealthcareSaaSLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#4A8AB8]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 6v12m-6-6h12" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Healthcare SaaS
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -98,15 +114,19 @@ const allCaseStudies: CaseItem[] = [
     textColor: "#4A6A7C",
   },
   {
-    id: "swiftcart",
-    name: "SwiftCart",
-    category: "Retail Tech",
-    logo: <GenericBrandLogo name="SwiftCart" color="#0ea5e9" />,
+    id: "healthcare-saas-project",
+    name: "Healthcare SaaS Project",
+    category: "Healthcare",
+    logo: <HealthcareSaaSLogo />,
     description:
-      "Real-time inventory sync across 12 warehouses without a single spreadsheet, quadrupling order throughput with zero overselling.",
-    href: "/case-studies/swiftcart",
-    metrics: { label: "Throughput", value: "4×" },
-    badge: "Retail Operations"
+      "Dedicated support combining AI consulting with React + Node.js engineering for scalable healthcare SaaS solution.",
+    href: "/success-stories/healthcare-saas-project",
+    metrics: { label: "Engagement", value: "AI + Full-Stack" },
+    badge: "Healthcare SaaS",
+    tags: ["React", "Node.js", "Healthcare SaaS"],
+    statsPreview: "AI + Full-Stack",
+    bgColor: "#E6F0FA",
+    textColor: "#4A8AB8",
   },
   {
     id: "northbridge-clinic",
@@ -268,6 +288,8 @@ export default function CaseStudiesPage() {
                           <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-md border ${
                             item.id === "internal-angular-project"
                               ? "bg-[#E6EEF2] text-[#4A6A7C] border-[#4A6A7C]/20"
+                              : item.id === "healthcare-saas-project"
+                              ? "bg-[#E6F0FA] text-[#4A8AB8] border-[#4A8AB8]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -281,7 +303,11 @@ export default function CaseStudiesPage() {
                           {item.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="bg-[#E6EEF2] text-[#4A6A7C] text-xs font-semibold px-3 py-1 rounded-full"
+                              className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                                item.id === "healthcare-saas-project"
+                                  ? "bg-[#E6F0FA] text-[#4A8AB8]"
+                                  : "bg-[#E6EEF2] text-[#4A6A7C]"
+                              }`}
                             >
                               {tag}
                             </span>
