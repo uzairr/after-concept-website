@@ -152,90 +152,40 @@ export default function CaseStudiesPage() {
 
       {/* =========================================================================
           HERO SECTION: Creating Change for Millions Across the World
-          Matches the dark blue futuristic holographic globe hero from user image
+          Matches exact dark navy holographic globe reference from user screenshot
           ========================================================================= */}
       <section 
-        className="hero relative w-full overflow-hidden bg-[#040817] pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-slate-800/80"
-        style={{
-          background: "radial-gradient(ellipse at 70% 40%, #0a1b3f 0%, #04091a 60%, #02050e 100%)"
-        }}
+        className="hero relative w-full overflow-hidden bg-[#041033] pt-28 pb-16 lg:pt-36 lg:pb-20 flex items-center"
       >
-        {/* Cybernet ambient particle / glow effects */}
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute -bottom-20 right-10 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-        
-        {/* Background micro grid lines */}
-        <div 
-          className="absolute inset-0 opacity-[0.07] pointer-events-none"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
-            backgroundSize: "40px 40px"
-          }}
-        />
+        {/* Subtle holographic ambient glows behind globe */}
+        <div className="absolute top-1/2 right-[12%] -translate-y-1/2 w-[650px] h-[650px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-4 right-[25%] w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center min-h-[520px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center min-h-[500px] lg:min-h-[560px]">
             
             {/* Left Content Column */}
-            <div className="lg:col-span-5 flex flex-col justify-center text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-6 w-fit backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                Global Impact & Proven Scale
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-white tracking-tight leading-[1.12] mb-6">
-                Creating Change for Millions
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-sky-200 to-cyan-300">
-                  Across the World
-                </span>
+            <div className="lg:col-span-5 flex flex-col justify-center text-left z-20">
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight leading-[1.14] mb-5">
+                Creating Change for Millions<br />
+                Across the World<span className="inline-block w-2.5 sm:w-3 h-[1.05em] bg-white ml-2 align-middle animate-pulse" />
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300/90 leading-relaxed font-normal max-w-xl mb-8">
-                From building leading travel search engines like KAYAK to partnering with global learning providers like edX, our team has spent the last two decades devising solutions and building products that drive positive change for people worldwide.
+              <p className="text-sm sm:text-base lg:text-[15px] text-white/80 leading-relaxed font-normal max-w-[480px]">
+                From building leading travel search engines like KAYAK to partnering with global learning providers like edX, Arbisoft has spent the last two decades devising solutions and building products that drive positive change for people worldwide.
               </p>
-
-              {/* Quick Proof Metrics Strip */}
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">20+</div>
-                  <div className="text-xs text-slate-400 font-medium mt-1">Years Building</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-cyan-400 tracking-tight">100M+</div>
-                  <div className="text-xs text-slate-400 font-medium mt-1">Users Reached</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-blue-400 tracking-tight">99.9%</div>
-                  <div className="text-xs text-slate-400 font-medium mt-1">Uptime Delivered</div>
-                </div>
-              </div>
             </div>
 
-            {/* Right Visual Column: Holographic Globe & Floating HUD Panels */}
-            <div className="lg:col-span-7 relative flex items-center justify-center">
-              <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] max-w-[850px] rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20 bg-[#04091c]/80 backdrop-blur-sm group">
-                
-                {/* The exact cropped composition image straight from the user's mock */}
+            {/* Right Visual Column: Holographic Globe & 3D Floating Tiles */}
+            <div className="lg:col-span-7 relative flex items-center justify-center lg:justify-end z-10">
+              <div className="relative w-full max-w-[640px] xl:max-w-[720px] 2xl:max-w-[760px] aspect-[544/513] select-none transition-transform duration-700 ease-out hover:scale-[1.015]">
                 <Image
-                  src="/images/creating-change-hero.png"
-                  alt="Global technology hologram with interactive capabilities"
+                  src="/images/creating-change-globe.png"
+                  alt="Creating change holographic globe with global tech solutions"
                   fill
                   priority
-                  className="object-cover object-right lg:object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className="object-contain object-center lg:object-right drop-shadow-[0_0_40px_rgba(30,100,240,0.25)]"
                 />
-
-                {/* Subtle digital vignette and reflective edge */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#040817]/80 via-transparent to-transparent pointer-events-none lg:w-1/3" />
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-2xl" />
-
-                {/* Interactive HUD highlight tags on hover */}
-                <div className="absolute bottom-4 left-4 right-4 hidden sm:flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-slate-700/50 text-xs text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                    <span>Global Network Active: <strong>Travel · Health · FinTech · Energy · EdTech</strong></span>
-                  </div>
-                  <span className="text-slate-400 font-mono">2026 Live Operations</span>
-                </div>
               </div>
             </div>
 

@@ -1,7 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
 
 const testimonials = [
   {
@@ -35,126 +32,53 @@ const testimonials = [
 ];
 
 export default function TestimonialsCarousel() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section className="w-full lg:h-[calc(100vh-80px)] flex flex-col justify-center box-border overflow-hidden" style={{
-      background: "#fff",
-      padding: "80px 0",
-      position: "relative"
-    }}>
-      <div className="w-full lg:max-w-none mx-auto px-10 lg:px-[50px] min-[2500px]:max-w-none min-[2500px]:px-[590px] relative">
-        
-        <h2 style={{ fontSize: "2.5rem", fontWeight: "600", marginBottom: "3rem", textAlign: "left" }}>
+    <section className="w-full bg-white py-10 lg:py-14 border-b border-gray-200 relative overflow-hidden font-sans">
+      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-8 lg:px-12 relative">
+        <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-black tracking-tight mb-6 sm:mb-8 text-left">
           In The Words of Those We Build With
         </h2>
 
-        {/* Cards Container */}
-        <div style={{ margin: "0", padding: "0" }}>
-          <div style={{ 
-            display: "grid", width: "100%", margin: "0", padding: "0", justifyItems: "stretch", 
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "24px"
-          }}>
-            {testimonials.map((t, i) => {
-              const isHovered = hoveredIndex === i;
-              
-              return (
-                <div 
-                  key={i} 
-                  onMouseEnter={() => setHoveredIndex(i)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  style={{ 
-                    position: "relative",
-                    background: "#0b1221",
-                    display: "flex",
-                    flexDirection: "column",
-                    cursor: "pointer",
-                    aspectRatio: "4 / 5",
-                    width: "100%"
-                  }}
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full">
+          {testimonials.map((t, i) => (
+            <div 
+              key={i} 
+              className="relative bg-[#0b1221] border border-[#1e293b] hover:border-[#2563eb] hover:bg-[#0f192e] flex flex-col justify-between p-6 sm:p-7 rounded-[4px] shadow-sm hover:shadow-md transition-all duration-300 group aspect-[3/4] w-full cursor-default"
+            >
+              {/* Top: Quote Icon & Company Logo */}
+              <div className="flex items-center justify-between gap-2 mb-4">
+                <svg 
+                  className="w-8 h-8 text-[#2563eb]/70 group-hover:text-[#2563eb] transition-colors" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
                 >
-                  {/* Top Image Section */}
-                  <div style={{ 
-                    position: "relative", 
-                    flex: 1, 
-                    background: "#d1d5db", 
-                    overflow: "hidden" 
-                  }}>
-                    {/* Background image placeholder */}
-                    <div style={{ 
-                      position: "absolute", 
-                      inset: 0, 
-                      background: "url('https://placehold.co/400x500') center/cover no-repeat" // You can replace with real image logic
-                    }} />
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <span className="text-xs sm:text-sm font-bold tracking-tight text-white/80 group-hover:text-white transition-colors">
+                  {t.companyLogo}
+                </span>
+              </div>
 
-                    {/* Default bottom gradient overlay on image */}
-                    <div style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: "50%",
-                      background: "linear-gradient(to top, rgba(0,0,0,0.9), transparent)",
-                      opacity: isHovered ? 0 : 1,
-                      transition: "opacity 0.3s ease"
-                    }} />
+              {/* Middle: Testimonial Quote */}
+              <div className="flex-1 flex items-center py-2">
+                <p className="text-xs sm:text-[13.5px] leading-relaxed text-gray-200 line-clamp-6 m-0 font-normal">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+              </div>
 
-                    {/* Hover Blue Overlay + Quote */}
-                    <div style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "rgba(30, 64, 175, 0.85)", // Deep blue
-                      opacity: isHovered ? 1 : 0,
-                      transition: "opacity 0.3s ease",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      padding: "80px 40px 30px 40px",
-                      color: "#fff"
-                    }}>
-                      <p style={{ 
-                        fontSize: "1.1rem", 
-                        lineHeight: "1.6", 
-                        margin: 0,
-                        transform: isHovered ? "translateY(0)" : "translateY(10px)",
-                        transition: "transform 0.4s ease",
-                        fontWeight: "400"
-                      }}>
-                        "{t.quote}"
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Bottom Info Section */}
-                  <div style={{
-                    background: isHovered ? "#0f172a" : "transparent",
-                    position: "absolute",
-                    bottom: 0,
-                    width: "100%",
-                    zIndex: 2,
-                    padding: "24px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    color: "#fff",
-                    minHeight: "100px",
-                    transition: "background 0.3s ease"
-                  }}>
-                    <div>
-                      <div style={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "4px" }}>{t.name}</div>
-                      <div style={{ fontSize: "0.9rem", color: "#e5e7eb" }}>{t.role}</div>
-                    </div>
-                    <div style={{ fontSize: "1.5rem", fontWeight: "700", fontStyle: "italic", display: "flex", alignItems: "center" }}>
-                      {/* Logo Placeholder */}
-                      {t.companyLogo}
-                    </div>
-                  </div>
+              {/* Bottom: Author Info */}
+              <div className="pt-4 border-t border-white/10 mt-auto">
+                <div className="text-sm sm:text-[15px] font-bold text-white mb-0.5 truncate leading-tight">
+                  {t.name}
                 </div>
-              );
-            })}
-          </div>
+                <div className="text-[11px] sm:text-xs text-gray-400 truncate leading-tight">
+                  {t.role}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   );

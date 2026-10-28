@@ -50,7 +50,7 @@ const dummyCards = [
         label: "Products Monitored",
       },
       {
-        value: "7+",
+        value: "9+",
         label: "Competitor Retailers Tracked",
       },
     ],
@@ -100,60 +100,55 @@ export default function CarouselSection() {
   }, [current, isTransitioning]);
 
   return (
-    <section className="h-[calc(100vh-80px)] min-h-[600px] bg-white relative flex flex-col justify-center border-b border-gray-200 overflow-hidden">
-      {/* Fixed UI Layer for Arrows & Pagination */}
-      <div className="absolute inset-0 w-full pointer-events-none z-30 flex justify-center items-center">
-        <div className="relative w-full h-full lg:max-w-none min-[2500px]:max-w-none min-[2500px]:px-[590px] mx-auto">
-          {/* Previous Button */}
-          <button
-            onClick={prevSlide}
-            className="pointer-events-auto hidden lg:flex absolute top-1/2 left-4 lg:left-[50px] min-[2500px]:left-[calc(590px+2rem)] -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
-            aria-label="Previous slide"
+    <section className="w-full bg-white relative py-10 lg:py-14 border-b border-gray-200 overflow-hidden font-sans">
+      {/* Outer Centered Container with Navigation Arrows */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-14 relative">
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          className="pointer-events-auto hidden lg:flex absolute top-1/2 left-2 xl:left-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-50 transition-all items-center justify-center bg-white shadow-sm z-30"
+          aria-label="Previous slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-gray-700"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
 
-          {/* Next Button */}
-          <button
-            onClick={nextSlide}
-            className="pointer-events-auto hidden lg:flex absolute top-1/2 right-4 lg:right-[50px] min-[2500px]:right-[calc(590px+2rem)] -translate-y-1/2 w-12 h-12 rounded-full border border-gray-400 items-center justify-center hover:border-gray-800 hover:bg-gray-50 transition-colors bg-white shadow-sm"
-            aria-label="Next slide"
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="pointer-events-auto hidden lg:flex absolute top-1/2 right-2 xl:right-4 -translate-y-1/2 w-11 h-11 xl:w-12 xl:h-12 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-50 transition-all items-center justify-center bg-white shadow-sm z-30"
+          aria-label="Next slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-gray-700"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-        </div>
-      </div>
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
 
-      {/* Padded Container for Huge Screens */}
-      <div className="w-full min-[2500px]:px-[590px] lg:px-[50px]">
         {/* Clipped Sliding Track */}
-        <div className="lg:max-w-none min-[2500px]:max-w-none w-full mx-auto relative z-10 overflow-hidden">
+        <div className="max-w-[1140px] xl:max-w-[1180px] mx-auto w-full relative z-10 overflow-hidden">
           <div className="grid w-full">
             {dummyCards.map((card, idx) => {
               const isCurrent = idx === current;
@@ -190,27 +185,31 @@ export default function CarouselSection() {
                   }}
                 >
                   {/* Inner Content Centered */}
-                  <div className="w-full bg-white flex items-center justify-center px-8 lg:px-[88px]">
-                    <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 xl:gap-20 w-full min-h-[400px]">
+                  <div className="w-full bg-white flex items-center justify-center py-2">
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 xl:gap-16 w-full">
                       {/* Left Content */}
-                      <div className="flex-1 relative">
-                        <div className="inline-block px-6 py-3 mb-6 text-[#e05628] bg-[#e05628]/10 border-l-[3px] border-[#e05628] text-base lg:text-lg font-bold tracking-wide">
+                      <div className="flex-1 max-w-[500px] lg:max-w-[530px] text-left">
+                        {/* Tag Badge */}
+                        <div className="inline-flex items-center px-3.5 py-1 mb-5 lg:mb-6 text-[#e05628] bg-[#FFF4EE] border-l-[3.5px] border-[#e05628] text-sm font-semibold tracking-[-0.01em]">
                           {card.tag}
                         </div>
-                        <h2 className="text-3xl lg:text-[2.6rem] font-bold text-[#26215C] mb-12 leading-[1.15] tracking-tight">
+
+                        {/* Title */}
+                        <h2 className="text-2xl sm:text-3xl lg:text-[2.35rem] xl:text-[2.55rem] font-bold text-[#101828] mb-6 lg:mb-8 leading-[1.16] tracking-[-0.025em]">
                           {card.title}
                         </h2>
 
-                        <div className="flex flex-col sm:flex-row gap-10 sm:gap-14">
-                          {card.stats?.map((stat, idx) => (
+                        {/* Stats Row */}
+                        <div className="flex flex-row items-start gap-8 sm:gap-11 lg:gap-12">
+                          {card.stats?.map((stat, sIdx) => (
                             <div
-                              key={idx}
-                              className="flex flex-col border-l border-[#26215C] pl-6 py-1"
+                              key={sIdx}
+                              className="flex flex-col border-l border-gray-300 pl-4 lg:pl-4.5 py-0.5"
                             >
-                              <span className="text-4xl lg:text-[2.5rem] font-bold text-[#26215C] mb-2 tracking-tight">
+                              <span className="text-3xl lg:text-[2.35rem] xl:text-[2.5rem] font-bold text-[#101828] mb-1.5 tracking-[-0.02em] leading-none">
                                 {stat.value}
                               </span>
-                              <span className="text-[#26215C]/70 text-lg leading-relaxed max-w-[220px]">
+                              <span className="text-[#475467] text-sm lg:text-[15px] font-normal leading-[1.38] tracking-normal max-w-[170px]">
                                 {stat.label}
                               </span>
                             </div>
@@ -219,7 +218,7 @@ export default function CarouselSection() {
                       </div>
 
                       {/* Right Content - Image */}
-                      <div className="flex-1 w-full relative flex justify-end">
+                      <div className="w-full lg:w-[460px] xl:w-[500px] shrink-0 relative flex justify-end">
                         <div className={`w-full overflow-hidden bg-transparent cursor-pointer ${card.aspect || 'aspect-[16/10]'}`}>
                           <img
                             src={card.image}
@@ -231,43 +230,38 @@ export default function CarouselSection() {
                       </div>
                     </div>
                   </div>
-              </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center items-center gap-2.5 mt-8 lg:mt-10 h-[24px]">
+          {dummyCards.map((_, idx) => {
+            const isActive = idx === current;
+            return (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx, idx > current ? 1 : -1)}
+                className="focus:outline-none flex items-center justify-center transition-all duration-300"
+                aria-label={`Go to slide ${idx + 1}`}
+              >
+                {isActive ? (
+                  /* Active Dot: Outer Ring with Centered Solid Dot */
+                  <div className="w-[20px] h-[20px] lg:w-[22px] lg:h-[22px] rounded-full border-2 border-[#0a76db] flex items-center justify-center transition-all duration-300">
+                    <div className="w-[5px] h-[5px] lg:w-[6px] lg:h-[6px] rounded-full bg-[#0a76db]" />
+                  </div>
+                ) : (
+                  /* Inactive Dot: Solid Light Blue Dot */
+                  <div className="w-[7px] h-[7px] lg:w-[8px] lg:h-[8px] rounded-full bg-[#bfdbfe] hover:bg-[#93c5fd] transition-all duration-300" />
+                )}
+              </button>
             );
           })}
         </div>
       </div>
-      </div>
 
-      {/* Pagination Dots */}
-      <div className="flex justify-center items-center gap-3 mt-12 h-[20px] lg:h-[24px]">
-        {dummyCards.map((_, idx) => {
-          const isActive = idx === current;
-          return (
-            <button
-              key={idx}
-              onClick={() => goToSlide(idx, idx > current ? 1 : -1)}
-              className="relative flex items-center justify-center w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] rounded-full focus:outline-none group"
-              aria-label={`Go to slide ${idx + 1}`}
-            >
-              {/* Outer Ring */}
-              <div
-                className={`absolute inset-0 rounded-full border-[1.5px] lg:border-2 border-[#0a76db] transition-all duration-300 ease-out ${
-                  isActive ? "opacity-100 scale-100" : "opacity-0 scale-50"
-                }`}
-              />
-
-              {/* Inner Dot */}
-              <div
-                className={`rounded-full transition-all duration-300 ease-out ${
-                  isActive
-                    ? "w-[4px] h-[4px] lg:w-[8px] lg:h-[8px] bg-[#0a76db]"
-                    : "w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] bg-[#bfdbfe] group-hover:bg-[#93c5fd]"
-                }`}
-              />
-            </button>
-          );
-        })}
-      </div>
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes carouselSlideInRight {
           0% { transform: translate3d(100%, 0, 0); }
