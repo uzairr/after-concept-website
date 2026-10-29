@@ -137,6 +137,32 @@ function BigQueryPipelineLogo() {
   );
 }
 
+// UI/UX Consultation & Screen Review Logo Component
+function UiUxScreenReviewLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#6366F1]">
+        <svg
+          className="w-5 h-5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        UI/UX Review
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -279,6 +305,21 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "Data Engineering",
     bgColor: "#EFF6FF",
     textColor: "#0284C7",
+  },
+  {
+    id: "ui-ux-screen-review-consultation",
+    name: "UI/UX Consultation and Screen Review for Improved Usability and Design Consistency",
+    category: "UX Design",
+    logo: <UiUxScreenReviewLogo />,
+    description:
+      "Dedicated UI/UX consultation focused on screen review, usability analysis, and design consistency assessment to enhance user experience and interaction flows.",
+    href: "/success-stories/ui-ux-screen-review-consultation",
+    metrics: { label: "Focus", value: "Screen Review" },
+    badge: "UI/UX Consultation",
+    tags: ["UI/UX", "Usability", "Design Review"],
+    statsPreview: "UI/UX Consultation",
+    bgColor: "#EEF2FF",
+    textColor: "#6366F1",
   }
 ];
 
@@ -287,6 +328,7 @@ const categories = [
   "Real Estate Tech",
   "Web Development",
   "Software Development",
+  "UX Design",
   "Retail Tech",
   "Healthcare",
   "FinTech",
@@ -425,6 +467,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#EEF2FF] text-[#4F46E5] border-[#4F46E5]/20"
                               : item.id === "data-download-transformation-stacking-bigquery"
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
+                              : item.id === "ui-ux-screen-review-consultation"
+                              ? "bg-[#EEF2FF] text-[#6366F1] border-[#6366F1]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -445,6 +489,8 @@ export default function CaseStudiesPage() {
                                   ? "bg-[#EEF2FF] text-[#4F46E5]"
                                   : item.id === "data-download-transformation-stacking-bigquery"
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
+                                  : item.id === "ui-ux-screen-review-consultation"
+                                  ? "bg-[#EEF2FF] text-[#6366F1]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
                             >
@@ -464,11 +510,9 @@ export default function CaseStudiesPage() {
                     <div className="pt-4 mt-auto">
                       <Link
                         href={item.href}
-                        className={`inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 active:translate-y-0.5 ${
-                          item.id === "internal-angular-project"
-                            ? "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
-                            : item.id === "landdesign"
-                            ? "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
+                        className={`inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 active:translate-y-0.5 ${
+                          item.id === "ui-ux-screen-review-consultation"
+                            ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#1D4ED8]"
                             : "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
                         }`}
                       >
