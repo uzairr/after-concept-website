@@ -610,6 +610,59 @@ const caseStudiesData: Record<
     fstat3Num: "BigQuery",
     fstat3Label: "ready for upload",
   },
+  "ui-ux-screen-review-consultation": {
+    industry: "Software Development · User Experience Design",
+    title:
+      "UI/UX Consultation and Screen Review for Improved Usability and Design Consistency",
+    heroSub:
+      "A UI/UX consultation engagement providing dedicated support for reviewing application screens, evaluating user experience consistency, identifying usability gaps, and delivering actionable recommendations for optimized interaction flows.",
+    hstat1Num: "Screen Review",
+    hstat1Label: "UX Consultation",
+    hstat2Num: "100%",
+    hstat2Label: "Design Consistency",
+    hstat3Num: "User Flows",
+    hstat3Label: "Optimized Experience",
+    bannerText: "UI/UX Consultation and Screen Review",
+    engagement: "UI/UX Consultation · Screen Review · Usability Analysis",
+    stack: "UI/UX Consultation, User Experience Evaluation, Usability Analysis, Screen Review",
+    client: "Product Team Requiring UI/UX Screen Review",
+    quote:
+      "The screen review delivered actionable clarity that resolved interface friction and set a clear UX direction for our entire product.",
+    quoteAuthor: "Product Lead, UI/UX Screen Review",
+    challengeSub:
+      "As products evolve, maintaining a consistent and user-friendly experience becomes increasingly challenging. The client faced several concerns regarding the usability and effectiveness of existing application screens.",
+    challengePoints: [
+      "Some screens required evaluation to ensure they were intuitive and easy to navigate.",
+      "User interactions needed optimization to reduce complexity and improve efficiency.",
+      "Design consistency across different screens required assessment and refinement.",
+      "The application needed clearer user flows to help users complete tasks with confidence.",
+      "Existing interfaces had opportunities for usability improvements that could enhance the overall user experience.",
+      "The client required expert feedback focused specifically on screen review and UX quality.",
+    ],
+    solutionSub:
+      "The engagement produced actionable recommendations aimed at optimizing user interactions, creating clearer workflows, strengthening design consistency, delivering easier-to-use screens, and supporting long-term UX improvements.",
+    solutionPoints: [
+      "1. Comprehensive Screen Analysis: Each application screen was carefully reviewed to understand user journeys, interface structure, visual consistency, and friction points.",
+      "2. User Experience Assessment: Focused on improving usability, streamlining interactions, reducing complexity, and supporting intuitive navigation.",
+      "3. Consistency Evaluation: Assessed layout structures, design components, interaction patterns, and visual presentation.",
+      "4. Improvement Recommendations: Actionable guidance for clearer workflows, stronger design consistency, and long-term UX gains.",
+      "5. Dedicated Project Support: Maintained a dedicated focus on a single engagement aligned with project goals.",
+    ],
+    capabilities: [
+      "01 — Role: UI/UX Consultation",
+      "02 — Focus: Screen Review",
+      "03 — Objective: Usability Analysis",
+      "04 — Scope: Design Consistency Assessment",
+    ],
+    resultsSub:
+      "The screen review engagement delivered valuable insights and strategic recommendations that supported the project's usability objectives.",
+    fstat1Num: "Screen Review",
+    fstat1Label: "dedicated consultation focus",
+    fstat2Num: "100%",
+    fstat2Label: "design consistency alignment",
+    fstat3Num: "Optimized",
+    fstat3Label: "interaction flows",
+  },
   "tandem-legal": {
     industry: "Legal",
     title: "Contract review copilot cuts first-pass review time for associates",
