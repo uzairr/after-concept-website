@@ -48,76 +48,86 @@ export default function UiUxScreenReviewCaseStudy() {
       <Header />
 
       {/* =========================================================================
-          HERO SECTION (BigQuery Style - Full width dark #0A1931, left text, right pic)
+          HERO SECTION (Using Provided Image as Background - BigQuery Style)
           ========================================================================= */}
-      <section className="relative w-full bg-[#0A1931] min-h-[520px] pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-[#1E3A5A] flex items-center overflow-hidden">
-        {/* Subtle ambient glowing orbs behind visual */}
-        <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-4 right-[28%] w-[400px] h-[400px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none" />
+      <section className="relative w-full overflow-hidden bg-[#07172A] pt-28 pb-16 lg:pt-36 lg:pb-28 border-b border-[#1E3A5A] min-h-[580px] lg:min-h-[640px] flex items-center">
+        {/* Background Hero Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/case-studies/ui-ux-screen-review-hero.jpg"
+            alt="UI/UX Consultation and Screen Review for Improved Usability and Design Consistency"
+            fill
+            priority
+            className="object-cover object-right md:object-right-center"
+            quality={95}
+          />
+          {/* Selective blur over the left text side, smoothly dissolving before the right-side diagrams */}
+          <div
+            className="absolute inset-y-0 left-0 w-full lg:w-[65%] backdrop-blur-[14px] pointer-events-none"
+            style={{
+              WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0) 100%)",
+              maskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0) 100%)",
+            }}
+          />
+          {/* Subtle gradient overlay to guarantee 100% crisp text readability on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07172A] via-[#07172A]/95 sm:via-[#07172A]/85 md:via-[#07172A]/70 lg:via-[#07172A]/35 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07172A] via-transparent to-[#07172A]/35 pointer-events-none" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 py-8 grid lg:grid-cols-[60%_40%] gap-10 items-center w-full relative z-10">
-          
-          {/* LEFT (60%) */}
-          <div className="flex flex-col justify-center text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#132A4A] border border-[#23486B] text-[#4DB8FF] text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full w-fit mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4DB8FF] animate-pulse" />
-              FEATURED BUILD · UI/UX CONSULTATION
+        <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 py-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 xl:col-span-6 flex flex-col justify-center text-left">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-[#132A4A]/85 border border-[#23486B] text-[#4DB8FF] text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full w-fit mb-6 backdrop-blur-md shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#4DB8FF] animate-pulse" />
+                FEATURED BUILD · UI/UX CONSULTATION
+              </div>
+
+              {/* Title H1 */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[45px] font-extrabold text-white tracking-normal leading-[1.28] sm:leading-[1.26] lg:leading-[1.24] mb-8 drop-shadow-sm">
+                UI/UX Consultation and Screen Review for{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7DD3FF] via-[#38BDF8] to-[#6366F1]">
+                  Improved Usability
+                </span>
+              </h1>
+
+              {/* Description p */}
+              <p className="text-base sm:text-lg text-slate-200 leading-[1.75] font-normal max-w-xl mb-10 drop-shadow-xs">
+                A UI/UX consultation engagement providing dedicated support for reviewing application screens, evaluating user experience consistency, identifying usability gaps, and delivering actionable recommendations for optimized interaction flows.
+              </p>
+
+              {/* Stats row (3 cols) */}
+              <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#1E3A5A] max-w-lg">
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Screen Review
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
+                    UX Consultation
+                  </div>
+                </div>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    100%
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
+                    Design Consistency
+                  </div>
+                </div>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    User Flows
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
+                    Optimized Experience
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Title H1 */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-2 text-white">
-              <span className="text-white">UI/UX Consultation and</span><br />
-              <span className="text-white">Screen Review for </span><span className="text-[#7DD3FF]">Improved Usability</span>
-            </h1>
-
-            {/* Description p */}
-            <p className="text-[#9AA8C0] text-[15px] sm:text-base leading-relaxed mt-6 max-w-xl font-normal">
-              A UI/UX consultation engagement providing dedicated support for reviewing application screens, evaluating user experience consistency, identifying usability gaps, and delivering actionable recommendations for optimized interaction flows.
-            </p>
-
-            {/* Stats row (3 cols) */}
-            <div className="grid grid-cols-3 gap-6 border-t border-[#1E3A5A] mt-10 pt-8 max-w-xl">
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  Screen Review
-                </div>
-                <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
-                  UX Consultation
-                </div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  100%
-                </div>
-                <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
-                  Design Consistency
-                </div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  User Flows
-                </div>
-                <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
-                  Optimized Experience
-                </div>
-              </div>
-            </div>
           </div>
-
-          {/* RIGHT (40%) */}
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-[500px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[#23486B]/60 bg-[#0C1E3A]/70 backdrop-blur-md p-2">
-              <Image
-                src="/images/case-studies/ui-ux-screen-review-hero.jpg"
-                alt="UI/UX Screen Review"
-                fill
-                priority
-                className="object-cover rounded-xl opacity-95 drop-shadow-2xl"
-              />
-            </div>
-          </div>
-
         </div>
       </section>
 
