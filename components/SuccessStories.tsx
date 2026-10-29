@@ -3,17 +3,17 @@ import React from 'react';
 const stories = [
   {
     title: "MBC",
-    image: "/images/project-mbc-success.jpg",
+    image: "/images/project-mbc-card.jpg",
     link: "#"
   },
   {
     title: "LandDesign",
-    image: "/images/project-landdesign-success.jpg",
-    link: "#"
+    image: "/images/project-landdesign-card.jpg",
+    link: "/case-studies/landdesign"
   },
   {
     title: "PriceWatch",
-    image: "/images/project-pricewatch-success-v2.jpg",
+    image: "/images/project-pricewatch-card.jpg",
     link: "#"
   },
   {
@@ -64,4 +64,3 @@ export default function SuccessStories() {
     </section>
   );
 }
-
