@@ -48,88 +48,46 @@ export default function UiUxScreenReviewCaseStudy() {
       <Header />
 
       {/* =========================================================================
-          HERO SECTION (Using Provided Image as Background - BigQuery Style)
+          HERO SECTION - FULL COVER (Uploaded Cover Pic as Full Background)
           ========================================================================= */}
-      <section className="relative w-full overflow-hidden bg-[#07172A] pt-28 pb-16 lg:pt-36 lg:pb-28 border-b border-[#1E3A5A] min-h-[580px] lg:min-h-[640px] flex items-center">
-        {/* Background Hero Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/case-studies/ui-ux-screen-review-hero.jpg"
-            alt="UI/UX Consultation and Screen Review for Improved Usability and Design Consistency"
-            fill
-            priority
-            className="object-cover object-right md:object-right-center"
-            quality={95}
-          />
-          {/* Selective blur over the left text side, smoothly dissolving before the right-side diagrams */}
-          <div
-            className="absolute inset-y-0 left-0 w-full lg:w-[65%] backdrop-blur-[14px] pointer-events-none"
-            style={{
-              WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0) 100%)",
-              maskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0) 100%)",
-            }}
-          />
-          {/* Subtle gradient overlay to guarantee 100% crisp text readability on the left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07172A] via-[#07172A]/95 sm:via-[#07172A]/85 md:via-[#07172A]/70 lg:via-[#07172A]/35 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07172A] via-transparent to-[#07172A]/35 pointer-events-none" />
-        </div>
-
-        <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 py-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 xl:col-span-6 flex flex-col justify-center text-left">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-[#132A4A]/85 border border-[#23486B] text-[#4DB8FF] text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full w-fit mb-6 backdrop-blur-md shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#4DB8FF] animate-pulse" />
-                FEATURED BUILD · UI/UX CONSULTATION
+      <div className="relative w-full h-[600px] lg:h-[650px] overflow-hidden bg-[#0A1931]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/case-studies/ui-ux-screen-review-hero.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="UI/UX Cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1931]/90 via-[#0A1931]/70 to-[#0A1931]/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1931]/50 to-transparent"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16 h-full flex items-center">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-[#7DD3FF] text-[11px] tracking-[0.2em] px-5 py-2 rounded-full">
+              ● FEATURED BUILD · UI/UX CONSULTATION
+            </div>
+            <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] mt-8">
+              <span className="text-white block">UI/UX Consultation and</span>
+              <span className="text-white">Screen Review for </span><span className="text-[#7DD3FF]">Improved Usability</span>
+            </h1>
+            <p className="text-[#C5D1E0] text-[17px] leading-relaxed mt-6 max-w-2xl">
+              A UI/UX consultation engagement providing dedicated support for reviewing application screens, evaluating user experience consistency, identifying usability gaps, and delivering actionable recommendations for optimized interaction flows.
+            </p>
+            <div className="flex gap-12 mt-12 pt-8 border-t border-white/15">
+              <div>
+                <div className="text-white font-bold text-2xl">Screen Review</div>
+                <div className="text-[#8AA0B8] text-xs tracking-widest mt-1">UX CONSULTATION</div>
               </div>
-
-              {/* Title H1 */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[45px] font-extrabold text-white tracking-normal leading-[1.28] sm:leading-[1.26] lg:leading-[1.24] mb-8 drop-shadow-sm">
-                UI/UX Consultation and Screen Review for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7DD3FF] via-[#38BDF8] to-[#6366F1]">
-                  Improved Usability
-                </span>
-              </h1>
-
-              {/* Description p */}
-              <p className="text-base sm:text-lg text-slate-200 leading-[1.75] font-normal max-w-xl mb-10 drop-shadow-xs">
-                A UI/UX consultation engagement providing dedicated support for reviewing application screens, evaluating user experience consistency, identifying usability gaps, and delivering actionable recommendations for optimized interaction flows.
-              </p>
-
-              {/* Stats row (3 cols) */}
-              <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#1E3A5A] max-w-lg">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    Screen Review
-                  </div>
-                  <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
-                    UX Consultation
-                  </div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    100%
-                  </div>
-                  <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
-                    Design Consistency
-                  </div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    User Flows
-                  </div>
-                  <div className="text-xs sm:text-sm text-[#9AA8C0] font-medium mt-1">
-                    Optimized Experience
-                  </div>
-                </div>
+              <div>
+                <div className="text-white font-bold text-2xl">100%</div>
+                <div className="text-[#8AA0B8] text-xs tracking-widest mt-1">DESIGN CONSISTENCY</div>
+              </div>
+              <div>
+                <div className="text-white font-bold text-2xl">User Flows</div>
+                <div className="text-[#8AA0B8] text-xs tracking-widest mt-1">OPTIMIZED EXPERIENCE</div>
               </div>
             </div>
-
           </div>
         </div>
-      </section>
+      </div>
 
       {/* =========================================================================
           MAIN BODY SECTION: White Background Rest of Page (Same as other case studies)
@@ -574,15 +532,13 @@ export default function UiUxScreenReviewCaseStudy() {
                   </Link>
                   <a
                     href="/pdfs/ui-ux-screen-review-consultation-case-study.pdf"
-                    download="UI-UX-Screen-Review-Consultation-Case-Study.pdf"
+                    download="UI-UX-Screen-Review-Case-Study.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full bg-[#2563EB] text-white text-[13px] font-semibold px-5 py-3 rounded-full hover:bg-[#1D4ED8] transition mt-4"
+                    className="inline-flex items-center justify-center gap-2 w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-6 py-3 rounded-full text-sm font-medium mt-4 transition-colors"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="7 10 12 15 17 10"></polyline>
-                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5h6M9 5a2 2 0 00-2 2v0a2 2 0 002 2h6a2 2 0 002-2v0a2 2 0 00-2-2z" />
                     </svg>
                     Download PDF
                   </a>
@@ -612,7 +568,7 @@ export default function UiUxScreenReviewCaseStudy() {
           <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
             Tell us about your application screens and usability challenges. We&apos;ll evaluate your flows and deliver an actionable design improvement roadmap.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Link
               href="/#contact"
               className="px-8 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm shadow-lg shadow-blue-500/30 transition-all"
@@ -623,8 +579,22 @@ export default function UiUxScreenReviewCaseStudy() {
               href="/success-stories"
               className="px-8 py-3.5 rounded-xl bg-[#132A4A] hover:bg-[#1E3A5A] text-slate-200 font-semibold text-sm border border-[#23486B] transition-all"
             >
-              View More Case Studies
+              All Case Studies
             </Link>
+          </div>
+          <div className="flex justify-center mt-6">
+            <a 
+              href="/pdfs/ui-ux-screen-review-consultation-case-study.pdf" 
+              download="UI-UX-Screen-Review-Case-Study.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-6 py-3 rounded-full text-sm font-medium transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5h6M9 5a2 2 0 00-2 2v0a2 2 0 002 2h6a2 2 0 002-2v0a2 2 0 00-2-2z" />
+              </svg>
+              Download PDF
+            </a>
           </div>
         </div>
       </section>
