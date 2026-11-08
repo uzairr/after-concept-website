@@ -179,6 +179,22 @@ function UiAngularTeamLeadLogo() {
   );
 }
 
+// Healthcare React & FastAPI Consultation Logo Component
+function HealthcareReactFastAPILogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0066FF]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 10.5V8.8h-4.4V4.4h-5.2v4.4H5v5.2h4.4v4.4h5.2V14h4.4v-3.5z" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Healthcare React &amp; FastAPI
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -351,6 +367,21 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "Team Leadership",
     bgColor: "#E0F2FE",
     textColor: "#0284C7",
+  },
+  {
+    id: "healthcare-react-fastapi-consultation",
+    name: "Healthcare React & FastAPI Consultation",
+    category: "Healthcare",
+    logo: <HealthcareReactFastAPILogo />,
+    description:
+      "Healthcare System Project · Healthcare Technology | Software Development",
+    href: "/success-stories/healthcare-react-fastapi-consultation",
+    metrics: { label: "Focus", value: "Consultation" },
+    badge: "Healthcare Systems",
+    tags: ["React", "FastAPI", "Healthcare Systems"],
+    statsPreview: "Healthcare Consultation",
+    bgColor: "#E0F2FE",
+    textColor: "#0066FF",
   }
 ];
 
@@ -502,6 +533,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#EEF2FF] text-[#6366F1] border-[#6366F1]/20"
                               : item.id === "ui-angular-team-lead"
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
+                              : item.id === "healthcare-react-fastapi-consultation"
+                              ? "bg-[#E0F2FE] text-[#0066FF] border-[#0066FF]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -526,6 +559,8 @@ export default function CaseStudiesPage() {
                                   ? "bg-[#EEF2FF] text-[#6366F1]"
                                   : item.id === "ui-angular-team-lead"
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
+                                  : item.id === "healthcare-react-fastapi-consultation"
+                                  ? "bg-[#E0F2FE] text-[#0066FF]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
                             >
@@ -548,23 +583,31 @@ export default function CaseStudiesPage() {
                         className={`inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 active:translate-y-0.5 ${
                           item.id === "ui-ux-screen-review-consultation"
                             ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#1D4ED8]"
+                            : item.id === "healthcare-react-fastapi-consultation"
+                            ? "bg-[#0066FF] text-white hover:bg-[#0052cc] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0052cc]"
                             : "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
                         }`}
                       >
-                        <span>View Case Study</span>
-                        <svg
-                          className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
+                        <span>
+                          {item.id === "healthcare-react-fastapi-consultation"
+                            ? "View Success Story →"
+                            : "View Case Study"}
+                        </span>
+                        {item.id !== "healthcare-react-fastapi-consultation" && (
+                          <svg
+                            className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        )}
                       </Link>
                     </div>
                   </div>
