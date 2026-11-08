@@ -163,6 +163,22 @@ function UiUxScreenReviewLogo() {
   );
 }
 
+// UI + Angular Team Lead Logo Component
+function UiAngularTeamLeadLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        UI + Angular Lead
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -320,6 +336,21 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "UI/UX Consultation",
     bgColor: "#EEF2FF",
     textColor: "#6366F1",
+  },
+  {
+    id: "ui-angular-team-lead",
+    name: "UI + Angular Team Lead - Product Development Team",
+    category: "Software Development",
+    logo: <UiAngularTeamLeadLogo />,
+    description:
+      "Modern web applications require strong technical leadership to ensure that development teams remain aligned, project goals are achieved, and user interfaces meet both business and user expectations.",
+    href: "/success-stories/ui-angular-team-lead",
+    metrics: { label: "Focus", value: "Team Lead" },
+    badge: "UI + Angular",
+    tags: ["Angular Framework", "UI Development", "Team Leadership"],
+    statsPreview: "Team Leadership",
+    bgColor: "#E0F2FE",
+    textColor: "#0284C7",
   }
 ];
 
@@ -469,6 +500,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : item.id === "ui-ux-screen-review-consultation"
                               ? "bg-[#EEF2FF] text-[#6366F1] border-[#6366F1]/20"
+                              : item.id === "ui-angular-team-lead"
+                              ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -491,6 +524,8 @@ export default function CaseStudiesPage() {
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : item.id === "ui-ux-screen-review-consultation"
                                   ? "bg-[#EEF2FF] text-[#6366F1]"
+                                  : item.id === "ui-angular-team-lead"
+                                  ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
                             >

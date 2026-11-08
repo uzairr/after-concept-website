@@ -706,6 +706,57 @@ const caseStudiesData: Record<
     fstat3Num: "3wks",
     fstat3Label: "implementation timeline",
   },
+  "ui-angular-team-lead": {
+    industry: "Software Development · Web Applications",
+    title: "UI + Angular Team Lead - Product Development Team",
+    heroSub:
+      "Modern web applications require strong technical leadership to ensure that development teams remain aligned, project goals are achieved, and user interfaces meet both business and user expectations.",
+    hstat1Num: "1",
+    hstat1Label: "single engagement focus",
+    hstat2Num: "100%",
+    hstat2Label: "requirement alignment",
+    hstat3Num: "Angular",
+    hstat3Label: "best practices & oversight",
+    bannerText: "UI + Angular Team Lead — Product Development Team",
+    engagement: "UI Leadership · Angular Development Oversight · Team Management",
+    stack: "Angular Framework, TypeScript, UI Development, Front-End Architecture",
+    client: "Product Development Team",
+    quote:
+      "Combining technical Angular expertise with structured team leadership ensured our front-end delivery was both timely and scalable.",
+    quoteAuthor: "Engineering Stakeholder, Product Development Team",
+    challengeSub:
+      "Leading a UI and Angular development team comes with several challenges that require both technical knowledge and effective coordination.",
+    challengePoints: [
+      "Maintaining a consistent development approach across the project.",
+      "Ensuring Angular implementation aligns with project objectives.",
+      "Managing project requirements while maintaining development quality.",
+      "Providing dedicated support throughout the engagement.",
+      "Coordinating UI development efforts to ensure smooth execution.",
+      "Keeping project activities focused and aligned with business goals.",
+    ],
+    solutionSub:
+      "After Concept provided dedicated support in the role of UI + Angular Team Lead, combining technical expertise with leadership responsibilities.",
+    solutionPoints: [
+      "Technical Leadership: Provided leadership for UI and Angular development activities and technical decision-making.",
+      "Dedicated Project Support: Maintained a single-engagement focus throughout with continuous stakeholder support.",
+      "Angular Development Oversight: Guided Angular development practices and scalable implementation strategies.",
+      "Project Case Study Focus: Concentrated efforts on dedicated requirements and expected outcomes.",
+    ],
+    capabilities: [
+      "Angular framework architecture & guidance.",
+      "UI development practices & component consistency.",
+      "Cross-functional team leadership & coordination.",
+      "Web application development methodologies.",
+    ],
+    resultsSub:
+      "The engagement achieved stronger coordination, clear technical direction, and consistent oversight of UI and Angular implementation.",
+    fstat1Num: "1",
+    fstat1Label: "single engagement focus",
+    fstat2Num: "100%",
+    fstat2Label: "requirement alignment achieved",
+    fstat3Num: "Zero",
+    fstat3Label: "compromise on development quality",
+  },
 };
 
 interface Props {
