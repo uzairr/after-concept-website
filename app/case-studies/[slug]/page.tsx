@@ -757,6 +757,58 @@ const caseStudiesData: Record<
     fstat3Num: "Zero",
     fstat3Label: "compromise on development quality",
   },
+  "healthcare-react-fastapi-consultation": {
+    industry: "Healthcare Technology · Software Development",
+    title: "Healthcare React & FastAPI Consultation",
+    heroSub:
+      "A Healthcare System Project engagement, documented through its consultation objective. Healthcare applications require strong architecture, secure data handling, and reliable APIs to ensure patient information remains protected while delivering a seamless user experience.",
+    hstat1Num: "FastAPI",
+    hstat1Label: "React & FastAPI stack",
+    hstat2Num: "100%",
+    hstat2Label: "architecture confidence",
+    hstat3Num: "RBAC",
+    hstat3Label: "security & access control",
+    bannerText: "Healthcare React & FastAPI Consultation — Healthcare System Project",
+    engagement: "React & FastAPI Consultation · System Architecture Review · Code Review · Dedicated Technical Support",
+    stack: "React, FastAPI, REST APIs, Healthcare Systems, Architecture Design, RBAC",
+    client: "Healthcare System Project",
+    quote:
+      "Having an expert technical advisor for our React and FastAPI architecture helped us validate design choices early, safeguard patient records, and avoid costly post-launch issues.",
+    quoteAuthor: "Engineering Stakeholder, Healthcare System Project",
+    challengeSub:
+      "Healthcare applications require strong architecture, secure data handling, and reliable APIs to ensure patient information remains protected while delivering a seamless user experience.",
+    challengePoints: [
+      "The client needed an expert second opinion on the React and FastAPI technology stack before architectural issues became expensive to fix.",
+      "The project required a clean and scalable architecture capable of supporting future growth.",
+      "Existing code needed professional review to identify maintainability concerns and potential risks.",
+      "Sensitive patient data required careful handling and privacy-focused implementation.",
+      "The system required reliable and predictable API behavior to support healthcare operations.",
+      "Access to medical records needed strong role-based access controls.",
+    ],
+    solutionSub:
+      "After Concept provided dedicated React & FastAPI consultation for a healthcare system project, offering expert guidance to strengthen both front-end and back-end architecture.",
+    solutionPoints: [
+      "System Architecture Design: Evaluating and designing a scalable architecture for both React front end and FastAPI back end.",
+      "Comprehensive Code Review: Reviewed code quality, development standards, maintainability, potential technical risks, long-term scalability concerns.",
+      "Security & Privacy Consultation: Patient data privacy, secure data handling practices, risk reduction strategies, protected access to healthcare records.",
+      "API Reliability Assessment: Predictable and validated FastAPI endpoints to ensure application stability.",
+      "Safe Deployment Strategy: Repeatable and low-risk deployment process for reliable production updates.",
+    ],
+    capabilities: [
+      "React front-end architecture & state management.",
+      "FastAPI asynchronous backend & schema validation.",
+      "Role-based access control (RBAC) & data privacy.",
+      "Safe and repeatable production deployment pipelines.",
+    ],
+    resultsSub:
+      "The consultation established improved architecture confidence, scalability guidelines, and reliable API validation practices across the healthcare system.",
+    fstat1Num: "100%",
+    fstat1Label: "architecture confidence",
+    fstat2Num: "Zero",
+    fstat2Label: "security compromises",
+    fstat3Num: "100%",
+    fstat3Label: "API validation coverage",
+  },
 };
 
 interface Props {
