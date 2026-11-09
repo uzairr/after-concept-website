@@ -809,6 +809,58 @@ const caseStudiesData: Record<
     fstat3Num: "100%",
     fstat3Label: "API validation coverage",
   },
+  "government-data-processing": {
+    industry: "Government Services · Data Management · Research",
+    title: "Government Data Processing Project",
+    heroSub:
+      "A Government Data Processing engagement, documented through its data extraction objective. Government planning and development documents often contain large amounts of valuable information that must be collected, categorized, and organized for analysis and decision-making.",
+    hstat1Num: "Dedicated",
+    hstat1Label: "project support",
+    hstat2Num: "100%",
+    hstat2Label: "template consistency",
+    hstat3Num: "Quality",
+    hstat3Label: "data accuracy",
+    bannerText: "Government Data Processing Project — Government Services | Data Management",
+    engagement: "Data Extraction · Data Entry · Spreadsheet Management · Government Document Processing",
+    stack: "Data Scraping, Data Extraction, Spreadsheet Entry, Microsoft Excel, Research, Data Verification",
+    client: "Government Data Processing Project",
+    quote:
+      "By following a template-driven process, the project ensured that information remained standardized, reliable, and easy to use across multiple jurisdictions.",
+    quoteAuthor: "Project Lead, Government Data Processing Project",
+    challengeSub:
+      "Government documents are often presented in different formats and structures, making data collection a time-consuming and detail-oriented task.",
+    challengePoints: [
+      "Extracting contact information from multiple local government planning documents.",
+      "Reviewing documents across different jurisdictions while maintaining consistency.",
+      "Correctly identifying and classifying each real estate development application type.",
+      "Organizing large volumes of information into a uniform spreadsheet structure.",
+      "Following detailed client instructions and predefined templates without deviations.",
+      "Maintaining a high level of accuracy throughout the data extraction process.",
+    ],
+    solutionSub:
+      "Provide dedicated Data Extraction & Entry support for government planning documents, collecting key information from multiple jurisdictions and organizing all extracted data into structured spreadsheets.",
+    solutionPoints: [
+      "1. Document Review & Research: Government planning documents were reviewed individually to identify relevant information required by the client.",
+      "2. Contact Information Extraction: Information was collected methodically to reduce errors and ensure completeness.",
+      "3. Application Classification: Each document was analyzed to determine the specific type of real estate development application.",
+      "4. Spreadsheet Organization: All extracted information was entered into a structured spreadsheet format using client templates.",
+      "5. Quality & Consistency Checks: A template-driven approach was used throughout the engagement to maintain consistency across all records.",
+    ],
+    capabilities: [
+      "01 — Role: Government Data Scraping",
+      "02 — Focus: Data Extraction & Entry",
+      "03 — Objective: Dedicated project support",
+      "04 — Scope: Spreadsheet Management & Verification",
+    ],
+    resultsSub:
+      "The project delivered a well-organized dataset that enabled efficient access to government planning information with verified data accuracy.",
+    fstat1Num: "100%",
+    fstat1Label: "template consistency",
+    fstat2Num: "Multi-Jurisdiction",
+    fstat2Label: "data extraction & entry",
+    fstat3Num: "Zero",
+    fstat3Label: "unformatted deviations",
+  },
 };
 
 interface Props {
