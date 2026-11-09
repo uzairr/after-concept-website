@@ -212,6 +212,26 @@ function FlipletEventAppLogo() {
   );
 }
 
+// Government Data Processing Logo Component
+function GovernmentDataProcessingLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0066FF]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Government Data
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -414,6 +434,21 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "Dedicated Support",
     bgColor: "#E0F2FE",
     textColor: "#0284C7",
+  },
+  {
+    id: "government-data-processing",
+    name: "Government Data Processing Project",
+    category: "Government Services",
+    logo: <GovernmentDataProcessingLogo />,
+    description:
+      "Government Data Processing Project · Government Services | Data Management",
+    href: "/success-stories/government-data-processing",
+    metrics: { label: "Focus", value: "Data Extraction" },
+    badge: "Government Services",
+    tags: ["Data Extraction", "Data Entry", "Spreadsheet Management"],
+    statsPreview: "Data Extraction & Entry",
+    bgColor: "#E0F2FE",
+    textColor: "#0066FF",
   }
 ];
 
@@ -429,6 +464,7 @@ const categories = [
   "Third-Party Services",
   "Data Engineering",
   "App Scripting",
+  "Government Services",
 ];
 
 export default function CaseStudiesPage() {
@@ -544,7 +580,7 @@ export default function CaseStudiesPage() {
                 {filteredCases.map((item) => (
                   <div
                     key={item.id}
-                    className="flex flex-col justify-between bg-white border border-slate-200/90 rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 group"
+                    className={`flex flex-col justify-between bg-white border border-slate-200/90 rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 group ${item.id === "government-data-processing" ? "sm:col-start-2" : ""}`}
                   >
                     <div>
                       {/* Top Row: Logo & Badge */}
@@ -566,7 +602,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#EEF2FF] text-[#6366F1] border-[#6366F1]/20"
                               : item.id === "ui-angular-team-lead"
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
-                              : item.id === "healthcare-react-fastapi-consultation"
+                              : item.id === "healthcare-react-fastapi-consultation" ||
+                              item.id === "government-data-processing"
                               ? "bg-[#E0F2FE] text-[#0066FF] border-[#0066FF]/20"
                               : item.id === "fliplet-event-app-script"
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
@@ -594,7 +631,8 @@ export default function CaseStudiesPage() {
                                   ? "bg-[#EEF2FF] text-[#6366F1]"
                                   : item.id === "ui-angular-team-lead"
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
-                                  : item.id === "healthcare-react-fastapi-consultation"
+                                  : item.id === "healthcare-react-fastapi-consultation" ||
+                                  item.id === "government-data-processing"
                                   ? "bg-[#E0F2FE] text-[#0066FF]"
                                   : item.id === "fliplet-event-app-script"
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
@@ -620,17 +658,20 @@ export default function CaseStudiesPage() {
                         className={`inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 active:translate-y-0.5 ${
                           item.id === "ui-ux-screen-review-consultation"
                             ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#1D4ED8]"
-                            : item.id === "healthcare-react-fastapi-consultation"
+                            : item.id === "healthcare-react-fastapi-consultation" ||
+                            item.id === "government-data-processing"
                             ? "bg-[#0066FF] text-white hover:bg-[#0052cc] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0052cc]"
                             : "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
                         }`}
                       >
                         <span>
-                          {item.id === "healthcare-react-fastapi-consultation"
+                          {item.id === "healthcare-react-fastapi-consultation" ||
+                          item.id === "government-data-processing"
                             ? "View Success Story →"
                             : "View Case Study"}
                         </span>
-                        {item.id !== "healthcare-react-fastapi-consultation" && (
+                        {item.id !== "healthcare-react-fastapi-consultation" &&
+                        item.id !== "government-data-processing" && (
                           <svg
                             className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1"
                             fill="none"
