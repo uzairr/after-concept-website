@@ -195,6 +195,23 @@ function HealthcareReactFastAPILogo() {
   );
 }
 
+// Fliplet Event App Script Logo Component
+function FlipletEventAppLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7]">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        Fliplet Event App Script
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -382,6 +399,21 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "Healthcare Consultation",
     bgColor: "#E0F2FE",
     textColor: "#0066FF",
+  },
+  {
+    id: "fliplet-event-app-script",
+    name: "Fliplet Event App Script",
+    category: "App Scripting",
+    logo: <FlipletEventAppLogo />,
+    description:
+      "We provided dedicated App Scripting support for the Fliplet Event App engagement, focusing on the project's scripting requirements and delivering focused technical support for a single engagement.",
+    href: "/case-studies/fliplet-event-app-script",
+    metrics: { label: "Focus", value: "App Scripting" },
+    badge: "Dedicated Support",
+    tags: ["App Scripting", "Project Support", "Single Engagement"],
+    statsPreview: "Dedicated Support",
+    bgColor: "#E0F2FE",
+    textColor: "#0284C7",
   }
 ];
 
@@ -396,6 +428,7 @@ const categories = [
   "FinTech",
   "Third-Party Services",
   "Data Engineering",
+  "App Scripting",
 ];
 
 export default function CaseStudiesPage() {
@@ -535,6 +568,8 @@ export default function CaseStudiesPage() {
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : item.id === "healthcare-react-fastapi-consultation"
                               ? "bg-[#E0F2FE] text-[#0066FF] border-[#0066FF]/20"
+                              : item.id === "fliplet-event-app-script"
+                              ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
                             {item.badge}
@@ -561,6 +596,8 @@ export default function CaseStudiesPage() {
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : item.id === "healthcare-react-fastapi-consultation"
                                   ? "bg-[#E0F2FE] text-[#0066FF]"
+                                  : item.id === "fliplet-event-app-script"
+                                  ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
                             >
