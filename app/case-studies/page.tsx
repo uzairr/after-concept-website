@@ -542,13 +542,19 @@ export default function CaseStudiesPage() {
 
         {/* Content Container */}
         <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="max-w-xl lg:max-w-2xl text-left py-4">
-            <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[54px] font-bold text-white tracking-tight leading-[1.12] mb-6 drop-shadow-sm">
-              Creating Change for Millions<br />
+          <div className="max-w-2xl xl:max-w-3xl text-left py-4">
+            <h1 
+              className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[52px] font-bold text-white tracking-tight mb-6 drop-shadow-sm"
+              style={{ lineHeight: 1.25 }}
+            >
+              Creating Change for Millions<br className="hidden sm:inline" />{" "}
               Across the World
             </h1>
 
-            <p className="text-sm sm:text-base lg:text-[17px] text-white/85 leading-[1.7] font-normal max-w-[490px] drop-shadow-xs">
+            <p 
+              className="text-sm sm:text-base lg:text-[17px] text-white/85 font-normal max-w-[500px] drop-shadow-xs"
+              style={{ lineHeight: 1.7 }}
+            >
               From building leading travel search engines like KAYAK to partnering with global learning providers like edX, our team has spent the last two decades devising solutions and building products that drive positive change for people worldwide.
             </p>
           </div>
