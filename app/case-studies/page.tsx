@@ -232,6 +232,23 @@ function GovernmentDataProcessingLogo() {
   );
 }
 
+// CX / Customer Service Architecture Consultant Logo Component
+function CxArchitectureConsultantLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7] shrink-0">
+        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+        </svg>
+      </div>
+      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+        CX / Customer Service Architecture Consultant
+      </span>
+    </div>
+  );
+}
+
 // Generic Logo Badge for other case studies
 function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
@@ -449,6 +466,21 @@ const allCaseStudies: CaseItem[] = [
     statsPreview: "Data Extraction & Entry",
     bgColor: "#E0F2FE",
     textColor: "#0066FF",
+  },
+  {
+    id: "cx-customer-service-architecture-consultant",
+    name: "CX / Customer Service Architecture Consultant",
+    category: "CX / Customer Service",
+    logo: <CxArchitectureConsultantLogo />,
+    description:
+      "An Architecture Consultant engagement, documented through its project objective.",
+    href: "/case-studies/cx-customer-service-architecture-consultant",
+    metrics: { label: "Prepared By", value: "Ubaid | CX Consulting" },
+    badge: "Dedicated Support",
+    tags: ["CX / Customer Service", "Architecture Consultant", "Dedicated Support"],
+    statsPreview: "Dedicated Support",
+    bgColor: "#E0F2FE",
+    textColor: "#0284C7",
   }
 ];
 
@@ -465,6 +497,7 @@ const categories = [
   "Data Engineering",
   "App Scripting",
   "Government Services",
+  "CX / Customer Service",
 ];
 
 export default function CaseStudiesPage() {
@@ -580,7 +613,7 @@ export default function CaseStudiesPage() {
                 {filteredCases.map((item) => (
                   <div
                     key={item.id}
-                    className={`flex flex-col justify-between bg-white border border-slate-200/90 rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 group ${item.id === "government-data-processing" ? "sm:col-start-2" : ""}`}
+                    className="flex flex-col justify-between bg-white border border-slate-200/90 rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 group"
                   >
                     <div>
                       {/* Top Row: Logo & Badge */}
@@ -603,9 +636,10 @@ export default function CaseStudiesPage() {
                               : item.id === "ui-angular-team-lead"
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : item.id === "healthcare-react-fastapi-consultation" ||
-                              item.id === "government-data-processing"
+                                item.id === "government-data-processing"
                               ? "bg-[#E0F2FE] text-[#0066FF] border-[#0066FF]/20"
-                              : item.id === "fliplet-event-app-script"
+                              : item.id === "fliplet-event-app-script" ||
+                                item.id === "cx-customer-service-architecture-consultant"
                               ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
                               : "text-blue-700 bg-blue-50 border-blue-100"
                           }`}>
@@ -632,9 +666,10 @@ export default function CaseStudiesPage() {
                                   : item.id === "ui-angular-team-lead"
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : item.id === "healthcare-react-fastapi-consultation" ||
-                                  item.id === "government-data-processing"
+                                    item.id === "government-data-processing"
                                   ? "bg-[#E0F2FE] text-[#0066FF]"
-                                  : item.id === "fliplet-event-app-script"
+                                  : item.id === "fliplet-event-app-script" ||
+                                    item.id === "cx-customer-service-architecture-consultant"
                                   ? "bg-[#E0F2FE] text-[#0284C7]"
                                   : "bg-[#E6EEF2] text-[#4A6A7C]"
                               }`}
@@ -659,7 +694,7 @@ export default function CaseStudiesPage() {
                           item.id === "ui-ux-screen-review-consultation"
                             ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#1D4ED8]"
                             : item.id === "healthcare-react-fastapi-consultation" ||
-                            item.id === "government-data-processing"
+                              item.id === "government-data-processing"
                             ? "bg-[#0066FF] text-white hover:bg-[#0052cc] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0052cc]"
                             : "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
                         }`}
