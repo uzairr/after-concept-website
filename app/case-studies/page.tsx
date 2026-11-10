@@ -517,40 +517,40 @@ export default function CaseStudiesPage() {
           Matches exact dark navy holographic globe reference from user screenshot
           ========================================================================= */}
       <section 
-        className="hero relative w-full overflow-hidden bg-[#041033] pt-28 pb-16 lg:pt-36 lg:pb-20 flex items-center"
+        className="hero relative w-full overflow-hidden bg-[#041033] pt-28 pb-16 lg:pt-36 lg:pb-24 min-h-[540px] lg:min-h-[620px] xl:min-h-[660px] flex items-center"
       >
-        {/* Subtle holographic ambient glows behind globe */}
-        <div className="absolute top-1/2 right-[12%] -translate-y-1/2 w-[650px] h-[650px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-4 right-[25%] w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Full-bleed visual on the right matching exact user screenshot */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          {/* Subtle holographic ambient glows behind globe */}
+          <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/20 rounded-full blur-[140px]" />
+          <div className="absolute bottom-2 right-[20%] w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[120px]" />
 
+          {/* Full-width clean background image with globe & holographic cards */}
+          <Image
+            src="/images/creating-change-clean.png"
+            alt="Creating Change for Millions Across the World"
+            fill
+            priority
+            className="object-cover object-right"
+            quality={95}
+          />
+
+          {/* Selective smooth gradient overlay on smaller screens to ensure 100% crisp text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#041033] via-[#041033]/90 sm:via-[#041033]/70 md:via-[#041033]/40 lg:via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#041033]/40 via-transparent to-[#041033]/20 pointer-events-none" />
+        </div>
+
+        {/* Content Container */}
         <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center min-h-[500px] lg:min-h-[560px]">
-            
-            {/* Left Content Column */}
-            <div className="lg:col-span-5 flex flex-col justify-center text-left z-20">
-              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight leading-[1.14] mb-5">
-                Creating Change for Millions<br />
-                Across the World<span className="inline-block w-2.5 sm:w-3 h-[1.05em] bg-white ml-2 align-middle animate-pulse" />
-              </h1>
+          <div className="max-w-xl lg:max-w-2xl text-left py-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[54px] font-bold text-white tracking-tight leading-[1.12] mb-6 drop-shadow-sm">
+              Creating Change for Millions<br />
+              Across the World
+            </h1>
 
-              <p className="text-sm sm:text-base lg:text-[15px] text-white/80 leading-relaxed font-normal max-w-[480px]">
-                From building leading travel search engines like KAYAK to partnering with global learning providers like edX, Arbisoft has spent the last two decades devising solutions and building products that drive positive change for people worldwide.
-              </p>
-            </div>
-
-            {/* Right Visual Column: Holographic Globe & 3D Floating Tiles */}
-            <div className="lg:col-span-7 relative flex items-center justify-center lg:justify-end z-10">
-              <div className="relative w-full max-w-[640px] xl:max-w-[720px] 2xl:max-w-[760px] aspect-[544/513] select-none transition-transform duration-700 ease-out hover:scale-[1.015]">
-                <Image
-                  src="/images/creating-change-globe.png"
-                  alt="Creating change holographic globe with global tech solutions"
-                  fill
-                  priority
-                  className="object-contain object-center lg:object-right drop-shadow-[0_0_40px_rgba(30,100,240,0.25)]"
-                />
-              </div>
-            </div>
-
+            <p className="text-sm sm:text-base lg:text-[17px] text-white/85 leading-[1.7] font-normal max-w-[490px] drop-shadow-xs">
+              From building leading travel search engines like KAYAK to partnering with global learning providers like edX, our team has spent the last two decades devising solutions and building products that drive positive change for people worldwide.
+            </p>
           </div>
         </div>
       </section>
