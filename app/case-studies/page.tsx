@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -15,7 +15,7 @@ function LandDesignLogo() {
         alt="Land Design"
         width={160}
         height={56}
-        className="h-12 sm:h-14 w-auto object-contain"
+        className="h-10 sm:h-11 w-auto object-contain"
         priority
       />
     </div>
@@ -26,12 +26,12 @@ function LandDesignLogo() {
 function AngularProjectLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Internal Angular
       </span>
     </div>
@@ -42,12 +42,12 @@ function AngularProjectLogo() {
 function HealthcareSaaSLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#4A8AB8]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#4A8AB8] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 6v12m-6-6h12" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Healthcare SaaS
       </span>
     </div>
@@ -58,12 +58,12 @@ function HealthcareSaaSLogo() {
 function AngularNewFeaturesLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Angular Project
       </span>
     </div>
@@ -74,12 +74,12 @@ function AngularNewFeaturesLogo() {
 function AngularFrontendLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#5A7A8A] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Angular Front-End
       </span>
     </div>
@@ -90,7 +90,7 @@ function AngularFrontendLogo() {
 function RestApiIntegrationLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#4F46E5]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#4F46E5] shrink-0">
         <svg
           className="w-5 h-5 text-white"
           viewBox="0 0 24 24"
@@ -104,7 +104,7 @@ function RestApiIntegrationLogo() {
           <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Connecting Apps
       </span>
     </div>
@@ -115,7 +115,7 @@ function RestApiIntegrationLogo() {
 function BigQueryPipelineLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7] shrink-0">
         <svg
           className="w-5 h-5 text-white"
           viewBox="0 0 24 24"
@@ -130,7 +130,7 @@ function BigQueryPipelineLogo() {
           <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         BigQuery Pipeline
       </span>
     </div>
@@ -141,7 +141,7 @@ function BigQueryPipelineLogo() {
 function UiUxScreenReviewLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#6366F1]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#6366F1] shrink-0">
         <svg
           className="w-5 h-5 text-white"
           viewBox="0 0 24 24"
@@ -156,7 +156,7 @@ function UiUxScreenReviewLogo() {
           <line x1="12" y1="17" x2="12" y2="21" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         UI/UX Review
       </span>
     </div>
@@ -167,12 +167,12 @@ function UiUxScreenReviewLogo() {
 function UiAngularTeamLeadLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L2 5.5l1.5 13L12 22l8.5-3.5 1.5-13L12 2zm0 2.8l6.1 2.1-1 9-5.1 2.1-5.1-2.1-1-9L12 4.8zm0 2.5L8.5 16h1.8l.7-1.8h5l.7 1.8h1.8L12 7.3zm0 2.8l1.7 4.1h-3.4l1.7-4.1z" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         UI + Angular Lead
       </span>
     </div>
@@ -183,12 +183,12 @@ function UiAngularTeamLeadLogo() {
 function HealthcareReactFastAPILogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0066FF]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0066FF] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
           <path d="M19 10.5V8.8h-4.4V4.4h-5.2v4.4H5v5.2h4.4v4.4h5.2V14h4.4v-3.5z" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Healthcare React &amp; FastAPI
       </span>
     </div>
@@ -199,13 +199,13 @@ function HealthcareReactFastAPILogo() {
 function FlipletEventAppLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0284C7] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Fliplet Event App Script
       </span>
     </div>
@@ -216,7 +216,7 @@ function FlipletEventAppLogo() {
 function GovernmentDataProcessingLogo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0066FF]">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm bg-[#0066FF] shrink-0">
         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14 2 14 8 20 8" />
@@ -225,7 +225,7 @@ function GovernmentDataProcessingLogo() {
           <polyline points="10 9 9 9 8 9" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         Government Data
       </span>
     </div>
@@ -242,7 +242,7 @@ function CxArchitectureConsultantLogo() {
           <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
         </svg>
       </div>
-      <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[19px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         CX / Customer Service Architecture Consultant
       </span>
     </div>
@@ -254,12 +254,12 @@ function GenericBrandLogo({ name, color }: { name: string; color: string }) {
   return (
     <div className="flex items-center gap-2.5">
       <div 
-        className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm"
+        className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-base shadow-sm shrink-0"
         style={{ backgroundColor: color }}
       >
         {name.charAt(0)}
       </div>
-      <span className="text-2xl font-bold tracking-tight text-slate-900 font-sans">
+      <span className="text-lg xl:text-[20px] leading-snug font-bold tracking-tight text-slate-900 font-sans">
         {name}
       </span>
     </div>
@@ -484,29 +484,7 @@ const allCaseStudies: CaseItem[] = [
   }
 ];
 
-const categories = [
-  "All",
-  "Real Estate Tech",
-  "Web Development",
-  "Software Development",
-  "UX Design",
-  "Retail Tech",
-  "Healthcare",
-  "FinTech",
-  "Third-Party Services",
-  "Data Engineering",
-  "App Scripting",
-  "Government Services",
-  "CX / Customer Service",
-];
-
 export default function CaseStudiesPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredCases = activeCategory === "All"
-    ? allCaseStudies
-    : allCaseStudies.filter((item) => item.category === activeCategory);
-
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white">
       {/* Global Header */}
@@ -563,191 +541,63 @@ export default function CaseStudiesPage() {
 
       {/* =========================================================================
           MAIN SECTION: Creating value for your business
-          Matches the clean white 2-column section with Alfred & Travly cards
+          4-column bordered architectural grid matching Arbisoft reference structure
           ========================================================================= */}
       <section className="w-full py-20 lg:py-28 bg-[#ffffff]">
         <div className="w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
-            {/* Left Header / Sticky Pitch */}
-            <div className="lg:col-span-4 lg:sticky lg:top-28">
-              <span className="inline-block text-blue-600 font-bold text-xs uppercase tracking-wider mb-3">
-                Proven Track Record
-              </span>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-5">
-                Creating value for your business
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch pl-px pt-px">
+            {/* Top-Left Intro Block spanning 2 columns on tablet/desktop */}
+            <div className="md:col-span-2 lg:col-span-2 pr-0 md:pr-8 lg:pr-14 pt-2 pb-10 lg:pb-12 flex flex-col justify-start">
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#1e293b] tracking-tight leading-[1.15] mb-4">
+                Creating value for your
+                <br className="hidden sm:inline" /> business
               </h2>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8">
+              <p className="text-sm sm:text-[15px] lg:text-base text-slate-600 leading-relaxed font-normal max-w-[460px]">
                 We believe in the possibility of what can be. Our experts have been providing solutions over the last decade that have helped businesses like yours expand at a rapid scale.
               </p>
+            </div>
 
-              {/* Category Filter Pills */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
-                      activeCategory === cat
-                        ? "bg-blue-600 text-white shadow-sm shadow-blue-500/20"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+            {/* Case Study Grid Cells: 2 in Row 1 (cols 3-4), then 4 per row */}
+            {allCaseStudies.map((item) => (
+              <div
+                key={item.id}
+                className="relative -ml-px -mt-px flex flex-col justify-between bg-white border border-slate-200 p-7 xl:p-9 min-h-[280px] xl:min-h-[300px] hover:z-10 hover:border-blue-400/70 hover:bg-slate-50/30 transition-all duration-200 group"
+              >
+                <div>
+                  {/* Logo / Project Header */}
+                  <div className="mb-5">
+                    {item.logo}
+                  </div>
+
+                  {/* Description Text */}
+                  <p className="text-[14px] xl:text-[15px] text-slate-600 leading-[1.6] font-normal mb-8">
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Bottom Action: Solid Blue Button connecting directly to the Case Study */}
+                <div className="pt-2 mt-auto">
+                  <Link
+                    href={item.href}
+                    className={`inline-flex items-center justify-center w-fit px-5 py-2.5 rounded-[4px] font-medium text-[13px] transition-colors duration-200 ${
+                      item.id === "ui-ux-screen-review-consultation"
+                        ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                        : item.id === "healthcare-react-fastapi-consultation" ||
+                          item.id === "government-data-processing"
+                        ? "bg-[#0066FF] text-white hover:bg-[#0052cc]"
+                        : "bg-[#0a76db] text-white hover:bg-[#0861b5]"
                     }`}
                   >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              {/* Trust Badge */}
-              <div className="mt-10 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold shrink-0">
-                  ✓
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-slate-900">Zero Spreadsheet Overhead</div>
-                  <div className="text-xs text-slate-500 mt-0.5">Engineered systems built for scalable production.</div>
+                    {item.id === "healthcare-react-fastapi-consultation" ||
+                    item.id === "government-data-processing"
+                      ? "View Success Story"
+                      : "View Case Study"}
+                  </Link>
                 </div>
               </div>
-            </div>
-
-            {/* Right Column: Case Study Cards Grid */}
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-                {filteredCases.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex flex-col justify-between bg-white border border-slate-200/90 rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 group"
-                  >
-                    <div>
-                      {/* Top Row: Logo & Badge */}
-                      <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
-                        {item.logo}
-                        {item.badge && (
-                          <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-md border ${
-                            item.id === "internal-angular-project" ||
-                            item.id === "angular-project-new-features" ||
-                            item.id === "internal-angular-frontend-project"
-                              ? "bg-[#E6EEF2] text-[#4A6A7C] border-[#4A6A7C]/20"
-                              : item.id === "healthcare-saas-project"
-                              ? "bg-[#E6F0FA] text-[#4A8AB8] border-[#4A8AB8]/20"
-                              : item.id === "connecting-apps-third-party-services-rest"
-                              ? "bg-[#EEF2FF] text-[#4F46E5] border-[#4F46E5]/20"
-                              : item.id === "data-download-transformation-stacking-bigquery"
-                              ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
-                              : item.id === "ui-ux-screen-review-consultation"
-                              ? "bg-[#EEF2FF] text-[#6366F1] border-[#6366F1]/20"
-                              : item.id === "ui-angular-team-lead"
-                              ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
-                              : item.id === "healthcare-react-fastapi-consultation" ||
-                                item.id === "government-data-processing"
-                              ? "bg-[#E0F2FE] text-[#0066FF] border-[#0066FF]/20"
-                              : item.id === "fliplet-event-app-script" ||
-                                item.id === "cx-customer-service-architecture-consultant"
-                              ? "bg-[#E0F2FE] text-[#0284C7] border-[#0284C7]/20"
-                              : "text-blue-700 bg-blue-50 border-blue-100"
-                          }`}>
-                            {item.badge}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Tag pills */}
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {item.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className={`text-xs font-semibold px-3 py-1 rounded-full ${
-                                item.id === "healthcare-saas-project"
-                                  ? "bg-[#E6F0FA] text-[#4A8AB8]"
-                                  : item.id === "connecting-apps-third-party-services-rest"
-                                  ? "bg-[#EEF2FF] text-[#4F46E5]"
-                                  : item.id === "data-download-transformation-stacking-bigquery"
-                                  ? "bg-[#E0F2FE] text-[#0284C7]"
-                                  : item.id === "ui-ux-screen-review-consultation"
-                                  ? "bg-[#EEF2FF] text-[#6366F1]"
-                                  : item.id === "ui-angular-team-lead"
-                                  ? "bg-[#E0F2FE] text-[#0284C7]"
-                                  : item.id === "healthcare-react-fastapi-consultation" ||
-                                    item.id === "government-data-processing"
-                                  ? "bg-[#E0F2FE] text-[#0066FF]"
-                                  : item.id === "fliplet-event-app-script" ||
-                                    item.id === "cx-customer-service-architecture-consultant"
-                                  ? "bg-[#E0F2FE] text-[#0284C7]"
-                                  : "bg-[#E6EEF2] text-[#4A6A7C]"
-                              }`}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Description Text - Verbatim matching the mock */}
-                      <p className="text-[15px] sm:text-base text-slate-600 leading-relaxed font-normal mb-8 min-h-[72px]">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    {/* Bottom Action: Solid Blue Button connecting directly to the Case Study */}
-                    <div className="pt-4 mt-auto">
-                      <Link
-                        href={item.href}
-                        className={`inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 active:translate-y-0.5 ${
-                          item.id === "ui-ux-screen-review-consultation"
-                            ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#1D4ED8]"
-                            : item.id === "healthcare-react-fastapi-consultation" ||
-                              item.id === "government-data-processing"
-                            ? "bg-[#0066FF] text-white hover:bg-[#0052cc] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0052cc]"
-                            : "bg-[#0a76db] text-white hover:bg-[#0861b5] hover:shadow-md hover:shadow-blue-500/20 active:translate-y-0.5 group-hover:bg-[#0969c3]"
-                        }`}
-                      >
-                        <span>
-                          {item.id === "healthcare-react-fastapi-consultation" ||
-                          item.id === "government-data-processing"
-                            ? "View Success Story →"
-                            : "View Case Study"}
-                        </span>
-                        {item.id !== "healthcare-react-fastapi-consultation" &&
-                        item.id !== "government-data-processing" && (
-                          <svg
-                            className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M14 5l7 7m0 0l-7 7m7-7H3"
-                            />
-                          </svg>
-                        )}
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {filteredCases.length === 0 && (
-                <div className="text-center py-16 px-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-                  <p className="text-slate-500 text-sm">No case studies found in this category.</p>
-                  <button
-                    onClick={() => setActiveCategory("All")}
-                    className="mt-3 text-blue-600 text-xs font-semibold underline"
-                  >
-                    View All Case Studies
-                  </button>
-                </div>
-              )}
-            </div>
-
+            ))}
           </div>
-
         </div>
       </section>
 
