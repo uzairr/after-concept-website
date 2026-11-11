@@ -616,7 +616,7 @@ export default function LandDesignCaseStudy() {
                 <div className="mt-8 pt-4 flex flex-col space-y-3">
                   <Link
                     href="/#contact"
-                    className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg bg-[#7BB62D] hover:bg-[#6BA126] text-white font-semibold text-xs transition-colors shadow-sm shadow-[#7BB62D]/30 active:translate-y-0.5"
+                    className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg bg-[#4A6A7C] hover:bg-[#3B5767] text-white font-semibold text-xs transition-colors shadow-sm shadow-[#4A6A7C]/30 active:translate-y-0.5"
                   >
                     Discuss Your Project →
                   </Link>
@@ -626,6 +626,18 @@ export default function LandDesignCaseStudy() {
                   >
                     ← All Case Studies
                   </Link>
+                  <a
+                    href="/pdfs/landdesign-case-study.pdf"
+                    download="LandDesign-Intelligence-App-Case-Study.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-blue-500/30 active:translate-y-0.5"
+                  >
+                    <svg className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 4v12m0 0l-3-3m3 3l3-3" />
+                    </svg>
+                    Download PDF
+                  </a>
                 </div>
 
               </div>
