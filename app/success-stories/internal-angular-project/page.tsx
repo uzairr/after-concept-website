@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -50,7 +49,19 @@ export default function InternalAngularProjectCaseStudy() {
       {/* =========================================================================
           HERO SECTION (Dark background with Grey-Bluish Theme)
           ========================================================================= */}
-      <section className="relative w-full overflow-hidden bg-[#0A1A1A] bg-gradient-to-r from-[#0A1A1A] via-[#0E222D] to-[#1A2E3A] pt-28 pb-16 lg:pt-36 lg:pb-28 border-b border-[#2A4A5A]/60 min-h-[580px] lg:min-h-[640px] flex items-center">
+      <section 
+        className="relative w-full overflow-hidden bg-[#0A1A1A] bg-cover bg-center bg-no-repeat pt-28 pb-16 lg:pt-36 lg:pb-28 border-b border-[#2A4A5A]/60 min-h-[580px] lg:min-h-[640px] flex items-center"
+        style={{
+          backgroundImage: "url('/images/case-studies/angular-case-study-background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Dark overlay / gradient on top of background so text remains readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1A1A] via-[#0A1A1A]/90 sm:via-[#0A1A1A]/80 lg:via-[#0A1A1A]/55 to-[#0A1A1A]/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A1A] via-transparent to-[#0A1A1A]/40 pointer-events-none" />
+
         {/* Grey-bluish ambient overlays */}
         <div 
           className="absolute inset-0 pointer-events-none" 
@@ -107,19 +118,6 @@ export default function InternalAngularProjectCaseStudy() {
                     Best Practices Followed
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Right Column: Angular Code Dashboard Mockup */}
-            <div className="hidden lg:flex lg:col-span-5 xl:col-span-6 items-center justify-center relative">
-              <div className="relative w-full max-w-[560px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[#2A4A5A] bg-[#0F1F2A]/90 backdrop-blur-md">
-                <Image
-                  src="/images/angular-hero.png"
-                  alt="Angular Development Dashboard"
-                  fill
-                  priority
-                  className="object-cover"
-                />
               </div>
             </div>
 

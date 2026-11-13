@@ -18,7 +18,7 @@ const stories = [
   },
   {
     title: "Internal Angular Project",
-    image: "/images/case-studies/angular-project.png",
+    image: "/images/case-studies/angular-case-study-cover.jpg",
     link: "/success-stories/internal-angular-project"
   }
 ];
